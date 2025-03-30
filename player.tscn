@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://fivay0tb8yky"]
+
+[ext_resource type="Script" uid="uid://c5qd62u5caywy" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4flbx"]
+
+[node name="Player" type="Node2D"]
+material = SubResource("CanvasItemMaterial_4flbx")
+script = ExtResource("1_4flbx")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -167.0
+offset_top = 79.0
+offset_right = 164.0
+offset_bottom = 106.0
+step = 1.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -10.1362
+offset_top = 80.1769
+offset_right = 29.8638
+offset_bottom = 103.177
