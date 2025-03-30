@@ -35,7 +35,7 @@ Your key for github is in id_rsa.pub
    Copy the whole key starting with "ssh-rsa" don't copy your user and machine name at the end
  
 ##### 3.1 Copy Project
-Ask for Permission to work on the Prject "maximilian.gross@gmx.de"
+Ask for Permission to work on the Prject "maximiliangross@gmx.de"
 At the start screen of the project you should see a green button "<> Code "
 Click on it and select "SSH" tab and copy link to clipboard
 Open a folder where you want to save the project
