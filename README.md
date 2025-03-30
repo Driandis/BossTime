@@ -48,7 +48,7 @@ cd C:\User\Username\Project\BossRush
 ```
 Copy and enter
 ```sh
- "git clone https://github.com/Driandis/BossRush.git" and hit enter
+ git clone https://github.com/Driandis/BossRush.git
  ```
 The project should now be copied on your local file system
 
