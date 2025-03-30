@@ -53,9 +53,10 @@ Copy and enter
 The project should now be copied on your local file system
 
 ### 4. Install Godot
-Go to https://godotengine.org/download/windows/
+Go to https://godotengine.org/download/windows/ <br/>
 Download NET.SDK and install (simple wizard)
-Download Windows - x86_64  (https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_win64.exe.zip)
+Download Windows - x86_64 <br/> 
+(https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_win64.exe.zip) <br/>
 Now you should be able to run Godot
 Click on "Import" and select the folder where you saved the cloned project
 
