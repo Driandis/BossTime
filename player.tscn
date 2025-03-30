@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://fivay0tb8yky"]
+[gd_scene load_steps=4 format=3 uid="uid://fivay0tb8yky"]
 
 [ext_resource type="Script" uid="uid://c5qd62u5caywy" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://b8206y0e32wgx" path="res://sprites/squarrel.png" id="2_onrkg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4flbx"]
 
@@ -21,3 +22,8 @@ offset_left = -10.1362
 offset_top = 80.1769
 offset_right = 29.8638
 offset_bottom = 103.177
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, -40)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_onrkg")
