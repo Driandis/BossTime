@@ -35,8 +35,13 @@ Your key for github is in id_rsa.pub
    Under "Access" click on "SSH and GPG keys"
    Click on "New SSH key"
    Copy the whole key starting with "ssh-rsa" don't copy your user and machine name at the end
- 
-##### 3.1 Copy Project
+
+##### 3.1 Install git
+```sh
+winget install --id Git.Git -e --source winget
+```
+
+##### 3.2 Copy Project
 Ask for Permission to work on the Prject "dev@bossrush.de"
 At the start screen of the project you should see a green button "<> Code "
 Click on it and select "SSH" tab and copy link to clipboard
