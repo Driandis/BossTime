@@ -18,6 +18,7 @@ winget install --id Microsoft.PowerShell --source winget
 ### 2. Install SSH
 Open PowerShell in admin mode
 ```sh
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 Set-Service -Name sshd -StartupType 'Automatic'
 ```
 
