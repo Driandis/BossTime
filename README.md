@@ -25,6 +25,7 @@ Set-Service -Name sshd -StartupType 'Automatic'
 ##### 2.1  Generate SSh-key for git
 Open search and enter "cmd" hit enter
 enter "ssh-keygen -t rsa"
+If asked for filename and password just leave it empty and hit enter
 Under  C:\Users\Username\.ssh should be two new files
 Your key for github is in id_rsa.pub
     
