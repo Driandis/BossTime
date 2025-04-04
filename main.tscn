@@ -24,7 +24,33 @@ offset_right = 744.0
 offset_bottom = 360.0
 text = "DAMAGE"
 
+[node name="GameOver" type="Window" parent="."]
+auto_translate_mode = 1
+mode = 3
+title = "You Died"
+initial_position = 2
+size = Vector2i(500, 500)
+visible = false
+
+[node name="Label" type="RichTextLabel" parent="GameOver"]
+offset_right = 498.0
+offset_bottom = 358.0
+text = "Game Over"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="GameOver"]
+offset_left = 146.0
+offset_top = 373.0
+offset_right = 354.0
+offset_bottom = 438.0
+text = "CONFIRM"
+
 [connection signal="press" from="." to="Player" method="_on_main_press"]
 [connection signal="press" from="." to="Farmer" method="_on_main_press"]
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
 [connection signal="pressed" from="Button" to="Farmer" method="_on_button_pressed"]
+[connection signal="pressed" from="GameOver/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="GameOver/Button" to="Player" method="_on_game_over_button_pressed"]

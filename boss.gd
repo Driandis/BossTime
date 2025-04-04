@@ -1,12 +1,14 @@
 extends Node2D
 
-const MAX_HEALTH = 100
+const MAX_HEALTH = GlobalVariables.bossMaxHealth
 signal action
+signal restart
 var health = MAX_HEALTH
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setHealthLabel();
+	health = GlobalVariables.bossHealth;
 	$HealthBar.max_value = 100;
 	setHealthBar();
 
