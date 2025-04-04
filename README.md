@@ -40,6 +40,7 @@ Your key for github is in id_rsa.pub
 ```sh
 winget install --id Git.Git -e --source winget
 ```
+After the installation has finished you need to open a new console window to proceed
 
 ##### 3.2 Copy Project
 Ask for Permission to work on the Prject "dev@bossrush.de"
