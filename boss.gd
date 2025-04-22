@@ -5,6 +5,7 @@ signal action
 signal restart
 var health = MAX_HEALTH
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setHealthLabel();
@@ -19,17 +20,18 @@ func setHealthBar() -> void:
 	$HealthBar.value = health
 
 
-func damage() -> void:
-	health -= 1 # -damage
+func damage(amount: int) -> void:
+	health -= amount # -damage (Zeitnah ändern zu "Amount")
 	setHealthLabel();	
 	setHealthBar();
+	print("Boss erleidet ", amount, "Schaden. Neue HP:", health)
 	if health <= 0:
 		health = MAX_HEALTH;
 	
 
 func _on_main_press() -> void:
-	damage();
+	damage(0);
 
 
 func _on_button_pressed() -> void:
-	damage();
+	damage(0);

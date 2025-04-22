@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://qsadhjj7ohqy"]
+
+[ext_resource type="Script" uid="uid://crt0om8yfdlxw" path="res://feld_1.gd" id="1_2vov1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_es86h"]
+size = Vector2(46.25, 40)
+
+[node name="Felder" type="Node2D"]
+
+[node name="Feld1" type="Area2D" parent="."]
+script = ExtResource("1_2vov1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld1"]
+position = Vector2(-152, 32)
+shape = SubResource("RectangleShape2D_es86h")
+
+[node name="Label" type="Label" parent="Feld1"]
+offset_left = -176.0
+offset_top = 16.0
+offset_right = -128.0
+offset_bottom = 63.0
+text = "Feld 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Feld2" type="Area2D" parent="."]
+script = ExtResource("1_2vov1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld2"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_es86h")
+
+[node name="Label" type="Label" parent="Feld2"]
+offset_left = -24.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 63.0
+text = "Feld 2"
+metadata/_edit_use_anchors_ = true
+
+[node name="Feld3" type="Area2D" parent="."]
+script = ExtResource("1_2vov1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld3"]
+position = Vector2(152, 32)
+shape = SubResource("RectangleShape2D_es86h")
+
+[node name="Label" type="Label" parent="Feld3"]
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 176.0
+offset_bottom = 63.0
+text = "Feld 3"
+metadata/_edit_use_anchors_ = true

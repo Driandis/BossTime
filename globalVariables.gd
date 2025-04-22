@@ -2,7 +2,7 @@ extends Node
 
 
 # General
-var roundCounter
+var roundCounter := 0
 var timer 
 # Boss
 const bossMaxHealth = 300
