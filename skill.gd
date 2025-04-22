@@ -30,7 +30,7 @@ func _run_effect():
 		current_cd = cooldown
 		_setCooldownBar()
 		
-func use():
+func use(): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
 	pass
 	
 func tick_cooldown():

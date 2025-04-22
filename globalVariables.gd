@@ -11,7 +11,7 @@ var bossBlock
 var bossArmor
 var bossMagicRes 
 # Player 
-const playerMaxHealth = 30
+const playerMaxHealth = 100
 var playerHealth = playerMaxHealth
 var playerBlock
 var playerAmor

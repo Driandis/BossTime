@@ -10,7 +10,7 @@ var health = MAX_HEALTH
 func _ready() -> void:
 	setHealthLabel();
 	health = GlobalVariables.bossHealth;
-	$HealthBar.max_value = 100;
+	$HealthBar.max_value = 300;
 	setHealthBar();
 
 func setHealthLabel() -> void:
@@ -22,9 +22,10 @@ func setHealthBar() -> void:
 
 func damage(amount: int) -> void:
 	health -= amount # -damage (Zeitnah ändern zu "Amount")
+	health = clamp(health, 0, MAX_HEALTH) #damit man nicht über Maxleben heilt
 	setHealthLabel();	
 	setHealthBar();
-	print("Boss erleidet ", amount, "Schaden. Neue HP:", health)
+	print("Boss erleidet ", amount, "Schaden. Neue HP:", health) #nervt etwas. Vielleicht lieber in die Skillskripte?
 	if health <= 0:
 		health = MAX_HEALTH;
 	

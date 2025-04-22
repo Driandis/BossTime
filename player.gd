@@ -19,8 +19,11 @@ func setHealthBar() -> void:
 	$HealthBar.value = health;
 
 
-func damage() -> void:
-	health -= 10 # -damage
+
+
+func damage(amount: int) -> void:
+	health -= amount 
+	health = clamp(health, 0, MAX_HEALTH) #damit man nicht über Maxleben heilt
 	setHealthLabel();	
 	setHealthBar();
 	if health == 0:
@@ -29,11 +32,11 @@ func damage() -> void:
 	
 
 func _on_main_press() -> void:
-	damage();
+	damage(0);
 
 
 func _on_button_pressed() -> void:
-	damage();
+	damage(10);
 
 
 func _on_game_over_button_pressed() -> void:

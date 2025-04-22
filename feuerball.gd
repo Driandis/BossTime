@@ -11,7 +11,7 @@ var dmg := 150
 func _ready():
 	add_to_group("Skill") #damit er alle Skills Aspekte hat
 	boss = get_node("/root/Main/Farmer") #damit er mit dem Boss und seinen Funktionen interagieren kann
-	cooldown = 2  # Fireball braucht 3 Runden Cooldown
+	cooldown = 3  # Fireball braucht 3 Runden Cooldown
 	
 	
 func _input_event(viewport, event, shape_idx): #drag and drop
