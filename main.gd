@@ -38,12 +38,11 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 func feld_reagiert(feld_name: String, skill):	#das müsste noch verbessert werden
 	match feld_name:
 		"Feld1":
-			skill._run_effect()  # Skill nutzen
-			skill._run_effect()  # Skill nutzen
+			skill._run_effect(2.5)
 		"Feld2":
-			skill._run_effect()
+			skill._run_effect(2.0)
 		"Feld3":
-			print("Kein spezieller Effekt")
+			skill._run_effect(1.5)
 
 
 				

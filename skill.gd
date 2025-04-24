@@ -24,13 +24,13 @@ func _ready():
 func is_ready() -> bool:
 	return current_cd == 0
 	
-func _run_effect():
+func _run_effect(feldmultiplier := 1.0):
 		print("Skill wurde ausgeführt: ", name)
-		use()
+		use(feldmultiplier)
 		current_cd = cooldown
 		_setCooldownBar()
 		
-func use(): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
+func use(feldmultiplier := 1.0): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
 	pass
 	
 func tick_cooldown():
