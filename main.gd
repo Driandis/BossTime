@@ -5,11 +5,33 @@ signal press
 signal confirm
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@onready var player = $Player #damit wir auf alles aus dem Player Node zugreifen können
+
+func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich noch nicht ganz
+	var hero_data: HeroData
+
+	if GlobalVariables.hero_path != "":
+		if ResourceLoader.exists(GlobalVariables.hero_path):
+			hero_data = load(GlobalVariables.hero_path)
+		else:
+			push_error("Pfad zu Heldendatei ungültig: " + GlobalVariables.hero_path)
+			return
+	else:
+		hero_data = preload("res://Helden/Feuermage/Feuermage.tres")
+
+	player.init_hero(hero_data)	#die Werte aus dem Heldenpaket des Pfades werden geladen (Name, HP, Skills)
+
+
+
+		# Skills hinzufügen
+
+
+
 func _process(delta: float) -> void:
 	pass
 
 
-func input(event: InputEvent) -> void:
+func input(event: InputEvent) -> void: #von Beginn an von Maxi da
 		if event.is_action_pressed("ui_accept") || event.is_action_pressed("ui_right"):
 			var damage = RandomNumberGenerator.new();
 			press.emit();

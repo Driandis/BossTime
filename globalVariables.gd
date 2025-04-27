@@ -4,13 +4,17 @@ extends Node
 # General
 var roundCounter := 0
 var timer 
+var hero_path: String = "" #für Heldenauswahl
 # Boss
+var selected_boss
 const bossMaxHealth = 300
 var bossHealth = bossMaxHealth
 var bossBlock
 var bossArmor
 var bossMagicRes 
 # Player 
+var selected_hero
+
 const playerMaxHealth = 100
 var playerHealth = playerMaxHealth
 var playerBlock

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HeroData" load_steps=3 format=3 uid="uid://cukpk63v2iefq"]
+
+[ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://HeroData.gd" id="1_6j2te"]
+[ext_resource type="PackedScene" uid="uid://dvckdn4sbdnnc" path="res://Skills/Feuerball.tscn" id="2_lypqa"]
+
+[resource]
+script = ExtResource("1_6j2te")
+name = "Alfred"
+skills = Array[PackedScene]([ExtResource("2_lypqa")])
+max_health = 100
+metadata/_custom_type_script = "uid://bl6bchsjiiq8e"
