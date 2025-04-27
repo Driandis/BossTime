@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2pixwry3mxki"]
+
+[ext_resource type="Script" uid="uid://by41xax247oyp" path="res://Helden/Fighter/Skills/heal.gd" id="1_84ssy"]
+[ext_resource type="Texture2D" uid="uid://ddiqyhkcnrwk3" path="res://sprites/heroes/firemage/ChatGPT Image 22. Apr. 2025, 18_33_55.png" id="2_ewtjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_of35s"]
+size = Vector2(90, 68)
+
+[node name="Heal" type="Node2D"]
+
+[node name="Heal" type="Area2D" parent="."]
+position = Vector2(42, 42)
+script = ExtResource("1_84ssy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Heal"]
+position = Vector2(138, -124)
+shape = SubResource("RectangleShape2D_of35s")
+
+[node name="Sprite2D" type="Sprite2D" parent="Heal"]
+position = Vector2(140, -121)
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("2_ewtjb")
+
+[node name="Label" type="Label" parent="Heal"]
+offset_left = 105.0
+offset_top = -91.0
+offset_right = 178.0
+offset_bottom = -68.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Heal"]
+offset_left = 156.0
+offset_top = -159.0
+offset_right = 188.0
+offset_bottom = -130.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Heal/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.28125
+anchor_right = -0.28125
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true

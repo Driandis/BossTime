@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cv0qam4naeb72"]
+
+[ext_resource type="Script" uid="uid://cpg6p7d6mhns6" path="res://controls/hero_selection.gd" id="1_4sp4p"]
+[ext_resource type="Script" uid="uid://c2nd0wwn7f3u2" path="res://controls/feuermagebutton.gd" id="1_7w1wr"]
+[ext_resource type="Texture2D" uid="uid://1uswsvuy07wr" path="res://sprites/heroes/firemage/ChatGPT Image 26. Apr. 2025, 13_49_29.png" id="2_ye3tx"]
+[ext_resource type="Texture2D" uid="uid://bp5li7gfmo6ef" path="res://sprites/toys-2791660_640.jpg" id="4_uiie5"]
+[ext_resource type="Script" uid="uid://sha4gw5gws3b" path="res://controls/fighterbutton.gd" id="5_3s7wh"]
+[ext_resource type="Texture2D" uid="uid://nuw6x3vh1l2d" path="res://sprites/heroes/firemage/ChatGPT Image 27. Apr. 2025, 18_15_32.png" id="6_ol7rr"]
+
+[node name="HeroSelection" type="Node2D"]
+script = ExtResource("1_4sp4p")
+
+[node name="Auswahlobjekte" type="VBoxContainer" parent="."]
+offset_left = 559.0
+offset_top = 317.0
+offset_right = 1591.0
+offset_bottom = 1384.0
+scale = Vector2(0.1, 0.1)
+
+[node name="Feuermage" type="Button" parent="Auswahlobjekte"]
+layout_mode = 2
+icon = ExtResource("2_ye3tx")
+script = ExtResource("1_7w1wr")
+
+[node name="Überschrift" type="Label" parent="."]
+offset_left = 472.0
+offset_top = 124.0
+offset_right = 766.0
+offset_bottom = 147.0
+text = "Welchen Helden möchtest du spielen?"
+
+[node name="Auswahlobjekte2" type="VBoxContainer" parent="."]
+offset_left = 386.0
+offset_top = 322.0
+offset_right = 1034.0
+offset_bottom = 888.0
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 0
+
+[node name="Fighter" type="Button" parent="Auswahlobjekte2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Fighter"
+icon = ExtResource("4_uiie5")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("5_3s7wh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(575.25, 322.25)
+scale = Vector2(0.749674, 0.634277)
+texture = ExtResource("6_ol7rr")
+
+[connection signal="pressed" from="Auswahlobjekte/Feuermage" to="." method="_on_feuermage_pressed"]
+[connection signal="pressed" from="Auswahlobjekte2/Fighter" to="." method="_on_fighter_pressed"]
