@@ -2,7 +2,7 @@ extends Node
 
 
 # General
-var roundCounter := 0
+var current_slot := 0 #trackt welches Feld gerade an der Reihe ist, Code dazu vermutlich im Main
 var timer 
 
 # Boss
