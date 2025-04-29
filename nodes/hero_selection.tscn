@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cpg6p7d6mhns6" path="res://controls/hero_selection.gd" id="1_4sp4p"]
 [ext_resource type="Script" uid="uid://c2nd0wwn7f3u2" path="res://controls/feuermagebutton.gd" id="1_7w1wr"]
 [ext_resource type="Texture2D" uid="uid://1uswsvuy07wr" path="res://sprites/heroes/firemage/ChatGPT Image 26. Apr. 2025, 13_49_29.png" id="2_ye3tx"]
-[ext_resource type="Texture2D" uid="uid://bp5li7gfmo6ef" path="res://sprites/toys-2791660_640.jpg" id="4_uiie5"]
+[ext_resource type="Texture2D" uid="uid://dk4xkdswx2wen" path="res://sprites/heroes/fighter/Zweihandkrieger mit Schwert.png" id="4_871m5"]
 [ext_resource type="Script" uid="uid://sha4gw5gws3b" path="res://controls/fighterbutton.gd" id="5_3s7wh"]
 [ext_resource type="Texture2D" uid="uid://nuw6x3vh1l2d" path="res://sprites/heroes/firemage/ChatGPT Image 27. Apr. 2025, 18_15_32.png" id="6_ol7rr"]
 
@@ -32,16 +32,15 @@ text = "Welchen Helden möchtest du spielen?"
 [node name="Auswahlobjekte2" type="VBoxContainer" parent="."]
 offset_left = 386.0
 offset_top = 322.0
-offset_right = 1034.0
-offset_bottom = 888.0
-scale = Vector2(0.2, 0.2)
+offset_right = 1418.0
+offset_bottom = 1354.0
+scale = Vector2(0.1, 0.1)
 size_flags_horizontal = 0
 
 [node name="Fighter" type="Button" parent="Auswahlobjekte2"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Fighter"
-icon = ExtResource("4_uiie5")
+icon = ExtResource("4_871m5")
 flat = true
 icon_alignment = 1
 vertical_icon_alignment = 0

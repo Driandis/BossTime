@@ -35,8 +35,8 @@ func init_hero(hero_data): #um den Heldencharkter zu laden
 
 
 func damage(amount: int) -> void:
-	health -= amount 
-	health = clamp(health, 0, MAX_HEALTH) #damit man nicht über Maxleben heilt
+	health -= ceil(amount)	#DMG wird aufgerundet und dann vom Leben abgezogen 
+	health = clamp(health, 0, max_health) #damit man nicht über Maxleben heilt, 
 	setHealthLabel();	
 	setHealthBar();
 	if health == 0:

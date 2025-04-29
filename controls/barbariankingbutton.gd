@@ -1,9 +1,8 @@
 extends Control
 
-func _on_feuermage_button_pressed():
+func _on_barbarianking_pressed():
 	# HeroData-Pfad speichern zum entsprechenden Helden
-	GlobalVariables.selected_hero = "res://Helden/Feuermage/Feuermage.tres"
-	
+	GlobalVariables.selected_boss = "res://bosses/Barbarianking/Barbarianking.tres"
 	# Szene wechseln
 	get_tree().change_scene_to_file("res://Main.tscn")
 

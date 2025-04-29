@@ -8,17 +8,18 @@ size = Vector2(46.25, 40)
 [node name="Felder" type="Node2D"]
 
 [node name="Feld1" type="Area2D" parent="."]
+position = Vector2(-156, 7)
 script = ExtResource("1_2vov1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld1"]
-position = Vector2(-152, 32)
+position = Vector2(-2, 24)
 shape = SubResource("RectangleShape2D_es86h")
 
 [node name="Label" type="Label" parent="Feld1"]
-offset_left = -176.0
-offset_top = 16.0
-offset_right = -128.0
-offset_bottom = 63.0
+offset_left = -26.0
+offset_top = 8.0
+offset_right = 22.0
+offset_bottom = 55.0
 text = "Feld 1"
 metadata/_edit_use_anchors_ = true
 
@@ -38,16 +39,17 @@ text = "Feld 2"
 metadata/_edit_use_anchors_ = true
 
 [node name="Feld3" type="Area2D" parent="."]
+position = Vector2(161, 6)
 script = ExtResource("1_2vov1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld3"]
-position = Vector2(152, 32)
+position = Vector2(1, 26)
 shape = SubResource("RectangleShape2D_es86h")
 
 [node name="Label" type="Label" parent="Feld3"]
-offset_left = 128.0
-offset_top = 16.0
-offset_right = 176.0
-offset_bottom = 63.0
+offset_left = -23.0
+offset_top = 10.0
+offset_right = 25.0
+offset_bottom = 57.0
 text = "Feld 3"
 metadata/_edit_use_anchors_ = true

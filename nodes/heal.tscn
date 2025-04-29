@@ -9,30 +9,30 @@ size = Vector2(90, 68)
 [node name="Heal" type="Node2D"]
 
 [node name="Heal" type="Area2D" parent="."]
-position = Vector2(42, 42)
+position = Vector2(165, -111)
 script = ExtResource("1_84ssy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Heal"]
-position = Vector2(138, -124)
+position = Vector2(8.5, -12)
 shape = SubResource("RectangleShape2D_of35s")
 
 [node name="Sprite2D" type="Sprite2D" parent="Heal"]
-position = Vector2(140, -121)
+position = Vector2(10.5, -9)
 scale = Vector2(0.0908203, 0.0703125)
 texture = ExtResource("2_ewtjb")
 
 [node name="Label" type="Label" parent="Heal"]
-offset_left = 105.0
-offset_top = -91.0
-offset_right = 178.0
-offset_bottom = -68.0
+offset_left = -24.5
+offset_top = 21.0
+offset_right = 48.5
+offset_bottom = 44.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Heal"]
-offset_left = 156.0
-offset_top = -159.0
-offset_right = 188.0
-offset_bottom = -130.0
+offset_left = 26.5
+offset_top = -47.0
+offset_right = 58.5
+offset_bottom = -18.0
 fill_mode = 2
 show_percentage = false
 metadata/_edit_use_anchors_ = true

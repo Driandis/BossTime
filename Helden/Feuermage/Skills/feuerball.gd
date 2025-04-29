@@ -1,32 +1,14 @@
-extends Skill
+extends Skill #hier wird script von Skills importiert
 
 
-#hier das script von Skills noch importieren?
+var dmg := 15
 
-var dragging := false
-var offset := Vector2.ZERO
-var dmg := 150
-
-
-func _ready():
-	add_to_group("Skill") #damit er alle Skills Aspekte hat
-	boss = get_node("/root/Main/Farmer") #damit er mit dem Boss und seinen Funktionen interagieren kann
-	cooldown = 3  # Fireball braucht 3 Runden Cooldown
 	
-	
-func _input_event(viewport, event, shape_idx): #drag and drop
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			dragging = true
-			offset = get_global_mouse_position() - global_position
-		else:
-			dragging = false
 
 func use(feldmultiplier := 1.0):
-	boss.damage(dmg * feldmultiplier)
+	boss.damage(ceil(dmg * feldmultiplier)) #gerundeter DMG insgesamt
+	cooldown = 3  # Fireball braucht 3 Runden Cooldown
 	
-	
-	
-func _process(_delta):
+func _process(_delta):	#führt irgendwie dazu, dass man sauberer ziehen kann
 	if dragging:
 		global_position = get_global_mouse_position() - offset

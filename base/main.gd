@@ -8,18 +8,18 @@ signal confirm
 @onready var player = $Player #damit wir auf alles aus dem Player Node zugreifen können
 
 func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich noch nicht ganz
-	var hero_data: HeroData
+	var selected_hero: HeroData
 
-	if GlobalVariables.hero_path != "":
-		if ResourceLoader.exists(GlobalVariables.hero_path):
-			hero_data = load(GlobalVariables.hero_path)
+	if GlobalVariables.selected_hero != "":
+		if ResourceLoader.exists(GlobalVariables.selected_hero):
+			selected_hero = load(GlobalVariables.selected_hero)
 		else:
-			push_error("Pfad zu Heldendatei ungültig: " + GlobalVariables.hero_path)
+			push_error("Pfad zu Heldendatei ungültig: " + GlobalVariables.selected_hero)
 			return
 	else:
-		hero_data = preload("res://Helden/Feuermage/Feuermage.tres")
+		selected_hero = preload("res://Helden/Feuermage/Feuermage.tres")
 
-	player.init_hero(hero_data)	#die Werte aus dem Heldenpaket des Pfades werden geladen (Name, HP, Skills)
+	player.init_hero(selected_hero)	#die Werte aus dem Heldenpaket des Pfades werden geladen (Name, HP, Skills)
 
 
 
