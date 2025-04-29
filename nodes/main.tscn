@@ -17,7 +17,7 @@ position = Vector2(376, 528)
 top_level = true
 position = Vector2(216, 320)
 
-[node name="Farmer" parent="." instance=ExtResource("2_h2yge")]
+[node name="Boss" parent="." instance=ExtResource("2_h2yge")]
 position = Vector2(1008, 304)
 
 [node name="TestTimer" type="Timer" parent="."]
@@ -59,10 +59,10 @@ scale = Vector2(1.125, 0.632813)
 texture = ExtResource("4_1bvp3")
 
 [connection signal="press" from="." to="Player" method="_on_main_press"]
-[connection signal="press" from="." to="Farmer" method="_on_main_press"]
+[connection signal="press" from="." to="Boss" method="_on_main_press"]
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="pressed" from="Turn Counter" to="." method="_on_turn_counter_pressed"]
 [connection signal="pressed" from="Turn Counter" to="Player" method="_on_button_pressed"]
-[connection signal="pressed" from="Turn Counter" to="Farmer" method="_on_button_pressed"]
+[connection signal="pressed" from="Turn Counter" to="Boss" method="_on_button_pressed"]
 [connection signal="pressed" from="GameOver/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="GameOver/Button" to="Player" method="_on_game_over_button_pressed"]

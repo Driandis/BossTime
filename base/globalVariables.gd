@@ -11,7 +11,8 @@ const bossMaxHealth = 300
 var bossHealth = bossMaxHealth
 var bossBlock
 var bossArmor
-var bossMagicRes 
+var bossMagicRes
+ 
 # Player 
 var selected_hero: String = "" #für Heldenauswahl
 const playerMaxHealth = 100
@@ -22,6 +23,9 @@ var playerMagicRes
 #Skills
 var skillDamage
 var skillAttributes
+
+#var array[skill] -> used spell cd gesammelt, sinnvoll für Spells, die die cd reduzieren
+
 # Board 
 var multiplyer
 

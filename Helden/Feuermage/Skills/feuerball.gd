@@ -2,7 +2,6 @@ extends Skill #hier wird script von Skills importiert
 
 
 var dmg := 15
-
 	
 
 func use(feldmultiplier := 1.0):

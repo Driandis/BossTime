@@ -32,6 +32,7 @@ func check_snap():	#Funktion zum Einrasten oder zurückspringen beim Ziehen der 
 			break
 	if not snapped:
 		global_position = start_position # zurückspringen zur Ursprungsposition
+
 #befehle
 func _setCooldownBar() -> void: #cooldown Einstellung
 	if current_cd == 0:
@@ -45,7 +46,7 @@ func _setCooldownBar() -> void: #cooldown Einstellung
 func _ready():
 	add_to_group("Skill")
 	start_position = global_position	#für das Zurückspringen bei falschem Platzieren
-	boss = get_node("/root/Main/Farmer")
+	boss = get_node("/root/Main/Boss")
 	player=get_node("/root/Main/Player")
 
 func is_ready() -> bool:

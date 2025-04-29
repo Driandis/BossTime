@@ -6,6 +6,7 @@ signal confirm
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @onready var player = $Player #damit wir auf alles aus dem Player Node zugreifen können
+@onready var boss = $Boss #damit wir auf alles aus dem Boss Node zugreifen können
 
 func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich noch nicht ganz
 	var selected_hero: HeroData
@@ -20,8 +21,23 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 		selected_hero = preload("res://Helden/Feuermage/Feuermage.tres")
 
 	player.init_hero(selected_hero)	#die Werte aus dem Heldenpaket des Pfades werden geladen (Name, HP, Skills)
+	$Player/Charakterimage.texture = selected_hero.hero_texture
 
+	var selected_boss: BossData
 
+	if GlobalVariables.selected_boss != "":
+		if ResourceLoader.exists(GlobalVariables.selected_boss):
+			selected_boss = load(GlobalVariables.selected_boss)
+		else:
+			push_error("Pfad zu Bossdatei ungültig: " + GlobalVariables.selected_boss)
+			return
+	else:
+		selected_boss = preload("res://bosses/Barbarianking/Barbarianking.tres")
+
+	boss.init_boss(selected_boss)	#die Werte aus dem Bosspaket des Pfades werden geladen (Name, HP, Skills)
+	# muss noch ausgearbeitet werden im boss.gd sobald die ersten Skills existieren
+	#grob habe ich es schon gemacht, eventuell funktioniert es sogar einfach
+	$Boss/Bossimage.texture = selected_boss.boss_texture
 
 		# Skills hinzufügen
 
