@@ -2,14 +2,15 @@ extends Node
 
 
 # General
+var current_round := 1 #trackt die Runden
 var current_slot := 0 #trackt welches Feld gerade an der Reihe ist, Code dazu vermutlich im Main
 var slot_effect_multipliers = [2.5, 2.0, 1.5]
 var timer 
 
 # Boss
 var selected_boss: String =""
-const bossMaxHealth = 300
-var bossHealth = bossMaxHealth
+#const bossMaxHealth = 300
+#var bossHealth = bossMaxHealth
 var bossBlock
 var bossArmor
 var bossMagicRes

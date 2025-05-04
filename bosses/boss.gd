@@ -41,6 +41,7 @@ func damage(amount: int) -> void:
 	print("Boss erleidet ", amount, "Schaden. Neue HP:", health) #nervt etwas. Vielleicht lieber in die Skillskripte?
 	if health <= 0:
 		health = MAX_HEALTH;
+		#get_tree().change_scene_to_file("res://nodes/loot.tscn")
 	
 
 func _on_main_press() -> void:

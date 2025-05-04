@@ -63,7 +63,7 @@ func input(event: InputEvent) -> void: #von Beginn an von Maxi da
 
 func _on_player_dead() -> void:
 	$GameOver.visible = true;
-	
+
 func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
 			for child in slot.get_children():
 				if child is Skill:

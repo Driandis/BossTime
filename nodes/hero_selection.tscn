@@ -46,7 +46,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("5_3s7wh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(575.25, 322.25)
 scale = Vector2(0.749674, 0.634277)
