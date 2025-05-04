@@ -3,6 +3,7 @@ extends Node
 
 # General
 var current_slot := 0 #trackt welches Feld gerade an der Reihe ist, Code dazu vermutlich im Main
+var slot_effect_multipliers = [2.5, 2.0, 1.5]
 var timer 
 
 # Boss

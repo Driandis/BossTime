@@ -8,6 +8,17 @@ signal confirm
 @onready var player = $Player #damit wir auf alles aus dem Player Node zugreifen können
 @onready var boss = $Boss #damit wir auf alles aus dem Boss Node zugreifen können
 
+#Felder importieren für die use-Funktion
+@onready var player_slots = [
+	$Felder/Feld1,
+	$Felder/Feld2,
+	$Felder/Feld3
+]
+@onready var boss_slots = [
+	$Felder/BossFeld1,
+	$Felder/BossFeld2,
+	$Felder/BossFeld3
+]
 func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich noch nicht ganz
 	var selected_hero: HeroData
 
@@ -56,23 +67,57 @@ func input(event: InputEvent) -> void: #von Beginn an von Maxi da
 func _on_player_dead() -> void:
 	$GameOver.visible = true;
 	
+func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
+			for child in slot.get_children():
+				if child is Skill:
+					return child
+			return null
 
 func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf gedrückt wird
+	
 		for area in get_tree().get_nodes_in_group("Skill"): #cooldown reduzieren
 			area.tick_cooldown()
 		
 		#Felder und Effekt der Skills
-		var felder = get_node("Felder").get_children()
+		var player_slots = $Felder/Player.get_children()	#für das Abarbeiten der entsprechenden Felder
+		var boss_slots = $Felder/Boss.get_children()
+		var felder = get_node("Felder").get_children()	#notwendig?
+		
+		
+		#Playerfelder
+		if GlobalVariables.current_slot < player_slots.size():	#kontrollbefehl
+			var player_slot = player_slots[GlobalVariables.current_slot] #holt die aktuelle Slotzahl (Start:0)
+			if player_slot.get_child_count() > 0:	#kein Plan? Vielleicht: Wenn mehr als ein Skill in dem Slot liegt
+				var skill = get_skill_from_slot(player_slot) #holt den ersten Skill aus dem entsprechenden Slot
+				if skill != null and skill.has_method("_run_effect"):	#Skill wird mit Multiplikator aktiviert
+					var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]	#Holt den passenden Multiplikator für das aktuelle Feld
+					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
+		#jetzt für den Boss
+		if GlobalVariables.current_slot < boss_slots.size():	#kontrollbefehl
+			var boss_slot = boss_slots[GlobalVariables.current_slot] #holt die aktuelle Slotzahl (Start:0)
+			if boss_slot.get_child_count() > 0:	#kein Plan
+				var bossskill = get_skill_from_slot(boss_slot) #holt den ersten Skill aus dem entsprechenden Slot
+				if bossskill !=null and bossskill.has_method("_run_effect"):
+					bossskill._run_effect()
+				# Nächster Slot vorbereiten
+			GlobalVariables.current_slot += 1
+			if GlobalVariables.current_slot >= player_slots.size():
+				GlobalVariables.current_slot = 0
+				# Nächster Slot vorbereiten
+			GlobalVariables.current_slot += 1	#Slotzahl erhöhen für die nächste Runde
+			if GlobalVariables.current_slot >= player_slots.size():	#wenn mehr als 2 wieder zu 0 werden
+				GlobalVariables.current_slot = 0
+			
+				#Alte Version
+#		for feld in felder:
+#			if feld is Area2D and feld.monitoring:
+#				var overlapping_areas = feld.get_overlapping_areas()
+#				for area in overlapping_areas:
+#					if area.is_in_group("Skill"):
+#						print(area.name, " liegt in ", feld.name)
+#						feld_reagiert(feld.name, area)  # unterschiedliche Reaktion pro Feld
 
-		for feld in felder:
-			if feld is Area2D and feld.monitoring:
-				var overlapping_areas = feld.get_overlapping_areas()
-				for area in overlapping_areas:
-					if area.is_in_group("Skill"):
-						print(area.name, " liegt in ", feld.name)
-						feld_reagiert(feld.name, area)  # unterschiedliche Reaktion pro Feld
-
-
+#vielleicht unnötig
 func feld_reagiert(feld_name: String, skill):	#das müsste noch verbessert werden
 	match feld_name:
 		"Feld1":
@@ -80,6 +125,12 @@ func feld_reagiert(feld_name: String, skill):	#das müsste noch verbessert werde
 		"Feld2":
 			skill._run_effect(2.0)
 		"Feld3":
+			skill._run_effect(1.5)
+		"BossFeld1":
+			skill._run_effect(2.5)
+		"BossFeld2":
+			skill._run_effect(2.0)
+		"BossFeld3":
 			skill._run_effect(1.5)
 
 

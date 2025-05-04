@@ -28,7 +28,11 @@ func check_snap():	#Funktion zum Einrasten oder zurückspringen beim Ziehen der 
 	for slot in get_tree().get_nodes_in_group("Felder"):
 		if global_position.distance_to(slot.global_position) < 50:
 			global_position = slot.global_position
-			snapped = true
+			snapped = true#neu
+			if slot.is_in_group("Felder"):
+				get_parent().remove_child(self)
+				slot.add_child(self)
+				global_position = slot.global_position#ende
 			break
 	if not snapped:
 		global_position = start_position # zurückspringen zur Ursprungsposition

@@ -62,6 +62,7 @@ offset_left = -24.5
 offset_top = 21.0
 offset_right = 48.5
 offset_bottom = 44.0
+text = "Hieb"
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Bosse/SkillContainer/Barbarianking/Hieb"]
