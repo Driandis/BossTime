@@ -8,7 +8,7 @@ signal confirm
 @onready var player = $Player #damit wir auf alles aus dem Player Node zugreifen können
 @onready var boss = $Boss #damit wir auf alles aus dem Boss Node zugreifen können
 
-#Felder importieren für die use-Funktion
+#Felder importieren für die Abarbeitung der Slots später
 @onready var player_slots = [
 	$Felder/Feld1,
 	$Felder/Feld2,
@@ -50,9 +50,6 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 	#grob habe ich es schon gemacht, eventuell funktioniert es sogar einfach
 	$Boss/Bossimage.texture = selected_boss.boss_texture
 
-		# Skills hinzufügen
-
-
 
 func _process(delta: float) -> void:
 	pass
@@ -85,6 +82,10 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		
 		
 		#Playerfelder
+		for i in player_slots.size():	#Farbeffekt
+			player_slots[i].modulate = Color(1, 1, 1)  # Reset Farbe
+			player_slots[GlobalVariables.current_slot].modulate = Color(1, 0.8, 0.5)  # Aktives Feld hervorheben
+			
 		if GlobalVariables.current_slot < player_slots.size():	#kontrollbefehl
 			var player_slot = player_slots[GlobalVariables.current_slot] #holt die aktuelle Slotzahl (Start:0)
 			if player_slot.get_child_count() > 0:	#kein Plan? Vielleicht: Wenn mehr als ein Skill in dem Slot liegt
@@ -93,6 +94,10 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 					var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]	#Holt den passenden Multiplikator für das aktuelle Feld
 					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
 		#jetzt für den Boss
+		for e in boss_slots.size():	#Farbeffekt
+			boss_slots[e].modulate = Color(1, 1, 1)  # Reset Farbe
+			boss_slots[GlobalVariables.current_slot].modulate = Color(1, 0.8, 0.5)  # Aktives Feld hervorheben
+			
 		if GlobalVariables.current_slot < boss_slots.size():	#kontrollbefehl
 			var boss_slot = boss_slots[GlobalVariables.current_slot] #holt die aktuelle Slotzahl (Start:0)
 			if boss_slot.get_child_count() > 0:	#kein Plan
@@ -116,23 +121,6 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 #					if area.is_in_group("Skill"):
 #						print(area.name, " liegt in ", feld.name)
 #						feld_reagiert(feld.name, area)  # unterschiedliche Reaktion pro Feld
-
-#vielleicht unnötig
-func feld_reagiert(feld_name: String, skill):	#das müsste noch verbessert werden
-	match feld_name:
-		"Feld1":
-			skill._run_effect(2.5)
-		"Feld2":
-			skill._run_effect(2.0)
-		"Feld3":
-			skill._run_effect(1.5)
-		"BossFeld1":
-			skill._run_effect(2.5)
-		"BossFeld2":
-			skill._run_effect(2.0)
-		"BossFeld3":
-			skill._run_effect(1.5)
-
 
 				
 func _on_button_pressed() -> void:
