@@ -7,10 +7,12 @@ var current_slot := 0 #trackt welches Feld gerade an der Reihe ist, Code dazu ve
 var slot_effect_multipliers = [2.5, 2.0, 1.5]
 var timer 
 
+var main_node = null #zum Hinzufügen der Skills nachdem sie raus gezogen wurden
+
 # Boss
 var selected_boss: String =""
-#const bossMaxHealth = 300
-#var bossHealth = bossMaxHealth
+const bossMaxHealth = 300
+var bossHealth = bossMaxHealth
 var bossBlock
 var bossArmor
 var bossMagicRes

@@ -21,6 +21,7 @@ signal confirm
 ]
 func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich noch nicht ganz
 	var selected_hero: HeroData
+	GlobalVariables.main_node = self
 
 	if GlobalVariables.selected_hero != "":
 		if ResourceLoader.exists(GlobalVariables.selected_hero):
@@ -93,6 +94,8 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 				if skill != null and skill.has_method("_run_effect"):	#Skill wird mit Multiplikator aktiviert
 					var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]	#Holt den passenden Multiplikator für das aktuelle Feld
 					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
+				else:
+					print("Kein Skill in Slot ", GlobalVariables.current_slot)
 		#jetzt für den Boss
 		for e in boss_slots.size():	#Farbeffekt
 			boss_slots[e].modulate = Color(1, 1, 1)  # Reset Farbe
@@ -104,10 +107,8 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 				var bossskill = get_skill_from_slot(boss_slot) #holt den ersten Skill aus dem entsprechenden Slot
 				if bossskill !=null and bossskill.has_method("_run_effect"):
 					bossskill._run_effect()
-				# Nächster Slot vorbereiten
-			GlobalVariables.current_slot += 1
-			if GlobalVariables.current_slot >= player_slots.size():
-				GlobalVariables.current_slot = 0
+			else:
+				print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
 				# Nächster Slot vorbereiten
 			GlobalVariables.current_slot += 1	#Slotzahl erhöhen für die nächste Runde
 			if GlobalVariables.current_slot >= player_slots.size():	#wenn mehr als 2 wieder zu 0 werden
