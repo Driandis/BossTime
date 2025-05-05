@@ -8,9 +8,9 @@
 script = ExtResource("1_bcmtd")
 name = "Manni"
 skills = Array[PackedScene]([ExtResource("2_h6x00")])
-max_health = 300
+max_health = 180
 hero_texture = ExtResource("1_fhnnf")
 playerBlock = 0
-playerArmor = 0
-playerMagicRes = 0
+playerArmor = 15
+playerMagicRes = 10
 metadata/_custom_type_script = "uid://bl6bchsjiiq8e"

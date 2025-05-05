@@ -10,6 +10,7 @@ var start_position: Vector2	#damit man dahin zurückspringen kann
 var dragging := false
 var offset := Vector2.ZERO
 var previous_slot = null  # Zum Rauswerfem des Skills aus den Feldern
+
 #spezielle skills
 
 #drag and drop und einreasten
@@ -74,9 +75,18 @@ func _ready():
 func is_ready() -> bool:
 	return current_cd == 0
 	
+	#neu für Effekte
+#@export var effect: Effect
+#@export var first_value: int
+#@export var target: String	#vermutlich falsch
+
 func _run_effect(feldmultiplier := 1.0):
 		print("Skill wurde ausgeführt: ", name)
+		#if effect:
+		#	effect.use(target, first_value,feldmultiplier)	#neu: Wenn es ein Effekt ist, soll der Effekt ausgeführt werden 
+		#Alt: 
 		use(feldmultiplier)
+		#
 		current_cd = cooldown
 		_setCooldownBar()
 		
