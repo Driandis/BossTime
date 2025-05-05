@@ -30,7 +30,7 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 			push_error("Pfad zu Heldendatei ungültig: " + GlobalVariables.selected_hero)
 			return
 	else:
-		selected_hero = preload("res://Helden/Feuermage/Feuermage.tres")
+		selected_hero = preload("res://Helden/Feuermage/Feuermage.tres") #nur Backup-Tester
 
 	player.init_hero(selected_hero)	#die Werte aus dem Heldenpaket des Pfades werden geladen (Name, HP, Skills)
 	$Player/Charakterimage.texture = selected_hero.hero_texture
@@ -114,16 +114,7 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 			if GlobalVariables.current_slot >= player_slots.size():	#wenn mehr als 2 wieder zu 0 werden
 				GlobalVariables.current_slot = 0
 			
-				#Alte Version
-#		for feld in felder:
-#			if feld is Area2D and feld.monitoring:
-#				var overlapping_areas = feld.get_overlapping_areas()
-#				for area in overlapping_areas:
-#					if area.is_in_group("Skill"):
-#						print(area.name, " liegt in ", feld.name)
-#						feld_reagiert(feld.name, area)  # unterschiedliche Reaktion pro Feld
-
-				
+						
 func _on_button_pressed() -> void:
 		$GameOver.visible = false;
 		GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;

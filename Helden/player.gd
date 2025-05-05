@@ -32,7 +32,13 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 	playerBlock = hero_data.playerBlock
 	playerArmor = hero_data.playerArmor
 	playerMagicRes = hero_data.playerMagicRes
-
+	print("HP: ", health)
+	print("Name: ", Spielername)
+	print("Armor: ", playerArmor)
+	print("Block: ", playerBlock)
+	print("Magic Resistence: ", playerMagicRes)
+	
+		#jetzt werden die Skills passend geladen
 	for child in $Helden/SkillContainer.get_children():
 		child.queue_free()	#alle Skills werden gelöscht
 	for skill_scene in hero_data.skills: 	#nur die passenden Skills aus heroData werden neu gelaedn
@@ -45,7 +51,8 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 
 func damage(physical_damage, mental_damage) -> void:
 		# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
-	var effective_physical_damage = max(0, physical_damage - playerArmor -playerBlock)# Berechnung des psychischen Schadens unter Berücksichtigung der mentalen Resistenz
+	var effective_physical_damage = max(0, physical_damage - playerArmor -playerBlock)
+	# Berechnung des psychischen Schadens unter Berücksichtigung der mentalen Resistenz
 	var effective_mental_damage = max(0, mental_damage - playerMagicRes)
 
  # Gesamt-Schaden (physisch + psychisch)
@@ -61,6 +68,10 @@ func damage(physical_damage, mental_damage) -> void:
 	print("Effective Player Mental Damage: ", effective_mental_damage)
 	print("Total Player Damage: ", total_damage)
 
+
+func heal(amount): #Heal Funktion
+	health = min(health + amount, max_health)
+	
 func _on_main_press() -> void:
 	damage(0,0);
 

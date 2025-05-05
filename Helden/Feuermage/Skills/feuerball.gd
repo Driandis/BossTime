@@ -5,7 +5,7 @@ var dmg := 8
 	
 
 func use(feldmultiplier := 1.0):
-	boss.damage(ceil(dmg * feldmultiplier)) #gerundeter DMG insgesamt
+	boss.damage(0, ceil(dmg * feldmultiplier)) #gerundeter DMG insgesamt
 	cooldown = 3  # Fireball braucht 3 Runden Cooldown
 	
 func _process(_delta):	#führt irgendwie dazu, dass man sauberer ziehen kann

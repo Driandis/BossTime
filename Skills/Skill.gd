@@ -48,7 +48,6 @@ func check_snap():
 			GlobalVariables.main_node.add_child(self)
 			global_position = start_position   # 
 		else:
-			
 			print("Fehler: main_node nicht gesetzt – konntest Skill nicht korrekt zurücksetzen.")
 		previous_slot = null
 	
