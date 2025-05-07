@@ -1,8 +1,7 @@
 extends Area2D
 class_name Skill
 
-var damage: int	
-var cooldown: int
+#var damage: int	
 var current_cd: int = 0
 var boss = null
 var player = null
@@ -24,7 +23,10 @@ func _input_event(viewport, event, shape_idx): #drag and drop
 			check_snap()		#Zurückspringen an Anfangsort oder genau ins Feld
 	elif event is InputEventMouseMotion and dragging:
 		global_position = get_global_mouse_position() + offset
-		
+
+func _process(_delta):	#führt irgendwie dazu, dass man sauberer ziehen kann
+	if dragging:
+		global_position = get_global_mouse_position() - offset
 #Funktion zum Einrasten oder zurückspringen beim Ziehen der Skills
 #Mitlerweile aber auch dafür da, zu erkennen, dass Skills nicht mehr in Feldern liegen, damit sie nicht mehr
 #aktiviert werden, wenn sie auf keinem Feld liegen
@@ -76,22 +78,45 @@ func is_ready() -> bool:
 	return current_cd == 0
 	
 	#neu für Effekte
-#@export var effect: Effect
-#@export var first_value: int
-#@export var target: String	#vermutlich falsch
+@export var effect: Effect
+@export var first_value: float = 10.0
+enum TargetType { BOSS, PLAYER }	#damit man als Ziel Boss oder Player bei den Effekten auswählen kann
+@export var target_type: TargetType 
+@export var cooldown: float = 10.0
 
-func _run_effect(feldmultiplier := 1.0):
-		print("Skill wurde ausgeführt: ", name)
-		#if effect:
-		#	effect.use(target, first_value,feldmultiplier)	#neu: Wenn es ein Effekt ist, soll der Effekt ausgeführt werden 
-		#Alt: 
-		use(feldmultiplier)
-		#
+func _run_effect(feldmultiplier := 1.0) -> void:
+	print("Skill wurde ausgeführt: ", name)
+	var target = _get_target()
+	if target != null and effect != null:
+		effect.use(target, first_value, feldmultiplier)	#neu: Wenn es ein Effekt ist, soll der Effekt ausgeführt werden 
 		current_cd = cooldown
 		_setCooldownBar()
+func _get_target():
+	match target_type:
+		TargetType.BOSS:
+			return get_tree().get_root().get_node("Main/Boss")  # Pfad anpassen
+		TargetType.PLAYER:
+			return get_tree().get_root().get_node("Main/Player")  # Pfad anpassen
+	return null
+	#Alt: 
+		#use(feldmultiplier)
+		#
+
 		
 func use(feldmultiplier := 1.0): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
-	pass
+	var target = null
+
+	match target_type:
+		TargetType.BOSS:
+			target = get_tree().get_root().get_node("res://bosses/boss.gd")  # oder anderer Pfad
+		TargetType.PLAYER:
+			target = get_tree().get_root().get_node("res://Helden/player.gd")
+
+	if target != null and effect != null:
+		effect.use(target, first_value, feldmultiplier)
+	else:
+		push_warning("Target oder Effekt fehlt für Skill " + name)
+		pass
 	
 func tick_cooldown():
 	if current_cd > 0:

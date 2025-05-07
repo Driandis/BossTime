@@ -17,7 +17,7 @@ var bossMagicRes: int
 #	setHealthBar();
 
 func setHealthLabel() -> void:
-	$HealthBar/HealthLabel.text = "%s" % health;
+	$HealthBar/HealthLabel.text = "%s" % health;	
 
 func setHealthBar() -> void:
 	$HealthBar.value = health

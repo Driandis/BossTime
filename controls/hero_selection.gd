@@ -3,7 +3,7 @@ extends Node2D
 #doppelt sich komplett mit den buttonskripts
 
 func _on_feuermage_pressed() -> void:
-		GlobalVariables.selected_hero = "res://Helden/Feuermage/Feuermage.tres"
+		GlobalVariables.selected_hero = "res://Helden/Feuermage/Firemage.tres"
 		get_tree().change_scene_to_file("res://nodes/boss_selection.tscn")  # Main-Spiel starten
 		print("Feuermage ausgewählt.")
 

@@ -30,7 +30,7 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 			push_error("Pfad zu Heldendatei ungültig: " + GlobalVariables.selected_hero)
 			return
 	else:
-		selected_hero = preload("res://Helden/Feuermage/Feuermage.tres") #nur Backup-Tester
+		selected_hero = preload("res://Helden/Feuermage/Firemage.tres") #nur Backup-Tester
 
 	player.init_hero(selected_hero)	#die Werte aus dem Heldenpaket des Pfades werden geladen (Name, HP, Skills)
 	$Player/Charakterimage.texture = selected_hero.hero_texture
@@ -106,7 +106,8 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 			if boss_slot.get_child_count() > 0:	#kein Plan
 				var bossskill = get_skill_from_slot(boss_slot) #holt den ersten Skill aus dem entsprechenden Slot
 				if bossskill !=null and bossskill.has_method("_run_effect"):
-					bossskill._run_effect()
+					var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
+					bossskill._run_effect(slot_effect)
 			else:
 				print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
 				# Nächster Slot vorbereiten

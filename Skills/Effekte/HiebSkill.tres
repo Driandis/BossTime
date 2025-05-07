@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PhysicalDamageEffect" load_steps=2 format=3 uid="uid://bc0uhmqlfi5p3"]
+
+[ext_resource type="Script" uid="uid://dfwaoogfyl8s4" path="res://Skills/Effekte/PhysicalDamageEffect.gd" id="1_7kmem"]
+
+[resource]
+script = ExtResource("1_7kmem")
+metadata/_custom_type_script = "uid://dfwaoogfyl8s4"

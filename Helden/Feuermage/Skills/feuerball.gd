@@ -14,13 +14,11 @@ class_name FireballSkill
 #extends Skill #hier wird script von Skills importiert
 
 
-var dmg := 8
+#var dmg := 8
 	
+	
+#func use(feldmultiplier := 1.0):
 
-func use(feldmultiplier := 1.0):
-	boss.damage(0, ceil(dmg * feldmultiplier)) #gerundeter DMG insgesamt
-	cooldown = 3  # Fireball braucht 3 Runden Cooldown
+	#boss.damage(0, ceil(dmg * feldmultiplier)) #gerundeter DMG insgesamt
+#	cooldown = 3  # Fireball braucht 3 Runden Cooldown
 	
-func _process(_delta):	#führt irgendwie dazu, dass man sauberer ziehen kann
-	if dragging:
-		global_position = get_global_mouse_position() - offset
