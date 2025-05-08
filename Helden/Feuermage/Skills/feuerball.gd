@@ -1,6 +1,7 @@
 extends Skill
 class_name FireballSkill
 
+
 #neue Version
 #@export var target_path: NodePath # optional: wo der Boss ist
 

@@ -8,3 +8,4 @@ class_name HeroData
 @export var playerBlock: int
 @export var playerArmor: int
 @export var playerMagicRes: int
+@export var equipped_weapon: WeaponData

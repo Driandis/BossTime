@@ -12,6 +12,7 @@ var playerMagicRes: int
 var playerArmor: int
 var physical_damage: int
 var mental_damage: int
+var equipped_weapon: WeaponData
 
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
@@ -32,12 +33,13 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 	playerBlock = hero_data.playerBlock
 	playerArmor = hero_data.playerArmor
 	playerMagicRes = hero_data.playerMagicRes
+	equipped_weapon = hero_data.equipped_weapon
 	print("HP: ", health)
 	print("Name: ", Spielername)
 	print("Armor: ", playerArmor)
 	print("Block: ", playerBlock)
 	print("Magic Resistence: ", playerMagicRes)
-	
+	print("Weapon: ", equipped_weapon)
 		#jetzt werden die Skills passend geladen
 	for child in $Helden/SkillContainer.get_children():
 		child.queue_free()	#alle Skills werden gelöscht
@@ -47,6 +49,14 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 	setHealthLabel();	#hier werden die Lebensbalken gestartet und eingestellt
 	$HealthBar.max_value = max_health
 	setHealthBar();
+
+#Waffe des Spielers laden und berücksichtigen
+func apply_weapon_multiplier(damage: int) -> int:
+	if equipped_weapon:
+		return int(damage * equipped_weapon.damage_multiplier)
+	return damage
+
+
 
 
 func damage(physical_damage, mental_damage) -> void:
@@ -65,7 +75,7 @@ func damage(physical_damage, mental_damage) -> void:
 		dead.emit()
 	
 	print("Effective Player Physical Damage: ", effective_physical_damage)
-	print("Effective Player Mental Damage: ", effective_mental_damage)
+	print("Effective Player Magic Damage: ", effective_mental_damage)
 	print("Total Player Damage: ", total_damage)
 
 

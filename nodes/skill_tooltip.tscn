@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://5np555wkfose"]
+
+[ext_resource type="Script" uid="uid://ccrct8hqtste0" path="res://SkillTooltipPanel.gd" id="1_2v4or"]
+
+[node name="Panel" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2v4or")
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

@@ -1,10 +1,8 @@
 extends Effect
-class_name PhysicalDamageEffect
+class_name MagicDamageEffect
 
 	#wo wird der Schaden angepasst? In den Tres Dateien der Skills?
 
 	
 func use(target, first_value, feldmultiplier := 1.0) ->void:
-	#if target=BOSS
-	
-	target.damage(ceil(first_value* feldmultiplier),0)
+	target.damage(0, ceil(first_value* feldmultiplier))

@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bihpqqcoxcwiu"]
+[gd_scene load_steps=7 format=3 uid="uid://bihpqqcoxcwiu"]
 
 [ext_resource type="Script" uid="uid://bvbik0q0o7x1v" path="res://Helden/Feuermage/Skills/feuerball.gd" id="1_cfecw"]
 [ext_resource type="Texture2D" uid="uid://bbl2cgfseqrlc" path="res://sprites/heroes/firemage/ChatGPT Image 19. Apr. 2025, 11_30_36.png" id="2_43xmf"]
-[ext_resource type="Script" uid="uid://dfwaoogfyl8s4" path="res://Skills/Effekte/PhysicalDamageEffect.gd" id="2_g0c4o"]
+[ext_resource type="Resource" uid="uid://p364t5nrw5jj" path="res://Skills/FireballData.tres" id="2_huonx"]
+[ext_resource type="Script" uid="uid://duvhanyq3qdin" path="res://Skills/Effekte/MagicDamageEffect.gd" id="3_huonx"]
 
-[sub_resource type="Resource" id="Resource_g0c4o"]
-script = ExtResource("2_g0c4o")
-metadata/_custom_type_script = "uid://dfwaoogfyl8s4"
+[sub_resource type="Resource" id="Resource_qhvyq"]
+script = ExtResource("3_huonx")
+metadata/_custom_type_script = "uid://duvhanyq3qdin"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
 size = Vector2(90, 68)
@@ -16,7 +17,9 @@ size = Vector2(90, 68)
 [node name="Feuerball" type="Area2D" parent="."]
 position = Vector2(144, -128)
 script = ExtResource("1_cfecw")
-effect = SubResource("Resource_g0c4o")
+skill_data = ExtResource("2_huonx")
+skill_name = "Fireball"
+effect = SubResource("Resource_qhvyq")
 first_value = 8.0
 cooldown = 3.0
 

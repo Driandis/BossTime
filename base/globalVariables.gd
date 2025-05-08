@@ -24,6 +24,7 @@ var playerHealth = playerMaxHealth
 var playerBlock
 var playerAmor
 var playerMagicRes
+var current_weapon: WeaponData = null
 #Skills
 var skillDamage
 var skillAttributes

@@ -45,6 +45,7 @@ func init_boss(boss_data): #um den Boss zu laden
 	$HealthBar.max_value = max_health
 	setHealthBar();
 
+
 var is_defeated = false  # Tod?
 func damage(physical_damage, mental_damage) -> void:
 		# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
@@ -62,7 +63,7 @@ func damage(physical_damage, mental_damage) -> void:
 		get_tree().change_scene_to_file("res://nodes/loot.tscn")
 		#health=max_health
 	print("Effective Boss Physical Damage: ", effective_physical_damage)
-	print("Effective Boss Mental Damage: ", effective_mental_damage)
+	print("Effective Boss Magic Damage: ", effective_mental_damage)
 	print("Total Boss Damage: ", total_damage)
 
 

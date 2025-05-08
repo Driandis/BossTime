@@ -9,7 +9,7 @@ var start_position: Vector2	#damit man dahin zurückspringen kann
 var dragging := false
 var offset := Vector2.ZERO
 var previous_slot = null  # Zum Rauswerfem des Skills aus den Feldern
-
+#@export var description: String = "Starker Angriff mit Feuerschaden"	#Bescbreibung des Skills
 #spezielle skills
 
 #drag and drop und einreasten
@@ -27,6 +27,9 @@ func _input_event(viewport, event, shape_idx): #drag and drop
 func _process(_delta):	#führt irgendwie dazu, dass man sauberer ziehen kann
 	if dragging:
 		global_position = get_global_mouse_position() - offset
+		var tooltip = get_node_or_null("/root/Main/SkillTooltip")#Tipps werden versteckt, wenn der Skill gezogen wird
+		if tooltip:
+			tooltip.hide()
 #Funktion zum Einrasten oder zurückspringen beim Ziehen der Skills
 #Mitlerweile aber auch dafür da, zu erkennen, dass Skills nicht mehr in Feldern liegen, damit sie nicht mehr
 #aktiviert werden, wenn sie auf keinem Feld liegen
@@ -73,11 +76,40 @@ func _ready():
 	boss = get_node("/root/Main/Boss")
 	player=get_node("/root/Main/Player")
 	previous_slot = get_parent() # if is_inside_tree() else null	#fürs Rauswerfen der Skills aus den Feldern
+	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
+func _on_mouse_entered():
+	var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")  # Mauszeiger löst Skillerklärung aus
+	tooltip.show_tooltip(self, get_global_mouse_position())
 
+#verschwindet wieder, wenn die Maus weg ist
+func _on_mouse_exited():
+	var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")
+	tooltip.hide()
+	
 func is_ready() -> bool:
 	return current_cd == 0
 	
+#für die Hinweise zu den Skills
+@export var skill_data: SkillData
+	#für die SkillTooltips (Hinweise zu den Skills) wichtig
+	#zeigt aber auch generell in der tres-Datei jetzt die eigene Ressource als Skill Data
+func get_skill_description() -> String:
+	if skill_data:
+		#damit die Effektnamen rausgesucht werden
+		var effect_script = skill_data.effect.get_script()
+		var effect_name = effect_script.resource_path.get_file().get_basename() if effect_script else "Kein Effekt"
+		#hiermit kommt die Beschreibung der Skills
+		return "Name: %s\nCooldown: %d\nEffekt: %s\nWert: %d" % [
+			skill_data.skill_name,
+			skill_data.cooldown,
+			effect_name,
+			skill_data.first_value
+		]
+	return "Keine Daten verfügbar"
+	
 	#neu für Effekte
+@export var skill_name: String
 @export var effect: Effect
 @export var first_value: float = 10.0
 enum TargetType { BOSS, PLAYER }	#damit man als Ziel Boss oder Player bei den Effekten auswählen kann
