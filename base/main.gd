@@ -72,7 +72,7 @@ func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill 
 			return null
 
 func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf gedrückt wird
-	
+		print("Turn ",GlobalVariables.current_round)
 		for area in get_tree().get_nodes_in_group("Skill"): #cooldown reduzieren
 			area.tick_cooldown()
 		
@@ -115,7 +115,8 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 			if GlobalVariables.current_slot >= player_slots.size():	#wenn mehr als 2 wieder zu 0 werden
 				GlobalVariables.current_slot = 0
 			
-						
+			GlobalVariables.current_round += 1
+			#boss.load_skills_for_turn()
 func _on_button_pressed() -> void:
 		$GameOver.visible = false;
 		GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;

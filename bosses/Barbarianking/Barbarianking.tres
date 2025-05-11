@@ -13,4 +13,5 @@ bossBlock = 0
 bossArmor = 12
 bossMagicRes = 8
 boss_texture = ExtResource("1_kcmn3")
+rounds = [null]
 metadata/_custom_type_script = "uid://dres0n1ghpxr0"

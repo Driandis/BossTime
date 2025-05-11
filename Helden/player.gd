@@ -65,7 +65,7 @@ func apply_attack_modifiers(base_value: int) -> int:
 	# Buffs
 	#for buff in active_buffs:
 	#	modified_value = buff.modify_outgoing_damage(modified_value)
-
+	#Items
 	# Feldeffekte evemtuell hierhin und raus aus dem Main?
 	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
 	modified_value=modified_value *slot_effect

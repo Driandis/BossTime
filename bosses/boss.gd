@@ -9,6 +9,7 @@ var Bossname: String
 var bossBlock: int	#greift das hier auf die aktuellen Variablen zu?
 var bossArmor: int
 var bossMagicRes: int
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Boss")
@@ -52,7 +53,9 @@ func apply_attack_modifiers(base_value: int) -> int:
 	# Buffs
 	#for buff in active_buffs:
 	#	modified_value = buff.modify_outgoing_damage(modified_value)
-
+	
+	#Items
+	
 	# Feldeffekte evemtuell hierhin und raus aus dem Main?
 	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
 	modified_value=modified_value *slot_effect
@@ -80,7 +83,28 @@ func damage(physical_damage, mental_damage) -> void:
 	print("Total Boss Damage: ", total_damage)
 
 
+#Skill-Reihenfolge
+@export var skill_plan: BossSkillPlan
+@onready var boss_slots = $Felder/Boss.get_children()
 
+func load_skills_for_turn():
+	var total_rounds = skill_plan.rounds.size()
+	if total_rounds == 0:
+		return  # kein Plan vorhanden
+
+	# Turn begrenzen, damit es im Kreis läuft
+	var current_plan_index =GlobalVariables.current_turn % total_rounds
+	var skills_for_turn = skill_plan.rounds[current_plan_index]
+
+	for i in range(boss_slots.size()):
+		if boss_slots[i].get_child_count() > 0:
+			boss_slots[i].get_child(0).queue_free()
+
+		if i < skills_for_turn.size():
+			var skill = skills_for_turn[i]
+			if skill:
+				var instance = skill.instantiate()
+				boss_slots[i].add_child(instance)
 #func _on_main_press() -> void:
 	#damage(0);
 

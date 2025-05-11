@@ -8,3 +8,4 @@ class_name BossData
 @export var bossArmor: int
 @export var bossMagicRes: int
 @export var boss_texture: Texture2D
+@export var rounds: Array = []  # Jede Runde ist ein Array von Skill-Ressourcen

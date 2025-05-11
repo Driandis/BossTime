@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://deys43et4bw2g"]
+[gd_scene load_steps=7 format=3 uid="uid://deys43et4bw2g"]
 
 [ext_resource type="Script" uid="uid://dqd3etcg2uxt6" path="res://bosses/boss.gd" id="1_6xxrv"]
 [ext_resource type="Texture2D" uid="uid://822qaj8a4yy5" path="res://sprites/squarowl.PNG" id="2_skx2t"]
 [ext_resource type="Script" uid="uid://cxkpc7ux18p8h" path="res://bosses/Barbarianking/Skills/hieb.gd" id="3_t5ef3"]
 [ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="4_8xlcg"]
+[ext_resource type="PackedScene" uid="uid://qsadhjj7ohqy" path="res://nodes/felder.tscn" id="5_8xlcg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mt0by"]
 size = Vector2(90, 68)
@@ -82,3 +83,5 @@ anchor_right = -0.28125
 offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
+
+[node name="Felder" parent="." instance=ExtResource("5_8xlcg")]
