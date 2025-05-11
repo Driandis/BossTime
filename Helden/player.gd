@@ -15,10 +15,8 @@ var mental_damage: int
 var equipped_weapon: WeaponData
 
 # Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
-	#setHealthLabel();
-	#$HealthBar.max_value = max_health
-	#setHealthBar();
+func _ready() -> void:
+	add_to_group("Player")
 
 func setHealthLabel() -> void:
 	$HealthLabel.text = "%s" % health;
@@ -33,13 +31,13 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 	playerBlock = hero_data.playerBlock
 	playerArmor = hero_data.playerArmor
 	playerMagicRes = hero_data.playerMagicRes
-	equipped_weapon = hero_data.equipped_weapon
+	GlobalVariables.equipped_weapon = hero_data.equipped_weapon
 	print("HP: ", health)
 	print("Name: ", Spielername)
 	print("Armor: ", playerArmor)
 	print("Block: ", playerBlock)
 	print("Magic Resistence: ", playerMagicRes)
-	print("Weapon: ", equipped_weapon)
+	print("Weapon: ", GlobalVariables.equipped_weapon.name)
 		#jetzt werden die Skills passend geladen
 	for child in $Helden/SkillContainer.get_children():
 		child.queue_free()	#alle Skills werden gelöscht
@@ -51,13 +49,28 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 	setHealthBar();
 
 #Waffe des Spielers laden und berücksichtigen
-func apply_weapon_multiplier(damage: int) -> int:
-	if equipped_weapon:
-		return int(damage * equipped_weapon.damage_multiplier)
-	return damage
+#func apply_weapon_multiplier(damage: int) -> int:
+#	if equipped_weapon:
+#		return int(damage * equipped_weapon.damage_multiplier)
+#	return damage
 
 
+#Multiplikatoren beim DMG berücksichtigen
+func apply_attack_modifiers(base_value: int) -> int:
+	var modified_value = base_value
+	# Waffen-Effekt
+	if GlobalVariables.equipped_weapon:
+		modified_value =modified_value* GlobalVariables.equipped_weapon.damage_multiplier
+		
+	# Buffs
+	#for buff in active_buffs:
+	#	modified_value = buff.modify_outgoing_damage(modified_value)
 
+	# Feldeffekte evemtuell hierhin und raus aus dem Main?
+	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
+	modified_value=modified_value *slot_effect
+	
+	return modified_value
 
 func damage(physical_damage, mental_damage) -> void:
 		# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung

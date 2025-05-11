@@ -10,11 +10,8 @@ var bossBlock: int	#greift das hier auf die aktuellen Variablen zu?
 var bossArmor: int
 var bossMagicRes: int
 # Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
-#	setHealthLabel();
-#	health = GlobalVariables.bossHealth;
-#	$HealthBar.max_value = 300;
-#	setHealthBar();
+func _ready() -> void:
+	add_to_group("Boss")
 
 func setHealthLabel() -> void:
 	$HealthBar/HealthLabel.text = "%s" % health;	
@@ -45,6 +42,22 @@ func init_boss(boss_data): #um den Boss zu laden
 	$HealthBar.max_value = max_health
 	setHealthBar();
 
+#Multiplikatoren beim DMG berücksichtigen
+func apply_attack_modifiers(base_value: int) -> int:
+	var modified_value = base_value
+	# Waffen-Effekt
+	if GlobalVariables.equipped_weapon:
+		modified_value =modified_value* GlobalVariables.equipped_weapon.damage_multiplier
+		
+	# Buffs
+	#for buff in active_buffs:
+	#	modified_value = buff.modify_outgoing_damage(modified_value)
+
+	# Feldeffekte evemtuell hierhin und raus aus dem Main?
+	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
+	modified_value=modified_value *slot_effect
+	
+	return modified_value
 
 var is_defeated = false  # Tod?
 func damage(physical_damage, mental_damage) -> void:

@@ -115,14 +115,23 @@ func get_skill_description() -> String:
 enum TargetType { BOSS, PLAYER }	#damit man als Ziel Boss oder Player bei den Effekten auswählen kann
 @export var target_type: TargetType 
 @export var cooldown: float = 10.0
+@export var caster_type: TargetType 
 
 func _run_effect(feldmultiplier := 1.0) -> void:
 	print("Skill wurde ausgeführt: ", name)
 	var target = _get_target()
-	if target != null and effect != null:
-		effect.use(target, first_value, feldmultiplier)	#neu: Wenn es ein Effekt ist, soll der Effekt ausgeführt werden 
+	var caster = _get_caster()
+	if caster != null and target != null and effect != null:
+		effect.use(caster, target, first_value, feldmultiplier)	#neu: Wenn es ein Effekt ist, soll der Effekt ausgeführt werden 
 		current_cd = cooldown
 		_setCooldownBar()
+func _get_caster():
+	match caster_type:
+		TargetType.BOSS:
+			return get_tree().get_root().get_node("Main/Boss")  # Pfad anpassen
+		TargetType.PLAYER:
+			return get_tree().get_root().get_node("Main/Player")  # Pfad anpassen
+	return null
 func _get_target():
 	match target_type:
 		TargetType.BOSS:

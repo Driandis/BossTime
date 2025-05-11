@@ -4,5 +4,9 @@ class_name MagicDamageEffect
 	#wo wird der Schaden angepasst? In den Tres Dateien der Skills?
 
 	
-func use(target, first_value, feldmultiplier := 1.0) ->void:
-	target.damage(0, ceil(first_value* feldmultiplier))
+func use(caster, target, first_value, feldmultiplier := 1.0) ->void:
+	var modified_value = first_value
+	if caster.has_method("apply_attack_modifiers"):
+		modified_value = caster.apply_attack_modifiers(modified_value)
+		
+	target.damage(0, modified_value)

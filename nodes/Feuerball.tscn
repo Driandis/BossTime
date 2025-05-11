@@ -22,6 +22,7 @@ skill_name = "Fireball"
 effect = SubResource("Resource_qhvyq")
 first_value = 8.0
 cooldown = 3.0
+caster_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feuerball"]
 position = Vector2(7.5, -2)
