@@ -23,5 +23,5 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 		# Führe den primären Effekt des Skills aus (z.B. initialer Schaden)
 		if effect != null:
 			effect.use(caster, target, first_value, feldmultiplier)
-			current_cd = cooldown
-			_setCooldownBar()
+		#	current_cd = cooldown
+		#	_setCooldownBar()

@@ -103,6 +103,9 @@ func modify_attribute(attribute_name: String, amount: float):
 func on_turn_ended():
 	var effects_to_remove: Array[StatusEffect] = []
 	for effect in active_status_effects:
+		print("Effekt: ",effect)
+		effect.on_turn_ended()
+		print("Statuseffekt ", effect.name, " ausgeführt.")
 		if effect.decrease_duration():#Dauer reduzieren, wenn sie noch nicht abgelaufen sind
 			effects_to_remove.append(effect)
 

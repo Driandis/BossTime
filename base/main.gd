@@ -89,8 +89,16 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		#Zug des Boss
 		boss.take_turn()
 		
-		player.on_turn_ended()
+		#player.on_turn_ended()
 		#boss.on_turn_ended()
+		if is_instance_valid(player):
+			player.on_turn_ended()
+			print("Spieler: on_turn_ended aufgerufen.")
+
+		if is_instance_valid(boss):
+			boss.on_turn_ended()
+			print("Boss: on_turn_ended aufgerufen.") # Stelle sicher, dass dies passiert!
+
 	# Nächster Slot vorbereiten
 		GlobalVariables.current_slot += 1	#Slotzahl erhöhen für die nächste Runde
 		if GlobalVariables.current_slot >= 3:	#player_slots.size():	#wenn mehr als 2 wieder zu 0 werden
