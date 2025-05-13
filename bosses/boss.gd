@@ -13,7 +13,6 @@ var bossMagicRes: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Boss")
-	#load_skills_for_turn()
 	print("boss_slots: ", boss_slots)
 
 func setHealthLabel() -> void:
@@ -32,22 +31,13 @@ func init_boss(boss_data): #um den Boss zu laden
 	skill_plan = boss_data.rounds # Zugriff auf den Skillplan aus den Daten
 	print("Runden geladen:", skill_plan.size(), " Runden:", skill_plan) # ← Debug
 	print("boss_slots.size(): ", boss_slots.size()) #Debug
-	
-	load_skills_for_turn() # Optional: Lade die ersten Skills direkt
+	print("Verschiedene Boss-Skillrunden: ", skill_plan.size())
 	print("Boss HP: ", health)
 	print("Boss Name: ", Bossname)
 	print("Boss Armor: ", bossArmor)
 	print("Boss Block: ", bossBlock)
 	print("Boss Magic Resistence: ", bossMagicRes)
-	
-	#veraltet
-	#jetzt werden die Skills passend geladen
-#	for child in $Bosse/SkillContainer.get_children():
-#		child.queue_free()	#alle Skills werden gelöscht
-#	for skill_scene in boss_data.skills: 	#nur die passenden Skills aus heroData werden neu gelaedn
-#		var skill_instance = skill_scene.instantiate()
-#		$Bosse/SkillContainer.add_child(skill_instance)
-
+	load_skills_for_turn() # Optional: Lade die ersten Skills direkt
 	setHealthLabel();	#hier werden die Lebensbalken gestartet und eingestellt
 	$HealthBar.max_value = max_health
 	setHealthBar();
@@ -91,6 +81,34 @@ func damage(physical_damage, mental_damage) -> void:
 	print("Effective Boss Magic Damage: ", effective_mental_damage)
 	print("Total Boss Damage: ", total_damage)
 
+#Statuseffekte
+var active_status_effects: Array[StatusEffect] = []
+
+func apply_status_effect(effect_resource: Resource, target: Node):
+	var effect_instance = effect_resource.duplicate(true) as StatusEffect
+	effect_instance.target = target
+	effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
+	active_status_effects.append(effect_instance)
+	effect_instance.apply_effect()
+func modify_attribute(attribute_name: String, amount: float):
+	match attribute_name:
+		"bossArmor":	#Als erstes Beispiel wegen "Brennen"
+			bossArmor += amount
+			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", bossArmor)
+			print("Aktuelle Bossrüstung", bossArmor)
+		# Füge hier weitere Attribute hinzu, die du modifizieren möchtest
+		_:
+			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
+#Zum Abarbeiten der Statuseffekte
+func on_turn_ended():
+	var effects_to_remove: Array[StatusEffect] = []
+	for effect in active_status_effects:
+		if effect.decrease_duration():#Dauer reduzieren, wenn sie noch nicht abgelaufen sind
+			effects_to_remove.append(effect)
+
+	for effect in effects_to_remove:#Entfernen, wenn sie abgelaufen sind
+		effect.remove_effect()	#Optionaler Effekt, wenn der Status ausläuft
+		active_status_effects.erase(effect)	#Status wird entfernt
 
 #Skill-Reihenfolge
 #Skills aus den Feldern erkennen
@@ -111,22 +129,15 @@ var skill_plan= Array()
 @onready var boss_slots = $BossFelder/Boss.get_children()	#Funktioniert das so??
 var current_round_index := 0
 func load_skills_for_turn():
-	#print("load_skills_for_turn aufgerufen, current_round_index: ", current_round_index)
-	#print("skill_plan: ", skill_plan)
-	#print("boss_slots.size(): ", boss_slots.size())
-	#if skill_plan is Array:
-		#print("skill_plan.size(): ", skill_plan.size())
-		#if not skill_plan.is_empty():
-			#print("skill_plan[0]: ", skill_plan[0]) # Überprüfe das erste Element
-			#if skill_plan[0] is Array:
-				#print("skill_plan[0].size(): ", skill_plan[0].size())
 	if not skill_plan or not skill_plan is Array or skill_plan.is_empty():
 		printerr("Skill-Plan leer oder nicht gesetzt!")
 		return
-	if current_round_index >= 3:	#skill_plan.size():
+	#Damit er wieder von vorn anfängt, wenn er mit seinen Skillrunden durch ist
+	if current_round_index >= skill_plan.size():
 		current_round_index = 0  # Zurück zum Anfang
 
 	var current_round_skills: Array = skill_plan[current_round_index]	#Skills der entsprechenden Runde
+	#Skills laden, zuerst Felder leeren
 	print("current_round_skills.size(): ", current_round_skills.size())
 	for i in boss_slots.size():
 		print("Versuche Slot ", i, " (", boss_slots[i].name, ")")
@@ -135,7 +146,7 @@ func load_skills_for_turn():
 				boss_slots[i].remove_child(child)
 				if is_instance_valid(child):
 					child.queue_free() # Gibt die Instanz frei, um Speicherlecks zu vermeiden
-#Neue Skills reinladen
+	#Neue Skills reinladen
 		if i < current_round_skills.size() and current_round_skills[i] is PackedScene:
 			var skill_instance = current_round_skills[i].instantiate()
 			#debug
@@ -178,4 +189,4 @@ func take_turn():
 
 
 #func _on_button_pressed() -> void:
-	#damage(0);
+	#damage(0);<

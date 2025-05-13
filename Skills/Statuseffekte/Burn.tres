@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Burn" load_steps=2 format=3 uid="uid://de6np6mfiwmxr"]
+
+[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/Burn.gd" id="1_nslw2"]
+
+[resource]
+script = ExtResource("1_nslw2")
+damage_per_turn = 3
+armor_reduction = 5
+name = "Basis-Effekt"
+duration = 3.0
+metadata/_custom_type_script = "uid://dqfhgm3l25om7"

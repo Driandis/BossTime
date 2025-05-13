@@ -90,24 +90,6 @@ func _on_mouse_exited():
 func is_ready() -> bool:
 	return current_cd == 0
 	
-#für die Hinweise zu den Skills
-@export var skill_data: SkillData
-	#für die SkillTooltips (Hinweise zu den Skills) wichtig
-	#zeigt aber auch generell in der tres-Datei jetzt die eigene Ressource als Skill Data
-func get_skill_description() -> String:
-	if skill_data:
-		#damit die Effektnamen rausgesucht werden
-		var effect_script = skill_data.effect.get_script()
-		var effect_name = effect_script.resource_path.get_file().get_basename() if effect_script else "Kein Effekt"
-		#hiermit kommt die Beschreibung der Skills
-		return "Name: %s\nCooldown: %d\nEffekt: %s\nWert: %d" % [
-			skill_data.skill_name,
-			skill_data.cooldown,
-			effect_name,
-			skill_data.first_value
-		]
-	return "Keine Daten verfügbar"
-	
 	#neu für Effekte
 @export var skill_name: String
 @export var effect: Effect
@@ -163,3 +145,29 @@ func tick_cooldown():
 	if current_cd > 0:
 		current_cd -= 1
 	_setCooldownBar()
+
+#für die Skillbeschreibung
+func _get_target_type_string(type: TargetType) -> String:
+	match type:
+		TargetType.BOSS:
+			return "Boss"
+		TargetType.PLAYER:
+			return "Spieler"
+		_:
+			return "Unbekannt" # Für den Fall eines unerwarteten Werts
+
+func get_skill_description() -> String:
+	var effect_script = effect.get_script()
+	var effect_name = effect_script.resource_path.get_file().get_basename() if effect_script else "Kein Effekt"
+	var target_string = _get_target_type_string(target_type)
+	var caster_string = _get_target_type_string(caster_type)
+
+	return "Name: %s\nCooldown: %.1f\nEffekt: %s\nWert: %.1f\nZiel: %s\nAusführender: %s" % [
+		skill_name,
+		cooldown,
+		effect_name,
+		first_value,
+		target_string,
+		caster_string
+	]
+	return "Keine Daten verfügbar"

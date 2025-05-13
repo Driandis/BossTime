@@ -52,12 +52,33 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 	$HealthBar.max_value = max_health
 	setHealthBar();
 
-#Waffe des Spielers laden und berücksichtigen
-#func apply_weapon_multiplier(damage: int) -> int:
-#	if equipped_weapon:
-#		return int(damage * equipped_weapon.damage_multiplier)
-#	return damage
+#Statuseffekte
+var active_status_effects: Array[StatusEffect] = []
 
+func apply_status_effect(effect_resource: Resource, target: Node):
+	var effect_instance = effect_resource.duplicate(true) as StatusEffect
+	effect_instance.target = target
+	effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
+	active_status_effects.append(effect_instance)
+	effect_instance.apply_effect()
+func modify_attribute(attribute_name: String, amount: float):
+	match attribute_name:
+		"playerArmor":	#Als erstes Beispiel wegen "Brennen"
+			playerArmor += amount
+			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", playerArmor)
+		# Füge hier weitere Attribute hinzu, die du modifizieren möchtest
+		_:
+			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
+#Zum Abarbeiten der Statuseffekte
+func on_turn_ended():
+	var effects_to_remove: Array[StatusEffect] = []
+	for effect in active_status_effects:
+		if effect.decrease_duration():#Dauer reduzieren, wenn sie noch nicht abgelaufen sind
+			effects_to_remove.append(effect)
+
+	for effect in effects_to_remove:#Entfernen, wenn sie abgelaufen sind
+		effect.remove_effect()	#Optionaler Effekt, wenn der Status ausläuft
+		active_status_effects.erase(effect)	#Status wird entfernt
 
 #Multiplikatoren beim DMG berücksichtigen
 func apply_attack_modifiers(base_value: int) -> int:
@@ -66,9 +87,9 @@ func apply_attack_modifiers(base_value: int) -> int:
 	if GlobalVariables.equipped_weapon:
 		modified_value =modified_value* GlobalVariables.equipped_weapon.damage_multiplier
 		
-	# Buffs
-	#for buff in active_buffs:
-	#	modified_value = buff.modify_outgoing_damage(modified_value)
+	# Buffs und Debuffs durch Statuseffekte (ausgehender Schaden)
+	for effect in active_status_effects:
+		modified_value = effect.modify_outgoing_damage(modified_value)
 	#Items
 	# Feldeffekte evemtuell hierhin und raus aus dem Main?
 	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
@@ -77,10 +98,18 @@ func apply_attack_modifiers(base_value: int) -> int:
 	return modified_value
 
 func damage(physical_damage, mental_damage) -> void:
-		# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
-	var effective_physical_damage = max(0, physical_damage - playerArmor -playerBlock)
+	
+# Modifiziere eingehenden Schaden durch Statuseffekte
+	var incoming_physical_damage= physical_damage
+	var incoming_mental_damage= mental_damage
+	
+	for effect in active_status_effects:
+		incoming_physical_damage = effect.modify_incoming_damage(incoming_physical_damage)
+		incoming_mental_damage = effect.modify_incoming_damage(incoming_mental_damage) # Annahme: Effekte wirken auf beide Schadensarten
+	# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
+	var effective_physical_damage = max(0, incoming_physical_damage - playerArmor - playerBlock)
 	# Berechnung des psychischen Schadens unter Berücksichtigung der mentalen Resistenz
-	var effective_mental_damage = max(0, mental_damage - playerMagicRes)
+	var effective_mental_damage = max(0, incoming_mental_damage - playerMagicRes)
 
  # Gesamt-Schaden (physisch + psychisch)
 	var total_damage = effective_physical_damage + effective_mental_damage

@@ -9,11 +9,11 @@ signal confirm
 @onready var boss = $Boss #damit wir auf alles aus dem Boss Node zugreifen können
 
 #Felder importieren für die Abarbeitung der Slots später
-@onready var player_slots = [
-	$Felder/Feld1,
-	$Felder/Feld2,
-	$Felder/Feld3
-]
+#@onready var player_slots = [
+#	$Felder/Feld1,
+#	$Felder/Feld2,
+#	$Felder/Feld3
+#]
 #neu im Bossskript
 #@onready var boss_slots = [
 #	$Boss/BossFelder/Boss/BossFeld1,
@@ -88,21 +88,9 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		player.take_turn()
 		#Zug des Boss
 		boss.take_turn()
-		#alte Version jetzt im Boss.gd
-		#for e in boss_slots.size():	#Farbeffekt
-		#	boss_slots[e].modulate = Color(1, 1, 1)  # Reset Farbe
-		#	boss_slots[GlobalVariables.current_slot].modulate = Color(1, 0.8, 0.5)  # Aktives Feld hervorheben
-			
-		#if GlobalVariables.current_slot < boss_slots.size():	#kontrollbefehl
-		#	var boss_slot = boss_slots[GlobalVariables.current_slot] #holt die aktuelle Slotzahl (Start:0)
-		#	if boss_slot.get_child_count() > 0:	#kein Plan
-		#		var bossskill = get_skill_from_slot(boss_slot) #holt den ersten Skill aus dem entsprechenden Slot
-		#		if bossskill !=null and bossskill.has_method("_run_effect"):
-		#			var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
-		#			bossskill._run_effect(slot_effect)
-		#	else:
-		#		print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
-				
+		
+		player.on_turn_ended()
+		#boss.on_turn_ended()
 	# Nächster Slot vorbereiten
 		GlobalVariables.current_slot += 1	#Slotzahl erhöhen für die nächste Runde
 		if GlobalVariables.current_slot >= 3:	#player_slots.size():	#wenn mehr als 2 wieder zu 0 werden
