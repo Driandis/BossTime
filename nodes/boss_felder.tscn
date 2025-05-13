@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgibrnu4xdgxy"]
+
+[ext_resource type="Script" uid="uid://crt0om8yfdlxw" path="res://base/feld_1.gd" id="1_03gga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jlma"]
+size = Vector2(46.25, 40)
+
+[node name="BossFelder" type="Node2D"]
+
+[node name="Boss" type="Node2D" parent="."]
+
+[node name="BossFeld1" type="Area2D" parent="Boss"]
+position = Vector2(1, 22)
+script = ExtResource("1_03gga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BossFeld1"]
+position = Vector2(1, 26)
+shape = SubResource("RectangleShape2D_1jlma")
+
+[node name="Label" type="Label" parent="Boss/BossFeld1"]
+offset_left = -23.0
+offset_top = 10.0
+offset_right = 25.0
+offset_bottom = 57.0
+text = "BossFeld 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="BossFeld2" type="Area2D" parent="Boss"]
+position = Vector2(4, 103)
+script = ExtResource("1_03gga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BossFeld2"]
+position = Vector2(1, 26)
+shape = SubResource("RectangleShape2D_1jlma")
+
+[node name="Label" type="Label" parent="Boss/BossFeld2"]
+offset_left = -23.0
+offset_top = 10.0
+offset_right = 25.0
+offset_bottom = 57.0
+text = "BossFeld 2"
+metadata/_edit_use_anchors_ = true
+
+[node name="BossFeld3" type="Area2D" parent="Boss"]
+position = Vector2(6, 189)
+script = ExtResource("1_03gga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BossFeld3"]
+position = Vector2(1, 26)
+shape = SubResource("RectangleShape2D_1jlma")
+
+[node name="Label" type="Label" parent="Boss/BossFeld3"]
+offset_left = -23.0
+offset_top = 10.0
+offset_right = 25.0
+offset_bottom = 57.0
+text = "BossFeld 3"
+metadata/_edit_use_anchors_ = true

@@ -1,4 +1,4 @@
-extends Resource
-class_name BossSkillPlan
+#extends Resource
+#class_name BossSkillPlan
 
-@export var rounds: Array = []  # Jede Runde ist ein Array von Skill-Ressourcen
+#@export var rounds: Array=[]  # Jede Runde ist ein Array eines Dictionary mit Skill-Ressourcen

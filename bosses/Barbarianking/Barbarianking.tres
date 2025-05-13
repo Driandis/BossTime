@@ -2,16 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://b1syvj2plvdoi" path="res://sprites/boss/ChatGPT Image 29. Apr. 2025, 10_55_25.png" id="1_kcmn3"]
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_rjt70"]
-[ext_resource type="PackedScene" uid="uid://fha7qnflpuu0" path="res://nodes/hieb.tscn" id="3_lnvr3"]
+[ext_resource type="PackedScene" uid="uid://fha7qnflpuu0" path="res://nodes/SkillNodes/hieb.tscn" id="2_lnvr3"]
 
 [resource]
 script = ExtResource("1_rjt70")
 name = "Ulf"
-skills = Array[PackedScene]([ExtResource("3_lnvr3")])
+skills = Array[PackedScene]([ExtResource("2_lnvr3")])
 max_health = 300
 bossBlock = 0
 bossArmor = 12
 bossMagicRes = 8
 boss_texture = ExtResource("1_kcmn3")
-rounds = [null]
+rounds = [[ExtResource("2_lnvr3"), ExtResource("2_lnvr3"), ExtResource("2_lnvr3")], [ExtResource("2_lnvr3")]]
 metadata/_custom_type_script = "uid://dres0n1ghpxr0"

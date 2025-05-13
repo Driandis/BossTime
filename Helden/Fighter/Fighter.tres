@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_bcmtd"]
 [ext_resource type="Texture2D" uid="uid://dk4xkdswx2wen" path="res://sprites/heroes/fighter/Zweihandkrieger mit Schwert.png" id="1_fhnnf"]
-[ext_resource type="PackedScene" uid="uid://c2pixwry3mxki" path="res://nodes/heal.tscn" id="2_h6x00"]
+[ext_resource type="PackedScene" uid="uid://c2pixwry3mxki" path="res://nodes/SkillNodes/heal.tscn" id="2_h6x00"]
 
 [resource]
 script = ExtResource("1_bcmtd")
