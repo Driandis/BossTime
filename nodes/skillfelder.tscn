@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0ceg8avf7rf0"]
+
+[ext_resource type="Script" uid="uid://crt0om8yfdlxw" path="res://base/feld_1.gd" id="1_wga8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpxiq"]
+size = Vector2(46.25, 40)
+
+[node name="Skillfelder" type="Node2D"]
+
+[node name="Feld1" type="Area2D" parent="."]
+position = Vector2(-78, 66)
+script = ExtResource("1_wga8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld1"]
+position = Vector2(-2, 24)
+shape = SubResource("RectangleShape2D_fpxiq")
+
+[node name="Label" type="Label" parent="Feld1"]
+offset_left = -26.0
+offset_top = 8.0
+offset_right = 22.0
+offset_bottom = 55.0
+text = "Skillfeld 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Feld2" type="Area2D" parent="."]
+position = Vector2(7, 62)
+script = ExtResource("1_wga8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld2"]
+position = Vector2(-2, 24)
+shape = SubResource("RectangleShape2D_fpxiq")
+
+[node name="Label" type="Label" parent="Feld2"]
+offset_left = -26.0
+offset_top = 8.0
+offset_right = 22.0
+offset_bottom = 55.0
+text = "Skillfeld 2"
+metadata/_edit_use_anchors_ = true
+
+[node name="Feld3" type="Area2D" parent="."]
+position = Vector2(95, 63)
+script = ExtResource("1_wga8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld3"]
+position = Vector2(-2, 24)
+shape = SubResource("RectangleShape2D_fpxiq")
+
+[node name="Label" type="Label" parent="Feld3"]
+offset_left = -26.0
+offset_top = 8.0
+offset_right = 22.0
+offset_bottom = 55.0
+text = "Skillfeld 3"
+metadata/_edit_use_anchors_ = true
+
+[node name="Feld4" type="Area2D" parent="."]
+position = Vector2(-77, 142)
+script = ExtResource("1_wga8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld4"]
+position = Vector2(-2, 24)
+shape = SubResource("RectangleShape2D_fpxiq")
+
+[node name="Label" type="Label" parent="Feld4"]
+offset_left = -26.0
+offset_top = 8.0
+offset_right = 22.0
+offset_bottom = 55.0
+text = "Skillfeld 4"
+metadata/_edit_use_anchors_ = true
+
+[node name="Feld5" type="Area2D" parent="."]
+position = Vector2(9, 136)
+script = ExtResource("1_wga8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld5"]
+position = Vector2(-2, 24)
+shape = SubResource("RectangleShape2D_fpxiq")
+
+[node name="Label" type="Label" parent="Feld5"]
+offset_left = -26.0
+offset_top = 8.0
+offset_right = 22.0
+offset_bottom = 55.0
+text = "Skillfeld 5"
+metadata/_edit_use_anchors_ = true

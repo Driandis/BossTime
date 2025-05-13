@@ -1,18 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://br0h18fqmirga"]
+[gd_scene load_steps=6 format=3 uid="uid://br0h18fqmirga"]
 
 [ext_resource type="PackedScene" uid="uid://fivay0tb8yky" path="res://nodes/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://yg5mhbm6w5rx" path="res://base/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://deys43et4bw2g" path="res://nodes/boss.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dkf506f3owsi7" path="res://sprites/background/732f46d3-d54d-4bd8-8908-1d4c9f4118b4.jpg" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://qsadhjj7ohqy" path="res://nodes/felder.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://5np555wkfose" path="res://nodes/skill_tooltip.tscn" id="6_sybi7"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
 player_scene = ExtResource("1_0xm2m")
-
-[node name="Felder" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(376, 528)
 
 [node name="Player" parent="." instance=ExtResource("1_0xm2m")]
 top_level = true
@@ -24,10 +20,10 @@ position = Vector2(1008, 304)
 [node name="TestTimer" type="Timer" parent="."]
 
 [node name="Turn Counter" type="Button" parent="."]
-offset_left = 456.0
-offset_top = 280.0
-offset_right = 744.0
-offset_bottom = 360.0
+offset_left = 448.0
+offset_top = 437.0
+offset_right = 736.0
+offset_bottom = 517.0
 text = "Turn Count"
 
 [node name="GameOver" type="Window" parent="."]

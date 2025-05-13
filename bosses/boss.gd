@@ -40,12 +40,14 @@ func init_boss(boss_data): #um den Boss zu laden
 	print("Boss Block: ", bossBlock)
 	print("Boss Magic Resistence: ", bossMagicRes)
 	
+	#veraltet
 	#jetzt werden die Skills passend geladen
-	for child in $Bosse/SkillContainer.get_children():
-		child.queue_free()	#alle Skills werden gelöscht
-	for skill_scene in boss_data.skills: 	#nur die passenden Skills aus heroData werden neu gelaedn
-		var skill_instance = skill_scene.instantiate()
-		$Bosse/SkillContainer.add_child(skill_instance)
+#	for child in $Bosse/SkillContainer.get_children():
+#		child.queue_free()	#alle Skills werden gelöscht
+#	for skill_scene in boss_data.skills: 	#nur die passenden Skills aus heroData werden neu gelaedn
+#		var skill_instance = skill_scene.instantiate()
+#		$Bosse/SkillContainer.add_child(skill_instance)
+
 	setHealthLabel();	#hier werden die Lebensbalken gestartet und eingestellt
 	$HealthBar.max_value = max_health
 	setHealthBar();
@@ -166,6 +168,7 @@ func take_turn():
 
 	if GlobalVariables.current_turn % 3 == 0 and GlobalVariables.current_turn>0: #if GlobalVariables.current_round > 0: #damit nicht zu früh erhöht wird, der zweite Teil
 		current_round_index = (current_round_index + 1) % skill_plan.size()
+		
 		load_skills_for_turn()
 	else:
 		print("Kein Skill in Bossslot ", GlobalVariables.current_slot)

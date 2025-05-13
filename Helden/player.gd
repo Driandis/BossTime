@@ -13,6 +13,7 @@ var playerArmor: int
 var physical_damage: int
 var mental_damage: int
 var equipped_weapon: WeaponData
+@onready var skill_felder = $Skillfelder.get_children()	#damit man auf die Skillfelder zugreifen kann
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,11 +40,14 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 	print("Magic Resistence: ", playerMagicRes)
 	print("Weapon: ", GlobalVariables.equipped_weapon.name)
 		#jetzt werden die Skills passend geladen
-	for child in $Helden/SkillContainer.get_children():
-		child.queue_free()	#alle Skills werden gelöscht
-	for skill_scene in hero_data.skills: 	#nur die passenden Skills aus heroData werden neu gelaedn
-		var skill_instance = skill_scene.instantiate()
-		$Helden/SkillContainer.add_child(skill_instance)
+	for i in hero_data.skills.size():
+		if i < skill_felder.size():
+			var skill_scene = hero_data.skills[i]
+			var skill_instance = skill_scene.instantiate()
+			skill_felder[i].add_child(skill_instance)
+		else:
+				printerr("Nicht genügend Skill-Felder vorhanden, um alle Helden-Skills zu laden!")
+				break
 	setHealthLabel();	#hier werden die Lebensbalken gestartet und eingestellt
 	$HealthBar.max_value = max_health
 	setHealthBar();
@@ -91,10 +95,31 @@ func damage(physical_damage, mental_damage) -> void:
 	print("Effective Player Magic Damage: ", effective_mental_damage)
 	print("Total Player Damage: ", total_damage)
 
-
-func heal(amount): #Heal Funktion
-	health = min(health + amount, max_health)
-	
+@onready var player_slots = $Felder/Player.get_children()
+func take_turn():
+	for i in player_slots.size():	#Farbeffekt
+		player_slots[i].modulate = Color(1, 1, 1)  # Reset Farbe
+		player_slots[GlobalVariables.current_slot].modulate = Color(0.8, 0.7, 0.5)  # Aktives Feld hervorheben
+			
+	if GlobalVariables.current_slot < player_slots.size():	#kontrollbefehl
+			var player_slot = player_slots[GlobalVariables.current_slot] #holt die aktuelle Slotzahl (Start:0)
+			if player_slot.get_child_count() > 0:	#kein Plan? Vielleicht: Wenn mehr als ein Skill in dem Slot liegt
+				var skill = get_skill_from_slot(player_slot) #holt den ersten Skill aus dem entsprechenden Slot
+				if skill != null and skill.has_method("_run_effect"):	#Skill wird mit Multiplikator aktiviert
+					var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]	#Holt den passenden Multiplikator für das aktuelle Feld
+					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
+				else:
+					print("Kein Skill in Slot ", GlobalVariables.current_slot)
+#Skills aus den Feldern erkennen
+func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
+	for child in slot.get_children():
+		if child is Skill:
+			return child
+		# Untersuche Enkelkinder (die Skill-Instanz sollte ein Kind des Area2D sein)
+		for grandchild in child.get_children():
+			if grandchild is Skill:
+				return grandchild
+	return null
 func _on_main_press() -> void:
 	damage(0,0);
 

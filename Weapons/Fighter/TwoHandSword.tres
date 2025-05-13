@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://b0pt0wr7tkcfd"]
+
+[ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_i1srd"]
+
+[resource]
+script = ExtResource("1_i1srd")
+name = ""
+damage_multiplier = 3.0
+description = ""
+metadata/_custom_type_script = "uid://7x5wbpmmfh14"

@@ -66,11 +66,11 @@ func input(event: InputEvent) -> void: #von Beginn an von Maxi da
 func _on_player_dead() -> void:
 	$GameOver.visible = true;
 
-func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
-			for child in slot.get_children():
-				if child is Skill:
-					return child
-			return null
+#func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
+#			for child in slot.get_children():
+#				if child is Skill:
+#					return child
+#			return null
 
 func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf gedrückt wird
 		print("Turn ",GlobalVariables.current_round)
@@ -79,26 +79,14 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 			area.tick_cooldown()
 		
 		#Felder und Effekt der Skills
-		var player_slots = $Felder/Player.get_children()	#für das Abarbeiten der entsprechenden Felder
+		#var player_slots = $Felder/Player.get_children()	#für das Abarbeiten der entsprechenden Felder
 		#var boss_slots = $Felder/Boss.get_children()
-		var felder = get_node("Felder").get_children()	#notwendig?
+		#var felder = get_node("Felder").get_children()	#notwendig?
 		
 		
-		#Playerfelder
-		for i in player_slots.size():	#Farbeffekt
-			player_slots[i].modulate = Color(1, 1, 1)  # Reset Farbe
-			player_slots[GlobalVariables.current_slot].modulate = Color(1, 0.8, 0.5)  # Aktives Feld hervorheben
-			
-		if GlobalVariables.current_slot < player_slots.size():	#kontrollbefehl
-			var player_slot = player_slots[GlobalVariables.current_slot] #holt die aktuelle Slotzahl (Start:0)
-			if player_slot.get_child_count() > 0:	#kein Plan? Vielleicht: Wenn mehr als ein Skill in dem Slot liegt
-				var skill = get_skill_from_slot(player_slot) #holt den ersten Skill aus dem entsprechenden Slot
-				if skill != null and skill.has_method("_run_effect"):	#Skill wird mit Multiplikator aktiviert
-					var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]	#Holt den passenden Multiplikator für das aktuelle Feld
-					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
-				else:
-					print("Kein Skill in Slot ", GlobalVariables.current_slot)
-		#jetzt für den Boss
+		#Skills des Spielers
+		player.take_turn()
+		#Zug des Boss
 		boss.take_turn()
 		#alte Version jetzt im Boss.gd
 		#for e in boss_slots.size():	#Farbeffekt
@@ -115,12 +103,14 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		#	else:
 		#		print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
 				
-				# Nächster Slot vorbereiten
+	# Nächster Slot vorbereiten
 		GlobalVariables.current_slot += 1	#Slotzahl erhöhen für die nächste Runde
 		if GlobalVariables.current_slot >= 3:	#player_slots.size():	#wenn mehr als 2 wieder zu 0 werden
 			GlobalVariables.current_slot = 0
 			
 		GlobalVariables.current_turn += 1
+		if GlobalVariables.current_turn % 3 == 0 and GlobalVariables.current_turn>0:
+			GlobalVariables.current_round += 1
 			#boss.load_skills_for_turn()
 func _on_button_pressed() -> void:
 		$GameOver.visible = false;

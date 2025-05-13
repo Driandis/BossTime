@@ -24,7 +24,7 @@ skill_data = SubResource("Resource_pxmg5")
 effect = SubResource("Resource_u6inl")
 first_value = 9.0
 target_type = 1
-cooldown = 2.0
+cooldown = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hieb"]
 position = Vector2(8.5, -12)

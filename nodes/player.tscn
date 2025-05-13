@@ -1,20 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://fivay0tb8yky"]
+[gd_scene load_steps=5 format=3 uid="uid://fivay0tb8yky"]
 
 [ext_resource type="Script" uid="uid://c5qd62u5caywy" path="res://Helden/player.gd" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://b8206y0e32wgx" path="res://sprites/squarrel.png" id="2_onrkg"]
-[ext_resource type="Script" uid="uid://bvbik0q0o7x1v" path="res://Helden/Feuermage/Skills/feuerball.gd" id="3_hqtel"]
-[ext_resource type="Texture2D" uid="uid://bbl2cgfseqrlc" path="res://sprites/heroes/firemage/ChatGPT Image 19. Apr. 2025, 11_30_36.png" id="3_i3pqv"]
-[ext_resource type="Script" uid="uid://by41xax247oyp" path="res://Helden/Fighter/Skills/heal.gd" id="5_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://ddiqyhkcnrwk3" path="res://sprites/heroes/firemage/ChatGPT Image 22. Apr. 2025, 18_33_55.png" id="6_1jxqw"]
+[ext_resource type="PackedScene" uid="uid://qsadhjj7ohqy" path="res://nodes/felder.tscn" id="2_46y3y"]
+[ext_resource type="PackedScene" uid="uid://c0ceg8avf7rf0" path="res://nodes/skillfelder.tscn" id="8_ejohg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4flbx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(90, 68)
 
 [node name="Player" type="Node2D"]
 material = SubResource("CanvasItemMaterial_4flbx")
 script = ExtResource("1_4flbx")
+
+[node name="Felder" parent="." instance=ExtResource("2_46y3y")]
+position = Vector2(269, -204)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -167.0
@@ -30,93 +27,14 @@ offset_top = 80.1769
 offset_right = 29.8638
 offset_bottom = 103.177
 
-[node name="Charakterimage" type="Sprite2D" parent="."]
-position = Vector2(3, -83)
+[node name="Charakterimage" type="TextureRect" parent="."]
+offset_left = -120.0
+offset_top = -174.0
+offset_right = 660.0
+offset_bottom = 529.0
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_onrkg")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Helden" type="Node2D" parent="."]
-
-[node name="SkillContainer" type="Node2D" parent="Helden"]
-
-[node name="SkillContainerFeuermage" type="Node2D" parent="Helden/SkillContainer"]
-
-[node name="Feuerball" type="Area2D" parent="Helden/SkillContainer/SkillContainerFeuermage"]
-position = Vector2(37, 27)
-script = ExtResource("3_hqtel")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Helden/SkillContainer/SkillContainerFeuermage/Feuerball"]
-position = Vector2(140, -207)
-shape = SubResource("RectangleShape2D_hqtel")
-
-[node name="Sprite2D" type="Sprite2D" parent="Helden/SkillContainer/SkillContainerFeuermage/Feuerball"]
-position = Vector2(139, -207)
-scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("3_i3pqv")
-
-[node name="Label" type="Label" parent="Helden/SkillContainer/SkillContainerFeuermage/Feuerball"]
-offset_left = 103.0
-offset_top = -194.0
-offset_right = 176.0
-offset_bottom = -171.0
-text = "Feuerball"
-metadata/_edit_use_anchors_ = true
-
-[node name="CooldownBar" type="ProgressBar" parent="Helden/SkillContainer/SkillContainerFeuermage/Feuerball"]
-offset_left = 153.0
-offset_top = -243.0
-offset_right = 185.0
-offset_bottom = -214.0
-fill_mode = 2
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="CooldownText" type="Label" parent="Helden/SkillContainer/SkillContainerFeuermage/Feuerball/CooldownBar"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.25
-anchor_right = -0.25
-anchor_bottom = 0.137931
-offset_right = 40.0
-offset_bottom = 23.0
-metadata/_edit_use_anchors_ = true
-
-[node name="SkillContainerFighter" type="Node2D" parent="Helden/SkillContainer"]
-
-[node name="Heal" type="Area2D" parent="Helden/SkillContainer/SkillContainerFighter"]
-position = Vector2(42, 42)
-script = ExtResource("5_2hs0m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Helden/SkillContainer/SkillContainerFighter/Heal"]
-position = Vector2(138, -124)
-shape = SubResource("RectangleShape2D_hqtel")
-
-[node name="Sprite2D" type="Sprite2D" parent="Helden/SkillContainer/SkillContainerFighter/Heal"]
-position = Vector2(140, -121)
-scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("6_1jxqw")
-
-[node name="Label" type="Label" parent="Helden/SkillContainer/SkillContainerFighter/Heal"]
-offset_left = 105.0
-offset_top = -91.0
-offset_right = 178.0
-offset_bottom = -68.0
-metadata/_edit_use_anchors_ = true
-
-[node name="CooldownBar" type="ProgressBar" parent="Helden/SkillContainer/SkillContainerFighter/Heal"]
-offset_left = 156.0
-offset_top = -159.0
-offset_right = 188.0
-offset_bottom = -130.0
-fill_mode = 2
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="CooldownText" type="Label" parent="Helden/SkillContainer/SkillContainerFighter/Heal/CooldownBar"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.28125
-anchor_right = -0.28125
-offset_right = 40.0
-offset_bottom = 23.0
-metadata/_edit_use_anchors_ = true
+[node name="Skillfelder" parent="." instance=ExtResource("8_ejohg")]
+position = Vector2(-26, 55)

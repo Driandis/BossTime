@@ -14,7 +14,7 @@ size = Vector2(90, 68)
 [node name="Heal" type="Node2D"]
 
 [node name="Heal" type="Area2D" parent="."]
-position = Vector2(165, -111)
+position = Vector2(-7, 62)
 script = ExtResource("1_wliej")
 effect = SubResource("Resource_ux88c")
 first_value = 30.0

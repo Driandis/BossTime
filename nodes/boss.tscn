@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://deys43et4bw2g"]
+[gd_scene load_steps=3 format=3 uid="uid://deys43et4bw2g"]
 
 [ext_resource type="Script" uid="uid://dqd3etcg2uxt6" path="res://bosses/boss.gd" id="1_6xxrv"]
-[ext_resource type="Texture2D" uid="uid://822qaj8a4yy5" path="res://sprites/squarowl.PNG" id="2_skx2t"]
-[ext_resource type="Script" uid="uid://cxkpc7ux18p8h" path="res://bosses/Barbarianking/Skills/hieb.gd" id="3_t5ef3"]
-[ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="4_8xlcg"]
 [ext_resource type="PackedScene" uid="uid://bgibrnu4xdgxy" path="res://nodes/boss_felder.tscn" id="5_8xlcg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mt0by"]
-size = Vector2(90, 68)
 
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_6xxrv")
+
+[node name="Bossimage" type="TextureRect" parent="."]
+offset_left = -120.0
+offset_top = -174.0
+offset_right = 660.0
+offset_bottom = 529.0
+scale = Vector2(0.3, 0.3)
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -19,10 +22,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
-[node name="Bossimage" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_skx2t")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -116.0
@@ -37,52 +36,6 @@ offset_left = 96.0
 offset_top = 1.0
 offset_right = 136.0
 offset_bottom = 24.0
-
-[node name="Bosse" type="Node2D" parent="."]
-
-[node name="SkillContainer" type="Node2D" parent="Bosse"]
-
-[node name="Barbarianking" type="Node2D" parent="Bosse/SkillContainer"]
-
-[node name="Hieb" type="Area2D" parent="Bosse/SkillContainer/Barbarianking"]
-position = Vector2(-104, -45)
-scale = Vector2(0.6, 0.6)
-script = ExtResource("3_t5ef3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bosse/SkillContainer/Barbarianking/Hieb"]
-position = Vector2(8.5, -12)
-shape = SubResource("RectangleShape2D_mt0by")
-
-[node name="Sprite2D" type="Sprite2D" parent="Bosse/SkillContainer/Barbarianking/Hieb"]
-position = Vector2(10.5, -9)
-scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("4_8xlcg")
-
-[node name="Label" type="Label" parent="Bosse/SkillContainer/Barbarianking/Hieb"]
-offset_left = -24.5
-offset_top = 21.0
-offset_right = 48.5
-offset_bottom = 44.0
-text = "Hieb"
-metadata/_edit_use_anchors_ = true
-
-[node name="CooldownBar" type="ProgressBar" parent="Bosse/SkillContainer/Barbarianking/Hieb"]
-offset_left = 26.5
-offset_top = -47.0
-offset_right = 58.5
-offset_bottom = -18.0
-fill_mode = 2
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="CooldownText" type="Label" parent="Bosse/SkillContainer/Barbarianking/Hieb/CooldownBar"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.28125
-anchor_right = -0.28125
-offset_right = 40.0
-offset_bottom = 23.0
-metadata/_edit_use_anchors_ = true
 
 [node name="BossFelder" parent="." instance=ExtResource("5_8xlcg")]
 position = Vector2(-214, -129)
