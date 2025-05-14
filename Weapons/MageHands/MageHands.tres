@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://4wbvevr28a4q"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://4wbvevr28a4q"]
 
 [ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_lc1nr"]
+[ext_resource type="Texture2D" uid="uid://de4r2jgkmrg01" path="res://sprites/Items/Weapons/Magische Hände vor dunkler Wand.png" id="2_cwwim"]
 
 [resource]
 script = ExtResource("1_lc1nr")
 name = "Hände"
 damage_multiplier = 2.5
 description = ""
+weapon_texture = ExtResource("2_cwwim")
 metadata/_custom_type_script = "uid://7x5wbpmmfh14"

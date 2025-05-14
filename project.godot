@@ -18,6 +18,7 @@ config/icon="res://sprites/tmp/icon.svg"
 [autoload]
 
 GlobalVariables="*res://base/globalVariables.gd"
+SkillTooltipPanel="*res://SkillTooltipPanel.gd"
 
 [input]
 

@@ -22,26 +22,33 @@ target_type = 1
 cooldown = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Heal"]
-position = Vector2(8.5, -12)
+position = Vector2(7, -4)
 shape = SubResource("RectangleShape2D_of35s")
 
-[node name="Sprite2D" type="Sprite2D" parent="Heal"]
-position = Vector2(10.5, -9)
+[node name="Image" type="TextureRect" parent="Heal"]
+custom_minimum_size = Vector2(200, 200)
+offset_left = -38.0
+offset_top = -39.0
+offset_right = 964.0
+offset_bottom = 971.0
 scale = Vector2(0.0908203, 0.0703125)
 texture = ExtResource("3_ybwgk")
+expand_mode = 1
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Heal"]
-offset_left = -24.5
-offset_top = 21.0
-offset_right = 48.5
-offset_bottom = 44.0
+offset_left = -26.0
+offset_top = 29.0
+offset_right = 47.0
+offset_bottom = 52.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Heal"]
-offset_left = 26.5
-offset_top = -47.0
-offset_right = 58.5
-offset_bottom = -18.0
+offset_left = 25.0
+offset_top = -39.0
+offset_right = 57.0
+offset_bottom = -10.0
 fill_mode = 2
 show_percentage = false
 metadata/_edit_use_anchors_ = true

@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://b0pt0wr7tkcfd"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://b0pt0wr7tkcfd"]
 
 [ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_i1srd"]
+[ext_resource type="Texture2D" uid="uid://ktseaykmxf3y" path="res://sprites/Items/Weapons/Zwei_hän_der mit verziertem Griff.png" id="2_wabwq"]
 
 [resource]
 script = ExtResource("1_i1srd")
 name = ""
 damage_multiplier = 3.0
 description = ""
+weapon_texture = ExtResource("2_wabwq")
 metadata/_custom_type_script = "uid://7x5wbpmmfh14"

@@ -91,10 +91,12 @@ func is_ready() -> bool:
 	return current_cd == 0
 	
 	#neu für Effekte
-@export var skill_name: String
-@export var effect: Effect
-@export var first_value: float = 10.0
 enum TargetType { BOSS, PLAYER }	#damit man als Ziel Boss oder Player bei den Effekten auswählen kann
+
+#Ist das alles was ein Skill braucht? Auf Discord deutlich mehr
+@export var skill_name: String
+@export var effect: Effect	#Alle verschiedenen Effekte, wie magicdmg, 
+@export var first_value: float = 10.0
 @export var target_type: TargetType 
 @export var cooldown: float = 10.0
 @export var caster_type: TargetType 
@@ -107,23 +109,20 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 		effect.use(caster, target, first_value, feldmultiplier)	#neu: Wenn es ein Effekt ist, soll der Effekt ausgeführt werden 
 		current_cd = cooldown
 		_setCooldownBar()
-func _get_caster():
+func _get_caster():#Zugriff auf die Skripte für die Effekte der Skills auf den Caster
 	match caster_type:
 		TargetType.BOSS:
 			return get_tree().get_root().get_node("Main/Boss")  # Pfad anpassen
 		TargetType.PLAYER:
 			return get_tree().get_root().get_node("Main/Player")  # Pfad anpassen
 	return null
-func _get_target():
+func _get_target():	#Zugriff auf die Skripte für die Effekte der Skills aufs Target
 	match target_type:
 		TargetType.BOSS:
 			return get_tree().get_root().get_node("Main/Boss")  # Pfad anpassen
 		TargetType.PLAYER:
 			return get_tree().get_root().get_node("Main/Player")  # Pfad anpassen
 	return null
-	#Alt: 
-		#use(feldmultiplier)
-		#
 
 		
 func use(feldmultiplier := 1.0): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
@@ -140,7 +139,8 @@ func use(feldmultiplier := 1.0): #in den speziellen Skillskripten wird dann defi
 	else:
 		push_warning("Target oder Effekt fehlt für Skill " + name)
 		pass
-	
+		
+#Cooldown reduzieren
 func tick_cooldown():
 	if current_cd > 0:
 		current_cd -= 1

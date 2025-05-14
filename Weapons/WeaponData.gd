@@ -5,3 +5,4 @@ class_name WeaponData
 @export var damage_multiplier : float = 2
 @export var description : String
 @export var bonus_effect: Effect
+@export var weapon_texture: Texture2D

@@ -1,13 +1,11 @@
 extends StatusEffect
-class_name Burn
+class_name BurnBoss
 
 @export var damage_per_turn: int = 3
 @export var armor_reduction: int = 5
 
 func on_turn_ended():
-	#if target:
-		# Füge direkten Schaden zu
-	print("test1")
+	# Truedmg durch Burn	
 	target.health -= damage_per_turn
 	target.health = clamp(target.health, 0, target.max_health)
 	target.setHealthLabel()

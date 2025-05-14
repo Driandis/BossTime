@@ -96,7 +96,7 @@ func modify_attribute(attribute_name: String, amount: float):
 			bossArmor += amount
 			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", bossArmor)
 			print("Aktuelle Bossrüstung", bossArmor)
-		# Füge hier weitere Attribute hinzu, die du modifizieren möchtest
+		# Füge hier weitere Attribute hinzu, die modifiziert werden können
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte

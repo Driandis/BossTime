@@ -52,7 +52,7 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 	$HealthBar.max_value = max_health
 	setHealthBar();
 
-#Statuseffekte
+#Für die Verarbeitung von Statuseffekte
 var active_status_effects: Array[StatusEffect] = []
 
 func apply_status_effect(effect_resource: Resource, target: Node):
@@ -66,10 +66,10 @@ func modify_attribute(attribute_name: String, amount: float):
 		"playerArmor":	#Als erstes Beispiel wegen "Brennen"
 			playerArmor += amount
 			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", playerArmor)
-		# Füge hier weitere Attribute hinzu, die du modifizieren möchtest
+		# Füge hier weitere Attribute hinzu, die modifiziert werden können
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
-#Zum Abarbeiten der Statuseffekte
+#Zum Abarbeiten der Statuseffekte am Ende des Zuges (Im Main passiert das nach take_turn
 func on_turn_ended():
 	var effects_to_remove: Array[StatusEffect] = []
 	for effect in active_status_effects:
@@ -114,7 +114,6 @@ func damage(physical_damage, mental_damage) -> void:
  # Gesamt-Schaden (physisch + psychisch)
 	var total_damage = effective_physical_damage + effective_mental_damage
 	health -= ceil(total_damage)	#DMG wird aufgerundet und dann vom Leben abgezogen 
-	health = clamp(health, 0, max_health) #damit man nicht über Maxleben heilt, 
 	setHealthLabel();	
 	setHealthBar();
 	if health == 0:
