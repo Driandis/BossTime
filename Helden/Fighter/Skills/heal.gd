@@ -1,5 +1,8 @@
 extends Skill
 class_name HealSkill
+
+func use():
+	GlobalVariables.playerHealth +=50
 #hier das script von Skills noch importieren?
 
 

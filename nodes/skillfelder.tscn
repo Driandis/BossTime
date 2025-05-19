@@ -3,86 +3,81 @@
 [ext_resource type="Script" uid="uid://crt0om8yfdlxw" path="res://base/feld_1.gd" id="1_wga8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpxiq"]
-size = Vector2(46.25, 40)
+size = Vector2(143.125, 88)
 
 [node name="Skillfelder" type="Node2D"]
 
 [node name="Feld1" type="Area2D" parent="."]
-position = Vector2(-78, 66)
+position = Vector2(-192, 64)
 script = ExtResource("1_wga8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld1"]
-position = Vector2(-2, 24)
+position = Vector2(24.4375, 4)
 shape = SubResource("RectangleShape2D_fpxiq")
+debug_color = Color(0.284771, 0.565138, 0.75877, 0.42)
 
 [node name="Label" type="Label" parent="Feld1"]
-offset_left = -26.0
-offset_top = 8.0
-offset_right = 22.0
-offset_bottom = 55.0
+offset_left = -8.0
+offset_top = 47.0
+offset_right = 67.0
+offset_bottom = 94.0
 text = "Skillfeld 1"
 metadata/_edit_use_anchors_ = true
 
+[node name="ColorRect" type="ColorRect" parent="Feld1"]
+offset_left = -48.0
+offset_top = -40.0
+offset_right = 96.0
+offset_bottom = 48.0
+color = Color(0.216371, 0.303253, 0.312082, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="Feld2" type="Area2D" parent="."]
-position = Vector2(7, 62)
+position = Vector2(-16, 64)
 script = ExtResource("1_wga8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld2"]
-position = Vector2(-2, 24)
+position = Vector2(24.4375, 4)
 shape = SubResource("RectangleShape2D_fpxiq")
+debug_color = Color(0.284771, 0.565138, 0.75877, 0.42)
 
 [node name="Label" type="Label" parent="Feld2"]
-offset_left = -26.0
-offset_top = 8.0
-offset_right = 22.0
-offset_bottom = 55.0
+offset_left = -8.0
+offset_top = 47.0
+offset_right = 67.0
+offset_bottom = 94.0
 text = "Skillfeld 2"
 metadata/_edit_use_anchors_ = true
 
+[node name="ColorRect" type="ColorRect" parent="Feld2"]
+offset_left = -48.0
+offset_top = -40.0
+offset_right = 96.0
+offset_bottom = 48.0
+color = Color(0.216371, 0.303253, 0.312082, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="Feld3" type="Area2D" parent="."]
-position = Vector2(95, 63)
+position = Vector2(160, 64)
 script = ExtResource("1_wga8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld3"]
-position = Vector2(-2, 24)
+position = Vector2(24.4375, 4)
 shape = SubResource("RectangleShape2D_fpxiq")
+debug_color = Color(0.284771, 0.565138, 0.75877, 0.42)
 
 [node name="Label" type="Label" parent="Feld3"]
-offset_left = -26.0
-offset_top = 8.0
-offset_right = 22.0
-offset_bottom = 55.0
+offset_left = -8.0
+offset_top = 47.0
+offset_right = 67.0
+offset_bottom = 94.0
 text = "Skillfeld 3"
 metadata/_edit_use_anchors_ = true
 
-[node name="Feld4" type="Area2D" parent="."]
-position = Vector2(-77, 142)
-script = ExtResource("1_wga8w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld4"]
-position = Vector2(-2, 24)
-shape = SubResource("RectangleShape2D_fpxiq")
-
-[node name="Label" type="Label" parent="Feld4"]
-offset_left = -26.0
-offset_top = 8.0
-offset_right = 22.0
-offset_bottom = 55.0
-text = "Skillfeld 4"
-metadata/_edit_use_anchors_ = true
-
-[node name="Feld5" type="Area2D" parent="."]
-position = Vector2(9, 136)
-script = ExtResource("1_wga8w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Feld5"]
-position = Vector2(-2, 24)
-shape = SubResource("RectangleShape2D_fpxiq")
-
-[node name="Label" type="Label" parent="Feld5"]
-offset_left = -26.0
-offset_top = 8.0
-offset_right = 22.0
-offset_bottom = 55.0
-text = "Skillfeld 5"
+[node name="ColorRect" type="ColorRect" parent="Feld3"]
+offset_left = -48.0
+offset_top = -40.0
+offset_right = 96.0
+offset_bottom = 48.0
+color = Color(0.216371, 0.303253, 0.312082, 1)
 metadata/_edit_use_anchors_ = true

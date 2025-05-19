@@ -1,21 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2pkl06miapvp"]
+[gd_scene load_steps=7 format=3 uid="uid://d2pkl06miapvp"]
 
 [ext_resource type="Script" uid="uid://bt027ajnss3v" path="res://Helden/Feuermage/Skills/feuersäule.gd" id="1_gaxq4"]
 [ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="2_f3c1k"]
-[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/BurnBoss.gd" id="2_kr77k"]
-[ext_resource type="Script" uid="uid://duvhanyq3qdin" path="res://Skills/Effekte/MagicDamageEffect.gd" id="3_r25ri"]
+[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/BurnStatus.gd" id="2_kr77k"]
 
-[sub_resource type="Resource" id="Resource_bevun"]
+[sub_resource type="Resource" id="Resource_nmglh"]
+script = ExtResource("2_kr77k")
+damage_per_turn = 3
+armor_reduction = 5
+name = "Burn"
+duration = 3.0
+metadata/_custom_type_script = "uid://dqfhgm3l25om7"
+
+[sub_resource type="Resource" id="Resource_kr77k"]
 script = ExtResource("2_kr77k")
 damage_per_turn = 3
 armor_reduction = 5
 name = "Basis-Effekt"
 duration = 3.0
 metadata/_custom_type_script = "uid://dqfhgm3l25om7"
-
-[sub_resource type="Resource" id="Resource_yp32j"]
-script = ExtResource("3_r25ri")
-metadata/_custom_type_script = "uid://duvhanyq3qdin"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64mly"]
 size = Vector2(90, 68)
@@ -25,12 +28,13 @@ size = Vector2(90, 68)
 [node name="Feuersäule" type="Area2D" parent="."]
 position = Vector2(-3, 64)
 script = ExtResource("1_gaxq4")
-burn_effect_resource = SubResource("Resource_bevun")
+burn_effect_resource = SubResource("Resource_nmglh")
 skill_name = "Feuersäule"
-effect = SubResource("Resource_yp32j")
-first_value = 4.0
+effect = SubResource("Resource_kr77k")
+effect_value = 0.0
 cooldown = 3.0
 caster_type = 1
+magic_damage = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feuersäule"]
 position = Vector2(7.5, -2)

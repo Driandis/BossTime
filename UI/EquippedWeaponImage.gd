@@ -22,3 +22,4 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	if is_instance_valid(SkillTooltipPanel):
 		SkillTooltipPanel.hide_description()
+		

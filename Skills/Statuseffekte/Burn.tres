@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Burn" load_steps=2 format=3 uid="uid://de6np6mfiwmxr"]
 
-[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/BurnBoss.gd" id="1_nslw2"]
+[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/BurnStatus.gd" id="1_nslw2"]
 
 [resource]
 script = ExtResource("1_nslw2")

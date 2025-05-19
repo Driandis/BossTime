@@ -20,6 +20,10 @@ config/icon="res://sprites/tmp/icon.svg"
 GlobalVariables="*res://base/globalVariables.gd"
 SkillTooltipPanel="*res://SkillTooltipPanel.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 Press={

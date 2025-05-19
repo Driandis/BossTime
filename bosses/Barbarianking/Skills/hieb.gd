@@ -1,5 +1,5 @@
 extends Skill
-class_name HiebSkill
+class_name Hieb
 #hier das script von Skills noch importieren?
 
 

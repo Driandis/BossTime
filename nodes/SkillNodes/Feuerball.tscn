@@ -1,12 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bihpqqcoxcwiu"]
+[gd_scene load_steps=4 format=3 uid="uid://bihpqqcoxcwiu"]
 
 [ext_resource type="Script" uid="uid://bvbik0q0o7x1v" path="res://Helden/Feuermage/Skills/feuerball.gd" id="1_gfqdg"]
-[ext_resource type="Script" uid="uid://duvhanyq3qdin" path="res://Skills/Effekte/MagicDamageEffect.gd" id="3_xouem"]
 [ext_resource type="Texture2D" uid="uid://bbl2cgfseqrlc" path="res://sprites/heroes/firemage/ChatGPT Image 19. Apr. 2025, 11_30_36.png" id="4_twp7a"]
-
-[sub_resource type="Resource" id="Resource_qhvyq"]
-script = ExtResource("3_xouem")
-metadata/_custom_type_script = "uid://duvhanyq3qdin"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
 size = Vector2(90, 68)
@@ -17,10 +12,10 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_gfqdg")
 skill_name = "Fireball"
-effect = SubResource("Resource_qhvyq")
-first_value = 8.0
+effect_value = 0.0
 cooldown = 3.0
 caster_type = 1
+magic_damage = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feuerball"]
 position = Vector2(7.5, -2)

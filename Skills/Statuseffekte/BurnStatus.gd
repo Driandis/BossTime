@@ -1,18 +1,24 @@
 extends StatusEffect
-class_name BurnBoss
+class_name BurnStatus
 
 @export var damage_per_turn: int = 3
 @export var armor_reduction: int = 5
 
 func on_turn_ended():
 	# Truedmg durch Burn	
-	target.health -= damage_per_turn
-	target.health = clamp(target.health, 0, target.max_health)
+	if target is Player:
+		GlobalVariables.playerHealth -= damage_per_turn
+		GlobalVariables.playerHealth = clamp(GlobalVariables.playerHealth, 0, GlobalVariables.playerMaxHealth) #Statt target.max_health
+
+	elif target is Boss:
+		GlobalVariables.bossHealth -= damage_per_turn
+		GlobalVariables.bossHealth = clamp(GlobalVariables.bossHealth, 0, GlobalVariables.bossMaxHealth) #Statt target.max_health
+	
 	target.setHealthLabel()
 	target.setHealthBar()
 	print(target.name, " erleidet ", damage_per_turn, " Brennschaden (ignoriert Rüstung).")
-	if target.health <= 0 and target.has_signal("dead"):
-		target.dead.emit()
+#	if target.health <= 0 and target.has_signal("dead"):
+#		target.dead.emit()
 	#Debug
 	if is_instance_valid(target):
 		print("Target ist gültig. Klasse: ", target.get_class())

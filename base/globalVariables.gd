@@ -12,25 +12,31 @@ var main_node = null #zum Hinzufügen der Skills nachdem sie raus gezogen wurden
 
 # Boss
 var selected_boss: String =""
-const bossMaxHealth = 300
-var bossHealth = bossMaxHealth
-var bossBlock
-var bossArmor
-var bossMagicRes
+var bossName : String
+var bossMaxHealth : int
+var bossHealth  : int	#= bossMaxHealth
+var bossBlock : int
+var bossArmor : int
+var bossMagicRes : int
  
 # Player 
 var selected_hero: String = "" #für Heldenauswahl
-var playerMaxHealth
-var playerHealth #= playerMaxHealth
-var playerBlock
-var playerAmor
-var playerMagicRes
+var playerName : String
+var playerMaxHealth : int
+var playerHealth : int #= playerMaxHealth
+var playerBlock : int
+var playerArmor : int
+var playerMagicRes : int
 #Ausgerüstete Waffe: Änderungen werden weitergegeben per Signal
 signal player_equipped_weapon_changed
 var equipped_weapon: WeaponData = null:
 	set(new_weapon):
 		equipped_weapon = new_weapon
 		player_equipped_weapon_changed.emit()
+		
+#Statuseffekte
+var active_boss_status_effects: Array[StatusEffect] = []
+var active_player_status_effects: Array[StatusEffect] = []
 #Skills (vermutlich nicht notwendig)
 var skillDamage
 var skillAttributes

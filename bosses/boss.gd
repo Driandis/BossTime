@@ -1,14 +1,14 @@
 extends Node2D
-
-const MAX_HEALTH = GlobalVariables.bossMaxHealth
+class_name Boss
+#const MAX_HEALTH = GlobalVariables.bossMaxHealth
 signal action
 signal restart
-var max_health: int
-var health =max_health	#zunächst gleicher Wert wie max_health, verändert sich aber während des spielens
-var Bossname: String
-var bossBlock: int	#greift das hier auf die aktuellen Variablen zu?
-var bossArmor: int
-var bossMagicRes: int
+#var max_health: int
+#var health =max_health	#zunächst gleicher Wert wie max_health, verändert sich aber während des spielens
+#var Bossname: String
+#var bossBlock: int	#greift das hier auf die aktuellen Variablen zu?
+#var bossArmor: int
+#var bossMagicRes: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,93 +16,94 @@ func _ready() -> void:
 	print("boss_slots: ", boss_slots)
 
 func setHealthLabel() -> void:
-	$HealthBar/HealthLabel.text = "%s" % health;	
+	$HealthBar/HealthLabel.text = "%s" % GlobalVariables.bossHealth;	
 
 func setHealthBar() -> void:
-	$HealthBar.value = health
+	$HealthBar.value = GlobalVariables.bossHealth
 	
 func init_boss(boss_data): #um den Boss zu laden
-	max_health = boss_data.max_health
-	health = boss_data.max_health
-	Bossname = boss_data.name
-	bossBlock = boss_data.bossBlock
-	bossArmor = boss_data.bossArmor
-	bossMagicRes = boss_data.bossMagicRes
+	GlobalVariables.bossMaxHealth = boss_data.max_health
+	GlobalVariables.bossHealth = boss_data.max_health
+	GlobalVariables.bossName = boss_data.name
+	GlobalVariables.bossBlock = boss_data.bossBlock
+	GlobalVariables.bossArmor = boss_data.bossArmor
+	GlobalVariables.bossMagicRes = boss_data.bossMagicRes
 	skill_plan = boss_data.rounds # Zugriff auf den Skillplan aus den Daten
 	print("Runden geladen:", skill_plan.size(), " Runden:", skill_plan) # ← Debug
 	print("boss_slots.size(): ", boss_slots.size()) #Debug
 	print("Verschiedene Boss-Skillrunden: ", skill_plan.size())
-	print("Boss HP: ", health)
-	print("Boss Name: ", Bossname)
-	print("Boss Armor: ", bossArmor)
-	print("Boss Block: ", bossBlock)
-	print("Boss Magic Resistence: ", bossMagicRes)
+	print("Boss HP: ", GlobalVariables.bossHealth)
+	print("Boss Name: ", GlobalVariables.bossName)
+	print("Boss Armor: ", GlobalVariables.bossArmor)
+	print("Boss Block: ", GlobalVariables.bossBlock)
+	print("Boss Magic Resistence: ", GlobalVariables.bossMagicRes)
 	load_skills_for_turn() # Optional: Lade die ersten Skills direkt
 	setHealthLabel();	#hier werden die Lebensbalken gestartet und eingestellt
-	$HealthBar.max_value = max_health
+	$HealthBar.max_value = GlobalVariables.bossMaxHealth
 	setHealthBar();
 
 #Multiplikatoren beim DMG berücksichtigen
-func apply_attack_modifiers(base_value: int) -> int:
-	var modified_value = base_value
+func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	#Dictionary damit man mit beiden Werten gleichzeitig arbeiten kann
+	var modified_physic_value = physic_value
+	var modified_magic_value = magic_value
 	# Waffen-Effekt
 	if GlobalVariables.equipped_weapon:
-		modified_value =modified_value* GlobalVariables.equipped_weapon.damage_multiplier
-		
-	# Buffs
-	#for buff in active_buffs:
-	#	modified_value = buff.modify_outgoing_damage(modified_value)
-	
+		modified_physic_value =modified_physic_value* GlobalVariables.equipped_weapon.damage_multiplier
+		modified_magic_value =modified_magic_value* GlobalVariables.equipped_weapon.damage_multiplier
+	# Buffs und Debuffs durch Statuseffekte (ausgehender Schaden)
+	#for effect in active_status_effects:
+	#	modified_value = effect.modify_outgoing_damage(modified_value)
 	#Items
-	
 	# Feldeffekte evemtuell hierhin und raus aus dem Main?
 	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
-	modified_value=modified_value *slot_effect
+	modified_physic_value=modified_physic_value *slot_effect
+	modified_magic_value=modified_magic_value*slot_effect
+	return {"physic": modified_physic_value, "magic": modified_magic_value}
 	
-	return modified_value
 
 var is_defeated = false  # Tod?
-func damage(physical_damage, mental_damage) -> void:
+func damage(physical_damage, magic_damage) -> void:
 		# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
-	var effective_physical_damage = max(0, physical_damage - bossArmor -bossBlock)
+	var effective_physical_damage = max(0, physical_damage - GlobalVariables.bossArmor -GlobalVariables.bossBlock)
 	# Berechnung des psychischen Schadens unter Berücksichtigung der mentalen Resistenz
-	var effective_mental_damage = max(0, mental_damage - bossMagicRes)
+	var effective_magic_damage = max(0, magic_damage - GlobalVariables.bossMagicRes)
 
  # Gesamt-Schaden (physisch + psychisch)
-	var total_damage = effective_physical_damage + effective_mental_damage
-	health -= ceil(total_damage)	#DMG wird aufgerundet und dann vom Leben abgezogen 
-	health = clamp(health, 0, max_health) #damit man nicht über Maxleben heilt, 
+	var total_damage = effective_physical_damage + effective_magic_damage
+	GlobalVariables.bossHealth -= ceil(total_damage)	#DMG wird aufgerundet und dann vom Leben abgezogen 
+	GlobalVariables.bossHealth = clamp(GlobalVariables.bossHealth, 0, GlobalVariables.bossMaxHealth) #damit man nicht über Maxleben heilt, 
 	setHealthLabel();	
 	setHealthBar();
-	if health == 0:
+	if GlobalVariables.bossHealth == 0:
 		get_tree().change_scene_to_file("res://nodes/loot.tscn")
-		#health=max_health
+		#GlobalVariables.playerHealth=GlobalVariables.playerMaxHealth
 	print("Effective Boss Physical Damage: ", effective_physical_damage)
-	print("Effective Boss Magic Damage: ", effective_mental_damage)
+	print("Effective Boss Magic Damage: ", effective_magic_damage)
 	print("Total Boss Damage: ", total_damage)
 
 #Statuseffekte
-var active_status_effects: Array[StatusEffect] = []
+#var active_status_effects: Array[StatusEffect] = []
 
 func apply_status_effect(effect_resource: Resource, target: Node):
 	var effect_instance = effect_resource.duplicate(true) as StatusEffect
 	effect_instance.target = target
-	effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
-	active_status_effects.append(effect_instance)
+	#Das sollte nicht gut sein, weil Ressourcen kein Ready haben
+	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
+	GlobalVariables.active_boss_status_effects.append(effect_instance)
 	effect_instance.apply_effect()
 func modify_attribute(attribute_name: String, amount: float):
 	match attribute_name:
 		"bossArmor":	#Als erstes Beispiel wegen "Brennen"
-			bossArmor += amount
-			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", bossArmor)
-			print("Aktuelle Bossrüstung", bossArmor)
+			GlobalVariables.bossArmor += amount
+			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", GlobalVariables.bossArmor)
+			print("Aktuelle Bossrüstung", GlobalVariables.bossArmor)
 		# Füge hier weitere Attribute hinzu, die modifiziert werden können
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte
 func on_turn_ended():
 	var effects_to_remove: Array[StatusEffect] = []
-	for effect in active_status_effects:
+	for effect in GlobalVariables.active_boss_status_effects:
 		print("Effekt: ",effect)
 		effect.on_turn_ended()
 		print("Statuseffekt ", effect.name, " ausgeführt.")
@@ -111,7 +112,7 @@ func on_turn_ended():
 
 	for effect in effects_to_remove:#Entfernen, wenn sie abgelaufen sind
 		effect.remove_effect()	#Optionaler Effekt, wenn der Status ausläuft
-		active_status_effects.erase(effect)	#Status wird entfernt
+		GlobalVariables.active_boss_status_effects.erase(effect)	#Status wird entfernt
 
 #Skill-Reihenfolge
 #Skills aus den Feldern erkennen
@@ -186,10 +187,4 @@ func take_turn():
 		load_skills_for_turn()
 	else:
 		print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
-
-#func _on_main_press() -> void:
-	#damage(0);
-
-
-#func _on_button_pressed() -> void:
-	#damage(0);<
+	print("Aktive Statuseffekte: ",GlobalVariables.active_boss_status_effects)

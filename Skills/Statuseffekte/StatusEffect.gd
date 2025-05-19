@@ -4,13 +4,14 @@ extends Resource
 @export var name: String = "Basis-Effekt"
 @export var duration: float = 3.0 # Dauer in Turns
 var remaining_duration: float
-var target: Node # Der Knoten, der den Effekt hat
+var target: Node # Der Knoten, der den Effekt hat/bekommt
 
-func _init(target_node: Node = null):
+func _init(target_node: Node = null): #vermutlich nicht notwendig
 	target = target_node
 	remaining_duration = duration
-
-func _ready():
+	#target.apply_status_effect(effect_resource: Resource=N, target: Node)
+	
+func _ready(): 	#Wird direkt nach dem bestimmen des Targets aufgerufen
 	pass # Optionale Initialisierung beim Anwenden des Effekts
 
 func decrease_duration():
@@ -21,14 +22,15 @@ func decrease_duration():
 	return false # Effekt ist noch aktiv
 
 func apply_effect():
-	pass # Spezifische Logik beim Anwenden des Effekts
+		pass # Spezifische Logik beim Anwenden des Effekts
 
 func remove_effect():
 	pass # Spezifische Logik beim Entfernen des Effekts
 
+#Bisher unnötig
 func modify_incoming_damage(damage: float) -> float:
 	return damage
-
+#Bisher unnötig
 func modify_outgoing_damage(damage: float) -> float:
 	return damage
 

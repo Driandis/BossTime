@@ -1,18 +1,9 @@
 extends Node2D
-
+class_name Player
 #const MAX_HEALTH = GlobalVariables.playerMaxHealth
 signal action
 signal dead
-# erstmal raus von Maxi var health = MAX_HEALTH
-var max_health: int
-var health =max_health	#zunächst gleicher Wert wie max_health, verändert sich aber während des spielens
-var Spielername: String
-var playerBlock: int
-var playerMagicRes: int
-var playerArmor: int
-var physical_damage: int
-var mental_damage: int
-var equipped_weapon: WeaponData
+
 @onready var skill_felder = $Skillfelder.get_children()	#damit man auf die Skillfelder zugreifen kann
 
 # Called when the node enters the scene tree for the first time.
@@ -20,24 +11,24 @@ func _ready() -> void:
 	add_to_group("Player")
 
 func setHealthLabel() -> void:
-	$HealthLabel.text = "%s" % health;
+	$HealthLabel.text = "%s" % GlobalVariables.playerHealth;
 
 func setHealthBar() -> void:
-	$HealthBar.value = health;
+	$HealthBar.value = GlobalVariables.playerHealth;
 
 func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte aus dem Hero-Data
-	max_health = hero_data.max_health
-	health = hero_data.max_health	#zunächst auch max
-	Spielername = hero_data.name
-	playerBlock = hero_data.playerBlock
-	playerArmor = hero_data.playerArmor
-	playerMagicRes = hero_data.playerMagicRes
+	GlobalVariables.playerMaxHealth = hero_data.max_health
+	GlobalVariables.playerHealth = hero_data.max_health	#zunächst auch max
+	GlobalVariables.playerName = hero_data.name
+	GlobalVariables.playerBlock = hero_data.playerBlock
+	GlobalVariables.playerArmor = hero_data.playerArmor
+	GlobalVariables.playerMagicRes = hero_data.playerMagicRes
 	GlobalVariables.equipped_weapon = hero_data.equipped_weapon
-	print("HP: ", health)
-	print("Name: ", Spielername)
-	print("Armor: ", playerArmor)
-	print("Block: ", playerBlock)
-	print("Magic Resistence: ", playerMagicRes)
+	print("HP: ", GlobalVariables.playerHealth)
+	print("Name: ", GlobalVariables.playerName)
+	print("Armor: ", GlobalVariables.playerArmor)
+	print("Block: ", GlobalVariables.playerBlock)
+	print("Magic Resistence: ", GlobalVariables.playerMagicRes)
 	print("Weapon: ", GlobalVariables.equipped_weapon.name)
 		#jetzt werden die Skills passend geladen
 	for i in hero_data.skills.size():
@@ -49,78 +40,80 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 				printerr("Nicht genügend Skill-Felder vorhanden, um alle Helden-Skills zu laden!")
 				break
 	setHealthLabel();	#hier werden die Lebensbalken gestartet und eingestellt
-	$HealthBar.max_value = max_health
+	$HealthBar.max_value = GlobalVariables.playerMaxHealth
 	setHealthBar();
 
 #Für die Verarbeitung von Statuseffekte
-var active_status_effects: Array[StatusEffect] = []
+#var active_status_effects: Array[StatusEffect] = []
 
 func apply_status_effect(effect_resource: Resource, target: Node):
 	var effect_instance = effect_resource.duplicate(true) as StatusEffect
 	effect_instance.target = target
-	effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
-	active_status_effects.append(effect_instance)
+	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
+	GlobalVariables.active_player_status_effects.append(effect_instance)
 	effect_instance.apply_effect()
+	
 func modify_attribute(attribute_name: String, amount: float):
 	match attribute_name:
 		"playerArmor":	#Als erstes Beispiel wegen "Brennen"
-			playerArmor += amount
-			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", playerArmor)
+			GlobalVariables.playerArmor += amount
+			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", GlobalVariables.playerArmor)
 		# Füge hier weitere Attribute hinzu, die modifiziert werden können
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte am Ende des Zuges (Im Main passiert das nach take_turn
 func on_turn_ended():
 	var effects_to_remove: Array[StatusEffect] = []
-	for effect in active_status_effects:
+	for effect in GlobalVariables.active_player_status_effects:
 		if effect.decrease_duration():#Dauer reduzieren, wenn sie noch nicht abgelaufen sind
 			effects_to_remove.append(effect)
 
 	for effect in effects_to_remove:#Entfernen, wenn sie abgelaufen sind
 		effect.remove_effect()	#Optionaler Effekt, wenn der Status ausläuft
-		active_status_effects.erase(effect)	#Status wird entfernt
+		GlobalVariables.active_player_status_effects.erase(effect)	#Status wird entfernt
 
 #Multiplikatoren beim DMG berücksichtigen
-func apply_attack_modifiers(base_value: int) -> int:
-	var modified_value = base_value
+func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	#Dictionary damit man mit beiden Werten gleichzeitig arbeiten kann
+	var modified_physic_value = physic_value
+	var modified_magic_value = magic_value
 	# Waffen-Effekt
 	if GlobalVariables.equipped_weapon:
-		modified_value =modified_value* GlobalVariables.equipped_weapon.damage_multiplier
-		
+		modified_physic_value =modified_physic_value* GlobalVariables.equipped_weapon.damage_multiplier
+		modified_magic_value =modified_magic_value* GlobalVariables.equipped_weapon.damage_multiplier
 	# Buffs und Debuffs durch Statuseffekte (ausgehender Schaden)
-	for effect in active_status_effects:
-		modified_value = effect.modify_outgoing_damage(modified_value)
+	#for effect in active_status_effects:
+	#	modified_value = effect.modify_outgoing_damage(modified_value)
 	#Items
 	# Feldeffekte evemtuell hierhin und raus aus dem Main?
 	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
-	modified_value=modified_value *slot_effect
+	modified_physic_value=modified_physic_value *slot_effect
+	modified_magic_value=modified_magic_value*slot_effect
+	return {"physic": modified_physic_value, "magic": modified_magic_value}
 	
-	return modified_value
-
-func damage(physical_damage, mental_damage) -> void:
+func damage(physical_damage, magic_damage) -> void:
 	
 # Modifiziere eingehenden Schaden durch Statuseffekte
 	var incoming_physical_damage= physical_damage
-	var incoming_mental_damage= mental_damage
+	var incoming_magic_damage= magic_damage
 	
-	for effect in active_status_effects:
+	for effect in GlobalVariables.active_player_status_effects:
 		incoming_physical_damage = effect.modify_incoming_damage(incoming_physical_damage)
-		incoming_mental_damage = effect.modify_incoming_damage(incoming_mental_damage) # Annahme: Effekte wirken auf beide Schadensarten
+		incoming_magic_damage = effect.modify_incoming_damage(incoming_magic_damage) # Annahme: Effekte wirken auf beide Schadensarten
 	# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
-	var effective_physical_damage = max(0, incoming_physical_damage - playerArmor - playerBlock)
+	var effective_physical_damage = max(0, incoming_physical_damage - GlobalVariables.playerArmor - GlobalVariables.playerBlock)
 	# Berechnung des psychischen Schadens unter Berücksichtigung der mentalen Resistenz
-	var effective_mental_damage = max(0, incoming_mental_damage - playerMagicRes)
+	var effective_magic_damage = max(0, incoming_magic_damage - GlobalVariables.playerMagicRes)
 
  # Gesamt-Schaden (physisch + psychisch)
-	var total_damage = effective_physical_damage + effective_mental_damage
-	health -= ceil(total_damage)	#DMG wird aufgerundet und dann vom Leben abgezogen 
+	var total_damage = effective_physical_damage + effective_magic_damage
+	GlobalVariables.playerHealth -= ceil(total_damage)	#DMG wird aufgerundet und dann vom Leben abgezogen 
 	setHealthLabel();	
 	setHealthBar();
-	if health == 0:
+	if GlobalVariables.playerHealth <= 0:
 		dead.emit()
 	
 	print("Effective Player Physical Damage: ", effective_physical_damage)
-	print("Effective Player Magic Damage: ", effective_mental_damage)
+	print("Effective Player Magic Damage: ", effective_magic_damage)
 	print("Total Player Damage: ", total_damage)
 
 @onready var player_slots = $Felder/Player.get_children()
@@ -138,6 +131,7 @@ func take_turn():
 					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
 				else:
 					print("Kein Skill in Slot ", GlobalVariables.current_slot)
+	print("Aktive Statuseffekte: ",GlobalVariables.active_player_status_effects)
 #Skills aus den Feldern erkennen
 func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
 	for child in slot.get_children():
@@ -148,16 +142,16 @@ func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill 
 			if grandchild is Skill:
 				return grandchild
 	return null
-func _on_main_press() -> void:
-	damage(0,0);
+#func _on_main_press() -> void:
+#	damage(0,0);
 
 
-func _on_button_pressed() -> void:
-	damage(12,0);
+#func _on_button_pressed() -> void:
+#	damage(12,0);
 
 
 func _on_game_over_button_pressed() -> void:
-	health = max_health;
-	$HealthBar.value = health;
-	$HealthLabel.text = "%s" % health;
+	GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;
+	$HealthBar.value = GlobalVariables.playerHealth;
+	$HealthLabel.text = "%s" % GlobalVariables.playerHealth;
 	

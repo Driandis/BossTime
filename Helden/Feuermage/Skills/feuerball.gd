@@ -1,5 +1,5 @@
 extends Skill
-class_name FireballSkill
+class_name Fireball
 
 
 #neue Version

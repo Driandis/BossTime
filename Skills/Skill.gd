@@ -9,6 +9,8 @@ var start_position: Vector2	#damit man dahin zurückspringen kann
 var dragging := false
 var offset := Vector2.ZERO
 var previous_slot = null  # Zum Rauswerfem des Skills aus den Feldern
+var target
+var caster
 #@export var description: String = "Starker Angriff mit Feuerschaden"	#Bescbreibung des Skills
 #spezielle skills
 
@@ -78,6 +80,7 @@ func _ready():
 	previous_slot = get_parent() # if is_inside_tree() else null	#fürs Rauswerfen der Skills aus den Feldern
 	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
 	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
+
 func _on_mouse_entered():
 	var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")  # Mauszeiger löst Skillerklärung aus
 	tooltip.show_tooltip(self, get_global_mouse_position())
@@ -95,20 +98,46 @@ enum TargetType { BOSS, PLAYER }	#damit man als Ziel Boss oder Player bei den Ef
 
 #Ist das alles was ein Skill braucht? Auf Discord deutlich mehr
 @export var skill_name: String
-@export var effect: Effect	#Alle verschiedenen Effekte, wie magicdmg, 
-@export var first_value: float = 10.0
+@export var effect: StatusEffect	#Alle verschiedenen Effekte, wie magicdmg, 
+@export var effect_value: float = 10.0
 @export var target_type: TargetType 
 @export var cooldown: float = 10.0
 @export var caster_type: TargetType 
+@export var physical_damage : int
+@export var magic_damage : int
+@export var apply_effect_to_caster: bool = false # Soll der Effekt auf den Anwender?
+@export var apply_effect_to_target: bool = true  # Soll der Effekt auf das Ziel?
 
 func _run_effect(feldmultiplier := 1.0) -> void:
 	print("Skill wurde ausgeführt: ", name)
 	var target = _get_target()
 	var caster = _get_caster()
-	if caster != null and target != null and effect != null:
-		effect.use(caster, target, first_value, feldmultiplier)	#neu: Wenn es ein Effekt ist, soll der Effekt ausgeführt werden 
-		current_cd = cooldown
-		_setCooldownBar()
+	if caster != null and target != null: #and effect != null:
+		#if effect != null ... Effektkram
+		if caster.has_method("apply_attack_modifiers"):	#Schadensmultiplikatoren anwende (ALLE)
+			var final_damage_values = {"physic": physical_damage, "magic":magic_damage}
+			final_damage_values = caster.apply_attack_modifiers(
+				physical_damage,
+				magic_damage
+			)
+			target.damage(final_damage_values["physic"], final_damage_values["magic"])
+		if effect != null:
+			var effect_instance =effect.duplicate(true) as StatusEffect
+			if effect_instance != null:
+				if apply_effect_to_target and target.has_method("apply_status_effect"):
+					target.apply_status_effect(effect_instance, target)
+					print(name, " hat Statuseffekt ", effect_instance.name, " auf ", target.name, " angewendet.")
+				if apply_effect_to_caster and caster.has_method("apply_status_effect"):
+					caster.apply_status_effect(effect_instance, caster)
+					print(name, " hat Statuseffekt ", effect_instance.effect_name, " auf ", caster.name, " angewendet.")
+			else:
+				push_warning("Die zugewiesene Ressource ist kein gültiger StatusEffect für Skill " + name)
+	else:
+		push_warning("Target oder Effekt fehlt für Skill " + name)
+	use()	#Spezifische Effekte (zB Heal) des Skills anwenden
+	current_cd = cooldown
+	_setCooldownBar()
+	
 func _get_caster():#Zugriff auf die Skripte für die Effekte der Skills auf den Caster
 	match caster_type:
 		TargetType.BOSS:
@@ -125,20 +154,10 @@ func _get_target():	#Zugriff auf die Skripte für die Effekte der Skills aufs Ta
 	return null
 
 		
-func use(feldmultiplier := 1.0): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
-	var target = null
-
-	match target_type:
-		TargetType.BOSS:
-			target = get_tree().get_root().get_node("res://bosses/boss.gd")  # oder anderer Pfad
-		TargetType.PLAYER:
-			target = get_tree().get_root().get_node("res://Helden/player.gd")
-
-	if target != null and effect != null:
-		effect.use(target, first_value, feldmultiplier)
-	else:
-		push_warning("Target oder Effekt fehlt für Skill " + name)
-		pass
+func use(): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
+	var target = _get_target()
+	var caster =_get_caster()
+	pass
 		
 #Cooldown reduzieren
 func tick_cooldown():
@@ -157,17 +176,17 @@ func _get_target_type_string(type: TargetType) -> String:
 			return "Unbekannt" # Für den Fall eines unerwarteten Werts
 
 func get_skill_description() -> String:
-	var effect_script = effect.get_script()
-	var effect_name = effect_script.resource_path.get_file().get_basename() if effect_script else "Kein Effekt"
-	var target_string = _get_target_type_string(target_type)
-	var caster_string = _get_target_type_string(caster_type)
+	#var effect_script = effect.get_script()
+	#var effect_name = effect_script.resource_path.get_file().get_basename() if effect_script else "Kein Effekt"
+	#var target_string = _get_target_type_string(target_type)
+	#var caster_string = _get_target_type_string(caster_type)
 
-	return "Name: %s\nCooldown: %.1f\nEffekt: %s\nWert: %.1f\nZiel: %s\nAusführender: %s" % [
-		skill_name,
-		cooldown,
-		effect_name,
-		first_value,
-		target_string,
-		caster_string
-	]
+#	return "Name: %s\nCooldown: %.1f\nEffekt: %s\nWert: %.1f\nZiel: %s\nAusführender: %s" % [
+#		skill_name,
+#		cooldown,
+#		effect_name,
+#		first_value,
+#		target_string,
+#		caster_string
+#	]
 	return "Keine Daten verfügbar"
