@@ -131,7 +131,7 @@ func take_turn():
 					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
 				else:
 					print("Kein Skill in Slot ", GlobalVariables.current_slot)
-	print("Aktive Statuseffekte: ",GlobalVariables.active_player_status_effects)
+	print("Aktive Player Statuseffekte: ",GlobalVariables.active_player_status_effects)
 #Skills aus den Feldern erkennen
 func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
 	for child in slot.get_children():

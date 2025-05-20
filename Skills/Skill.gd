@@ -155,8 +155,7 @@ func _get_target():	#Zugriff auf die Skripte für die Effekte der Skills aufs Ta
 
 		
 func use(): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
-	var target = _get_target()
-	var caster =_get_caster()
+
 	pass
 		
 #Cooldown reduzieren
@@ -176,17 +175,27 @@ func _get_target_type_string(type: TargetType) -> String:
 			return "Unbekannt" # Für den Fall eines unerwarteten Werts
 
 func get_skill_description() -> String:
-	#var effect_script = effect.get_script()
-	#var effect_name = effect_script.resource_path.get_file().get_basename() if effect_script else "Kein Effekt"
-	#var target_string = _get_target_type_string(target_type)
-	#var caster_string = _get_target_type_string(caster_type)
-
-#	return "Name: %s\nCooldown: %.1f\nEffekt: %s\nWert: %.1f\nZiel: %s\nAusführender: %s" % [
-#		skill_name,
-#		cooldown,
-#		effect_name,
-#		first_value,
-#		target_string,
-#		caster_string
-#	]
+	# Darstellung des Schadens
+	var damage_string = ""
+	if physical_damage > 0 and magic_damage > 0:
+		damage_string = "Schaden: %d Phys / %d Mag" % [physical_damage, magic_damage]
+	elif physical_damage > 0:
+		damage_string = "Schaden: %d Phys" % physical_damage
+	elif magic_damage > 0:
+		damage_string = "Schaden: %d Mag" % magic_damage
+	else:
+		damage_string = "Kein direkter Schaden"
+	var effect_description = "Kein Effekt"
+	var effect_value_string = ""
+	if effect != null:
+		effect_description=effect.name
+		
+	return "Name: {name}\nCooldown: {cooldown}\n{damage_string}\nEffekt: {effect.name}\nZiel: {target_string}\nAusführender: {caster_string}".format({
+	"name": name,
+	"cooldown": cooldown,
+	"damage_string": damage_string,
+	"effect.name": effect_description,
+	"target_string": _get_target_type_string(target_type),
+	"caster_string": _get_target_type_string(caster_type)
+})
 	return "Keine Daten verfügbar"

@@ -1,6 +1,7 @@
 extends StatusEffect
 class_name BurnStatus
 
+
 @export var damage_per_turn: int = 3
 @export var armor_reduction: int = 5
 
@@ -19,19 +20,6 @@ func on_turn_ended():
 	print(target.name, " erleidet ", damage_per_turn, " Brennschaden (ignoriert Rüstung).")
 #	if target.health <= 0 and target.has_signal("dead"):
 #		target.dead.emit()
-	#Debug
-	if is_instance_valid(target):
-		print("Target ist gültig. Klasse: ", target.get_class())
-		if "health" in target:
-			print("Target hat eine 'health'-Variable: ", target.health)
-		else:
-			print("FEHLER: Target hat KEINE 'health'-Variable!")
-	else:
-		print("FEHLER: Target ist NICHT gültig!")
-		# Reduziere die Rüstung über modify_attribute
-		if target.has_method("modify_attribute"):
-			target.modify_attribute("bossArmor", -armor_reduction) # Negativer Wert für Reduktion
-			print(target.name, " Rüstung um ", armor_reduction, " reduziert durch Brennen (modify_attribute).")
 
 	var effect_end = decrease_duration()
 	return effect_end

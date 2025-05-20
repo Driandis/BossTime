@@ -1,7 +1,7 @@
 class_name StatusEffect
 extends Resource
 
-@export var name: String = "Basis-Effekt"
+@export var name: String
 @export var duration: float = 3.0 # Dauer in Turns
 var remaining_duration: float
 var target: Node # Der Knoten, der den Effekt hat/bekommt

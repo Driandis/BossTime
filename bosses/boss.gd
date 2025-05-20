@@ -169,13 +169,13 @@ func take_turn():
 			boss_slots[e].modulate = Color(1, 1, 1)  # Reset Farbe
 			boss_slots[GlobalVariables.current_slot].modulate = Color(1, 0.8, 0.5)  # Aktives Feld hervorheben
 	#Aktivierung Bossskill im passenden Feld	
-	print("bossskill in take_turn(): ", bossskill)
+	#print("bossskill in take_turn(): ", bossskill)
 	if bossskill != null:
-		print("bossskill hat _run_effect: ", bossskill.has_method("_run_effect"))
+		#print("bossskill hat _run_effect: ", bossskill.has_method("_run_effect"))
 		if bossskill.has_method("_run_effect"):
 			var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
 			bossskill._run_effect(slot_effect)
-			print("Effekt von ", bossskill.name, " ausgeführt mit Multiplikator: ", slot_effect)
+			#print("Effekt von ", bossskill.name, " ausgeführt mit Multiplikator: ", slot_effect)
 		else:
 			print("FEHLER: bossskill hat keine _run_effect Methode")
 	else:
@@ -187,4 +187,4 @@ func take_turn():
 		load_skills_for_turn()
 	else:
 		print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
-	print("Aktive Statuseffekte: ",GlobalVariables.active_boss_status_effects)
+	print("Aktive Boss Statuseffekte: ",GlobalVariables.active_boss_status_effects)

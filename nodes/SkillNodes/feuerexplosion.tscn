@@ -18,7 +18,6 @@ position = Vector2(-3, 64)
 script = ExtResource("1_csas0")
 skill_name = "Feuerexplosion"
 effect = SubResource("Resource_5qpv6")
-first_value = 9.0
 cooldown = 6.0
 caster_type = 1
 
