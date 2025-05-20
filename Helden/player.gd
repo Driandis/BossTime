@@ -81,9 +81,17 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 		modified_physic_value =modified_physic_value* GlobalVariables.equipped_weapon.damage_multiplier
 		modified_magic_value =modified_magic_value* GlobalVariables.equipped_weapon.damage_multiplier
 	# Buffs und Debuffs durch Statuseffekte (ausgehender Schaden)
-	#for effect in active_status_effects:
-	#	modified_value = effect.modify_outgoing_damage(modified_value)
+	   # --- NEU: Wende Modifikatoren von aktiven Statuseffekten des Casters an ---
+	# Iteriere durch die Effekte, die auf DIESEN Spieler wirken
+	for effect in GlobalVariables.active_player_status_effects:
+		if effect.has_method("modify_outgoing_damage"):
+			print("Versucht DMG anzupassen")
+			var modified_values = effect.modify_outgoing_damage(
+			modified_physic_value, modified_magic_value)
+			modified_physic_value = modified_values.physic
+			modified_magic_value = modified_values.magic
 	#Items
+	
 	# Feldeffekte evemtuell hierhin und raus aus dem Main?
 	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
 	modified_physic_value=modified_physic_value *slot_effect
@@ -97,9 +105,10 @@ func damage(physical_damage, magic_damage) -> void:
 	var incoming_magic_damage= magic_damage
 	
 	for effect in GlobalVariables.active_player_status_effects:
-		incoming_physical_damage = effect.modify_incoming_damage(incoming_physical_damage)
-		incoming_magic_damage = effect.modify_incoming_damage(incoming_magic_damage) # Annahme: Effekte wirken auf beide Schadensarten
-	# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
+		var incoming_damage = effect.modify_incoming_damage(incoming_physical_damage, incoming_magic_damage)
+		incoming_physical_damage=incoming_damage.physic
+		incoming_magic_damage=incoming_damage.magic
+		# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
 	var effective_physical_damage = max(0, incoming_physical_damage - GlobalVariables.playerArmor - GlobalVariables.playerBlock)
 	# Berechnung des psychischen Schadens unter Berücksichtigung der mentalen Resistenz
 	var effective_magic_damage = max(0, incoming_magic_damage - GlobalVariables.playerMagicRes)

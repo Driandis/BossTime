@@ -114,13 +114,7 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 	var caster = _get_caster()
 	if caster != null and target != null: #and effect != null:
 		#if effect != null ... Effektkram
-		if caster.has_method("apply_attack_modifiers"):	#Schadensmultiplikatoren anwende (ALLE)
-			var final_damage_values = {"physic": physical_damage, "magic":magic_damage}
-			final_damage_values = caster.apply_attack_modifiers(
-				physical_damage,
-				magic_damage
-			)
-			target.damage(final_damage_values["physic"], final_damage_values["magic"])
+		use()	#Spezifische Effekte (zB Heal) des Skills anwenden
 		if effect != null:
 			var effect_instance =effect.duplicate(true) as StatusEffect
 			if effect_instance != null:
@@ -129,12 +123,21 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 					print(name, " hat Statuseffekt ", effect_instance.name, " auf ", target.name, " angewendet.")
 				if apply_effect_to_caster and caster.has_method("apply_status_effect"):
 					caster.apply_status_effect(effect_instance, caster)
-					print(name, " hat Statuseffekt ", effect_instance.effect_name, " auf ", caster.name, " angewendet.")
+					print(name, " hat Statuseffekt ", effect_instance.name, " auf ", caster.name, " angewendet.")
 			else:
 				push_warning("Die zugewiesene Ressource ist kein gültiger StatusEffect für Skill " + name)
+		if caster.has_method("apply_attack_modifiers"):	#Schadensmultiplikatoren anwende (ALLE)
+			var final_damage_values = {"physic": physical_damage, "magic":magic_damage}
+			final_damage_values = caster.apply_attack_modifiers(
+				physical_damage,
+				magic_damage
+			)
+			target.damage(final_damage_values["physic"], final_damage_values["magic"])
+
+		use_end()
 	else:
 		push_warning("Target oder Effekt fehlt für Skill " + name)
-	use()	#Spezifische Effekte (zB Heal) des Skills anwenden
+	
 	current_cd = cooldown
 	_setCooldownBar()
 	
@@ -155,9 +158,9 @@ func _get_target():	#Zugriff auf die Skripte für die Effekte der Skills aufs Ta
 
 		
 func use(): #in den speziellen Skillskripten wird dann definiert, was die Skills machen
-
 	pass
-		
+func use_end():	#Für Effekte der Skills, die erst nach der Schadensberechnung passieren sollen
+	pass
 #Cooldown reduzieren
 func tick_cooldown():
 	if current_cd > 0:

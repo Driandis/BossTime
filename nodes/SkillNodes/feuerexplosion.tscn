@@ -1,12 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://cqa3l3l8025b3"]
 
 [ext_resource type="Script" uid="uid://dmb8cdd7h7u28" path="res://Helden/Feuermage/Skills/Feuerexplosion.gd" id="1_csas0"]
+[ext_resource type="Script" uid="uid://7kdl2a55wdsj" path="res://Skills/Statuseffekte/BurnAttackMult.gd" id="2_csas0"]
 [ext_resource type="Texture2D" uid="uid://bmc77s5ogomnl" path="res://sprites/heroes/firemage/Feuerball mit elektrischen Entladungen.png" id="3_5abg1"]
-[ext_resource type="Script" uid="uid://duvhanyq3qdin" path="res://Skills/Effekte/MagicDamageEffect.gd" id="3_f7rp3"]
 
-[sub_resource type="Resource" id="Resource_5qpv6"]
-script = ExtResource("3_f7rp3")
-metadata/_custom_type_script = "uid://duvhanyq3qdin"
+[sub_resource type="Resource" id="Resource_5abg1"]
+script = ExtResource("2_csas0")
+damage_multiplier = 2.0
+name = ""
+duration = 3.0
+metadata/_custom_type_script = "uid://7kdl2a55wdsj"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3k03r"]
 size = Vector2(90, 68)
@@ -17,9 +20,13 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_csas0")
 skill_name = "Feuerexplosion"
-effect = SubResource("Resource_5qpv6")
+effect = SubResource("Resource_5abg1")
+effect_value = 0.0
 cooldown = 6.0
 caster_type = 1
+magic_damage = 9
+apply_effect_to_caster = true
+apply_effect_to_target = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feuerexplosion"]
 position = Vector2(7.5, -2)

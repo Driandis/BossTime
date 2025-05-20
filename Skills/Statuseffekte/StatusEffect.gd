@@ -28,11 +28,11 @@ func remove_effect():
 	pass # Spezifische Logik beim Entfernen des Effekts
 
 #Bisher unnötig
-func modify_incoming_damage(damage: float) -> float:
-	return damage
+func modify_incoming_damage(physical_dmg: float, magic_dmg: float) -> Dictionary:
+	return {"physic": physical_dmg, "magic": magic_dmg}
 #Bisher unnötig
-func modify_outgoing_damage(damage: float) -> float:
-	return damage
+func modify_outgoing_damage(physical_dmg: float, magic_dmg: float) -> Dictionary:
+	return {"physic": physical_dmg, "magic": magic_dmg}
 
 #Funktioniert so vermutlich nicht
 func modify_attribute(attribute_name: String, base_value: float) -> float:

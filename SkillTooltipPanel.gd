@@ -22,7 +22,7 @@ func show_tooltip(item, position: Vector2):
 		#print("Item ist unbekannt")
 		tooltip_text = "Keine Beschreibung verfügbar."
 
-	print("Generierter Tooltip-Text (in show_tooltip): ", tooltip_text)
+	#print("Generierter Tooltip-Text (in show_tooltip): ", tooltip_text)
 	#print("is_instance_valid(description_label) Ergebnis: ", is_instance_valid(description_label))
 
 	if is_instance_valid(description_label):
