@@ -71,12 +71,25 @@ func damage(physical_damage, magic_damage) -> void:
  # Gesamt-Schaden (physisch + psychisch)
 	var total_damage = effective_physical_damage + effective_magic_damage
 	GlobalVariables.bossHealth -= ceil(total_damage)	#DMG wird aufgerundet und dann vom Leben abgezogen 
-	GlobalVariables.bossHealth = clamp(GlobalVariables.bossHealth, 0, GlobalVariables.bossMaxHealth) #damit man nicht über Maxleben heilt, 
+	#GlobalVariables.bossHealth = clamp(GlobalVariables.bossHealth, 0, GlobalVariables.bossMaxHealth) #damit man nicht über Maxleben heilt, 
 	setHealthLabel();	
 	setHealthBar();
-	if GlobalVariables.bossHealth == 0:
+	if GlobalVariables.bossHealth <= 0:
+		print("Boss ist besiegt! Lade Loot-Szene...")
+		# Verwende change_scene_to_file_async und 'await'
+		# Dies pausiert die Ausführung hier, bis der Szenenwechsel abgeschlossen ist
 		get_tree().change_scene_to_file("res://nodes/loot.tscn")
-		#GlobalVariables.playerHealth=GlobalVariables.playerMaxHealth
+		print("Szenenwechsel zu Loot-Szene abgeschlossen.")
+		# Nach dem Szenenwechsel wird dieser Teil des Codes nicht mehr relevant sein,
+		# da die alte Szene entladen wird. Es ist keine 'return'-Anweisung mehr nötig,
+		# da der 'await' die Ausführung effektiv blockiert, bis die neue Szene geladen ist.
+		# Wenn du nach dem Szenenwechsel noch Code in der *alten* Szene ausführen müsstest,
+		# wäre das ein komplexeres Problem (z.B. mit Signalen).
+		# Aber in diesem Fall wollen wir einfach auf die neue Szene warten.
+	#if GlobalVariables.bossHealth <= 0:
+	#	get_tree().change_scene_to_file("res://nodes/loot.tscn")
+				# WICHTIG: Beende die Funktion hier, damit kein weiterer Code ausgeführt wird
+		return # <-- Diese Zeile ist der Schlüssel!
 	print("Effective Boss Physical Damage: ", effective_physical_damage)
 	print("Effective Boss Magic Damage: ", effective_magic_damage)
 	print("Total Boss Damage: ", total_damage)

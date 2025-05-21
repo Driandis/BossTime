@@ -86,8 +86,9 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		
 		#Skills des Spielers
 		player.take_turn()
-		#Zug des Boss
-		boss.take_turn()
+		if GlobalVariables.bossHealth >= 0:
+					#Zug des Boss
+			boss.take_turn()
 		
 		#player.on_turn_ended()
 		#boss.on_turn_ended()
@@ -111,4 +112,4 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 func _on_button_pressed() -> void:
 		$GameOver.visible = false;
 		GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;
-		GlobalVariables.bossHealth = GlobalVariables.bossMaxHealth;
+		#GlobalVariables.bossHealth = GlobalVariables.bossMaxHealth;
