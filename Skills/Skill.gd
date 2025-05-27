@@ -126,13 +126,33 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 					print(name, " hat Statuseffekt ", effect_instance.name, " auf ", caster.name, " angewendet.")
 			else:
 				push_warning("Die zugewiesene Ressource ist kein gültiger StatusEffect für Skill " + name)
-		if caster.has_method("apply_attack_modifiers"):	#Schadensmultiplikatoren anwende (ALLE)
-			var final_damage_values = {"physic": physical_damage, "magic":magic_damage}
+
+	if caster != null and target != null:
+	# Schadensmultiplikatoren anwenden (ALLE)
+		if caster.has_method("apply_attack_modifiers"):
+			var final_damage_values = {"physic": physical_damage, "magic": magic_damage}
 			final_damage_values = caster.apply_attack_modifiers(
 				physical_damage,
 				magic_damage
-			)
-			target.damage(final_damage_values["physic"], final_damage_values["magic"])
+		)
+		# Hier wird der Caster als Angreifer an die damage-Funktion übergeben
+			target.damage(final_damage_values["physic"], final_damage_values["magic"], caster)
+		else:
+		# Fallback, falls der Caster keine apply_attack_modifiers Methode hat
+		# Hier müsstest du entscheiden, wie der Schaden berechnet wird
+		# und dann den Caster als Angreifer übergeben.
+		# Beispiel: target.damage(physical_damage, magic_damage, caster)
+			push_warning("Caster hat keine 'apply_attack_modifiers' Methode für Skill " + name)
+
+
+
+#		if caster.has_method("apply_attack_modifiers"):	#Schadensmultiplikatoren anwende (ALLE)
+#			var final_damage_values = {"physic": physical_damage, "magic":magic_damage}
+#			final_damage_values = caster.apply_attack_modifiers(
+#				physical_damage,
+#				magic_damage
+#			)
+#			target.damage(final_damage_values["physic"], final_damage_values["magic"])
 
 		use_end()
 	else:

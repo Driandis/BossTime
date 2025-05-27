@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://gw71hxrjdk5a"]
+
+[ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_0jlql"]
+[ext_resource type="Texture2D" uid="uid://de4r2jgkmrg01" path="res://sprites/Items/Weapons/Magische Hände vor dunkler Wand.png" id="2_05bwd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1gu7"]
+size = Vector2(87.625, 56)
+
+[node name="MageHands" type="Node2D"]
+
+[node name="MageHands" type="Area2D" parent="."]
+position = Vector2(-3, 64)
+script = ExtResource("1_0jlql")
+name = "Magier Hände"
+damage_multiplier = 2.5
+weapon_texture = ExtResource("2_05bwd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MageHands"]
+position = Vector2(47.1875, -28)
+shape = SubResource("RectangleShape2D_i1gu7")
+
+[node name="Image" type="TextureRect" parent="MageHands"]
+custom_minimum_size = Vector2(200, 200)
+offset_left = 3.0
+offset_top = -72.0
+offset_right = 1005.0
+offset_bottom = 938.0
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("2_05bwd")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true

@@ -5,6 +5,7 @@ signal action
 signal dead
 
 @onready var skill_felder = $Skillfelder.get_children()	#damit man auf die Skillfelder zugreifen kann
+signal was_attacked(attacker: Node, damage_taken: float)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -51,7 +52,7 @@ func apply_status_effect(effect_resource: Resource, target: Node):
 	effect_instance.target = target
 	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
 	GlobalVariables.active_player_status_effects.append(effect_instance)
-	effect_instance.apply_effect()
+	effect_instance.apply_effect(target)
 	
 func modify_attribute(attribute_name: String, amount: float):
 	match attribute_name:
@@ -62,15 +63,44 @@ func modify_attribute(attribute_name: String, amount: float):
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte am Ende des Zuges (Im Main passiert das nach take_turn
-func on_turn_ended():
-	var effects_to_remove: Array[StatusEffect] = []
-	for effect in GlobalVariables.active_player_status_effects:
-		if effect.decrease_duration():#Dauer reduzieren, wenn sie noch nicht abgelaufen sind
-			effects_to_remove.append(effect)
+func on_turn_ended(): # KEIN 'target: Node' Parameter hier
+	var effects_to_remove: Array[Dictionary] = [] # Annahme: Liste von Dictionaries {effect: StatusEffect, target: Node}
+	
+	# Gehe alle aktiven Effekte DIESES SPIELERS durch
+	# WICHTIG: Hier gehen wir davon aus, dass GlobalVariables.active_player_status_effects
+	# NUR Effekte enthält, die auf DIESEN Spieler angewendet wurden.
+	for effect_data in GlobalVariables.active_player_status_effects:
+		var effect: StatusEffect = effect_data
+		var effect_target_node: Node = effect_data.target # Das ist der Node, auf den der Effekt angewendet wurde
 
-	for effect in effects_to_remove:#Entfernen, wenn sie abgelaufen sind
-		effect.remove_effect()	#Optionaler Effekt, wenn der Status ausläuft
-		GlobalVariables.active_player_status_effects.erase(effect)	#Status wird entfernt
+		# Prüfe, ob der Effekt und sein Ziel noch gültig sind
+		# Und ob dieser Effekt tatsächlich auf DIESEN Spieler angewendet wurde (redundant, aber sicher)
+		if is_instance_valid(effect) and is_instance_valid(effect_target_node) and effect_target_node == self:
+			# Reduziere die Dauer des Effekts
+			if effect.decrease_duration():
+				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
+			else:
+				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
+				if effect.has_method("on_turn_tick"):
+					effect.on_turn_tick(self) # Übergib 'self' (den Spieler) als Ziel für den Tick
+		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
+			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
+			effects_to_remove.append(effect_data)
+
+	# Entferne die abgelaufenen Effekte
+	for effect_data in effects_to_remove:
+		var effect: StatusEffect = effect_data.effect
+		var effect_target_node: Node = effect_data.target
+
+		if is_instance_valid(effect) and is_instance_valid(effect_target_node):
+			# Rufe die remove_effect-Methode des Effekts auf und übergib 'self' (den Spieler)
+			effect.remove_effect(self) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
+			print("Status-Effekt '", effect.effect_name, "' von Spieler entfernt.")
+			# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
+			GlobalVariables.status_effect_removed.emit(effect, self)
+		
+		# Entferne den Effekt aus der globalen Liste
+		GlobalVariables.active_player_status_effects.erase(effect_data)
 
 #Multiplikatoren beim DMG berücksichtigen
 func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	#Dictionary damit man mit beiden Werten gleichzeitig arbeiten kann
@@ -98,7 +128,7 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 	modified_magic_value=modified_magic_value*slot_effect
 	return {"physic": modified_physic_value, "magic": modified_magic_value}
 	
-func damage(physical_damage, magic_damage) -> void:
+func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 	
 # Modifiziere eingehenden Schaden durch Statuseffekte
 	var incoming_physical_damage= physical_damage
@@ -124,7 +154,13 @@ func damage(physical_damage, magic_damage) -> void:
 	print("Effective Player Physical Damage: ", effective_physical_damage)
 	print("Effective Player Magic Damage: ", effective_magic_damage)
 	print("Total Player Damage: ", total_damage)
-
+		# Signal aussenden, dass der Spieler angegriffen wurde
+	if attacker != null:
+		was_attacked.emit(attacker, total_damage)
+	else:
+		# Wenn der Angreifer nicht bekannt ist, sende nur den Schaden
+		was_attacked.emit(null, total_damage)
+		
 @onready var player_slots = $Felder/Player.get_children()
 func take_turn():
 	for i in player_slots.size():	#Farbeffekt

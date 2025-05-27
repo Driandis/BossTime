@@ -14,6 +14,9 @@ func _init(target_node: Node = null): #vermutlich nicht notwendig
 func _ready(): 	#Wird direkt nach dem bestimmen des Targets aufgerufen
 	pass # Optionale Initialisierung beim Anwenden des Effekts
 
+func on_turn_tick(target: Node):
+	pass
+
 func decrease_duration():
 	remaining_duration -= 1
 	if remaining_duration <= 0:
@@ -21,10 +24,12 @@ func decrease_duration():
 		return true # Effekt ist abgelaufen
 	return false # Effekt ist noch aktiv
 
-func apply_effect():
+func apply_effect(target: Node):
+		print("Effekt '", name, "' auf ", target.name, " angewendet.")
 		pass # Spezifische Logik beim Anwenden des Effekts
 
-func remove_effect():
+func remove_effect(target: Node):
+	print("Effekt '", name, "' von ", target.name, " entfernt.")
 	pass # Spezifische Logik beim Entfernen des Effekts
 
 #Bisher unnötig

@@ -62,7 +62,7 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 	
 
 var is_defeated = false  # Tod?
-func damage(physical_damage, magic_damage) -> void:
+func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 		# Berechnung des physischen Schadens unter Berücksichtigung der Rüstung
 	var effective_physical_damage = max(0, physical_damage - GlobalVariables.bossArmor -GlobalVariables.bossBlock)
 	# Berechnung des psychischen Schadens unter Berücksichtigung der mentalen Resistenz
@@ -103,7 +103,7 @@ func apply_status_effect(effect_resource: Resource, target: Node):
 	#Das sollte nicht gut sein, weil Ressourcen kein Ready haben
 	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
 	GlobalVariables.active_boss_status_effects.append(effect_instance)
-	effect_instance.apply_effect()
+	effect_instance.apply_effect(target)
 func modify_attribute(attribute_name: String, amount: float):
 	match attribute_name:
 		"bossArmor":	#Als erstes Beispiel wegen "Brennen"
@@ -114,18 +114,44 @@ func modify_attribute(attribute_name: String, amount: float):
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte
-func on_turn_ended():
-	var effects_to_remove: Array[StatusEffect] = []
-	for effect in GlobalVariables.active_boss_status_effects:
-		print("Effekt: ",effect)
-		effect.on_turn_ended()
-		print("Statuseffekt ", effect.name, " ausgeführt.")
-		if effect.decrease_duration():#Dauer reduzieren, wenn sie noch nicht abgelaufen sind
-			effects_to_remove.append(effect)
+func on_turn_ended(): # KEIN 'target: Node' Parameter hier
+	var effects_to_remove: Array[Dictionary] = [] # Annahme: Liste von Dictionaries {effect: StatusEffect, target: Node}
+	
+	# Gehe alle aktiven Effekte DIESES SPIELERS durch
+	# WICHTIG: Hier gehen wir davon aus, dass GlobalVariables.active_player_status_effects
+	# NUR Effekte enthält, die auf DIESEN Spieler angewendet wurden.
+	for effect_data in GlobalVariables.active_boss_status_effects:
+		var effect: StatusEffect = effect_data
+		var effect_target_node: Node = effect_data.target # Das ist der Node, auf den der Effekt angewendet wurde
 
-	for effect in effects_to_remove:#Entfernen, wenn sie abgelaufen sind
-		effect.remove_effect()	#Optionaler Effekt, wenn der Status ausläuft
-		GlobalVariables.active_boss_status_effects.erase(effect)	#Status wird entfernt
+		# Prüfe, ob der Effekt und sein Ziel noch gültig sind
+		# Und ob dieser Effekt tatsächlich auf DIESEN Spieler angewendet wurde (redundant, aber sicher)
+		if is_instance_valid(effect) and is_instance_valid(effect_target_node) and effect_target_node == self:
+			# Reduziere die Dauer des Effekts
+			if effect.decrease_duration():
+				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
+			else:
+				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
+				if effect.has_method("on_turn_tick"):
+					effect.on_turn_tick(self) # Übergib 'self' (den Spieler) als Ziel für den Tick
+		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
+			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
+			effects_to_remove.append(effect_data)
+
+	# Entferne die abgelaufenen Effekte
+	for effect_data in effects_to_remove:
+		var effect: StatusEffect = effect_data.effect
+		var effect_target_node: Node = effect_data.target
+
+		if is_instance_valid(effect) and is_instance_valid(effect_target_node):
+			# Rufe die remove_effect-Methode des Effekts auf und übergib 'self' (den Spieler)
+			effect.remove_effect(self) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
+			print("Status-Effekt '", effect.effect_name, "' von Spieler entfernt.")
+			# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
+			GlobalVariables.status_effect_removed.emit(effect, self)
+		
+		# Entferne den Effekt aus der globalen Liste
+		GlobalVariables.active_player_status_effects.erase(effect_data)
 
 #Skill-Reihenfolge
 #Skills aus den Feldern erkennen

@@ -15,7 +15,7 @@ skill_name = "Fireball"
 effect_value = 0.0
 cooldown = 3.0
 caster_type = 1
-magic_damage = 8
+magic_damage = 800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feuerball"]
 position = Vector2(7.5, -2)
