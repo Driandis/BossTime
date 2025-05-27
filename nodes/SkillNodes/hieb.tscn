@@ -12,9 +12,7 @@ size = Vector2(90, 68)
 position = Vector2(-115, -2)
 script = ExtResource("1_l1bmr")
 skill_name = "Hieb"
-effect_value = 0.0
 target_type = 1
-cooldown = 0.0
 physical_damage = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hieb"]

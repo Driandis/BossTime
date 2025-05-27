@@ -12,8 +12,6 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_gfqdg")
 skill_name = "Fireball"
-effect_value = 0.0
-cooldown = 3.0
 caster_type = 1
 magic_damage = 800
 

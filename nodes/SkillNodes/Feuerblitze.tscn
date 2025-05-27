@@ -14,7 +14,7 @@ position = Vector2(-3, 64)
 script = ExtResource("1_1ngd2")
 skill_name = "Feuerblitze"
 effect = ExtResource("2_d2tge")
-cooldown = 4.0
+cooldown = 4
 caster_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feuerblitze"]

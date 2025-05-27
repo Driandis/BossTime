@@ -8,12 +8,13 @@ var target: Node # Der Knoten, der den Effekt hat/bekommt
 var caster: Node
 @export var Effect_texture: Texture2D
 
-func _init(target_node: Node = null, caster_node: Node = null): #vermutlich nicht notwendig
+func _init(target_node: Node = null, caster_node: Node = null): #nervig
 	target = target_node
 	caster = caster_node
 	remaining_duration = duration
 	#target.apply_status_effect(effect_resource: Resource=N, target: Node)
-	
+	print("DEBUG_BASE_INIT: Base StatusEffect Init: Name=", "self.name,", ", Duration=", duration, ", Remaining=", remaining_duration, ", Target=", target, ", Caster=", caster)
+
 func _ready(): 	#Wird direkt nach dem bestimmen des Targets aufgerufen
 	pass # Optionale Initialisierung beim Anwenden des Effekts
 
@@ -30,7 +31,10 @@ func decrease_duration():
 	return false # Effekt ist noch aktiv
 
 func apply_effect(target: Node):
-		print("Effekt '", name, "' auf ", target.name, " angewendet.")
+		print("DEBUG_BASE_APPLY: Base StatusEffect apply: Name=", name, ", Target=", target.name)
+			#print("Effekt '", name, "' auf ", target.name, " angewendet.")
+		remaining_duration = duration
+		print("DEBUG_BASE_APPLY: Base StatusEffect apply: Set remaining_duration to ", remaining_duration)
 		pass # Spezifische Logik beim Anwenden des Effekts
 
 func remove_effect(target: Node):

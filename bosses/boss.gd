@@ -109,6 +109,7 @@ func apply_status_effect(effect_resource: Resource, target: Node):
 	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
 	GlobalVariables.active_boss_status_effects.append(effect_instance)
 	effect_instance.apply_effect(target)
+	print("Apply-Status-Effekt beim Boss ausgeführt.", effect_instance, target)
 func modify_attribute(attribute_name: String, amount: float):
 	match attribute_name:
 		"bossArmor":	#Als erstes Beispiel wegen "Brennen"
@@ -203,8 +204,8 @@ func load_skills_for_turn():
 			#
 			boss_slots[i].add_child(skill_instance)
 			print("Skill ", skill_instance.name, " zu Slot ", boss_slots[i].name, " hinzugefügt")
-		else: #debug
-			printerr("Ungültiger Rundenindex oder falscher Datentyp in skill_plan!")
+	#	else: #debug
+	#		printerr("Ungültiger Rundenindex oder falscher Datentyp in skill_plan!")
 func take_turn():
 	var current_slot = GlobalVariables.current_slot
 	var bossskill = get_skill_from_slot(boss_slots[current_slot])
@@ -229,6 +230,6 @@ func take_turn():
 		current_round_index = (current_round_index + 1) % skill_plan.size()
 		
 		load_skills_for_turn()
-	else:
-		print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
+	#else:
+	#	print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
 	print("Aktive Boss Statuseffekte: ",GlobalVariables.active_boss_status_effects)

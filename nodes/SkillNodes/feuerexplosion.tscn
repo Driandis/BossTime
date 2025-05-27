@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_5abg1"]
 script = ExtResource("2_csas0")
 damage_multiplier = 2.0
-name = ""
+name = "Burncrit"
 duration = 0
 metadata/_custom_type_script = "uid://7kdl2a55wdsj"
 
@@ -21,8 +21,7 @@ position = Vector2(-3, 64)
 script = ExtResource("1_csas0")
 skill_name = "Feuerexplosion"
 effect = SubResource("Resource_5abg1")
-effect_value = 0.0
-cooldown = 6.0
+cooldown = 6
 caster_type = 1
 magic_damage = 9
 apply_effect_to_caster = true

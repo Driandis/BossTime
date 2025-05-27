@@ -14,8 +14,7 @@ position = Vector2(-3, 64)
 script = ExtResource("1_gaxq4")
 skill_name = "Feuersäule"
 effect = ExtResource("2_nmglh")
-effect_value = 0.0
-cooldown = 3.0
+cooldown = 3
 caster_type = 1
 magic_damage = 4
 

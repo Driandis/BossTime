@@ -47,14 +47,22 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 #Für die Verarbeitung von Statuseffekte
 #var active_status_effects: Array[StatusEffect] = []
 
-func apply_status_effect(effect_resource: Resource, target: Node):
+func apply_status_effect(effect_resource: StatusEffect, target: Node):
+
 	var effect_instance = effect_resource.duplicate(true) as StatusEffect
+	if effect_instance == null:
+		printerr("Effekt leer")
+		return
+	if not is_instance_valid(target):
+		printerr("Probleme mit dem Target beim Anwende des Effekts")
 	effect_instance.target = target
 	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
 	GlobalVariables.active_player_status_effects.append(effect_instance)
 	effect_instance.apply_effect(target)
 	
-func modify_attribute(attribute_name: String, amount: float):
+	print("Apply-Status-Effekt beim Player ausgeführt.", effect_instance, target)
+	
+func modify_attribute(attribute_name: String, amount: int):
 	match attribute_name:
 		"playerArmor":	#Als erstes Beispiel wegen "Brennen"
 			GlobalVariables.playerArmor += amount
@@ -64,7 +72,6 @@ func modify_attribute(attribute_name: String, amount: float):
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte am Ende des Zuges (Im Main passiert das nach take_turn
 func on_turn_ended(): # KEIN 'target: Node' Parameter hier
-	var effects_to_remove: Array[Dictionary] = [] # Annahme: Liste von Dictionaries {effect: StatusEffect, target: Node}
 	for effect_data in GlobalVariables.active_player_status_effects:
 		print("Effekte in effect_data des Spielers ", effect_data)
 		effect_data.decrease_duration()
@@ -94,7 +101,7 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 	modified_physic_value=modified_physic_value *slot_effect
 	modified_magic_value=modified_magic_value*slot_effect
 	return {"physic": modified_physic_value, "magic": modified_magic_value}
-func truedmg(Amount: float):
+func truedmg(Amount: int):
 	GlobalVariables.playerHealth -=Amount
 	setHealthLabel();	
 	setHealthBar();
@@ -147,7 +154,7 @@ func take_turn():
 					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
 				else:
 					print("Kein Skill in Slot ", GlobalVariables.current_slot)
-	print("Aktive Player Statuseffekte: ",GlobalVariables.active_player_status_effects)
+	print("Aktive Player Statuseffekte: ",GlobalVariables.active_player_status_effects.get_typed_class_name())
 #Skills aus den Feldern erkennen
 func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
 	for child in slot.get_children():

@@ -99,9 +99,9 @@ enum TargetType { BOSS, PLAYER }	#damit man als Ziel Boss oder Player bei den Ef
 #Ist das alles was ein Skill braucht? Auf Discord deutlich mehr
 @export var skill_name: String
 @export var effect: StatusEffect	#Alle verschiedenen Effekte, wie magicdmg, 
-@export var effect_value: float = 10.0
+@export var effect_value: float 
 @export var target_type: TargetType 
-@export var cooldown: float = 10.0
+@export var cooldown: int 
 @export var caster_type: TargetType 
 @export var physical_damage : int
 @export var magic_damage : int
@@ -113,19 +113,19 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 	var target = _get_target()
 	var caster = _get_caster()
 	if caster != null and target != null: #and effect != null:
-		#if effect != null ... Effektkram
 		use()	#Spezifische Effekte (zB Heal) des Skills anwenden
-		print("Use Funktion genutzt...")
 		if effect != null:
 			print("Versuche Effekt anzuwenden...")
 			var effect_instance =effect.duplicate(true) as StatusEffect
 			if effect_instance != null:
 				if apply_effect_to_target and target.has_method("apply_status_effect"):
 					target.apply_status_effect(effect_instance, target)
-					print(name, " hat Statuseffekt ", effect_instance.name, " auf ", target.name, " angewendet.")
+					effect_instance._init(target, caster)
+					#print(name, " hat Statuseffekt ", effect_instance.name, " auf ", target.name, " angewendet.")
 				if apply_effect_to_caster and caster.has_method("apply_status_effect"):
 					caster.apply_status_effect(effect_instance, caster)
-					print(name, " hat Statuseffekt ", effect_instance.name, " auf ", caster.name, " angewendet.")
+					effect_instance._init(target, caster)
+					#print(name, " hat Statuseffekt ", effect_instance.name, " auf ", caster.name, " angewendet.")
 			else:
 				push_warning("Die zugewiesene Ressource ist kein gültiger StatusEffect für Skill " + name)
 	else:
