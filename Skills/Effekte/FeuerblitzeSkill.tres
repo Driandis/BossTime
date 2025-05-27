@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Multihit" load_steps=2 format=3 uid="uid://dnyqekqwlekwj"]
+
+[ext_resource type="Script" uid="uid://cnkqg1pjtdw41" path="res://Skills/Statuseffekte/Multihit.gd" id="1_ab158"]
+
+[resource]
+script = ExtResource("1_ab158")
+base_physic_damage_per_hit = 0
+base_magic_damage_per_hit = 6
+multihit_Count = 2
+name = "Feuerblitze"
+duration = 1.0
+metadata/_custom_type_script = "uid://cnkqg1pjtdw41"

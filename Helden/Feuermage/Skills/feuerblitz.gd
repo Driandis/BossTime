@@ -1,5 +1,5 @@
 extends Skill
-class_name Feuerschild
+class_name Feuerblitze
 
 func use() -> void:
 	var target = _get_target()

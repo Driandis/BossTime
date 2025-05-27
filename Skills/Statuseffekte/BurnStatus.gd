@@ -21,8 +21,8 @@ func on_turn_ended(target: Node):
 #	if target.health <= 0 and target.has_signal("dead"):
 #		target.dead.emit()
 
-	var effect_end = decrease_duration()
-	return effect_end
+	#var effect_end = decrease_duration()
+	return #effect_end
 
 func apply_effect(target: Node):
 	if target:

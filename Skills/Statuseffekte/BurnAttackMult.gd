@@ -4,7 +4,7 @@ class_name BurnAttackMult
 @export var damage_multiplier: float = 2.0 # Wie viel Bonus-Schaden (2.0 für doppelt)
 
 func _init():
-	duration=-1	#Effekt läuft nicht ab, triggert aber nur bei dem Skill Feuerexplosion
+	duration=1	#Effekt läuft nicht ab, triggert aber nur bei dem Skill Feuerexplosion
 	
 # Diese Funktion wird vom Caster aufgerufen, um den ausgehenden Schaden zu modifizieren
 func modify_outgoing_damage(physical_dmg: float, magic_dmg: float) -> Dictionary:

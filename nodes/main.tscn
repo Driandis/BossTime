@@ -12,7 +12,7 @@ player_scene = ExtResource("1_0xm2m")
 
 [node name="Player" parent="." instance=ExtResource("1_0xm2m")]
 top_level = true
-position = Vector2(216, 320)
+position = Vector2(216, 430)
 
 [node name="Boss" parent="." instance=ExtResource("2_h2yge")]
 position = Vector2(1008, 304)

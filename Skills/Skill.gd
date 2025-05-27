@@ -115,7 +115,9 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 	if caster != null and target != null: #and effect != null:
 		#if effect != null ... Effektkram
 		use()	#Spezifische Effekte (zB Heal) des Skills anwenden
+		print("Use Funktion genutzt...")
 		if effect != null:
+			print("Versuche Effekt anzuwenden...")
 			var effect_instance =effect.duplicate(true) as StatusEffect
 			if effect_instance != null:
 				if apply_effect_to_target and target.has_method("apply_status_effect"):
@@ -126,7 +128,8 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 					print(name, " hat Statuseffekt ", effect_instance.name, " auf ", caster.name, " angewendet.")
 			else:
 				push_warning("Die zugewiesene Ressource ist kein gültiger StatusEffect für Skill " + name)
-
+	else:
+		print("Target oder Caster Null")
 	if caster != null and target != null:
 	# Schadensmultiplikatoren anwenden (ALLE)
 		if caster.has_method("apply_attack_modifiers"):

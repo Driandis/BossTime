@@ -2,12 +2,15 @@ class_name StatusEffect
 extends Resource
 
 @export var name: String
-@export var duration: float = 3.0 # Dauer in Turns
-var remaining_duration: float
+@export var duration: int # Dauer in Turns
+var remaining_duration: int
 var target: Node # Der Knoten, der den Effekt hat/bekommt
+var caster: Node
+@export var Effect_texture: Texture2D
 
-func _init(target_node: Node = null): #vermutlich nicht notwendig
+func _init(target_node: Node = null, caster_node: Node = null): #vermutlich nicht notwendig
 	target = target_node
+	caster = caster_node
 	remaining_duration = duration
 	#target.apply_status_effect(effect_resource: Resource=N, target: Node)
 	
@@ -18,7 +21,9 @@ func on_turn_tick(target: Node):
 	pass
 
 func decrease_duration():
+	print("Starttimer von ", name, remaining_duration)
 	remaining_duration -= 1
+	print("Aktueller Timer für ", name, remaining_duration)
 	if remaining_duration <= 0:
 		_on_effect_end()
 		return true # Effekt ist abgelaufen
@@ -44,4 +49,14 @@ func modify_attribute(attribute_name: String, base_value: float) -> float:
 	return base_value
 
 func _on_effect_end():
+	#Spezielle Abschlusseffekte hier möglich
+	print("Versucht Effekt von ",target.name," zu entfernen")
+	if target is Player:
+		remove_effect(target)
+		GlobalVariables.active_player_status_effects.erase(self)
+		
+	if target is Boss:
+		remove_effect(target)
+		GlobalVariables.active_boss_status_effects.erase(self)
+	print("Aktuelle Statuseffekte nach dem Clean-up ", GlobalVariables.active_boss_status_effects, " (Boss)",GlobalVariables.active_player_status_effects, "(Player)")
 	pass # Optionale Logik, wenn der Effekt endet

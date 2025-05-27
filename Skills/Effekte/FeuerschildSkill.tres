@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BlockCounterEffect" load_steps=2 format=3 uid="uid://b80juq66q18s"]
+
+[ext_resource type="Script" uid="uid://bls543nhpphod" path="res://Skills/Statuseffekte/BlockCounterEffekt.gd" id="1_jxrho"]
+
+[resource]
+script = ExtResource("1_jxrho")
+block_amount = 10
+counter_damage = 10
+name = "Feuerschild"
+duration = 2
+metadata/_custom_type_script = "uid://bls543nhpphod"

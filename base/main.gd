@@ -50,6 +50,11 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 	boss.init_boss(selected_boss)	#die Werte aus dem Bosspaket des Pfades werden geladen (Name, HP, Skills)
 	# muss noch ausgearbeitet werden im boss.gd sobald die ersten Skills existieren
 	#grob habe ich es schon gemacht, eventuell funktioniert es sogar einfach
+	
+	# Verbinde das Signal des Bosses, wenn Main.gd bereit ist
+	if is_instance_valid(boss):
+		boss.boss_died.connect(_on_boss_died)
+	
 	$Boss/Bossimage.texture = selected_boss.boss_texture
 
 
@@ -71,6 +76,9 @@ func _on_player_dead() -> void:
 #				if child is Skill:
 #					return child
 #			return null
+func _on_boss_died():
+	print("Main.gd: Signal 'boss_died' empfangen. Leite Szenenwechsel zur Loot-Szene ein.")
+	get_tree().call_deferred("change_scene_to_file", "res://nodes/loot.tscn")
 
 func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf gedrückt wird
 		print("Turn ",GlobalVariables.current_round)

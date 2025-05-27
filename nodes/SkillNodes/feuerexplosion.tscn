@@ -8,7 +8,7 @@
 script = ExtResource("2_csas0")
 damage_multiplier = 2.0
 name = ""
-duration = 3.0
+duration = 0
 metadata/_custom_type_script = "uid://7kdl2a55wdsj"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3k03r"]

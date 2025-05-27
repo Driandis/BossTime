@@ -3,17 +3,13 @@ class_name Boss
 #const MAX_HEALTH = GlobalVariables.bossMaxHealth
 signal action
 signal restart
-#var max_health: int
-#var health =max_health	#zunächst gleicher Wert wie max_health, verändert sich aber während des spielens
-#var Bossname: String
-#var bossBlock: int	#greift das hier auf die aktuellen Variablen zu?
-#var bossArmor: int
-#var bossMagicRes: int
+signal boss_died
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Boss")
 	print("boss_slots: ", boss_slots)
+	
 
 func setHealthLabel() -> void:
 	$HealthBar/HealthLabel.text = "%s" % GlobalVariables.bossHealth;	
@@ -59,7 +55,15 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 	modified_physic_value=modified_physic_value *slot_effect
 	modified_magic_value=modified_magic_value*slot_effect
 	return {"physic": modified_physic_value, "magic": modified_magic_value}
-	
+
+func truedmg(Amount: float):
+	GlobalVariables.bossHealth -=Amount
+	setHealthLabel();	
+	setHealthBar();
+	if GlobalVariables.bossHealth <= 0:
+		print("Boss ist besiegt! Lade Loot-Szene...")
+		boss_died.emit()
+		return
 
 var is_defeated = false  # Tod?
 func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
@@ -78,8 +82,9 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 		print("Boss ist besiegt! Lade Loot-Szene...")
 		# Verwende change_scene_to_file_async und 'await'
 		# Dies pausiert die Ausführung hier, bis der Szenenwechsel abgeschlossen ist
-		get_tree().change_scene_to_file("res://nodes/loot.tscn")
-		print("Szenenwechsel zu Loot-Szene abgeschlossen.")
+		boss_died.emit()
+		#get_tree().change_scene_to_file("res://nodes/loot.tscn")
+		#print("Szenenwechsel zu Loot-Szene abgeschlossen.")
 		# Nach dem Szenenwechsel wird dieser Teil des Codes nicht mehr relevant sein,
 		# da die alte Szene entladen wird. Es ist keine 'return'-Anweisung mehr nötig,
 		# da der 'await' die Ausführung effektiv blockiert, bis die neue Szene geladen ist.

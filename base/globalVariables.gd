@@ -37,6 +37,7 @@ var equipped_weapon: WeaponData = null:
 #Statuseffekte
 var active_boss_status_effects: Array[StatusEffect] = []
 var active_player_status_effects: Array[StatusEffect] = []
+signal status_effect_removed(effect: StatusEffect, target_node: Node)
 #Skills (vermutlich nicht notwendig)
 var skillDamage
 var skillAttributes

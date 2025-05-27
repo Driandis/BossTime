@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroData" load_steps=7 format=3 uid="uid://cukpk63v2iefq"]
+[gd_resource type="Resource" script_class="HeroData" load_steps=9 format=3 uid="uid://cukpk63v2iefq"]
 
 [ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_6j2te"]
 [ext_resource type="Texture2D" uid="uid://1uswsvuy07wr" path="res://sprites/heroes/firemage/ChatGPT Image 26. Apr. 2025, 13_49_29.png" id="1_a2dsp"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bihpqqcoxcwiu" path="res://nodes/SkillNodes/Feuerball.tscn" id="2_lypqa"]
 [ext_resource type="PackedScene" uid="uid://d2pkl06miapvp" path="res://nodes/column_of_fire.tscn" id="5_108to"]
 [ext_resource type="PackedScene" uid="uid://cqa3l3l8025b3" path="res://nodes/SkillNodes/feuerexplosion.tscn" id="6_qnk8v"]
+[ext_resource type="PackedScene" uid="uid://donu1d0wcpmw3" path="res://nodes/SkillNodes/Feuerschild.tscn" id="7_4iyl3"]
+[ext_resource type="PackedScene" uid="uid://tevljcpdye8e" path="res://nodes/SkillNodes/Feuerblitze.tscn" id="8_gdjgw"]
 
 [resource]
 script = ExtResource("1_6j2te")
 name = "Alfred"
-skills = Array[PackedScene]([ExtResource("2_lypqa"), ExtResource("5_108to"), ExtResource("6_qnk8v")])
+skills = Array[PackedScene]([ExtResource("2_lypqa"), ExtResource("5_108to"), ExtResource("6_qnk8v"), ExtResource("7_4iyl3"), ExtResource("8_gdjgw")])
 max_health = 130
 hero_texture = ExtResource("1_a2dsp")
 playerBlock = 0
