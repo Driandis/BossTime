@@ -38,4 +38,4 @@ offset_right = 136.0
 offset_bottom = 24.0
 
 [node name="BossFelder" parent="." instance=ExtResource("5_8xlcg")]
-position = Vector2(-214, -129)
+position = Vector2(-387, -144)

@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnykrstrdvqs7"]
+
+[ext_resource type="Script" uid="uid://dxg276fesurnn" path="res://bosses/Barbarianking/Skills/wuchtschlag.gd" id="1_ux576"]
+[ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/Bleed.gd" id="2_n076a"]
+[ext_resource type="Texture2D" uid="uid://x6ustbhnb4st" path="res://sprites/boss/Barbarianking/20250529_1935_Kraftvoller Hammergriff_remix_01jwehqk3qfgtrsmaxfjfqtrs4.png" id="2_saunh"]
+
+[sub_resource type="Resource" id="Resource_uk4sr"]
+script = ExtResource("2_n076a")
+name = "Bleed"
+duration = 3
+metadata/_custom_type_script = "uid://bwce05of5kkrk"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n076a"]
+size = Vector2(90, 68)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Wunde" type="Area2D" parent="."]
+position = Vector2(-3, 64)
+script = ExtResource("1_ux576")
+skill_name = "Wunde"
+effect = SubResource("Resource_uk4sr")
+target_type = 1
+physical_damage = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wunde"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_n076a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wunde"]
+position = Vector2(10.5, -6)
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("2_saunh")
+
+[node name="Label" type="Label" parent="Wunde"]
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Wunde"
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Wunde"]
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Wunde/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true

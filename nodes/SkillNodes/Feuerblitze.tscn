@@ -16,8 +16,6 @@ skill_name = "Feuerblitze"
 effect = ExtResource("2_d2tge")
 cooldown = 4
 caster_type = 1
-apply_effect_to_caster = true
-apply_effect_to_target = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feuerblitze"]
 position = Vector2(7.5, -2)

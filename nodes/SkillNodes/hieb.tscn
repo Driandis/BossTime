@@ -1,41 +1,42 @@
 [gd_scene load_steps=4 format=3 uid="uid://fha7qnflpuu0"]
 
-[ext_resource type="Script" uid="uid://cxkpc7ux18p8h" path="res://bosses/Barbarianking/Skills/hieb.gd" id="1_l1bmr"]
+[ext_resource type="Script" uid="uid://cxlt1eg3fhk1h" path="res://bosses/Barbarianking/Skills/schmettern.gd" id="1_wha3q"]
 [ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_pxmg5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_luers"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]
 size = Vector2(90, 68)
 
-[node name="Hieb" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 
 [node name="Hieb" type="Area2D" parent="."]
-position = Vector2(-115, -2)
-script = ExtResource("1_l1bmr")
+position = Vector2(-3, 64)
+script = ExtResource("1_wha3q")
 skill_name = "Hieb"
 target_type = 1
 physical_damage = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hieb"]
-position = Vector2(8.5, -12)
-shape = SubResource("RectangleShape2D_luers")
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_b85x0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hieb"]
-position = Vector2(10.5, -9)
+position = Vector2(10.5, -6)
 scale = Vector2(0.0908203, 0.0703125)
 texture = ExtResource("2_pxmg5")
 
 [node name="Label" type="Label" parent="Hieb"]
-offset_left = -24.5
-offset_top = 21.0
-offset_right = 48.5
-offset_bottom = 44.0
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Hieb"
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Hieb"]
-offset_left = 26.5
-offset_top = -47.0
-offset_right = 58.5
-offset_bottom = -18.0
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
 fill_mode = 2
 show_percentage = false
 metadata/_edit_use_anchors_ = true
@@ -43,8 +44,9 @@ metadata/_edit_use_anchors_ = true
 [node name="CooldownText" type="Label" parent="Hieb/CooldownBar"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.28125
-anchor_right = -0.28125
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
 offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
