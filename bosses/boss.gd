@@ -102,7 +102,7 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 #Statuseffekte
 #var active_status_effects: Array[StatusEffect] = []
 
-func apply_status_effect(effect_resource: Resource, target: Node):
+func apply_status_effect(effect_resource: Resource, target: Node, caster: Node):
 	printerr("Apply fängt an")
 	var effect_instance = effect_resource.duplicate(true) as StatusEffect
 	effect_instance.target = target
@@ -111,7 +111,7 @@ func apply_status_effect(effect_resource: Resource, target: Node):
 	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
 	GlobalVariables.active_boss_status_effects.append(effect_instance)
 	
-	effect_instance.apply_effect(target)
+	effect_instance.apply_effect(target, caster)
 	print("Apply-Status-Effekt beim Boss ausgeführt.", effect_instance, target)
 func modify_attribute(attribute_name: String, amount: float):
 	match attribute_name:
@@ -144,7 +144,7 @@ func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
 				if effect.has_method("on_turn_tick"):
 					print_debug()
-					effect.on_turn_tick(self) # Übergib 'self' (den Spieler) als Ziel für den Tick
+					effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
 		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
 			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
 			effects_to_remove.append(effect_data)
@@ -156,7 +156,7 @@ func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 
 		if is_instance_valid(effect) and is_instance_valid(effect_target_node):
 			# Rufe die remove_effect-Methode des Effekts auf und übergib 'self' (den Spieler)
-			effect.remove_effect(self) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
+			effect.remove_effect(self, effect.caster) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
 			print("Status-Effekt '", effect.name, "' von ", effect_target_node.name," entfernt.")
 			# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
 			GlobalVariables.status_effect_removed.emit(effect, self)

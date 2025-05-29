@@ -10,8 +10,8 @@ class_name Multihit
 func use(caster: Node, target: Node):
 		print("Effekt wird aufgerufen")
 
-func apply_effect(target: Node): # Rufe die Basis-Implementierung auf
-	var caster = self.get_caster()
+func apply_effect(target: Node,caster: Node): # Rufe die Basis-Implementierung auf
+	#var caster = self.get_caster()
 		# Führe den Schaden ZWEIMAL aus
 	print("Apply Effect läuft")
 	for i in range(multihit_Count): # Schleife für die zwei Angriffe

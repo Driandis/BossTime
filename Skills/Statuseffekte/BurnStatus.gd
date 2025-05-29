@@ -5,7 +5,7 @@ class_name BurnStatus
 @export var damage_per_turn: int = 3
 @export var armor_reduction: int = 5
 
-func on_turn_tick(target: Node):
+func on_turn_tick(target: Node, caster: Node):
 	# Truedmg durch Burn	
 	if target is Player:
 		GlobalVariables.playerHealth -= damage_per_turn
@@ -24,7 +24,7 @@ func on_turn_tick(target: Node):
 	#var effect_end = decrease_duration()
 	return #effect_end
 
-func apply_effect(target: Node):
+func apply_effect(target: Node,caster: Node):
 	if target:
 		print(target.name, " fängt an zu brennen!")
 		# Reduziere die Rüstung sofort beim Anwenden
@@ -32,7 +32,7 @@ func apply_effect(target: Node):
 			target.modify_attribute("bossArmor", -armor_reduction)
 			print(target.name, " Rüstung um ", armor_reduction, " reduziert durch Einsetzen von Brennen (modify_attribute).")
 	
-func remove_effect(target: Node):
+func remove_effect(target: Node,caster: Node):
 	if target:
 		print(target.name, " hört auf zu brennen.")
 		# Stelle die Rüstung wieder her

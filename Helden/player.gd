@@ -47,7 +47,7 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 #Für die Verarbeitung von Statuseffekte
 #var active_status_effects: Array[StatusEffect] = []
 
-func apply_status_effect(effect_resource: StatusEffect, target: Node):
+func apply_status_effect(effect_resource: StatusEffect, target: Node, caster: Node):
 	
 	var effect_instance = effect_resource.duplicate(true) as StatusEffect
 	effect_instance.remaining_duration=effect_instance.duration
@@ -60,7 +60,7 @@ func apply_status_effect(effect_resource: StatusEffect, target: Node):
 	effect_instance.target = target
 	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
 	GlobalVariables.active_player_status_effects.append(effect_instance)
-	effect_instance.apply_effect(target)
+	effect_instance.apply_effect(target, caster)
 	
 	print("Apply-Status-Effekt beim Player ausgeführt.", effect_instance, target)
 	
@@ -76,6 +76,7 @@ func modify_attribute(attribute_name: String, amount: int):
 func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 	for effect_data in GlobalVariables.active_player_status_effects:
 		print("Effekte in effect_data des Spielers ", effect_data.name)
+		effect_data.on_turn_tick(self, effect_data.caster)
 		effect_data.decrease_duration()
 
 #Multiplikatoren beim DMG berücksichtigen

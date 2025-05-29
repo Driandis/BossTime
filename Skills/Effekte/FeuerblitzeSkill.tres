@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_ab158")
-base_physic_damage_per_hit = 0
-base_magic_damage_per_hit = 6
+multi_physic_damage_per_hit = 0
+multi_magic_damage_per_hit = 6
 multihit_Count = 2
 name = "Feuerblitze"
-duration = 1.0
+duration = 0
 metadata/_custom_type_script = "uid://cnkqg1pjtdw41"

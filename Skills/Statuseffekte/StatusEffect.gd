@@ -18,7 +18,7 @@ func _init(target_node: Node = null, caster_node: Node = null): #nervig
 func _ready(): 	#Wird direkt nach dem bestimmen des Targets aufgerufen
 	pass # Optionale Initialisierung beim Anwenden des Effekts
 
-func on_turn_tick(target: Node): 	#hier passiert alles
+func on_turn_tick(target: Node,caster: Node): 	#hier passiert alles
 	
 	pass
 func get_caster():
@@ -34,14 +34,14 @@ func decrease_duration():
 		return true # Effekt ist abgelaufen
 	return false # Effekt ist noch aktiv
 
-func apply_effect(target: Node):
+func apply_effect(target: Node, caster: Node):
 		print("DEBUG_BASE_APPLY: Base StatusEffect apply: Name=", name, ", Target=", target.name)
 			#print("Effekt '", name, "' auf ", target.name, " angewendet.")
 		remaining_duration = duration
 		print("DEBUG_BASE_APPLY: Base StatusEffect apply: Set remaining_duration to ", remaining_duration)
 		pass # Spezifische Logik beim Anwenden des Effekts
 
-func remove_effect(target: Node):
+func remove_effect(target: Node, caster: Node):
 	print("Effekt '", name, "' von ", target.name, " entfernt.")
 	pass # Spezifische Logik beim Entfernen des Effekts
 
@@ -60,11 +60,11 @@ func _on_effect_end():
 	#Spezielle Abschlusseffekte hier möglich
 	print("Versucht Effekt von ",target.name," zu entfernen")
 	if target is Player:
-		remove_effect(target)
+		remove_effect(target,caster)
 		GlobalVariables.active_player_status_effects.erase(self)
 		
 	if target is Boss:
-		remove_effect(target)
+		remove_effect(target, caster)
 		GlobalVariables.active_boss_status_effects.erase(self)
 	print("Aktuelle Statuseffekte nach dem Clean-up ", GlobalVariables.active_boss_status_effects, " (Boss)",GlobalVariables.active_player_status_effects, "(Player)")
 	pass # Optionale Logik, wenn der Effekt endet

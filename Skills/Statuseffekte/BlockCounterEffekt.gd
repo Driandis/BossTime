@@ -12,7 +12,7 @@ var _applied_to_node: Node # Referenz zum Node, auf den der Effekt angewendet wu
 	#duration = 2 # Hält für 2 Runden
 
 # Wird aufgerufen, wenn der Effekt auf ein Ziel angewendet wird
-func apply_effect(target: Node): # Rufe die Basis-Implementierung auf
+func apply_effect(target: Node,caster: Node): # Rufe die Basis-Implementierung auf
 	
 	_applied_to_node = target # Speichere die Referenz zum Ziel
 
@@ -30,8 +30,8 @@ func apply_effect(target: Node): # Rufe die Basis-Implementierung auf
 
 
 # Wird aufgerufen, wenn der Effekt von einem Ziel entfernt wird
-func remove_effect(target: Node):
-	super.remove_effect(target) # Rufe die Basis-Implementierung auf
+func remove_effect(target: Node,caster: Node):
+	super.remove_effect(target, caster) # Rufe die Basis-Implementierung auf
 
 	# Block-Wert des Spielers reduzieren
 	if target is Player:

@@ -119,11 +119,11 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 			var effect_instance =effect.duplicate(true) as StatusEffect
 			if effect_instance != null:
 				if apply_effect_to_target and target.has_method("apply_status_effect"):
-					target.apply_status_effect(effect_instance, target)
+					target.apply_status_effect(effect_instance, target, caster)
 					#effect_instance._init(target, caster)
 					#print(name, " hat Statuseffekt ", effect_instance.name, " auf ", target.name, " angewendet.")
 				if apply_effect_to_caster and caster.has_method("apply_status_effect"):
-					caster.apply_status_effect(effect_instance, caster)
+					caster.apply_status_effect(effect_instance,target, caster)
 					#effect_instance._init(target, caster)
 					#print(name, " hat Statuseffekt ", effect_instance.name, " auf ", caster.name, " angewendet.")
 			else:
@@ -139,6 +139,7 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 				magic_damage
 		)
 		# Hier wird der Caster als Angreifer an die damage-Funktion übergeben
+			print_debug()
 			target.damage(final_damage_values["physic"], final_damage_values["magic"], caster)
 		else:
 		# Fallback, falls der Caster keine apply_attack_modifiers Methode hat
