@@ -48,8 +48,10 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 #var active_status_effects: Array[StatusEffect] = []
 
 func apply_status_effect(effect_resource: StatusEffect, target: Node):
-
+	
 	var effect_instance = effect_resource.duplicate(true) as StatusEffect
+	effect_instance.remaining_duration=effect_instance.duration
+	
 	if effect_instance == null:
 		printerr("Effekt leer")
 		return
@@ -73,7 +75,7 @@ func modify_attribute(attribute_name: String, amount: int):
 #Zum Abarbeiten der Statuseffekte am Ende des Zuges (Im Main passiert das nach take_turn
 func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 	for effect_data in GlobalVariables.active_player_status_effects:
-		print("Effekte in effect_data des Spielers ", effect_data)
+		print("Effekte in effect_data des Spielers ", effect_data.name)
 		effect_data.decrease_duration()
 
 #Multiplikatoren beim DMG berücksichtigen
@@ -154,7 +156,7 @@ func take_turn():
 					skill._run_effect(slot_effect)	#aktiviert den Skill mit dem entsprechenden Multiplikator
 				else:
 					print("Kein Skill in Slot ", GlobalVariables.current_slot)
-	print("Aktive Player Statuseffekte: ",GlobalVariables.active_player_status_effects.get_typed_class_name())
+	print("Aktive Player Statuseffekte: ",GlobalVariables.active_player_status_effects)
 #Skills aus den Feldern erkennen
 func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
 	for child in slot.get_children():

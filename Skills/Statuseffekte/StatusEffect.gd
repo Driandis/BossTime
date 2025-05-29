@@ -13,15 +13,19 @@ func _init(target_node: Node = null, caster_node: Node = null): #nervig
 	caster = caster_node
 	remaining_duration = duration
 	#target.apply_status_effect(effect_resource: Resource=N, target: Node)
-	print("DEBUG_BASE_INIT: Base StatusEffect Init: Name=", "self.name,", ", Duration=", duration, ", Remaining=", remaining_duration, ", Target=", target, ", Caster=", caster)
+	print("DEBUG_BASE_INIT: Base StatusEffect Init: Name=", self.name, ", Duration=", duration, ", Remaining=", remaining_duration, ", Target=", target, ", Caster=", caster)
 
 func _ready(): 	#Wird direkt nach dem bestimmen des Targets aufgerufen
 	pass # Optionale Initialisierung beim Anwenden des Effekts
 
-func on_turn_tick(target: Node):
+func on_turn_tick(target: Node): 	#hier passiert alles
+	
 	pass
-
-func decrease_duration():
+func get_caster():
+	return caster
+func get_target():
+	return target
+func decrease_duration():	
 	print("Starttimer von ", name, remaining_duration)
 	remaining_duration -= 1
 	print("Aktueller Timer für ", name, remaining_duration)

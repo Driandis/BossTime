@@ -103,11 +103,14 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 #var active_status_effects: Array[StatusEffect] = []
 
 func apply_status_effect(effect_resource: Resource, target: Node):
+	printerr("Apply fängt an")
 	var effect_instance = effect_resource.duplicate(true) as StatusEffect
 	effect_instance.target = target
+	effect_instance.remaining_duration=effect_instance.duration
 	#Das sollte nicht gut sein, weil Ressourcen kein Ready haben
 	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
 	GlobalVariables.active_boss_status_effects.append(effect_instance)
+	
 	effect_instance.apply_effect(target)
 	print("Apply-Status-Effekt beim Boss ausgeführt.", effect_instance, target)
 func modify_attribute(attribute_name: String, amount: float):
@@ -121,7 +124,7 @@ func modify_attribute(attribute_name: String, amount: float):
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte
 func on_turn_ended(): # KEIN 'target: Node' Parameter hier
-	var effects_to_remove: Array[Dictionary] = [] # Annahme: Liste von Dictionaries {effect: StatusEffect, target: Node}
+	var effects_to_remove: Array[StatusEffect] = [] # Annahme: Liste von Statuseffekten {effect: StatusEffect, target: Node}
 	
 	# Gehe alle aktiven Effekte DIESES SPIELERS durch
 	# WICHTIG: Hier gehen wir davon aus, dass GlobalVariables.active_player_status_effects
@@ -135,10 +138,12 @@ func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 		if is_instance_valid(effect) and is_instance_valid(effect_target_node) and effect_target_node == self:
 			# Reduziere die Dauer des Effekts
 			if effect.decrease_duration():
+				print_debug("Decrease über Boss.gd gestartet")
 				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
 			else:
 				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
 				if effect.has_method("on_turn_tick"):
+					print_debug()
 					effect.on_turn_tick(self) # Übergib 'self' (den Spieler) als Ziel für den Tick
 		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
 			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
@@ -146,13 +151,13 @@ func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 
 	# Entferne die abgelaufenen Effekte
 	for effect_data in effects_to_remove:
-		var effect: StatusEffect = effect_data.effect
+		var effect: StatusEffect = effect_data
 		var effect_target_node: Node = effect_data.target
 
 		if is_instance_valid(effect) and is_instance_valid(effect_target_node):
 			# Rufe die remove_effect-Methode des Effekts auf und übergib 'self' (den Spieler)
 			effect.remove_effect(self) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
-			print("Status-Effekt '", effect.effect_name, "' von Spieler entfernt.")
+			print("Status-Effekt '", effect.name, "' von ", effect_target_node.name," entfernt.")
 			# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
 			GlobalVariables.status_effect_removed.emit(effect, self)
 		

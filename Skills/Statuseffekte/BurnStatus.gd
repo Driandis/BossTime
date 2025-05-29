@@ -5,7 +5,7 @@ class_name BurnStatus
 @export var damage_per_turn: int = 3
 @export var armor_reduction: int = 5
 
-func on_turn_ended(target: Node):
+func on_turn_tick(target: Node):
 	# Truedmg durch Burn	
 	if target is Player:
 		GlobalVariables.playerHealth -= damage_per_turn

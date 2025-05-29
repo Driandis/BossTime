@@ -120,11 +120,11 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 			if effect_instance != null:
 				if apply_effect_to_target and target.has_method("apply_status_effect"):
 					target.apply_status_effect(effect_instance, target)
-					effect_instance._init(target, caster)
+					#effect_instance._init(target, caster)
 					#print(name, " hat Statuseffekt ", effect_instance.name, " auf ", target.name, " angewendet.")
 				if apply_effect_to_caster and caster.has_method("apply_status_effect"):
 					caster.apply_status_effect(effect_instance, caster)
-					effect_instance._init(target, caster)
+					#effect_instance._init(target, caster)
 					#print(name, " hat Statuseffekt ", effect_instance.name, " auf ", caster.name, " angewendet.")
 			else:
 				push_warning("Die zugewiesene Ressource ist kein gültiger StatusEffect für Skill " + name)
