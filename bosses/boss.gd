@@ -4,7 +4,7 @@ class_name Boss
 signal action
 signal restart
 signal boss_died
-
+var current_boss : BossData
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Boss")
@@ -37,7 +37,7 @@ func init_boss(boss_data): #um den Boss zu laden
 	setHealthLabel();	#hier werden die Lebensbalken gestartet und eingestellt
 	$HealthBar.max_value = GlobalVariables.bossMaxHealth
 	setHealthBar();
-
+	current_boss=boss_data
 #Multiplikatoren beim DMG berücksichtigen
 func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	#Dictionary damit man mit beiden Werten gleichzeitig arbeiten kann
 	var modified_physic_value = physic_value
@@ -97,8 +97,9 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 		return # <-- Diese Zeile ist der Schlüssel!
 	print("Effective Boss Physical Damage: ", effective_physical_damage)
 	print("Effective Boss Magic Damage: ", effective_magic_damage)
-	print("Total Boss Damage: ", total_damage)
-
+	#print("Total Boss Damage: ", total_damage)
+	if GlobalVariables.bossHealth <=105:
+		current_boss.passive.apply_effect(self, null)
 #Statuseffekte
 #var active_status_effects: Array[StatusEffect] = []
 

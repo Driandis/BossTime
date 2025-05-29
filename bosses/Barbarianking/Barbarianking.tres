@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="BossData" load_steps=9 format=3 uid="uid://blihmgyvk5iu5"]
+[gd_resource type="Resource" script_class="BossData" load_steps=10 format=3 uid="uid://blihmgyvk5iu5"]
 
 [ext_resource type="Texture2D" uid="uid://b1syvj2plvdoi" path="res://sprites/boss/ChatGPT Image 29. Apr. 2025, 10_55_25.png" id="1_kcmn3"]
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_rjt70"]
 [ext_resource type="PackedScene" uid="uid://fha7qnflpuu0" path="res://nodes/SkillNodes/hieb.tscn" id="2_lnvr3"]
+[ext_resource type="Resource" uid="uid://de6np6mfiwmxr" path="res://Skills/Statuseffekte/Burn.tres" id="2_oml7m"]
 [ext_resource type="PackedScene" uid="uid://c6eheioj64h3g" path="res://nodes/SkillNodes/schmettern.tscn" id="3_jfnx5"]
 [ext_resource type="PackedScene" uid="uid://cwyyg81cbpbvv" path="res://nodes/SkillNodes/Blocken.tscn" id="3_rg3va"]
 [ext_resource type="PackedScene" uid="uid://dtegx53tv22o0" path="res://nodes/SkillNodes/wuchtschlag.tscn" id="5_nl0od"]
@@ -19,4 +20,5 @@ bossArmor = 12
 bossMagicRes = 8
 boss_texture = ExtResource("1_kcmn3")
 rounds = [[ExtResource("2_lnvr3"), ExtResource("3_jfnx5"), ExtResource("6_37t4s")], [ExtResource("3_rg3va"), null, ExtResource("3_jfnx5")], [ExtResource("5_nl0od"), ExtResource("2_lnvr3"), ExtResource("7_a6lds")], [ExtResource("6_37t4s"), null, ExtResource("3_rg3va")]]
+passive = ExtResource("2_oml7m")
 metadata/_custom_type_script = "uid://dres0n1ghpxr0"
