@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://beqjrr8riju8o"]
+
+[node name="BossStatusFelder" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5

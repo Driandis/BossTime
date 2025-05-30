@@ -7,6 +7,13 @@ signal dead
 @onready var skill_felder = $Skillfelder.get_children()	#damit man auf die Skillfelder zugreifen kann
 signal was_attacked(attacker: Node, damage_taken: float)
 
+# Referenz zum UI-Container, in den die StatusIcons geladen werden
+@export var status_effect_ui_container: HBoxContainer
+@export var status_effect_icon_scene: PackedScene # Eine Szene mit einem TextureRect als Root
+@export var max_display_effects: int = 5 # Maximale Anzahl der anzuzeigenden Effekte
+var ui_icon_map: Dictionary = {} # Map, um StatusEffect zu TextureRect zu verbinden (Effect -> UI_Node)
+var ui_icon_slots: Array[TextureRect] = [] # Die vorgefertigten TextureRect-Slots
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Player")
@@ -61,7 +68,7 @@ func apply_status_effect(effect_resource: StatusEffect, target: Node, caster: No
 	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
 	GlobalVariables.active_player_status_effects.append(effect_instance)
 	effect_instance.apply_effect(target, caster)
-	
+	_update_status_effect_ui() # UI aktualisieren
 	print("Apply-Status-Effekt beim Player ausgeführt.", effect_instance, target)
 	
 func modify_attribute(attribute_name: String, amount: int):
@@ -74,10 +81,53 @@ func modify_attribute(attribute_name: String, amount: int):
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte am Ende des Zuges (Im Main passiert das nach take_turn
 func on_turn_ended(): # KEIN 'target: Node' Parameter hier
+	#for effect_data in GlobalVariables.active_player_status_effects:
+	#	print("Effekte in effect_data des Spielers ", effect_data.name)
+	#	effect_data.on_turn_tick(self, effect_data.caster)
+	#	effect_data.decrease_duration()
+		
+#Neue Version
+	var effects_to_remove: Array[StatusEffect] = [] # Annahme: Liste von Statuseffekten {effect: StatusEffect, target: Node}
+	
+	# Gehe alle aktiven Effekte DIESES SPIELERS durch
+	# WICHTIG: Hier gehen wir davon aus, dass GlobalVariables.active_player_status_effects
+	# NUR Effekte enthält, die auf DIESEN Spieler angewendet wurden.
 	for effect_data in GlobalVariables.active_player_status_effects:
-		print("Effekte in effect_data des Spielers ", effect_data.name)
-		effect_data.on_turn_tick(self, effect_data.caster)
-		effect_data.decrease_duration()
+		var effect: StatusEffect = effect_data
+		var effect_target_node: Node = effect_data.target # Das ist der Node, auf den der Effekt angewendet wurde
+
+		# Prüfe, ob der Effekt und sein Ziel noch gültig sind
+		# Und ob dieser Effekt tatsächlich auf DIESEN Spieler angewendet wurde (redundant, aber sicher)
+		if is_instance_valid(effect) and is_instance_valid(effect_target_node) and effect_target_node == self:
+			# Reduziere die Dauer des Effekts
+			if effect.decrease_duration():
+				print_debug("Decrease über Player.gd gestartet")
+				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
+			else:
+				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
+				if effect.has_method("on_turn_tick"):
+					print_debug()
+					effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
+		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
+			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
+			effects_to_remove.append(effect_data)
+
+	# Entferne die abgelaufenen Effekte
+	for effect_data in effects_to_remove:
+		var effect: StatusEffect = effect_data
+		var effect_target_node: Node = effect_data.target
+
+		if is_instance_valid(effect) and is_instance_valid(effect_target_node):
+			# Rufe die remove_effect-Methode des Effekts auf und übergib 'self' (den Spieler)
+			effect.remove_effect(self, effect.caster) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
+			print("Status-Effekt '", effect.name, "' von ", effect_target_node.name," entfernt.")
+			# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
+			GlobalVariables.status_effect_removed.emit(effect, self)
+			
+			_update_status_effect_ui() # UI aktualisieren
+		
+		# Entferne den Effekt aus der globalen Liste
+		GlobalVariables.active_player_status_effects.erase(effect_data)
 
 #Multiplikatoren beim DMG berücksichtigen
 func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	#Dictionary damit man mit beiden Werten gleichzeitig arbeiten kann
@@ -168,13 +218,33 @@ func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill 
 			if grandchild is Skill:
 				return grandchild
 	return null
-#func _on_main_press() -> void:
-#	damage(0,0);
 
+func _update_status_effect_ui():
+	print("Aktualisiere UI für ", self.name, ". Aktive Effekte: ", GlobalVariables.active_player_status_effects.size())
 
-#func _on_button_pressed() -> void:
-#	damage(12,0);
+	# Zuerst alle alten Icons ausblenden/leeren
+	for slot in ui_icon_slots:
+		slot.texture = null
+		slot.visible = false
+	ui_icon_map.clear() # Map leeren
 
+	# Gehe die aktiven Effekte durch und zeige sie an
+	for i in range(min(GlobalVariables.active_player_status_effects.size(), max_display_effects)):
+		var effect = GlobalVariables.active_player_status_effects[i]
+		if i < ui_icon_slots.size(): # Sicherstellen, dass ein Slot verfügbar ist
+			var icon_slot = ui_icon_slots[i]
+			
+			if effect.Effect_texture != null:
+				icon_slot.texture = effect.Effect_texture
+				icon_slot.visible = true
+				ui_icon_map[effect] = icon_slot # Effekt zu seinem UI-Slot mappen
+			else:
+				print("Warnung: StatusEffect '", effect.name, "' hat keine Effect_texture zugewiesen.")
+				icon_slot.texture = null
+				icon_slot.visible = false # Oder ein Platzhalter-Icon anzeigen
+		else:
+			print("Nicht genügend UI-Slots für alle Effekte verfügbar.")
+			break # Keine weiteren Slots zum Anzeigen
 
 func _on_game_over_button_pressed() -> void:
 	GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;

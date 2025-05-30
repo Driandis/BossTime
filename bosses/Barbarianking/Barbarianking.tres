@@ -21,4 +21,5 @@ bossMagicRes = 8
 boss_texture = ExtResource("1_kcmn3")
 rounds = [[ExtResource("2_lnvr3"), ExtResource("3_jfnx5"), ExtResource("6_37t4s")], [ExtResource("3_rg3va"), null, ExtResource("3_jfnx5")], [ExtResource("5_nl0od"), ExtResource("2_lnvr3"), ExtResource("7_a6lds")], [ExtResource("6_37t4s"), null, ExtResource("3_rg3va")]]
 passive = ExtResource("2_oml7m")
+passive_trigger = 0.35
 metadata/_custom_type_script = "uid://dres0n1ghpxr0"

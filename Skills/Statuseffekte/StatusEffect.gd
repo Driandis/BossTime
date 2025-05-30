@@ -26,9 +26,9 @@ func get_caster():
 func get_target():
 	return target
 func decrease_duration():	
-	print("Starttimer von ", name, remaining_duration)
+	print("Timer von ", name, remaining_duration)
 	remaining_duration -= 1
-	print("Aktueller Timer für ", name, remaining_duration)
+	print("Reduzierter Timer für ", name, remaining_duration)
 	if remaining_duration <= 0:
 		_on_effect_end()
 		return true # Effekt ist abgelaufen
@@ -42,7 +42,7 @@ func apply_effect(target: Node, caster: Node):
 		pass # Spezifische Logik beim Anwenden des Effekts
 
 func remove_effect(target: Node, caster: Node):
-	print("Effekt '", name, "' von ", target.name, " entfernt.")
+	#print("Effekt '", name, "' von ", target.name, " entfernt.")
 	pass # Spezifische Logik beim Entfernen des Effekts
 
 #Bisher unnötig

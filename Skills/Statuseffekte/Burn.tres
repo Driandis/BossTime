@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BurnStatus" load_steps=2 format=3 uid="uid://de6np6mfiwmxr"]
+[gd_resource type="Resource" script_class="BurnStatus" load_steps=3 format=3 uid="uid://de6np6mfiwmxr"]
 
 [ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/BurnStatus.gd" id="1_nslw2"]
+[ext_resource type="Texture2D" uid="uid://bwqxixv20ghos" path="res://sprites/EffectIcon/20250528_1532_Burn Effect Icon_simple_compose_01jwbhcdgtfnnvcp2dkm6zv8jz (1).png" id="1_r1n0o"]
 
 [resource]
 script = ExtResource("1_nslw2")
@@ -8,4 +9,5 @@ damage_per_turn = 3
 armor_reduction = 5
 name = "Burn"
 duration = 3
+Effect_texture = ExtResource("1_r1n0o")
 metadata/_custom_type_script = "uid://dqfhgm3l25om7"

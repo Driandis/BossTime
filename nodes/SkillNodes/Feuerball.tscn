@@ -12,8 +12,9 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_gfqdg")
 skill_name = "Fireball"
+cooldown = 3
 caster_type = 1
-magic_damage = 800
+magic_damage = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feuerball"]
 position = Vector2(7.5, -2)

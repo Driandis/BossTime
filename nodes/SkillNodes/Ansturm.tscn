@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2rxckq0fslub"]
+[gd_scene load_steps=7 format=3 uid="uid://d2rxckq0fslub"]
 
 [ext_resource type="Script" uid="uid://d0uf6kt2h32sv" path="res://bosses/Barbarianking/Skills/Ansturm.gd" id="1_f316p"]
 [ext_resource type="Script" uid="uid://iif7huo4muvn" path="res://Skills/Statuseffekte/Weakend.gd" id="2_ojxlj"]
-[ext_resource type="Texture2D" uid="uid://dj5clytpig2tk" path="res://sprites/boss/Barbarianking/20250529_1929_Mittelalterlicher Hammergriff_remix_01jwehcm1pfvsaa8gzzqm59nhb.png" id="3_f316p"]
+[ext_resource type="Texture2D" uid="uid://d0731ukqohnnb" path="res://sprites/EffectIcon/20250528_1539_Game Weakness Icon_simple_compose_01jwbhtkctefvr9h96x0hn3xd4.png" id="2_xd2nd"]
+[ext_resource type="Texture2D" uid="uid://dwmxfuov5720w" path="res://sprites/boss/Barbarianking/20250529_2000_Mittelalterliche Belagerungskunst_simple_compose_01jwek4hy2e1eawrf9g23n9hgh.png" id="4_ojxlj"]
 
 [sub_resource type="Resource" id="Resource_wg2xh"]
 script = ExtResource("2_ojxlj")
-name = ""
-duration = 0
+name = "Weakend"
+duration = 2
+Effect_texture = ExtResource("2_xd2nd")
 metadata/_custom_type_script = "uid://iif7huo4muvn"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6ypt"]
@@ -30,7 +32,7 @@ shape = SubResource("RectangleShape2D_v6ypt")
 [node name="Sprite2D" type="Sprite2D" parent="Ansturm"]
 position = Vector2(10.5, -6)
 scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("3_f316p")
+texture = ExtResource("4_ojxlj")
 
 [node name="Label" type="Label" parent="Ansturm"]
 offset_left = -29.5

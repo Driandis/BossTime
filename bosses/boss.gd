@@ -5,11 +5,24 @@ signal action
 signal restart
 signal boss_died
 var current_boss : BossData
+
+# Referenz zum UI-Container, in den die StatusIcons geladen werden
+@export var status_effect_ui_container: HBoxContainer
+@export var status_effect_icon_scene: PackedScene # Eine Szene mit einem TextureRect als Root
+@export var max_display_effects: int = 5 # Maximale Anzahl der anzuzeigenden Effekte
+var ui_icon_map: Dictionary = {} # Map, um StatusEffect zu TextureRect zu verbinden (Effect -> UI_Node)
+var ui_icon_slots: Array[TextureRect] = [] # Die vorgefertigten TextureRect-Slots
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Boss")
 	print("boss_slots: ", boss_slots)
-	
+	if status_effect_ui_container:	#Für die Statuseffekte
+		for child in status_effect_ui_container.get_children():
+			if child is TextureRect:
+				ui_icon_slots.append(child)
+				child.texture = null # Sicherstellen, dass sie leer sind
+				child.visible = false # Am Anfang unsichtbar
 
 func setHealthLabel() -> void:
 	$HealthBar/HealthLabel.text = "%s" % GlobalVariables.bossHealth;	
@@ -87,9 +100,10 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 	print("Effective Boss Physical Damage: ", effective_physical_damage)
 	print("Effective Boss Magic Damage: ", effective_magic_damage)
 	#print("Total Boss Damage: ", total_damage)
-	if GlobalVariables.bossHealth <=105:
+	if GlobalVariables.bossHealth <= current_boss.passive_trigger * GlobalVariables.bossMaxHealth:
 			apply_status_effect(current_boss.passive, self, null) #.apply_effect(self, null)
-
+			
+			$PassiveIcon.texture = current_boss.passive.Effect_texture
 #Statuseffekte
 func apply_status_effect(effect_resource: Resource, target: Node, caster: Node):
 	var already_has_effect_of_this_type = false
@@ -106,6 +120,7 @@ func apply_status_effect(effect_resource: Resource, target: Node, caster: Node):
 		GlobalVariables.active_boss_status_effects.append(effect_instance)
 		effect_instance.apply_effect(target, caster)
 		print("Apply-Status-Effekt beim Boss ausgeführt.", effect_instance, target)
+		_update_status_effect_ui() # UI aktualisieren
 	else:
 		printerr("Boss hat den Statuseffekt vom Typ ", effect_resource.name)
 				# Optional: Wenn du Effekte mit gleicher Klasse "auffrischen" willst (Dauer zurücksetzen):
@@ -161,6 +176,8 @@ func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 			print("Status-Effekt '", effect.name, "' von ", effect_target_node.name," entfernt.")
 			# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
 			GlobalVariables.status_effect_removed.emit(effect, self)
+			
+			_update_status_effect_ui() # UI aktualisieren
 		
 		# Entferne den Effekt aus der globalen Liste
 		GlobalVariables.active_player_status_effects.erase(effect_data)
@@ -239,3 +256,30 @@ func take_turn():
 	#else:
 	#	print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
 	print("Aktive Boss Statuseffekte: ",GlobalVariables.active_boss_status_effects)
+
+func _update_status_effect_ui():
+	print("Aktualisiere UI für ", self.name, ". Aktive Effekte: ", GlobalVariables.active_boss_status_effects.size())
+
+	# Zuerst alle alten Icons ausblenden/leeren
+	for slot in ui_icon_slots:
+		slot.texture = null
+		slot.visible = false
+	ui_icon_map.clear() # Map leeren
+
+	# Gehe die aktiven Effekte durch und zeige sie an
+	for i in range(min(GlobalVariables.active_boss_status_effects.size(), max_display_effects)):
+		var effect = GlobalVariables.active_boss_status_effects[i]
+		if i < ui_icon_slots.size(): # Sicherstellen, dass ein Slot verfügbar ist
+			var icon_slot = ui_icon_slots[i]
+			
+			if effect.Effect_texture != null:
+				icon_slot.texture = effect.Effect_texture
+				icon_slot.visible = true
+				ui_icon_map[effect] = icon_slot # Effekt zu seinem UI-Slot mappen
+			else:
+				print("Warnung: StatusEffect '", effect.name, "' hat keine Effect_texture zugewiesen.")
+				icon_slot.texture = null
+				icon_slot.visible = false # Oder ein Platzhalter-Icon anzeigen
+		else:
+			print("Nicht genügend UI-Slots für alle Effekte verfügbar.")
+			break # Keine weiteren Slots zum Anzeigen

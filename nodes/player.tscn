@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://fivay0tb8yky"]
+[gd_scene load_steps=8 format=3 uid="uid://fivay0tb8yky"]
 
 [ext_resource type="Script" uid="uid://c5qd62u5caywy" path="res://Helden/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://beqjrr8riju8o" path="res://nodes/status_effect_icon.tscn" id="2_2wrp4"]
 [ext_resource type="PackedScene" uid="uid://qsadhjj7ohqy" path="res://nodes/felder.tscn" id="2_46y3y"]
 [ext_resource type="Texture2D" uid="uid://b8206y0e32wgx" path="res://sprites/squarrel.png" id="4_7lbay"]
 [ext_resource type="Script" uid="uid://bo2dv88iw3hix" path="res://UI/EquippedWeaponImage.gd" id="4_hqdnm"]
@@ -8,9 +9,11 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4flbx"]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("status_effect_ui_container")]
 material = SubResource("CanvasItemMaterial_4flbx")
 script = ExtResource("1_4flbx")
+status_effect_ui_container = NodePath("StatusEffectContainer")
+status_effect_icon_scene = ExtResource("2_2wrp4")
 
 [node name="Felder" parent="." instance=ExtResource("2_46y3y")]
 position = Vector2(260, -303)
@@ -56,5 +59,26 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("4_hqdnm")
 metadata/_edit_use_anchors_ = true
+
+[node name="StatusEffectContainer" type="HBoxContainer" parent="."]
+offset_left = -169.0
+offset_top = 45.0
+offset_right = 93.0
+offset_bottom = 95.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Statuseffekt 1" type="TextureRect" parent="StatusEffectContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Statuseffekt 2" type="TextureRect" parent="StatusEffectContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 4
 
 [connection signal="mouse_entered" from="EquippedWeapon" to="EquippedWeapon" method="_on_mouse_entered"]

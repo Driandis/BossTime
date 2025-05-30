@@ -11,3 +11,4 @@ class_name BossData
 #Skillreihenfolge und Skills:
 @export var rounds: Array = []  # Jede Runde ist ein Array von Skill-Ressourcen
 @export var passive: Resource
+@export var passive_trigger : float	#Bei wieviel Prozent der MaxHP triggert die Passive?

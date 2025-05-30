@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwyyg81cbpbvv"]
+[gd_scene load_steps=7 format=3 uid="uid://cwyyg81cbpbvv"]
 
 [ext_resource type="Script" uid="uid://bcfq62ru2k53f" path="res://bosses/Barbarianking/Skills/blocken.gd" id="1_irk03"]
 [ext_resource type="Script" uid="uid://besw7vm05tg42" path="res://Skills/Effekte/BlockEffect.gd" id="2_atv5k"]
+[ext_resource type="Texture2D" uid="uid://d2dcs3g1m8tc6" path="res://sprites/EffectIcon/20250530_0958_RPG Block Icon_simple_compose_01jwg32pfxfqxvgpcjrp2pmtb5.png" id="2_g1unv"]
 [ext_resource type="Texture2D" uid="uid://bcjpvv6bgmgnb" path="res://sprites/boss/Barbarianking/Medieval Schild auf Steinen.png" id="2_pg8f2"]
 
 [sub_resource type="Resource" id="Resource_g1unv"]
 script = ExtResource("2_atv5k")
 name = "10 Block"
 duration = 3
+Effect_texture = ExtResource("2_g1unv")
 metadata/_custom_type_script = "uid://besw7vm05tg42"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_atv5k"]

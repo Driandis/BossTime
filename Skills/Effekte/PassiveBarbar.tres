@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="PassiveBarbar" load_steps=2 format=3 uid="uid://bvp1sjyka7v46"]
+[gd_resource type="Resource" script_class="PassiveBarbar" load_steps=3 format=3 uid="uid://bvp1sjyka7v46"]
 
+[ext_resource type="Texture2D" uid="uid://dr3k5luxyjgdb" path="res://sprites/boss/Barbarianking/20250530_0916_RPG Rage Icon_simple_compose_01jwg0nmdseek8nwh9y3grgnz5.png" id="1_12brs"]
 [ext_resource type="Script" uid="uid://5g2256inpv1r" path="res://Skills/Effekte/PassiveBarbar.gd" id="1_l0f64"]
 
 [resource]
 script = ExtResource("1_l0f64")
 name = "PassiveBarbar"
 duration = 9999
+Effect_texture = ExtResource("1_12brs")
 metadata/_custom_type_script = "uid://5g2256inpv1r"

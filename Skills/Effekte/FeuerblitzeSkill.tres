@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Multihit" load_steps=2 format=3 uid="uid://dnyqekqwlekwj"]
+[gd_resource type="Resource" script_class="Multihit" load_steps=3 format=3 uid="uid://dnyqekqwlekwj"]
 
 [ext_resource type="Script" uid="uid://cnkqg1pjtdw41" path="res://Skills/Statuseffekte/Multihit.gd" id="1_ab158"]
+[ext_resource type="Texture2D" uid="uid://bwqxixv20ghos" path="res://sprites/EffectIcon/20250528_1532_Burn Effect Icon_simple_compose_01jwbhcdgtfnnvcp2dkm6zv8jz (1).png" id="1_tu4aq"]
 
 [resource]
 script = ExtResource("1_ab158")
@@ -9,4 +10,5 @@ multi_magic_damage_per_hit = 6
 multihit_Count = 2
 name = "Feuerblitze"
 duration = 0
+Effect_texture = ExtResource("1_tu4aq")
 metadata/_custom_type_script = "uid://cnkqg1pjtdw41"

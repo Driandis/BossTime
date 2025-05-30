@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://deys43et4bw2g"]
+[gd_scene load_steps=4 format=3 uid="uid://deys43et4bw2g"]
 
 [ext_resource type="Script" uid="uid://dqd3etcg2uxt6" path="res://bosses/boss.gd" id="1_6xxrv"]
+[ext_resource type="PackedScene" uid="uid://beqjrr8riju8o" path="res://nodes/status_effect_icon.tscn" id="3_1u8du"]
 [ext_resource type="PackedScene" uid="uid://bgibrnu4xdgxy" path="res://nodes/boss_felder.tscn" id="5_8xlcg"]
 
-[node name="Boss" type="Node2D"]
+[node name="Boss" type="Node2D" node_paths=PackedStringArray("status_effect_ui_container")]
 script = ExtResource("1_6xxrv")
+status_effect_ui_container = NodePath("StatusEffectContainer")
+status_effect_icon_scene = ExtResource("3_1u8du")
 
 [node name="Bossimage" type="TextureRect" parent="."]
 offset_left = -120.0
@@ -39,3 +42,32 @@ offset_bottom = 24.0
 
 [node name="BossFelder" parent="." instance=ExtResource("5_8xlcg")]
 position = Vector2(-387, -144)
+
+[node name="PassiveIcon" type="TextureRect" parent="."]
+offset_left = -106.0
+offset_top = -247.0
+offset_right = -53.0
+offset_bottom = -191.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatusEffectContainer" type="HBoxContainer" parent="."]
+offset_left = -169.0
+offset_top = 45.0
+offset_right = 93.0
+offset_bottom = 95.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Statuseffekt 1" type="TextureRect" parent="StatusEffectContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Statuseffekt 2" type="TextureRect" parent="StatusEffectContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 4
