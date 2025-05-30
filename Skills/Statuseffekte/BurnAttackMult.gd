@@ -1,5 +1,6 @@
-extends StatusEffect
 class_name BurnAttackMult
+extends StatusEffect
+
 
 @export var damage_multiplier: float = 2.0 # Wie viel Bonus-Schaden (2.0 für doppelt)
 

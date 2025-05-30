@@ -42,10 +42,11 @@ func init_boss(boss_data): #um den Boss zu laden
 func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	#Dictionary damit man mit beiden Werten gleichzeitig arbeiten kann
 	var modified_physic_value = physic_value
 	var modified_magic_value = magic_value
+	#print_debug("Boss wendet Attack-Multiplikatoren an.")
 	# Waffen-Effekt
-	if GlobalVariables.equipped_weapon:
-		modified_physic_value =modified_physic_value* GlobalVariables.equipped_weapon.damage_multiplier
-		modified_magic_value =modified_magic_value* GlobalVariables.equipped_weapon.damage_multiplier
+	#if GlobalVariables.equipped_weapon:
+	#	modified_physic_value =modified_physic_value* GlobalVariables.equipped_weapon.damage_multiplier
+	#	modified_magic_value =modified_magic_value* GlobalVariables.equipped_weapon.damage_multiplier
 	# Buffs und Debuffs durch Statuseffekte (ausgehender Schaden)
 	#for effect in active_status_effects:
 	#	modified_value = effect.modify_outgoing_damage(modified_value)
@@ -54,6 +55,7 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
 	modified_physic_value=modified_physic_value *slot_effect
 	modified_magic_value=modified_magic_value*slot_effect
+	#print_debug("Neue Schadenswerte: ",modified_physic_value, modified_magic_value)
 	return {"physic": modified_physic_value, "magic": modified_magic_value}
 
 func truedmg(Amount: float):
@@ -80,40 +82,38 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 	setHealthBar();
 	if GlobalVariables.bossHealth <= 0:
 		print("Boss ist besiegt! Lade Loot-Szene...")
-		# Verwende change_scene_to_file_async und 'await'
-		# Dies pausiert die Ausführung hier, bis der Szenenwechsel abgeschlossen ist
 		boss_died.emit()
-		#get_tree().change_scene_to_file("res://nodes/loot.tscn")
-		#print("Szenenwechsel zu Loot-Szene abgeschlossen.")
-		# Nach dem Szenenwechsel wird dieser Teil des Codes nicht mehr relevant sein,
-		# da die alte Szene entladen wird. Es ist keine 'return'-Anweisung mehr nötig,
-		# da der 'await' die Ausführung effektiv blockiert, bis die neue Szene geladen ist.
-		# Wenn du nach dem Szenenwechsel noch Code in der *alten* Szene ausführen müsstest,
-		# wäre das ein komplexeres Problem (z.B. mit Signalen).
-		# Aber in diesem Fall wollen wir einfach auf die neue Szene warten.
-	#if GlobalVariables.bossHealth <= 0:
-	#	get_tree().change_scene_to_file("res://nodes/loot.tscn")
-				# WICHTIG: Beende die Funktion hier, damit kein weiterer Code ausgeführt wird
 		return # <-- Diese Zeile ist der Schlüssel!
 	print("Effective Boss Physical Damage: ", effective_physical_damage)
 	print("Effective Boss Magic Damage: ", effective_magic_damage)
 	#print("Total Boss Damage: ", total_damage)
 	if GlobalVariables.bossHealth <=105:
-		current_boss.passive.apply_effect(self, null)
-#Statuseffekte
-#var active_status_effects: Array[StatusEffect] = []
+			apply_status_effect(current_boss.passive, self, null) #.apply_effect(self, null)
 
+#Statuseffekte
 func apply_status_effect(effect_resource: Resource, target: Node, caster: Node):
-	printerr("Apply fängt an")
-	var effect_instance = effect_resource.duplicate(true) as StatusEffect
-	effect_instance.target = target
-	effect_instance.remaining_duration=effect_instance.duration
-	#Das sollte nicht gut sein, weil Ressourcen kein Ready haben
-	#effect_instance._ready() # Rufe _ready auf, nachdem target gesetzt wurde
-	GlobalVariables.active_boss_status_effects.append(effect_instance)
-	
-	effect_instance.apply_effect(target, caster)
-	print("Apply-Status-Effekt beim Boss ausgeführt.", effect_instance, target)
+	var already_has_effect_of_this_type = false
+	for existing_effect in GlobalVariables.active_boss_status_effects:
+		if existing_effect.name == effect_resource.name:
+			already_has_effect_of_this_type=true
+			break
+			
+	if not already_has_effect_of_this_type:
+		printerr("Apply fängt an")
+		var effect_instance = effect_resource.duplicate(true) as StatusEffect
+		effect_instance.target = target
+		effect_instance.remaining_duration=effect_instance.duration
+		GlobalVariables.active_boss_status_effects.append(effect_instance)
+		effect_instance.apply_effect(target, caster)
+		print("Apply-Status-Effekt beim Boss ausgeführt.", effect_instance, target)
+	else:
+		printerr("Boss hat den Statuseffekt vom Typ ", effect_resource.name)
+				# Optional: Wenn du Effekte mit gleicher Klasse "auffrischen" willst (Dauer zurücksetzen):
+		# for existing_effect in active_status_effects:
+		#    if existing_effect.get_class() == effect_resource.get_class():
+		#        existing_effect.remaining_duration = effect_resource.duration # Setze Dauer zurück
+		#        print("Dauer von '", existing_effect.name, "' aktualisiert.")
+		#        break
 func modify_attribute(attribute_name: String, amount: float):
 	match attribute_name:
 		"bossArmor":	#Als erstes Beispiel wegen "Brennen"

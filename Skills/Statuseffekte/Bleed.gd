@@ -1,5 +1,6 @@
-extends StatusEffect
 class_name Bleed
+extends StatusEffect
+
 
 var damage_per_turn: int = 3
 

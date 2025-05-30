@@ -1,5 +1,6 @@
-extends StatusEffect
 class_name BlockCounterEffect
+extends StatusEffect
+
 
 @export var block_amount: int = 10
 @export var counter_damage: int = 10 # Absoluter Schaden, der dem Boss zugefügt wird

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://fha7qnflpuu0"]
 
-[ext_resource type="Script" uid="uid://cxlt1eg3fhk1h" path="res://bosses/Barbarianking/Skills/schmettern.gd" id="1_wha3q"]
+[ext_resource type="Script" uid="uid://cxkpc7ux18p8h" path="res://bosses/Barbarianking/Skills/hieb.gd" id="1_wha3q"]
 [ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_pxmg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]

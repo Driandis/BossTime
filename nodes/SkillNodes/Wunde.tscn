@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnykrstrdvqs7"]
 
-[ext_resource type="Script" uid="uid://dxg276fesurnn" path="res://bosses/Barbarianking/Skills/wuchtschlag.gd" id="1_ux576"]
+[ext_resource type="Script" uid="uid://17goa13juu7q" path="res://bosses/Barbarianking/Skills/wunde.gd" id="1_ux576"]
 [ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/Bleed.gd" id="2_n076a"]
 [ext_resource type="Texture2D" uid="uid://x6ustbhnb4st" path="res://sprites/boss/Barbarianking/20250529_1935_Kraftvoller Hammergriff_remix_01jwehqk3qfgtrsmaxfjfqtrs4.png" id="2_saunh"]
 
-[sub_resource type="Resource" id="Resource_uk4sr"]
+[sub_resource type="Resource" id="Resource_saunh"]
 script = ExtResource("2_n076a")
 name = "Bleed"
 duration = 3
@@ -19,7 +19,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_ux576")
 skill_name = "Wunde"
-effect = SubResource("Resource_uk4sr")
+effect = SubResource("Resource_saunh")
 target_type = 1
 physical_damage = 8
 

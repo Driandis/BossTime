@@ -1,5 +1,6 @@
-extends StatusEffect
 class_name Weakend
+extends StatusEffect
+
 
 var damage_debuff = 10
 func modify_incoming_damage(physical_dmg: float, magic_dmg: float) -> Dictionary:

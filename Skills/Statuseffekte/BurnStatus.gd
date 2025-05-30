@@ -1,5 +1,6 @@
-extends StatusEffect
 class_name BurnStatus
+extends StatusEffect
+
 
 
 @export var damage_per_turn: int = 3

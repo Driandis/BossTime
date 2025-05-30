@@ -1,5 +1,6 @@
-extends StatusEffect
 class_name BlockEffect
+extends StatusEffect
+
 
 
 func apply_effect(target: Node, caster: Node):

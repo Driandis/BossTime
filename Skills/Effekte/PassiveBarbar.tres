@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PassiveBarbar" load_steps=2 format=3 uid="uid://bvp1sjyka7v46"]
+
+[ext_resource type="Script" uid="uid://5g2256inpv1r" path="res://Skills/Effekte/PassiveBarbar.gd" id="1_l0f64"]
+
+[resource]
+script = ExtResource("1_l0f64")
+name = "PassiveBarbar"
+duration = 9999
+metadata/_custom_type_script = "uid://5g2256inpv1r"
