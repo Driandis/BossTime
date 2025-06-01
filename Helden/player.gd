@@ -17,6 +17,12 @@ var ui_icon_slots: Array[TextureRect] = [] # Die vorgefertigten TextureRect-Slot
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Player")
+	if status_effect_ui_container:	#Für die Statuseffekte
+		for child in status_effect_ui_container.get_children():
+			if child is TextureRect:
+				ui_icon_slots.append(child)
+				child.texture = null # Sicherstellen, dass sie leer sind
+				child.visible = false # Am Anfang unsichtbar
 
 func setHealthLabel() -> void:
 	$HealthLabel.text = "%s" % GlobalVariables.playerHealth;
