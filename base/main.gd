@@ -34,7 +34,7 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 		selected_hero = preload("res://Helden/Feuermage/Firemage.tres") #nur Backup-Tester
 
 	player.init_hero(selected_hero)	#die Werte aus dem Heldenpaket des Pfades werden geladen (Name, HP, Skills)
-	$Player/Charakterimage.texture = selected_hero.hero_texture
+	$Player/Charakterimage.texture = selected_hero.hero_texture	#könnte auch ins Player Skript
 
 	var selected_boss: BossData
 #Boss laden

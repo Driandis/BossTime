@@ -1,13 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://fivay0tb8yky"]
+[gd_scene load_steps=10 format=3 uid="uid://fivay0tb8yky"]
 
 [ext_resource type="Script" uid="uid://c5qd62u5caywy" path="res://Helden/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://beqjrr8riju8o" path="res://nodes/status_effect_icon.tscn" id="2_2wrp4"]
 [ext_resource type="PackedScene" uid="uid://qsadhjj7ohqy" path="res://nodes/felder.tscn" id="2_46y3y"]
 [ext_resource type="Texture2D" uid="uid://b8206y0e32wgx" path="res://sprites/squarrel.png" id="4_7lbay"]
+[ext_resource type="Shader" uid="uid://du2f06y6w6jpl" path="res://base/hit_effect_shader.gdshader" id="4_46y3y"]
 [ext_resource type="Script" uid="uid://bo2dv88iw3hix" path="res://UI/EquippedWeaponImage.gd" id="4_hqdnm"]
 [ext_resource type="PackedScene" uid="uid://c0ceg8avf7rf0" path="res://nodes/skillfelder.tscn" id="8_ejohg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4flbx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ejohg"]
+shader = ExtResource("4_46y3y")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 0, 0, 1)
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("status_effect_ui_container")]
 material = SubResource("CanvasItemMaterial_4flbx")
@@ -35,6 +41,7 @@ offset_bottom = 4.1769
 metadata/_edit_use_anchors_ = true
 
 [node name="Charakterimage" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ejohg")
 offset_left = -129.0
 offset_top = -273.0
 offset_right = 651.0
