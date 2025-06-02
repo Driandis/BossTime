@@ -75,6 +75,8 @@ func truedmg(Amount: float):
 	GlobalVariables.bossHealth -=Amount
 	setHealthLabel();	
 	setHealthBar();
+	if Amount >=1:
+		blink_red()
 	if GlobalVariables.bossHealth <= 0:
 		print("Boss ist besiegt! Lade Loot-Szene...")
 		boss_died.emit()
@@ -93,6 +95,8 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 	#GlobalVariables.bossHealth = clamp(GlobalVariables.bossHealth, 0, GlobalVariables.bossMaxHealth) #damit man nicht über Maxleben heilt, 
 	setHealthLabel();	
 	setHealthBar();
+	if total_damage >=1:
+		blink_red()
 	if GlobalVariables.bossHealth <= 0:
 		print("Boss ist besiegt! Lade Loot-Szene...")
 		boss_died.emit()
@@ -283,3 +287,24 @@ func _update_status_effect_ui():
 		else:
 			print("Nicht genügend UI-Slots für alle Effekte verfügbar.")
 			break # Keine weiteren Slots zum Anzeigen
+@onready var sprite: TextureRect = $Bossimage # Pfad zu deinem Bild-Node
+var hit_tween: Tween = null
+func blink_red():
+		# Wenn ein alter Tween läuft, beende ihn zuerst
+	if hit_tween != null and hit_tween.is_valid():
+		hit_tween.kill() # Beendet vorherige Tweens sofort
+# Erstelle einen NEUEN Tween
+	# Man kann create_tween() auf jedem Node aufrufen, um den Tween an diesen Node zu binden.
+	# Wenn der Node aus der Szene entfernt wird, wird auch der Tween gekillt.
+	hit_tween = create_tween()
+	# Setze die Startfarbe auf Rot
+	# Setze flash_amount auf 1.0 (vollständig rot) sofort
+	# Greife auf den Shader-Parameter über sprite.material zu
+	sprite.material.set_shader_parameter("flash_amount", 0.6)
+	# Optional: Setze die Farbe des Blitzes, falls du sie dynamisch ändern möchtest
+	sprite.material.set_shader_parameter("flash_color", Color(1.0, 0.0, 0.0, 1.0)) # Reines Rot
+
+	# Tween flash_amount von 1.0 (voll rot) zurück auf 0.0 (normal) über 0.2 Sekunden
+	hit_tween.tween_property(sprite.material, "shader_parameter/flash_amount", 0.0, 0.5)
+ 	# Tween die modulate-Eigenschaft des Sprites von Rot zu Weiß über 0.2 Sekunden
+	hit_tween.tween_property(sprite, "modulate", Color(1, 1, 1, 1), 0.2)

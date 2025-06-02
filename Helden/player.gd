@@ -162,6 +162,8 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 	return {"physic": modified_physic_value, "magic": modified_magic_value}
 func truedmg(Amount: int):
 	GlobalVariables.playerHealth -=Amount
+	if Amount >=1:
+		blink_red()
 	setHealthLabel();	
 	setHealthBar();
 	
@@ -264,10 +266,15 @@ func blink_red():
 	# Wenn der Node aus der Szene entfernt wird, wird auch der Tween gekillt.
 	hit_tween = create_tween()
 	# Setze die Startfarbe auf Rot
-	sprite.modulate = Color(1, 0, 0, 1) # reines Rot
-	# Tween die modulate-Eigenschaft des Sprites von Rot zu Weiß über 0.2 Sekunden
-	hit_tween.tween_property(sprite, "modulate", Color(1, 1, 1, 1), 0.2)
-	# Tween die modulate-Eigenschaft des Sprites von Rot zu Weiß über 0.2 Sekunden
+	# Setze flash_amount auf 1.0 (vollständig rot) sofort
+	# Greife auf den Shader-Parameter über sprite.material zu
+	sprite.material.set_shader_parameter("flash_amount", 0.6)
+	# Optional: Setze die Farbe des Blitzes, falls du sie dynamisch ändern möchtest
+	sprite.material.set_shader_parameter("flash_color", Color(1.0, 0.0, 0.0, 1.0)) # Reines Rot
+
+	# Tween flash_amount von 1.0 (voll rot) zurück auf 0.0 (normal) über 0.2 Sekunden
+	hit_tween.tween_property(sprite.material, "shader_parameter/flash_amount", 0.0, 0.5)
+ 	# Tween die modulate-Eigenschaft des Sprites von Rot zu Weiß über 0.2 Sekunden
 	hit_tween.tween_property(sprite, "modulate", Color(1, 1, 1, 1), 0.2)
 func _on_game_over_button_pressed() -> void:
 	GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;
