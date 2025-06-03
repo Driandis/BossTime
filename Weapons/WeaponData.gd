@@ -7,14 +7,23 @@ class_name WeaponData
 @export var bonus_effect: Effect
 @export var weapon_texture: Texture2D
 
+#Test
+func _on_mouse_entered():
+	var vec: Vector2
+	TooltipManager.show_tooltip(self, vec)
+
+#verschwindet wieder, wenn die Maus weg ist
+func _on_mouse_exited():
+	TooltipManager.hide_description()
+
 # Neue Funktion zur Generierung der Waffenbeschreibung
 func get_description() -> String:
-	print("get_description aufgerufen")
+	#rint("get_description aufgerufen")
 	var weapon_description_text = ""
 	weapon_description_text += "Name: " + name + "\n" # Greife direkt auf 'name' zu
 	#weapon_description_text += "Multiplikator: " + str(damage_multiplier) + "\n" # vorher mit str()	Greife direkt auf 'damage_multiplier' zu
 	weapon_description_text += "Beschreibung: " + description + "\n" # Greife direkt auf 'description' zu
-	
+	weapon_description_text += "Schaden-Multiplikator: " + str(damage_multiplier) + "x\n"
 #	if bonus_effect != null:
 #		var effect_instance_name = ""
 #		var effect_instance_description = ""
@@ -39,9 +48,5 @@ func get_description() -> String:
 #			weapon_description_text += "Effektbeschreibung: " + effect_instance_description + "\n"
 	#else:
 	#	weapon_description_text += "Effekt: Keiner\n"
-	#return weapon_description_text
-
-#test
-	return "Name: {name}\nDamage Multiplyer: {cooldown}\ng}".format({
-	"name": name,
-	"cooldown": damage_multiplier})
+	#rint_debug()
+	return weapon_description_text

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://5np555wkfose"]
+[gd_scene load_steps=3 format=3 uid="uid://5np555wkfose"]
 
 [ext_resource type="Script" uid="uid://ccrct8hqtste0" path="res://SkillTooltipPanel.gd" id="1_2v4or"]
-[ext_resource type="Texture2D" uid="uid://nhphxi4qu71d" path="res://sprites/Skillbeschreibung.png" id="2_had1j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_had1j"]
 
@@ -15,12 +14,3 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 label_settings = SubResource("LabelSettings_had1j")
-
-[node name="TextureRect" type="TextureRect" parent="DescriptionLabel"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_had1j")
-expand_mode = 1
-stretch_mode = 6

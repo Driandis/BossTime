@@ -82,13 +82,13 @@ func _ready():
 	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
 
 func _on_mouse_entered():
-	var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")  # Mauszeiger löst Skillerklärung aus
-	tooltip.show_tooltip(self, get_global_mouse_position())
+	#var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")  # Mauszeiger löst Skillerklärung aus
+	TooltipManager.show_tooltip(self, get_global_mouse_position())
 
 #verschwindet wieder, wenn die Maus weg ist
 func _on_mouse_exited():
-	var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")
-	tooltip.hide()
+	#var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")
+	TooltipManager.hide_description()
 	
 func is_ready() -> bool:
 	return current_cd == 0

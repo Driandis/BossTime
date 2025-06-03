@@ -3,8 +3,10 @@ extends Panel
 
 #debug
 func _ready():
-	self.z_index = 1000
+	#self.z_index = 1000
 	self.modulate = Color(1,1,1,1) # Sicherstellen, dass es nicht transparent ist
+	if not is_instance_valid(description_label):
+		printerr("description_label ist auch in _ready() NULL! Pfadproblem?")
 	#print("Beschreibungstext:", tooltip_text)
 	#print("Panel visible:", visible)
 	#print("Position:", global_position)
@@ -18,6 +20,8 @@ func show_tooltip(item, position: Vector2):
 	elif item is WeaponData:
 		#print("Item ist WeaponData")
 		tooltip_text = item.get_description()
+	elif item is HeroData:
+		tooltip_text=item.get_description()
 	else:
 		#print("Item ist unbekannt")
 		tooltip_text = "Keine Beschreibung verfügbar."

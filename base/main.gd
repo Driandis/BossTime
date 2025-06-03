@@ -77,8 +77,8 @@ func _on_player_dead() -> void:
 #					return child
 #			return null
 func _on_boss_died():
-	print("Main.gd: Signal 'boss_died' empfangen. Leite Szenenwechsel zur Loot-Szene ein.")
-	get_tree().call_deferred("change_scene_to_file", "res://nodes/loot.tscn")
+	$Win.visible = true
+
 
 func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf gedrückt wird
 		print("Turn ",GlobalVariables.current_round)
@@ -121,3 +121,9 @@ func _on_button_pressed() -> void:
 		$GameOver.visible = false;
 		GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;
 		#GlobalVariables.bossHealth = GlobalVariables.bossMaxHealth;
+
+
+func _on_win_pressed() -> void:
+	print("Main.gd: Signal 'boss_died' empfangen. Leite Szenenwechsel zur Loot-Szene ein.")
+	get_tree().call_deferred("change_scene_to_file", "res://nodes/loot.tscn")
+	pass # Replace with function body.

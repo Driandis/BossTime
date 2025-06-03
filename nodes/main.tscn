@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://br0h18fqmirga"]
+[gd_scene load_steps=7 format=3 uid="uid://br0h18fqmirga"]
 
 [ext_resource type="PackedScene" uid="uid://fivay0tb8yky" path="res://nodes/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://yg5mhbm6w5rx" path="res://base/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://deys43et4bw2g" path="res://nodes/boss.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dkf506f3owsi7" path="res://sprites/background/732f46d3-d54d-4bd8-8908-1d4c9f4118b4.jpg" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cy6jijhabrfqu" path="res://sprites/Control/ChatGPT Image 3. Juni 2025, 19_34_10.png" id="6_6s2ku"]
 [ext_resource type="PackedScene" uid="uid://5np555wkfose" path="res://nodes/skill_tooltip.tscn" id="6_sybi7"]
 
 [node name="Main" type="Node"]
@@ -57,6 +58,15 @@ texture = ExtResource("4_1bvp3")
 
 [node name="SkillTooltip" parent="." instance=ExtResource("6_sybi7")]
 
+[node name="Win" type="Button" parent="."]
+visible = false
+offset_left = 418.0
+offset_top = 176.0
+offset_right = 1962.0
+offset_bottom = 1208.0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("6_6s2ku")
+
 [connection signal="press" from="." to="Player" method="_on_main_press"]
 [connection signal="press" from="." to="Boss" method="_on_main_press"]
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
@@ -65,3 +75,4 @@ texture = ExtResource("4_1bvp3")
 [connection signal="pressed" from="Turn Counter" to="Boss" method="_on_button_pressed"]
 [connection signal="pressed" from="GameOver/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="GameOver/Button" to="Player" method="_on_game_over_button_pressed"]
+[connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
