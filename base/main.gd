@@ -20,7 +20,24 @@ signal confirm
 #	$Boss/BossFelder/Boss/BossFeld2,
 #	$Boss/BossFelder/Boss/BossFeld3
 #]
+@export var custom_cursor_texture: Texture2D = preload("res://sprites/rsz_120250607_1250_blutiger_mauszeiger_simple_compose_01jx5065dmfva897p1kv2w2yte.png")
+
 func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich noch nicht ganz
+	# Stelle sicher, dass die Textur zugewiesen ist, bevor du versuchst, sie zu setzen
+	if custom_cursor_texture:
+		print("DEBUG: Setze benutzerdefinierten Mauszeiger.")
+		# Setzt einen benutzerdefinierten Mauszeiger.
+		# Dieser Cursor wird nun im gesamten Spiel sichtbar sein, es sei denn,
+		# er wird explizit durch eine andere set_custom_mouse_cursor()-Anweisung überschrieben.
+		Input.set_custom_mouse_cursor(custom_cursor_texture, Input.CURSOR_ARROW, Vector2(0, 0)) # Hotspot auf (0,0) für die obere linke Ecke
+	else:
+		printerr("FEHLER: Keine benutzerdefinierte Cursor-Textur zugewiesen oder gefunden. Verwende Standard-Cursor.")
+		# Setzt den Cursor zurück auf den System-Cursor, falls keine benutzerdefinierte Textur verfügbar ist
+		Input.set_custom_mouse_cursor(null) # Null setzt den System-Cursor zurück
+
+	# Optionale Mausmodi können hier ebenfalls gesetzt werden, wenn gewünscht.
+	# Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) # Stellt sicher, dass der Cursor sichtbar ist (Standard)
+	
 	var selected_hero: HeroData
 	GlobalVariables.main_node = self	#damit man immer gut auf die Main-Funktionen zugreifen kann
 #Held laden
@@ -98,6 +115,7 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		
 		#Skills des Spielers
 		player.take_turn()
+		#await get_tree().create_timer(1).timeout 
 		if GlobalVariables.bossHealth >= 0:
 					#Zug des Boss
 			boss.take_turn()
@@ -131,4 +149,22 @@ func _on_win_pressed() -> void:
 	print("Main.gd: Signal 'boss_died' empfangen. Leite Szenenwechsel zur Loot-Szene ein.")
 	#get_tree().call_deferred("change_scene_to_file", "res://nodes/loot.tscn")
 	loot_manager.generate_and_show_loot(3) # Generiere 3 Items
+	pass # Replace with function body.
+
+
+func _on_autobattle_pressed() -> void:
+	_on_turn_counter_pressed()
+	await get_tree().create_timer(0.5).timeout 
+	_on_turn_counter_pressed()
+	await get_tree().create_timer(0.5).timeout 
+	_on_turn_counter_pressed()
+	#Player.
+	#	for slot in player	().get_nodes_in_group("Felder"):	#Die Felder sind jetzt slots
+	#	if global_position.distance_to(slot.global_position) < 50:	#Distanz zum Einrasten
+	#		if previous_slot != null and previous_slot != slot and is_a_parent(previous_slot):# Vorherigen Slot aufräumen (falls Skill rausgezogen wurde)
+	#			previous_slot.remove_child(self)
+	#		if is_a_parent(get_parent()):
+	#			get_parent().remove_child(self)	
+	#		slot.add_child(self)
+	#		global_position = slot.global_position
 	pass # Replace with function body.

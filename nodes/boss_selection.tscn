@@ -1,24 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://b84addqgr56i6"]
+[gd_scene load_steps=8 format=3 uid="uid://b84addqgr56i6"]
 
 [ext_resource type="Script" uid="uid://bhauku0q2ty4h" path="res://controls/boss_selection.gd" id="1_vx0fa"]
 [ext_resource type="Texture2D" uid="uid://b1syvj2plvdoi" path="res://sprites/boss/ChatGPT Image 29. Apr. 2025, 10_55_25.png" id="2_vx0fa"]
 [ext_resource type="Script" uid="uid://dqgyvg671o5at" path="res://controls/barbariankingbutton.gd" id="3_qarfj"]
 [ext_resource type="Texture2D" uid="uid://nuw6x3vh1l2d" path="res://sprites/heroes/firemage/ChatGPT Image 27. Apr. 2025, 18_15_32.png" id="4_q3l6o"]
+[ext_resource type="Script" uid="uid://d0tio686tnbku" path="res://controls/Pyromancerbutton.gd" id="4_qarfj"]
+[ext_resource type="Texture2D" uid="uid://ws6qonrb4x21" path="res://sprites/boss/ChatGPT Image 7. Juni 2025, 14_15_05.png" id="4_sok70"]
+[ext_resource type="AudioStream" uid="uid://cafdhd2fmjm7l" path="res://Sounds/Firemage/fireball_sound_effect_tuba.wav" id="5_q3l6o"]
 
 [node name="BossSelection" type="Node2D"]
 script = ExtResource("1_vx0fa")
 
-[node name="Auswahlobjekte" type="VBoxContainer" parent="."]
-offset_left = 559.0
-offset_top = 317.0
-offset_right = 1591.0
-offset_bottom = 1861.0
+[node name="Auswahlobjekte" type="HBoxContainer" parent="."]
+z_index = 1
+offset_left = 465.0
+offset_top = 250.0
+offset_right = 2533.0
+offset_bottom = 1794.0
 scale = Vector2(0.1, 0.1)
 
 [node name="Barbarianking" type="Button" parent="Auswahlobjekte"]
 layout_mode = 2
 icon = ExtResource("2_vx0fa")
 script = ExtResource("3_qarfj")
+
+[node name="Pyromancer" type="Button" parent="Auswahlobjekte"]
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 0
+icon = ExtResource("4_sok70")
+script = ExtResource("4_qarfj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Auswahlobjekte/Pyromancer"]
+stream = ExtResource("5_q3l6o")
+pitch_scale = 0.5
+max_polyphony = 3
 
 [node name="Überschrift" type="Label" parent="."]
 offset_left = 395.0
@@ -29,8 +45,9 @@ text = "Gegen welchen Boss möchtest du spielen?"
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(575.25, 322.25)
+position = Vector2(573, 327)
 scale = Vector2(0.749674, 0.634277)
 texture = ExtResource("4_q3l6o")
 
 [connection signal="pressed" from="Auswahlobjekte/Barbarianking" to="." method="_on_barbarianking_pressed"]
+[connection signal="pressed" from="Auswahlobjekte/Pyromancer" to="." method="_on_pyromancer_pressed"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BossData" load_steps=10 format=3 uid="uid://blihmgyvk5iu5"]
 
-[ext_resource type="Texture2D" uid="uid://b1syvj2plvdoi" path="res://sprites/boss/ChatGPT Image 29. Apr. 2025, 10_55_25.png" id="1_kcmn3"]
+[ext_resource type="Texture2D" uid="uid://dx6rxwwopyl0i" path="res://sprites/boss/Barbarianking/ChatGPT Image 7. Juni 2025, 12_16_32.png" id="1_oml7m"]
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_rjt70"]
 [ext_resource type="PackedScene" uid="uid://fha7qnflpuu0" path="res://nodes/SkillNodes/hieb.tscn" id="2_lnvr3"]
 [ext_resource type="Resource" uid="uid://bvp1sjyka7v46" path="res://Skills/Effekte/PassiveBarbar.tres" id="2_oml7m"]
@@ -18,7 +18,7 @@ max_health = 300
 bossBlock = 0
 bossArmor = 12
 bossMagicRes = 8
-boss_texture = ExtResource("1_kcmn3")
+boss_texture = ExtResource("1_oml7m")
 rounds = [[ExtResource("2_lnvr3"), ExtResource("3_jfnx5"), ExtResource("6_37t4s")], [ExtResource("3_rg3va"), null, ExtResource("3_jfnx5")], [ExtResource("5_nl0od"), ExtResource("2_lnvr3"), ExtResource("7_a6lds")], [ExtResource("6_37t4s"), null, ExtResource("3_rg3va")]]
 passive = ExtResource("2_oml7m")
 passive_trigger = 0.35

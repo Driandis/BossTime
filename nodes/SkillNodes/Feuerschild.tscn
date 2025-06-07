@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://donu1d0wcpmw3"]
+[gd_scene load_steps=6 format=3 uid="uid://donu1d0wcpmw3"]
 
 [ext_resource type="Script" uid="uid://cyoxmpv0k2tqr" path="res://Helden/Feuermage/Skills/feuerschild.gd" id="1_ynx6x"]
 [ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="2_c47ir"]
 [ext_resource type="Resource" uid="uid://b80juq66q18s" path="res://Skills/Effekte/FeuerschildSkill.tres" id="2_sn7pu"]
+[ext_resource type="AudioStream" uid="uid://dd7osgtxqrdoe" path="res://Sounds/Firemage/Fireshield.wav" id="4_sn7pu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn7pu"]
 size = Vector2(90, 68)
@@ -55,3 +56,8 @@ anchor_bottom = 0.137931
 offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Feuerschild"]
+stream = ExtResource("4_sn7pu")
+pitch_scale = 0.5
+max_polyphony = 3

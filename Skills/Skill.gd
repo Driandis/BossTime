@@ -11,6 +11,7 @@ var offset := Vector2.ZERO
 var previous_slot = null  # Zum Rauswerfem des Skills aus den Feldern
 var target
 var caster
+@export var skill_sound: AudioStreamPlayer2D
 #@export var description: String = "Starker Angriff mit Feuerschaden"	#Bescbreibung des Skills
 #spezielle skills
 
@@ -115,6 +116,9 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 	print("Skill wurde ausgeführt: ", name)
 	var target = _get_target()
 	var caster = _get_caster()
+	if skill_sound !=null:
+		skill_sound.play()
+		printerr("Skillsound abgespielt")
 	if caster != null and target != null: #and effect != null:
 		use()	#Spezifische Effekte (zB Heal) des Skills anwenden
 		if effect != null:

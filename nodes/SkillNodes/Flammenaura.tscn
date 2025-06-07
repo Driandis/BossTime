@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqbiat27pgqwo"]
+
+[ext_resource type="Script" uid="uid://cigiuowyowx2k" path="res://bosses/Pyromancer/flammenaura.gd" id="1_l4yju"]
+[ext_resource type="Script" uid="uid://bls543nhpphod" path="res://Skills/Statuseffekte/BlockCounterEffekt.gd" id="2_dfb6a"]
+[ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="3_4xpjf"]
+[ext_resource type="AudioStream" uid="uid://dd7osgtxqrdoe" path="res://Sounds/Firemage/Fireshield.wav" id="4_00lkk"]
+
+[sub_resource type="Resource" id="Resource_wntj5"]
+script = ExtResource("2_dfb6a")
+block_amount = 10
+counter_damage = 10
+name = ""
+description = ""
+duration = 0
+metadata/_custom_type_script = "uid://bls543nhpphod"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sn7pu"]
+size = Vector2(90, 68)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Flammenaura" type="Area2D" parent="." node_paths=PackedStringArray("skill_sound")]
+position = Vector2(-3, 64)
+script = ExtResource("1_l4yju")
+skill_sound = NodePath("AudioStreamPlayer2D")
+skill_name = "Flammenaura"
+effect = SubResource("Resource_wntj5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flammenaura"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_sn7pu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flammenaura"]
+position = Vector2(10.5, -6)
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("3_4xpjf")
+
+[node name="Label" type="Label" parent="Flammenaura"]
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Flammenaura"
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Flammenaura"]
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Flammenaura/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Flammenaura"]
+stream = ExtResource("4_00lkk")
+pitch_scale = 0.5
+max_polyphony = 3

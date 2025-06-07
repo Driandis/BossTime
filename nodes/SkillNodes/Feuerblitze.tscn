@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://tevljcpdye8e"]
+[gd_scene load_steps=6 format=3 uid="uid://tevljcpdye8e"]
 
 [ext_resource type="Script" uid="uid://cijpqiskwqsme" path="res://Helden/Feuermage/Skills/feuerblitz.gd" id="1_1ngd2"]
 [ext_resource type="Resource" uid="uid://dnyqekqwlekwj" path="res://Skills/Effekte/FeuerblitzeSkill.tres" id="2_d2tge"]
 [ext_resource type="Texture2D" uid="uid://coder85sjuv27" path="res://sprites/heroes/firemage/Blitze im Dunkeln unter dem Torbogen.png" id="3_d2tge"]
+[ext_resource type="AudioStream" uid="uid://c5m1kv41x6k5y" path="res://Sounds/Firemage/Feuerblitze.wav" id="4_j8nak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3owrw"]
 size = Vector2(90, 68)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Feuerblitze" type="Area2D" parent="."]
+[node name="Feuerblitze" type="Area2D" parent="." node_paths=PackedStringArray("skill_sound")]
 position = Vector2(-3, 64)
 script = ExtResource("1_1ngd2")
+skill_sound = NodePath("AudioStreamPlayer2D")
 skill_name = "Feuerblitze"
 effect = ExtResource("2_d2tge")
 cooldown = 4
@@ -52,3 +54,8 @@ anchor_bottom = 0.137931
 offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Feuerblitze"]
+stream = ExtResource("4_j8nak")
+pitch_scale = 0.5
+max_polyphony = 3

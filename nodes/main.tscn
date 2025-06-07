@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://br0h18fqmirga"]
+[gd_scene load_steps=9 format=3 uid="uid://br0h18fqmirga"]
 
 [ext_resource type="PackedScene" uid="uid://fivay0tb8yky" path="res://nodes/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://yg5mhbm6w5rx" path="res://base/main.gd" id="1_h2yge"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cy6jijhabrfqu" path="res://sprites/Control/ChatGPT Image 3. Juni 2025, 19_34_10.png" id="6_6s2ku"]
 [ext_resource type="PackedScene" uid="uid://5np555wkfose" path="res://nodes/skill_tooltip.tscn" id="6_sybi7"]
 [ext_resource type="Script" uid="uid://v0mw2pepavjy" path="res://base/LootManager.gd" id="7_6s2ku"]
+[ext_resource type="Texture2D" uid="uid://dq58gh83s6cs5" path="res://sprites/Control/20250607_1732_Medieval Play Button_simple_compose_01jx5g9wasfajbqbp39cnk9nts.png" id="8_gp064"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
@@ -22,11 +23,11 @@ position = Vector2(1008, 304)
 [node name="TestTimer" type="Timer" parent="."]
 
 [node name="Turn Counter" type="Button" parent="."]
-offset_left = 448.0
+offset_left = 800.0
 offset_top = 437.0
-offset_right = 736.0
-offset_bottom = 517.0
-text = "Turn Count"
+offset_right = 973.0
+offset_bottom = 497.0
+text = "Single Turn"
 
 [node name="GameOver" type="Window" parent="."]
 auto_translate_mode = 1
@@ -75,6 +76,14 @@ icon = ExtResource("6_6s2ku")
 [node name="LootManager" type="Node2D" parent="."]
 script = ExtResource("7_6s2ku")
 
+[node name="Autobattle" type="Button" parent="."]
+offset_left = 510.0
+offset_top = 410.0
+offset_right = 1414.0
+offset_bottom = 1440.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("8_gp064")
+
 [connection signal="press" from="." to="Player" method="_on_main_press"]
 [connection signal="press" from="." to="Boss" method="_on_main_press"]
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
@@ -84,3 +93,4 @@ script = ExtResource("7_6s2ku")
 [connection signal="pressed" from="GameOver/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="GameOver/Button" to="Player" method="_on_game_over_button_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
+[connection signal="pressed" from="Autobattle" to="." method="_on_autobattle_pressed"]

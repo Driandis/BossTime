@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://qodpjms3ks7t"]
+
+[ext_resource type="Script" uid="uid://crbleyblvl6lp" path="res://bosses/Pyromancer/entzünden.gd" id="1_eeyl6"]
+[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/BurnStatus.gd" id="2_pwhwc"]
+[ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="3_soi3e"]
+[ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="4_bk64i"]
+
+[sub_resource type="Resource" id="Resource_soi3e"]
+script = ExtResource("2_pwhwc")
+damage_per_turn = 3
+armor_reduction = 5
+name = ""
+description = ""
+duration = 0
+metadata/_custom_type_script = "uid://dqfhgm3l25om7"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64mly"]
+size = Vector2(90, 68)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Entzünden" type="Area2D" parent="." node_paths=PackedStringArray("skill_sound")]
+position = Vector2(-3, 64)
+script = ExtResource("1_eeyl6")
+skill_sound = NodePath("AudioStreamPlayer2D")
+skill_name = "Entzünden"
+effect = SubResource("Resource_soi3e")
+target_type = 1
+magic_damage = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entzünden"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_64mly")
+
+[node name="Sprite2D" type="Sprite2D" parent="Entzünden"]
+position = Vector2(10.5, -6)
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("3_soi3e")
+
+[node name="Label" type="Label" parent="Entzünden"]
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Entzünden"
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Entzünden"]
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Entzünden/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Entzünden"]
+stream = ExtResource("4_bk64i")
+pitch_scale = 0.5
+max_polyphony = 3

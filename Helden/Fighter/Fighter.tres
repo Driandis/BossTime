@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="HeroData" load_steps=5 format=3 uid="uid://cpxhylka35mcx"]
 
 [ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_bcmtd"]
-[ext_resource type="Texture2D" uid="uid://dk4xkdswx2wen" path="res://sprites/heroes/fighter/Zweihandkrieger mit Schwert.png" id="1_fhnnf"]
 [ext_resource type="Resource" uid="uid://b0pt0wr7tkcfd" path="res://Weapons/Fighter/TwoHandSword.tres" id="1_mqpks"]
 [ext_resource type="PackedScene" uid="uid://c2pixwry3mxki" path="res://nodes/SkillNodes/heal.tscn" id="2_h6x00"]
+[ext_resource type="Texture2D" uid="uid://3y4s1as6yxgn" path="res://sprites/heroes/fighter/20250607_1520_Knight in Combat Stance_remix_01jx58pjamfe3s7z8ecfdnrmhw.png" id="2_mqpks"]
 
 [resource]
 script = ExtResource("1_bcmtd")
 name = "Manni"
 skills = Array[PackedScene]([ExtResource("2_h6x00")])
 max_health = 180
-hero_texture = ExtResource("1_fhnnf")
+hero_texture = ExtResource("2_mqpks")
 playerBlock = 0
 playerArmor = 15
 playerMagicRes = 10

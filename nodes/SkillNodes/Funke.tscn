@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwrxoibpw28ww"]
+
+[ext_resource type="Script" uid="uid://c6jwfxnutstaj" path="res://bosses/Pyromancer/funke.gd" id="1_xw0uf"]
+[ext_resource type="Texture2D" uid="uid://bbl2cgfseqrlc" path="res://sprites/heroes/firemage/ChatGPT Image 19. Apr. 2025, 11_30_36.png" id="2_kstp5"]
+[ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_p2dqo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
+size = Vector2(90, 68)
+
+[node name="Area2D" type="Node2D"]
+
+[node name="Funke" type="Area2D" parent="." node_paths=PackedStringArray("skill_sound")]
+position = Vector2(-3, 64)
+script = ExtResource("1_xw0uf")
+skill_sound = NodePath("AudioStreamPlayer2D")
+skill_name = "Funke"
+target_type = 1
+magic_damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Funke"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_p5q08")
+
+[node name="Image" type="TextureRect" parent="Funke"]
+custom_minimum_size = Vector2(200, 200)
+offset_left = -38.0
+offset_top = -39.0
+offset_right = 964.0
+offset_bottom = 971.0
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("2_kstp5")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Funke"]
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Funke"
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Funke"]
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Funke/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Funke"]
+stream = ExtResource("3_p2dqo")
+pitch_scale = 0.5
+max_polyphony = 3

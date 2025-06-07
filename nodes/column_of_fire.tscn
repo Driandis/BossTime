@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2pkl06miapvp"]
+[gd_scene load_steps=6 format=3 uid="uid://d2pkl06miapvp"]
 
 [ext_resource type="Script" uid="uid://bt027ajnss3v" path="res://Helden/Feuermage/Skills/feuersäule.gd" id="1_gaxq4"]
 [ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="2_f3c1k"]
 [ext_resource type="Resource" uid="uid://de6np6mfiwmxr" path="res://Skills/Statuseffekte/Burn.tres" id="2_nmglh"]
+[ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="4_kr77k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64mly"]
 size = Vector2(90, 68)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Feuersäule" type="Area2D" parent="."]
+[node name="Feuersäule" type="Area2D" parent="." node_paths=PackedStringArray("skill_sound")]
 position = Vector2(-3, 64)
 script = ExtResource("1_gaxq4")
+skill_sound = NodePath("AudioStreamPlayer2D")
 skill_name = "Feuersäule"
 effect = ExtResource("2_nmglh")
 cooldown = 3
@@ -53,3 +55,8 @@ anchor_bottom = 0.137931
 offset_right = 40.0
 offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Feuersäule"]
+stream = ExtResource("4_kr77k")
+pitch_scale = 0.5
+max_polyphony = 3
