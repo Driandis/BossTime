@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_an167"]
 script = ExtResource("2_n076a")
 name = "Bleed"
+description = ""
 duration = 3
 Effect_texture = ExtResource("2_uk4sr")
 metadata/_custom_type_script = "uid://bwce05of5kkrk"

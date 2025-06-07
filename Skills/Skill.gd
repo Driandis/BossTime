@@ -80,7 +80,10 @@ func _ready():
 	previous_slot = get_parent() # if is_inside_tree() else null	#fürs Rauswerfen der Skills aus den Feldern
 	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
 	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
-
+		# Setze den z_index, um sicherzustellen, dass der Skill immer oben gezeichnet wird.
+	# Wähle einen Wert, der höher ist als der z_index deiner "Felder".
+	# Ein Wert wie 10 oder 100 ist oft ausreichend, aber wähle ihn basierend auf deinen anderen Elementen.
+	z_index = 100 
 func _on_mouse_entered():
 	#var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")  # Mauszeiger löst Skillerklärung aus
 	TooltipManager.show_tooltip(self, get_global_mouse_position())

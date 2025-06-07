@@ -12,3 +12,12 @@ class_name BossData
 @export var rounds: Array = []  # Jede Runde ist ein Array von Skill-Ressourcen
 @export var passive: Resource
 @export var passive_trigger : float	#Bei wieviel Prozent der MaxHP triggert die Passive?
+
+func get_description() -> String:
+	var hero_description_text = ""
+	hero_description_text += "Name: " + name + "\n" # Greife direkt auf 'name' zu
+	#weapon_description_text += "Multiplikator: " + str(damage_multiplier) + "\n" # vorher mit str()	Greife direkt auf 'damage_multiplier' zu
+	hero_description_text += "Amor: " + str(GlobalVariables.bossArmor) + "\n"
+	hero_description_text += "Block: " + str(GlobalVariables.bossBlock) + "\n"
+	hero_description_text += "Magic Res: " + str(GlobalVariables.bossMagicRes) + "\n"
+	return hero_description_text

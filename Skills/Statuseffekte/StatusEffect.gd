@@ -2,6 +2,7 @@ class_name StatusEffect
 extends Resource
 
 @export var name: String
+@export var description: String
 @export var duration: int # Dauer in Turns
 var remaining_duration: int
 var target: Node # Der Knoten, der den Effekt hat/bekommt
@@ -69,3 +70,11 @@ func _on_effect_end():
 		GlobalVariables.active_boss_status_effects.erase(self)
 	print("Aktuelle Statuseffekte nach dem Clean-up ", GlobalVariables.active_boss_status_effects, " (Boss)",GlobalVariables.active_player_status_effects, "(Player)")
 	pass # Optionale Logik, wenn der Effekt endet
+
+func get_description() -> String:
+	var weapon_description_text = ""
+	weapon_description_text += "Name: " + name + "\n" # Greife direkt auf 'name' zu
+	weapon_description_text += "Beschreibung: " + description + "\n" # Greife direkt auf 'description' zu
+	weapon_description_text += "Startdauer: " + str(duration) + "\n"
+	weapon_description_text += "Verbleibende Dauer: " + str(remaining_duration)+ "\n"
+	return weapon_description_text

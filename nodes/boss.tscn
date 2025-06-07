@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://deys43et4bw2g"]
+[gd_scene load_steps=7 format=3 uid="uid://deys43et4bw2g"]
 
 [ext_resource type="Script" uid="uid://dqd3etcg2uxt6" path="res://bosses/boss.gd" id="1_6xxrv"]
 [ext_resource type="PackedScene" uid="uid://beqjrr8riju8o" path="res://nodes/status_effect_icon.tscn" id="3_1u8du"]
 [ext_resource type="Shader" uid="uid://du2f06y6w6jpl" path="res://base/hit_effect_shader.gdshader" id="3_t5ef3"]
+[ext_resource type="Script" uid="uid://chsw0h06fcibt" path="res://UI/CurrentBossImage.gd" id="4_8xlcg"]
 [ext_resource type="PackedScene" uid="uid://bgibrnu4xdgxy" path="res://nodes/boss_felder.tscn" id="5_8xlcg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8xlcg"]
@@ -24,6 +25,7 @@ offset_bottom = 529.0
 scale = Vector2(0.3, 0.3)
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("4_8xlcg")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -78,3 +80,6 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 4
+
+[connection signal="mouse_entered" from="Bossimage" to="Bossimage" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Bossimage" to="Bossimage" method="_on_mouse_exited"]

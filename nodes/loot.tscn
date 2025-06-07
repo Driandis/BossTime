@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://186nbqoudrok"]
 
 [ext_resource type="Script" uid="uid://br6eame7keono" path="res://base/loot.gd" id="1_msiit"]
-[ext_resource type="Texture2D" uid="uid://b8206y0e32wgx" path="res://sprites/squarrel.png" id="2_r5klf"]
+[ext_resource type="Texture2D" uid="uid://cpy1go5njl8ck" path="res://sprites/Control/ChatGPT Image 3. Juni 2025, 19_34_13.png" id="2_msiit"]
 [ext_resource type="Texture2D" uid="uid://nuw6x3vh1l2d" path="res://sprites/heroes/firemage/ChatGPT Image 27. Apr. 2025, 18_15_32.png" id="3_iwwsu"]
 
 [node name="Loot" type="Node2D"]
@@ -16,8 +16,23 @@ scale = Vector2(0.1, 0.1)
 
 [node name="Button" type="Button" parent="Auswahlobjekte"]
 layout_mode = 2
-text = "Eiskeule"
-icon = ExtResource("2_r5klf")
+icon = ExtResource("2_msiit")
+
+[node name="Itemauswahl" type="HBoxContainer" parent="Auswahlobjekte"]
+layout_mode = 2
+
+[node name="Item 1" type="PanelContainer" parent="Auswahlobjekte/Itemauswahl"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Auswahlobjekte/Itemauswahl/Item 1"]
+layout_mode = 2
+
+[node name="Item1Icon" type="TextureRect" parent="Auswahlobjekte/Itemauswahl/Item 1/VBoxContainer"]
+layout_mode = 2
+
+[node name="Item1Label" type="Label" parent="Auswahlobjekte/Itemauswahl/Item 1/VBoxContainer"]
+layout_mode = 2
 
 [node name="Überschrift" type="Label" parent="."]
 offset_left = 395.0

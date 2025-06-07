@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_wg2xh"]
 script = ExtResource("2_ojxlj")
 name = "Weakend"
+description = ""
 duration = 2
 Effect_texture = ExtResource("2_xd2nd")
 metadata/_custom_type_script = "uid://iif7huo4muvn"

@@ -14,9 +14,6 @@ func _update_weapon_display():
 		texture = null
 
 func _on_mouse_entered():
-	print("Maus ist über dem Waffenbild!")
-	#if is_instance_valid(SkillTooltipPanel) and weapon_data != null:
-	print("Weapon Data: ", weapon_data)
 	TooltipManager.show_tooltip(GlobalVariables.equipped_weapon, get_global_mouse_position())
 
 func _on_mouse_exited():

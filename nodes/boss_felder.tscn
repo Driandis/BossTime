@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgibrnu4xdgxy"]
-
-[ext_resource type="Script" uid="uid://crt0om8yfdlxw" path="res://base/feld_1.gd" id="1_03gga"]
+[gd_scene load_steps=2 format=3 uid="uid://bgibrnu4xdgxy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jlma"]
 size = Vector2(46.25, 40)
@@ -11,7 +9,6 @@ size = Vector2(46.25, 40)
 
 [node name="BossFeld1" type="Area2D" parent="Boss"]
 position = Vector2(1, 22)
-script = ExtResource("1_03gga")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BossFeld1"]
 position = Vector2(1, 26)
@@ -27,7 +24,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="BossFeld2" type="Area2D" parent="Boss"]
 position = Vector2(4, 103)
-script = ExtResource("1_03gga")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BossFeld2"]
 position = Vector2(1, 26)
@@ -43,7 +39,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="BossFeld3" type="Area2D" parent="Boss"]
 position = Vector2(6, 189)
-script = ExtResource("1_03gga")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BossFeld3"]
 position = Vector2(1, 26)

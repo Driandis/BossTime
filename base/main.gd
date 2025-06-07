@@ -27,6 +27,7 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 	if GlobalVariables.selected_hero != "":
 		if ResourceLoader.exists(GlobalVariables.selected_hero):
 			selected_hero = load(GlobalVariables.selected_hero)
+			GlobalVariables.current_hero=selected_hero
 		else:
 			push_error("Pfad zu Heldendatei ungültig: " + GlobalVariables.selected_hero)
 			return
@@ -41,6 +42,7 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 	if GlobalVariables.selected_boss != "":
 		if ResourceLoader.exists(GlobalVariables.selected_boss):
 			selected_boss = load(GlobalVariables.selected_boss)
+			GlobalVariables.current_boss = selected_boss
 		else:
 			push_error("Pfad zu Bossdatei ungültig: " + GlobalVariables.selected_boss)
 			return
@@ -78,6 +80,8 @@ func _on_player_dead() -> void:
 #			return null
 func _on_boss_died():
 	$Win.visible = true
+	GlobalVariables.current_fight +=1
+	print("Nächster Kampf: Kampf Nummer ", GlobalVariables.current_fight)
 
 
 func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf gedrückt wird
@@ -122,8 +126,9 @@ func _on_button_pressed() -> void:
 		GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;
 		#GlobalVariables.bossHealth = GlobalVariables.bossMaxHealth;
 
-
+@onready var loot_manager: LootManager = $LootManager
 func _on_win_pressed() -> void:
 	print("Main.gd: Signal 'boss_died' empfangen. Leite Szenenwechsel zur Loot-Szene ein.")
-	get_tree().call_deferred("change_scene_to_file", "res://nodes/loot.tscn")
+	#get_tree().call_deferred("change_scene_to_file", "res://nodes/loot.tscn")
+	loot_manager.generate_and_show_loot(3) # Generiere 3 Items
 	pass # Replace with function body.
