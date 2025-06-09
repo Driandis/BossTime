@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://qodpjms3ks7t"]
 
-[ext_resource type="Script" uid="uid://crbleyblvl6lp" path="res://bosses/Pyromancer/entzünden.gd" id="1_eeyl6"]
-[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/BurnStatus.gd" id="2_pwhwc"]
-[ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="3_soi3e"]
-[ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="4_bk64i"]
+[ext_resource type="Script" uid="uid://crbleyblvl6lp" path="res://bosses/Pyromancer/entzünden.gd" id="1_kstp5"]
+[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/BurnStatus.gd" id="2_p2dqo"]
+[ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="3_hbmis"]
+[ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="4_o2hvl"]
 
 [sub_resource type="Resource" id="Resource_soi3e"]
-script = ExtResource("2_pwhwc")
+script = ExtResource("2_p2dqo")
 damage_per_turn = 3
 armor_reduction = 5
 name = ""
@@ -21,7 +21,7 @@ size = Vector2(90, 68)
 
 [node name="Entzünden" type="Area2D" parent="." node_paths=PackedStringArray("skill_sound")]
 position = Vector2(-3, 64)
-script = ExtResource("1_eeyl6")
+script = ExtResource("1_kstp5")
 skill_sound = NodePath("AudioStreamPlayer2D")
 skill_name = "Entzünden"
 effect = SubResource("Resource_soi3e")
@@ -39,7 +39,7 @@ offset_top = -6.0
 offset_right = 10.5
 offset_bottom = -6.0
 scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("3_soi3e")
+texture = ExtResource("3_hbmis")
 expand_mode = 1
 stretch_mode = 5
 
@@ -71,6 +71,6 @@ offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Entzünden"]
-stream = ExtResource("4_bk64i")
+stream = ExtResource("4_o2hvl")
 pitch_scale = 0.5
 max_polyphony = 3

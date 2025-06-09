@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://d2pkl06miapvp"]
 
-[ext_resource type="Script" uid="uid://bt027ajnss3v" path="res://Helden/Feuermage/Skills/feuersäule.gd" id="1_gaxq4"]
-[ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="2_f3c1k"]
-[ext_resource type="Resource" uid="uid://de6np6mfiwmxr" path="res://Skills/Statuseffekte/Burn.tres" id="2_nmglh"]
-[ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="4_kr77k"]
+[ext_resource type="Script" uid="uid://bt027ajnss3v" path="res://Helden/Feuermage/Skills/feuersäule.gd" id="1_enh7q"]
+[ext_resource type="Resource" uid="uid://de6np6mfiwmxr" path="res://Skills/Statuseffekte/Burn.tres" id="2_l0p01"]
+[ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="3_xr3he"]
+[ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="4_u8ly2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64mly"]
 size = Vector2(90, 68)
@@ -12,10 +12,10 @@ size = Vector2(90, 68)
 
 [node name="Feuersäule" type="Area2D" parent="." node_paths=PackedStringArray("skill_sound")]
 position = Vector2(-3, 64)
-script = ExtResource("1_gaxq4")
+script = ExtResource("1_enh7q")
 skill_sound = NodePath("AudioStreamPlayer2D")
 skill_name = "Feuersäule"
-effect = ExtResource("2_nmglh")
+effect = ExtResource("2_l0p01")
 cooldown = 3
 caster_type = 1
 magic_damage = 4
@@ -24,10 +24,16 @@ magic_damage = 4
 position = Vector2(7.5, -2)
 shape = SubResource("RectangleShape2D_64mly")
 
-[node name="Sprite2D" type="Sprite2D" parent="Feuersäule"]
-position = Vector2(10.5, -6)
+[node name="Image" type="TextureRect" parent="Feuersäule"]
+custom_minimum_size = Vector2(200, 200)
+offset_left = 10.5
+offset_top = -6.0
+offset_right = 10.5
+offset_bottom = -6.0
 scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("2_f3c1k")
+texture = ExtResource("3_xr3he")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="Feuersäule"]
 offset_left = -29.5
@@ -57,6 +63,6 @@ offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Feuersäule"]
-stream = ExtResource("4_kr77k")
+stream = ExtResource("4_u8ly2")
 pitch_scale = 0.5
 max_polyphony = 3

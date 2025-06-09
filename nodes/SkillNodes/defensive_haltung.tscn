@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://besw7vm05tg42"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m520h"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="Defensive Haltung" type="Area2D" parent="."]
 script = ExtResource("1_m520h")

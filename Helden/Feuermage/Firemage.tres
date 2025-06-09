@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://4wbvevr28a4q" path="res://Weapons/MageHands/MageHands.tres" id="1_s2ndq"]
 [ext_resource type="Texture2D" uid="uid://03td1488bpsf" path="res://sprites/heroes/firemage/Zauberer im Feuerzauberstahl.png" id="2_gdjgw"]
 [ext_resource type="PackedScene" uid="uid://bihpqqcoxcwiu" path="res://nodes/SkillNodes/Feuerball.tscn" id="2_lypqa"]
-[ext_resource type="PackedScene" uid="uid://d2pkl06miapvp" path="res://nodes/column_of_fire.tscn" id="5_108to"]
+[ext_resource type="PackedScene" uid="uid://d2pkl06miapvp" path="res://nodes/SkillNodes/Feuersäule.tscn" id="5_108to"]
 [ext_resource type="PackedScene" uid="uid://cqa3l3l8025b3" path="res://nodes/SkillNodes/feuerexplosion.tscn" id="6_qnk8v"]
 [ext_resource type="PackedScene" uid="uid://donu1d0wcpmw3" path="res://nodes/SkillNodes/Feuerschild.tscn" id="7_4iyl3"]
 [ext_resource type="PackedScene" uid="uid://tevljcpdye8e" path="res://nodes/SkillNodes/Feuerblitze.tscn" id="8_gdjgw"]

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynfqt"]
 size = Vector2(90, 68)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D3" type="Node2D"]
 
 [node name="Wuchtschlag" type="Area2D" parent="."]
 position = Vector2(-3, 64)
