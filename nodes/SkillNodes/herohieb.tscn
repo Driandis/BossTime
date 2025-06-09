@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://4d5rwxh732jy"]
+
+[ext_resource type="Script" uid="uid://baoxvox533fet" path="res://Helden/Fighter/Skills/hero_hieb.gd" id="1_4intq"]
+[ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_52u3m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7i6s"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="HeroHieb" type="Area2D" parent="."]
+script = ExtResource("1_4intq")
+skill_name = "Herohieb"
+cooldown = 3
+caster_type = 1
+physical_damage = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeroHieb"]
+shape = SubResource("RectangleShape2D_f7i6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="HeroHieb"]
+position = Vector2(0, 4.00003)
+scale = Vector2(0.241113, 0.174219)
+texture = ExtResource("2_52u3m")
+
+[node name="Label" type="Label" parent="HeroHieb"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CooldownBar" type="ProgressBar" parent="HeroHieb"]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="CooldownText" type="Label" parent="HeroHieb/CooldownBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
