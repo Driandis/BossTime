@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroData" load_steps=8 format=3 uid="uid://cpxhylka35mcx"]
+[gd_resource type="Resource" script_class="HeroData" load_steps=9 format=3 uid="uid://cpxhylka35mcx"]
 
 [ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_rhmxo"]
 [ext_resource type="Resource" uid="uid://b0pt0wr7tkcfd" path="res://Weapons/Fighter/TwoHandSword.tres" id="1_yfqer"]
@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://cmshs8sh5j4gs" path="res://nodes/SkillNodes/zerschmettern.tscn" id="5_66div"]
 [ext_resource type="PackedScene" uid="uid://bbkyunsfstwuv" path="res://nodes/SkillNodes/DefensiveHaltung.tscn" id="6_65l7j"]
 [ext_resource type="PackedScene" uid="uid://3sv1iv1mnef3" path="res://nodes/SkillNodes/spalten.tscn" id="7_wo3op"]
+[ext_resource type="PackedScene" uid="uid://dxpv2nebjy33t" path="res://nodes/SkillNodes/Stoßen.tscn" id="8_at2yd"]
 
 [resource]
 script = ExtResource("1_rhmxo")
 name = "Zweihandkrieger"
-skills = Array[PackedScene]([ExtResource("4_tifnu"), ExtResource("5_66div"), ExtResource("6_65l7j"), ExtResource("7_wo3op")])
+skills = Array[PackedScene]([ExtResource("4_tifnu"), ExtResource("5_66div"), ExtResource("6_65l7j"), ExtResource("7_wo3op"), ExtResource("8_at2yd")])
 max_health = 180
 hero_texture = ExtResource("2_yfqer")
 playerBlock = 0
