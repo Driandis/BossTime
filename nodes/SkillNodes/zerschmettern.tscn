@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 [gd_scene load_steps=5 format=3 uid="uid://do1v71p6a7qvn"]
 
 [ext_resource type="Script" uid="uid://71vror2fx8fq" path="res://Helden/Fighter/Skills/zerschmettern.gd" id="1_l76on"]
 [ext_resource type="Script" uid="uid://bls543nhpphod" path="res://Skills/Statuseffekte/BlockCounterEffekt.gd" id="2_455dc"]
 [ext_resource type="Texture2D" uid="uid://b4yey27cwdgc0" path="res://sprites/heroes/fighter/ZerschmetternBT.png" id="3_rl3fo"]
+=======
+[gd_scene load_steps=6 format=3 uid="uid://do1v71p6a7qvn"]
+
+[ext_resource type="Script" uid="uid://71vror2fx8fq" path="res://Helden/Fighter/Skills/zerschmettern.gd" id="1_l76on"]
+[ext_resource type="Script" uid="uid://bls543nhpphod" path="res://Skills/Statuseffekte/BlockCounterEffekt.gd" id="2_455dc"]
+[ext_resource type="Texture2D" uid="uid://cjn2dw1h7ffpu" path="res://sprites/20250607_1243_Mauszeiger-Schwert_simple_compose_01jx4zny8pedfb83jrjw52rkfw.png" id="3_rl3fo"]
+>>>>>>> f4383edf24f7d9d0683552dd61d46c90cb364497
 
 [sub_resource type="Resource" id="Resource_rl3fo"]
 script = ExtResource("2_455dc")
@@ -12,6 +20,8 @@ name = ""
 description = ""
 duration = 0
 metadata/_custom_type_script = "uid://bls543nhpphod"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0n85"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -25,9 +35,18 @@ caster_type = 1
 physical_damage = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zerschmettern"]
+shape = SubResource("RectangleShape2D_a0n85")
 
+<<<<<<< HEAD
 [node name="Sprite2D" type="TextureRect" parent="Zerschmettern"]
 texture = ExtResource("3_rl3fo")
+=======
+[node name="Image" type="TextureRect" parent="Zerschmettern"]
+custom_minimum_size = Vector2(200, 200)
+texture = ExtResource("3_rl3fo")
+expand_mode = 1
+stretch_mode = 5
+>>>>>>> f4383edf24f7d9d0683552dd61d46c90cb364497
 
 [node name="Label" type="Label" parent="Zerschmettern"]
 offset_right = 40.0

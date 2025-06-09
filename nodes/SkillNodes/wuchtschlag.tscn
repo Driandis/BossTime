@@ -19,10 +19,16 @@ physical_damage = 15
 position = Vector2(7.5, -2)
 shape = SubResource("RectangleShape2D_ynfqt")
 
-[node name="Sprite2D" type="Sprite2D" parent="Wuchtschlag"]
-position = Vector2(10.5, -6)
+[node name="Image" type="TextureRect" parent="Wuchtschlag"]
+custom_minimum_size = Vector2(200, 200)
+offset_left = 10.5
+offset_top = -6.0
+offset_right = 10.5
+offset_bottom = -6.0
 scale = Vector2(0.0908203, 0.0703125)
 texture = ExtResource("2_ynfqt")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="Wuchtschlag"]
 offset_left = -29.5
