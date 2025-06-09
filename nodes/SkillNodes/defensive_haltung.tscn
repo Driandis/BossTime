@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqlmrv6di003f"]
+[gd_scene load_steps=6 format=3 uid="uid://bqlmrv6di003f"]
 
 [ext_resource type="Script" uid="uid://dj4epnmldknfi" path="res://Helden/Fighter/Skills/defensive_haltung.gd" id="1_m520h"]
 [ext_resource type="Script" uid="uid://besw7vm05tg42" path="res://Skills/Effekte/BlockEffect.gd" id="2_yf1l5"]
+[ext_resource type="Texture2D" uid="uid://duquin2udv4cs" path="res://sprites/heroes/fighter/DefensiveHaltungBT.png" id="3_yf1l5"]
 
 [sub_resource type="Resource" id="Resource_qutyo"]
 script = ExtResource("2_yf1l5")
@@ -29,6 +30,7 @@ shape = SubResource("RectangleShape2D_m520h")
 
 [node name="Image" type="TextureRect" parent="Defensive Haltung"]
 custom_minimum_size = Vector2(200, 200)
+texture = ExtResource("3_yf1l5")
 expand_mode = 1
 stretch_mode = 5
 

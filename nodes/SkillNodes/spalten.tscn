@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d06doaq8wuqjx"]
+[gd_scene load_steps=6 format=3 uid="uid://d06doaq8wuqjx"]
 
 [ext_resource type="Script" uid="uid://daydnmqivctmf" path="res://Helden/Fighter/Skills/spalten.gd" id="1_wsocp"]
 [ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/Bleed.gd" id="2_hllch"]
+[ext_resource type="Texture2D" uid="uid://dbot8un1fwo4j" path="res://sprites/heroes/fighter/SpaltenBT.png" id="3_rnqw5"]
 
 [sub_resource type="Resource" id="Resource_rnqw5"]
 script = ExtResource("2_hllch")
@@ -30,6 +31,7 @@ shape = SubResource("RectangleShape2D_hllch")
 
 [node name="Image" type="TextureRect" parent="Spalten"]
 custom_minimum_size = Vector2(200, 200)
+texture = ExtResource("3_rnqw5")
 expand_mode = 1
 stretch_mode = 5
 

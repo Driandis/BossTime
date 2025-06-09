@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://px3njp0jvoad"]
+[gd_scene load_steps=6 format=3 uid="uid://px3njp0jvoad"]
 
 [ext_resource type="Script" uid="uid://c6uluilv5gjvb" path="res://Helden/Fighter/Skills/stoßen.gd" id="1_kgid0"]
 [ext_resource type="Script" uid="uid://iif7huo4muvn" path="res://Skills/Statuseffekte/Weakend.gd" id="2_lq2x8"]
+[ext_resource type="Texture2D" uid="uid://bjdn0eg6868f6" path="res://sprites/heroes/fighter/StoßenBT.png" id="3_28haw"]
 
 [sub_resource type="Resource" id="Resource_28haw"]
 script = ExtResource("2_lq2x8")
@@ -27,6 +28,7 @@ shape = SubResource("RectangleShape2D_lq2x8")
 
 [node name="Image" type="TextureRect" parent="Stoßen"]
 custom_minimum_size = Vector2(200, 200)
+texture = ExtResource("3_28haw")
 expand_mode = 1
 stretch_mode = 5
 
