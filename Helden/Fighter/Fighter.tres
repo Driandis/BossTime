@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroData" load_steps=8 format=3 uid="uid://cpxhylka35mcx"]
+[gd_resource type="Resource" script_class="HeroData" load_steps=9 format=3 uid="uid://cpxhylka35mcx"]
 
 [ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_bcmtd"]
 [ext_resource type="Resource" uid="uid://b0pt0wr7tkcfd" path="res://Weapons/Fighter/TwoHandSword.tres" id="1_mqpks"]
@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://3sv1iv1mnef3" path="res://nodes/SkillNodes/Spalten.tscn" id="5_at2yd"]
 [ext_resource type="PackedScene" uid="uid://cmshs8sh5j4gs" path="res://nodes/SkillNodes/Zerschmettern.tscn" id="6_tifnu"]
 [ext_resource type="PackedScene" uid="uid://ddb5717e4f2qm" path="res://nodes/SkillNodes/Stoßen.tscn" id="7_66div"]
+[ext_resource type="PackedScene" uid="uid://bbkyunsfstwuv" path="res://nodes/SkillNodes/DefensiveHaltung.tscn" id="7_at2yd"]
 
 [resource]
 script = ExtResource("1_bcmtd")
 name = "Manni"
-skills = Array[PackedScene]([ExtResource("4_yfqer"), ExtResource("5_at2yd"), ExtResource("6_tifnu"), ExtResource("7_66div")])
+skills = Array[PackedScene]([ExtResource("4_yfqer"), ExtResource("5_at2yd"), ExtResource("6_tifnu"), ExtResource("7_at2yd"), ExtResource("7_66div")])
 max_health = 180
 hero_texture = ExtResource("2_mqpks")
 playerBlock = 0
