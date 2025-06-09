@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqlmrv6di003f"]
+[gd_scene load_steps=5 format=3 uid="uid://bqlmrv6di003f"]
 
 [ext_resource type="Script" uid="uid://dj4epnmldknfi" path="res://Helden/Fighter/Skills/defensive_haltung.gd" id="1_m520h"]
 [ext_resource type="Script" uid="uid://besw7vm05tg42" path="res://Skills/Effekte/BlockEffect.gd" id="2_yf1l5"]
@@ -9,6 +9,8 @@ name = ""
 description = ""
 duration = 0
 metadata/_custom_type_script = "uid://besw7vm05tg42"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m520h"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -23,8 +25,12 @@ caster_type = 1
 apply_effect_to_caster = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Defensive Haltung"]
+shape = SubResource("RectangleShape2D_m520h")
 
-[node name="Sprite2D" type="Sprite2D" parent="Defensive Haltung"]
+[node name="Image" type="TextureRect" parent="Defensive Haltung"]
+custom_minimum_size = Vector2(200, 200)
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="Defensive Haltung"]
 offset_right = 40.0

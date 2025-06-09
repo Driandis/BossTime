@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://px3njp0jvoad"]
+[gd_scene load_steps=5 format=3 uid="uid://px3njp0jvoad"]
 
 [ext_resource type="Script" uid="uid://c6uluilv5gjvb" path="res://Helden/Fighter/Skills/stoßen.gd" id="1_kgid0"]
 [ext_resource type="Script" uid="uid://iif7huo4muvn" path="res://Skills/Statuseffekte/Weakend.gd" id="2_lq2x8"]
@@ -9,6 +9,8 @@ name = ""
 description = ""
 duration = 0
 metadata/_custom_type_script = "uid://iif7huo4muvn"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lq2x8"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -21,8 +23,12 @@ caster_type = 1
 physical_damage = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stoßen"]
+shape = SubResource("RectangleShape2D_lq2x8")
 
-[node name="Sprite2D" type="Sprite2D" parent="Stoßen"]
+[node name="Image" type="TextureRect" parent="Stoßen"]
+custom_minimum_size = Vector2(200, 200)
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="Stoßen"]
 offset_right = 40.0

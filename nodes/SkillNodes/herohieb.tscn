@@ -17,10 +17,14 @@ physical_damage = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeroHieb"]
 shape = SubResource("RectangleShape2D_f7i6s")
 
-[node name="Sprite2D" type="Sprite2D" parent="HeroHieb"]
-position = Vector2(0, 4.00003)
+[node name="Image" type="TextureRect" parent="HeroHieb"]
+custom_minimum_size = Vector2(200, 200)
+offset_top = 4.00003
+offset_bottom = 4.00003
 scale = Vector2(0.241113, 0.174219)
 texture = ExtResource("2_52u3m")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="HeroHieb"]
 offset_right = 40.0
