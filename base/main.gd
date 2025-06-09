@@ -4,7 +4,6 @@ extends Node
 signal press
 signal confirm
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 @onready var player = $Player #damit wir auf alles aus dem Player Node zugreifen können
 @onready var boss = $Boss #damit wir auf alles aus dem Boss Node zugreifen können
 
@@ -74,7 +73,6 @@ func input(event: InputEvent) -> void: #von Beginn an von Maxi da
 			var damage = RandomNumberGenerator.new();
 			press.emit();
 
-
 func _on_player_dead() -> void:
 	$GameOver.visible = true;
 
@@ -83,27 +81,22 @@ func _on_boss_died():
 	GlobalVariables.current_fight +=1
 	print("Nächster Kampf: Kampf Nummer ", GlobalVariables.current_fight)
 
-
 func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf gedrückt wird
 		print("Turn ",GlobalVariables.current_round)
 		print("Mini-Turn ",GlobalVariables.current_turn)
 		for area in get_tree().get_nodes_in_group("Skill"): #cooldown reduzieren
 			area.tick_cooldown()
 		
-		#Skills des Spielers
+	#Zug des Spielers
 		player.take_turn()
 		await get_tree().create_timer(0.5).timeout 
-		if GlobalVariables.bossHealth >= 0:
-					#Zug des Boss
-			boss.take_turn()
-
 		if is_instance_valid(player):
 			player.on_turn_ended()
-#			print("Spieler: on_turn_ended aufgerufen.")
-
+	#Zug des Boss
+		if GlobalVariables.bossHealth >= 0:
+			boss.take_turn()
 		if is_instance_valid(boss):
 			boss.on_turn_ended()
-#			print("Boss: on_turn_ended aufgerufen.") # Stelle sicher, dass dies passiert!
 
 	# Nächster Slot vorbereiten
 		GlobalVariables.current_slot += 1	#Slotzahl erhöhen für die nächste Runde
@@ -113,11 +106,10 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		GlobalVariables.current_turn += 1
 		if GlobalVariables.current_turn % 3 == 0 and GlobalVariables.current_turn>0:
 			GlobalVariables.current_round += 1
-			#boss.load_skills_for_turn()
+
 func _on_button_pressed() -> void:
 		$GameOver.visible = false;
 		GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;
-		#GlobalVariables.bossHealth = GlobalVariables.bossMaxHealth;
 
 @onready var loot_manager: LootManager = $LootManager
 func _on_win_pressed() -> void:
@@ -133,5 +125,3 @@ func _on_autobattle_pressed() -> void:
 	_on_turn_counter_pressed()
 	await get_tree().create_timer(0.5).timeout 
 	_on_turn_counter_pressed()
-
-	pass # Replace with function body.

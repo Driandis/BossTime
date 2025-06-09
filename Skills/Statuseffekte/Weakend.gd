@@ -1,4 +1,4 @@
-class_name Weakend
+class_name WeakenPlayer
 extends StatusEffect
 
 
@@ -14,7 +14,7 @@ func modify_incoming_damage(physical_dmg: float, magic_dmg: float) -> Dictionary
 			var effect_target_node = effect_data.target # Hole das Ziel, auf das der Effekt wirkt
 		# Überprüfe, ob es eine Instanz von BurnStatusEffect ist
 		# und ob es tatsächlich auf den Boss wirkt (falls effect_target_node vorhanden ist und geprüft werden muss)
-			if effect_instance is Weakend and is_instance_valid(effect_instance):
+			if effect_instance is WeakenPlayer and is_instance_valid(effect_instance):
 				print("Boss wurde als weakend erkannt.")				
 				result_p= physical_dmg - damage_debuff
 				result_m= magic_dmg - damage_debuff

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b84addqgr56i6"]
+[gd_scene load_steps=7 format=3 uid="uid://b84addqgr56i6"]
 
 [ext_resource type="Script" uid="uid://bhauku0q2ty4h" path="res://controls/boss_selection.gd" id="1_vx0fa"]
 [ext_resource type="Texture2D" uid="uid://b1syvj2plvdoi" path="res://sprites/boss/ChatGPT Image 29. Apr. 2025, 10_55_25.png" id="2_vx0fa"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://nuw6x3vh1l2d" path="res://sprites/heroes/firemage/ChatGPT Image 27. Apr. 2025, 18_15_32.png" id="4_q3l6o"]
 [ext_resource type="Script" uid="uid://d0tio686tnbku" path="res://controls/Pyromancerbutton.gd" id="4_qarfj"]
 [ext_resource type="Texture2D" uid="uid://sydnsygj4lac" path="res://sprites/boss/Pyromance/Magiebegabter mit leuchtender Kugel.png" id="4_sok70"]
-[ext_resource type="AudioStream" uid="uid://cafdhd2fmjm7l" path="res://Sounds/Firemage/fireball_sound_effect_tuba.wav" id="5_q3l6o"]
 
 [node name="BossSelection" type="Node2D"]
 script = ExtResource("1_vx0fa")
@@ -30,11 +29,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 icon = ExtResource("4_sok70")
 script = ExtResource("4_qarfj")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Auswahlobjekte/Pyromancer"]
-stream = ExtResource("5_q3l6o")
-pitch_scale = 0.5
-max_polyphony = 3
 
 [node name="Überschrift" type="Label" parent="."]
 offset_left = 395.0

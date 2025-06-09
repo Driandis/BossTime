@@ -1,7 +1,6 @@
 extends Area2D
 class_name Skill
 
-#var damage: int	
 var current_cd: int = 0
 var boss = null
 var player = null
@@ -86,12 +85,10 @@ func _ready():
 	# Ein Wert wie 10 oder 100 ist oft ausreichend, aber wähle ihn basierend auf deinen anderen Elementen.
 	z_index = 100 
 func _on_mouse_entered():
-	#var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")  # Mauszeiger löst Skillerklärung aus
 	TooltipManager.show_tooltip(self, get_global_mouse_position())
 
 #verschwindet wieder, wenn die Maus weg ist
 func _on_mouse_exited():
-	#var tooltip = get_tree().get_root().get_node("Main/SkillTooltip")
 	TooltipManager.hide_description()
 	
 func is_ready() -> bool:
@@ -119,7 +116,7 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 	if skill_sound !=null:
 		skill_sound.play()
 		printerr("Skillsound abgespielt")
-	if caster != null and target != null: #and effect != null:
+	if caster != null and target != null: 
 		use()	#Spezifische Effekte (zB Heal) des Skills anwenden
 		if effect != null:
 			print("Versuche Effekt anzuwenden...")
@@ -127,12 +124,8 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 			if effect_instance != null:
 				if apply_effect_to_target and target.has_method("apply_status_effect"):
 					target.apply_status_effect(effect_instance, target, caster)
-					#effect_instance._init(target, caster)
-					#print(name, " hat Statuseffekt ", effect_instance.name, " auf ", target.name, " angewendet.")
 				if apply_effect_to_caster and caster.has_method("apply_status_effect"):
 					caster.apply_status_effect(effect_instance,target, caster)
-					#effect_instance._init(target, caster)
-					#print(name, " hat Statuseffekt ", effect_instance.name, " auf ", caster.name, " angewendet.")
 			else:
 				push_warning("Die zugewiesene Ressource ist kein gültiger StatusEffect für Skill " + name)
 	else:
@@ -145,25 +138,9 @@ func _run_effect(feldmultiplier := 1.0) -> void:
 				physical_damage,
 				magic_damage
 		)
-		# Hier wird der Caster als Angreifer an die damage-Funktion übergeben
-			print_debug()
 			target.damage(final_damage_values["physic"], final_damage_values["magic"], caster)
 		else:
-		# Fallback, falls der Caster keine apply_attack_modifiers Methode hat
-		# Hier müsstest du entscheiden, wie der Schaden berechnet wird
-		# und dann den Caster als Angreifer übergeben.
-		# Beispiel: target.damage(physical_damage, magic_damage, caster)
 			push_warning("Caster hat keine 'apply_attack_modifiers' Methode für Skill " + name)
-
-
-
-#		if caster.has_method("apply_attack_modifiers"):	#Schadensmultiplikatoren anwende (ALLE)
-#			var final_damage_values = {"physic": physical_damage, "magic":magic_damage}
-#			final_damage_values = caster.apply_attack_modifiers(
-#				physical_damage,
-#				magic_damage
-#			)
-#			target.damage(final_damage_values["physic"], final_damage_values["magic"])
 
 		use_end()
 	else:

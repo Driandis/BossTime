@@ -1,18 +1,17 @@
-[gd_resource type="Resource" script_class="HeroData" load_steps=9 format=3 uid="uid://cpxhylka35mcx"]
+[gd_resource type="Resource" script_class="HeroData" load_steps=8 format=3 uid="uid://cpxhylka35mcx"]
 
 [ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_bcmtd"]
 [ext_resource type="Resource" uid="uid://b0pt0wr7tkcfd" path="res://Weapons/Fighter/TwoHandSword.tres" id="1_mqpks"]
 [ext_resource type="Texture2D" uid="uid://3y4s1as6yxgn" path="res://sprites/heroes/fighter/20250607_1520_Knight in Combat Stance_remix_01jx58pjamfe3s7z8ecfdnrmhw.png" id="2_mqpks"]
-[ext_resource type="PackedScene" uid="uid://4d5rwxh732jy" path="res://nodes/SkillNodes/herohieb.tscn" id="4_at2yd"]
-[ext_resource type="PackedScene" uid="uid://d06doaq8wuqjx" path="res://nodes/SkillNodes/spalten.tscn" id="5_tifnu"]
-[ext_resource type="PackedScene" path="res://nodes/SkillNodes/zerschmettern.tscn" id="6_66div"]
-[ext_resource type="PackedScene" uid="uid://bqlmrv6di003f" path="res://nodes/SkillNodes/defensive_haltung.tscn" id="7_65l7j"]
-[ext_resource type="PackedScene" uid="uid://px3njp0jvoad" path="res://nodes/SkillNodes/stoßen.tscn" id="8_wo3op"]
+[ext_resource type="PackedScene" uid="uid://bvommc4m8qynh" path="res://nodes/SkillNodes/herohieb.tscn" id="4_at2yd"]
+[ext_resource type="PackedScene" uid="uid://3sv1iv1mnef3" path="res://nodes/SkillNodes/spalten.tscn" id="5_tifnu"]
+[ext_resource type="PackedScene" uid="uid://cmshs8sh5j4gs" path="res://nodes/SkillNodes/zerschmettern.tscn" id="6_66div"]
+[ext_resource type="PackedScene" uid="uid://ddb5717e4f2qm" path="res://nodes/SkillNodes/stoßen.tscn" id="8_wo3op"]
 
 [resource]
 script = ExtResource("1_bcmtd")
 name = "Manni"
-skills = Array[PackedScene]([ExtResource("4_at2yd"), ExtResource("5_tifnu"), ExtResource("6_66div"), ExtResource("7_65l7j"), ExtResource("8_wo3op")])
+skills = Array[PackedScene]([ExtResource("4_at2yd"), ExtResource("5_tifnu"), ExtResource("6_66div"), ExtResource("8_wo3op")])
 max_health = 180
 hero_texture = ExtResource("2_mqpks")
 playerBlock = 0
