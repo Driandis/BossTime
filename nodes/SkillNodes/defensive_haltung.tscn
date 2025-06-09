@@ -12,6 +12,7 @@ duration = 0
 metadata/_custom_type_script = "uid://besw7vm05tg42"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m520h"]
+size = Vector2(79, 79)
 
 [node name="Node2D2" type="Node2D"]
 
@@ -26,10 +27,11 @@ caster_type = 1
 apply_effect_to_caster = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Defensive Haltung"]
+position = Vector2(39.5, 39.5)
 shape = SubResource("RectangleShape2D_m520h")
 
 [node name="Image" type="TextureRect" parent="Defensive Haltung"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(80, 80)
 texture = ExtResource("3_yf1l5")
 expand_mode = 1
 stretch_mode = 5
@@ -39,8 +41,10 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="CooldownBar" type="ProgressBar" parent="Defensive Haltung"]
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 40.0
+offset_top = 1.0
+offset_right = 44.0
+offset_bottom = 28.0
 
 [node name="CooldownText" type="Label" parent="Defensive Haltung/CooldownBar"]
 layout_mode = 0
