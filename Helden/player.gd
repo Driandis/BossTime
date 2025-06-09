@@ -261,21 +261,17 @@ func blink_red():
 		# Wenn ein alter Tween läuft, beende ihn zuerst
 	if hit_tween != null and hit_tween.is_valid():
 		hit_tween.kill() # Beendet vorherige Tweens sofort
-# Erstelle einen NEUEN Tween
-	# Man kann create_tween() auf jedem Node aufrufen, um den Tween an diesen Node zu binden.
-	# Wenn der Node aus der Szene entfernt wird, wird auch der Tween gekillt.
+
 	hit_tween = create_tween()
-	# Setze die Startfarbe auf Rot
-	# Setze flash_amount auf 1.0 (vollständig rot) sofort
-	# Greife auf den Shader-Parameter über sprite.material zu
 	sprite.material.set_shader_parameter("flash_amount", 0.6)
 	# Optional: Setze die Farbe des Blitzes, falls du sie dynamisch ändern möchtest
 	sprite.material.set_shader_parameter("flash_color", Color(1.0, 0.0, 0.0, 1.0)) # Reines Rot
 
-	# Tween flash_amount von 1.0 (voll rot) zurück auf 0.0 (normal) über 0.2 Sekunden
+	# Tween flash_amount von 1.0 (voll rot) zurück auf 0.0 (normal) über 0.5 Sekunden
 	hit_tween.tween_property(sprite.material, "shader_parameter/flash_amount", 0.0, 0.5)
  	# Tween die modulate-Eigenschaft des Sprites von Rot zu Weiß über 0.2 Sekunden
-	hit_tween.tween_property(sprite, "modulate", Color(1, 1, 1, 1), 0.2)
+	hit_tween.tween_property(sprite, "modulate", Color(1, 1, 1, 1), 0.5)
+	
 func _on_game_over_button_pressed() -> void:
 	GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;
 	$HealthBar.value = GlobalVariables.playerHealth;
