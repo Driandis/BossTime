@@ -9,7 +9,7 @@ class_name HeroData
 @export var playerArmor: int
 @export var playerMagicRes: int
 @export var equipped_weapon: WeaponData
-	
+
 func get_description() -> String:
 	var hero_description_text = ""
 	hero_description_text += "Name: " + name + "\n" # Greife direkt auf 'name' zu

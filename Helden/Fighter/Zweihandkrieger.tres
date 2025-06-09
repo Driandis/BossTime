@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HeroData" load_steps=2 format=3 uid="uid://cvehdjokkd6vu"]
+
+[ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_2gvhl"]
+
+[resource]
+script = ExtResource("1_2gvhl")
+name = ""
+skills = Array[PackedScene]([])
+max_health = 0
+playerBlock = 0
+playerArmor = 0
+playerMagicRes = 0
+metadata/_custom_type_script = "uid://bl6bchsjiiq8e"

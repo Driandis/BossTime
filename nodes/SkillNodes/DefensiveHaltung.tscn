@@ -23,6 +23,7 @@ script = ExtResource("1_4wgs0")
 skill_name = "Defensive Haltung"
 effect = SubResource("Resource_pmjyd")
 target_type = 1
+cooldown = 5
 caster_type = 1
 apply_effect_to_caster = true
 apply_effect_to_target = false
