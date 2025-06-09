@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d2rxckq0fslub"]
 
 [ext_resource type="Script" uid="uid://d0uf6kt2h32sv" path="res://bosses/Barbarianking/Skills/Ansturm.gd" id="1_f316p"]
-[ext_resource type="Script" uid="uid://iif7huo4muvn" path="res://Skills/Statuseffekte/Weakend.gd" id="2_ojxlj"]
+[ext_resource type="Script" uid="uid://iif7huo4muvn" path="res://Skills/Statuseffekte/WeakenPlayer.gd" id="2_ojxlj"]
 [ext_resource type="Texture2D" uid="uid://d0731ukqohnnb" path="res://sprites/EffectIcon/20250528_1539_Game Weakness Icon_simple_compose_01jwbhtkctefvr9h96x0hn3xd4.png" id="2_xd2nd"]
 [ext_resource type="Texture2D" uid="uid://dwmxfuov5720w" path="res://sprites/boss/Barbarianking/20250529_2000_Mittelalterliche Belagerungskunst_simple_compose_01jwek4hy2e1eawrf9g23n9hgh.png" id="4_ojxlj"]
 

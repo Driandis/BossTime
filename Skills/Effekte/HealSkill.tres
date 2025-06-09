@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="HealEffect" load_steps=2 format=3 uid="uid://d0mluixpgb28y"]
-
-[ext_resource type="Script" uid="uid://ds86te2b23mgl" path="res://Skills/Effekte/HealEffect.gd" id="1_y8k74"]
-
-[resource]
-script = ExtResource("1_y8k74")
-metadata/_custom_type_script = "uid://ds86te2b23mgl"
