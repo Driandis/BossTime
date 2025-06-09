@@ -66,6 +66,7 @@ offset_bottom = -14.0
 
 [node name="Win" type="Button" parent="."]
 visible = false
+z_index = 2000
 offset_left = 418.0
 offset_top = 176.0
 offset_right = 1962.0

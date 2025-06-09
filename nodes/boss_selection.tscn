@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dqgyvg671o5at" path="res://controls/barbariankingbutton.gd" id="3_qarfj"]
 [ext_resource type="Texture2D" uid="uid://nuw6x3vh1l2d" path="res://sprites/heroes/firemage/ChatGPT Image 27. Apr. 2025, 18_15_32.png" id="4_q3l6o"]
 [ext_resource type="Script" uid="uid://d0tio686tnbku" path="res://controls/Pyromancerbutton.gd" id="4_qarfj"]
-[ext_resource type="Texture2D" uid="uid://ws6qonrb4x21" path="res://sprites/boss/ChatGPT Image 7. Juni 2025, 14_15_05.png" id="4_sok70"]
+[ext_resource type="Texture2D" uid="uid://sydnsygj4lac" path="res://sprites/boss/Pyromance/Magiebegabter mit leuchtender Kugel.png" id="4_sok70"]
 [ext_resource type="AudioStream" uid="uid://cafdhd2fmjm7l" path="res://Sounds/Firemage/fireball_sound_effect_tuba.wav" id="5_q3l6o"]
 
 [node name="BossSelection" type="Node2D"]
