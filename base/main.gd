@@ -8,18 +8,6 @@ signal confirm
 @onready var player = $Player #damit wir auf alles aus dem Player Node zugreifen können
 @onready var boss = $Boss #damit wir auf alles aus dem Boss Node zugreifen können
 
-#Felder importieren für die Abarbeitung der Slots später
-#@onready var player_slots = [
-#	$Felder/Feld1,
-#	$Felder/Feld2,
-#	$Felder/Feld3
-#]
-#neu im Bossskript
-#@onready var boss_slots = [
-#	$Boss/BossFelder/Boss/BossFeld1,
-#	$Boss/BossFelder/Boss/BossFeld2,
-#	$Boss/BossFelder/Boss/BossFeld3
-#]
 @export var custom_cursor_texture: Texture2D = preload("res://sprites/rsz_120250607_1250_blutiger_mauszeiger_simple_compose_01jx5065dmfva897p1kv2w2yte.png")
 
 func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich noch nicht ganz
@@ -90,11 +78,6 @@ func input(event: InputEvent) -> void: #von Beginn an von Maxi da
 func _on_player_dead() -> void:
 	$GameOver.visible = true;
 
-#func get_skill_from_slot(slot: Node) -> Skill: #soll glaube den richtigen Skill holen aus dem Slot
-#			for child in slot.get_children():
-#				if child is Skill:
-#					return child
-#			return null
 func _on_boss_died():
 	$Win.visible = true
 	GlobalVariables.current_fight +=1
@@ -107,21 +90,13 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		for area in get_tree().get_nodes_in_group("Skill"): #cooldown reduzieren
 			area.tick_cooldown()
 		
-		#Felder und Effekt der Skills
-		#var player_slots = $Felder/Player.get_children()	#für das Abarbeiten der entsprechenden Felder
-		#var boss_slots = $Felder/Boss.get_children()
-		#var felder = get_node("Felder").get_children()	#notwendig?
-		
-		
 		#Skills des Spielers
 		player.take_turn()
-		#await get_tree().create_timer(1).timeout 
+		await get_tree().create_timer(0.5).timeout 
 		if GlobalVariables.bossHealth >= 0:
 					#Zug des Boss
 			boss.take_turn()
-		
-		#player.on_turn_ended()
-		#boss.on_turn_ended()
+
 		if is_instance_valid(player):
 			player.on_turn_ended()
 #			print("Spieler: on_turn_ended aufgerufen.")
@@ -158,13 +133,5 @@ func _on_autobattle_pressed() -> void:
 	_on_turn_counter_pressed()
 	await get_tree().create_timer(0.5).timeout 
 	_on_turn_counter_pressed()
-	#Player.
-	#	for slot in player	().get_nodes_in_group("Felder"):	#Die Felder sind jetzt slots
-	#	if global_position.distance_to(slot.global_position) < 50:	#Distanz zum Einrasten
-	#		if previous_slot != null and previous_slot != slot and is_a_parent(previous_slot):# Vorherigen Slot aufräumen (falls Skill rausgezogen wurde)
-	#			previous_slot.remove_child(self)
-	#		if is_a_parent(get_parent()):
-	#			get_parent().remove_child(self)	
-	#		slot.add_child(self)
-	#		global_position = slot.global_position
+
 	pass # Replace with function body.
