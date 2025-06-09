@@ -1,40 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://4d5rwxh732jy"]
+[gd_scene load_steps=5 format=3 uid="uid://bvommc4m8qynh"]
 
-[ext_resource type="Script" uid="uid://baoxvox533fet" path="res://Helden/Fighter/Skills/hero_hieb.gd" id="1_4intq"]
-[ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_52u3m"]
+[ext_resource type="Script" uid="uid://baoxvox533fet" path="res://Helden/Fighter/Skills/hero_hieb.gd" id="1_ffh1x"]
+[ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_0p7st"]
+[ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_l2iop"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7i6s"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
+size = Vector2(90, 68)
 
-[node name="Node2D" type="Node2D"]
+[node name="Area2D" type="Node2D"]
 
 [node name="HeroHieb" type="Area2D" parent="."]
-script = ExtResource("1_4intq")
-skill_name = "Herohieb"
+position = Vector2(-3, 64)
+script = ExtResource("1_ffh1x")
+skill_name = "HeroHieb"
 cooldown = 3
 caster_type = 1
 physical_damage = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeroHieb"]
-shape = SubResource("RectangleShape2D_f7i6s")
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_p5q08")
 
 [node name="Image" type="TextureRect" parent="HeroHieb"]
 custom_minimum_size = Vector2(200, 200)
-offset_top = 4.00003
-offset_bottom = 4.00003
-scale = Vector2(0.241113, 0.174219)
-texture = ExtResource("2_52u3m")
+offset_left = -38.0
+offset_top = -39.0
+offset_right = 562.0
+offset_bottom = 561.0
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("2_0p7st")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="HeroHieb"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Feuerball"
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="HeroHieb"]
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownText" type="Label" parent="HeroHieb/CooldownBar"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="HeroHieb"]
+stream = ExtResource("3_l2iop")
+pitch_scale = 0.5
+max_polyphony = 3

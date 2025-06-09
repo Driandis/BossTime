@@ -1,48 +1,77 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqlmrv6di003f"]
+[gd_scene load_steps=7 format=3 uid="uid://bt8jpml8sjgst"]
 
-[ext_resource type="Script" uid="uid://dj4epnmldknfi" path="res://Helden/Fighter/Skills/defensive_haltung.gd" id="1_m520h"]
-[ext_resource type="Script" uid="uid://besw7vm05tg42" path="res://Skills/Effekte/BlockEffect.gd" id="2_yf1l5"]
-[ext_resource type="Texture2D" uid="uid://duquin2udv4cs" path="res://sprites/heroes/fighter/DefensiveHaltungBT.png" id="3_yf1l5"]
+[ext_resource type="Script" uid="uid://dj4epnmldknfi" path="res://Helden/Fighter/Skills/defensive_haltung.gd" id="1_qbmnp"]
+[ext_resource type="Script" uid="uid://besw7vm05tg42" path="res://Skills/Effekte/BlockEffect.gd" id="2_fc8gx"]
+[ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_fc8gx"]
+[ext_resource type="Texture2D" uid="uid://duquin2udv4cs" path="res://sprites/heroes/fighter/DefensiveHaltungBT.png" id="3_nopwo"]
 
-[sub_resource type="Resource" id="Resource_qutyo"]
-script = ExtResource("2_yf1l5")
+[sub_resource type="Resource" id="Resource_ygqno"]
+script = ExtResource("2_fc8gx")
 name = ""
 description = ""
 duration = 0
 metadata/_custom_type_script = "uid://besw7vm05tg42"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m520h"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
+size = Vector2(90, 68)
 
-[node name="Node2D2" type="Node2D"]
+[node name="Area2D" type="Node2D"]
 
 [node name="Defensive Haltung" type="Area2D" parent="."]
-script = ExtResource("1_m520h")
+position = Vector2(-3, 64)
+script = ExtResource("1_qbmnp")
 skill_name = "Defensive Haltung"
-effect = SubResource("Resource_qutyo")
-effect_value = 10.0
+effect = SubResource("Resource_ygqno")
 target_type = 1
 cooldown = 5
 caster_type = 1
 apply_effect_to_caster = true
+apply_effect_to_target = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Defensive Haltung"]
-shape = SubResource("RectangleShape2D_m520h")
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_p5q08")
 
 [node name="Image" type="TextureRect" parent="Defensive Haltung"]
 custom_minimum_size = Vector2(200, 200)
-texture = ExtResource("3_yf1l5")
+offset_left = -38.0
+offset_top = -39.0
+offset_right = 562.0
+offset_bottom = 561.0
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("3_nopwo")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Defensive Haltung"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Feuerball"
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Defensive Haltung"]
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownText" type="Label" parent="Defensive Haltung/CooldownBar"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Defensive Haltung"]
+stream = ExtResource("3_fc8gx")
+pitch_scale = 0.5
+max_polyphony = 3

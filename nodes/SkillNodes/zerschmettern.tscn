@@ -1,35 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd3n8k8us0flv"]
+[gd_scene load_steps=5 format=3 uid="uid://cmshs8sh5j4gs"]
 
-[ext_resource type="Script" uid="uid://dfvqysxjwe687" path="res://Helden/Fighter/Skills/zerschmettern.gd" id="1_455dc"]
-[ext_resource type="Texture2D" uid="uid://b4yey27cwdgc0" path="res://sprites/heroes/fighter/ZerschmetternBT.png" id="2_rl3fo"]
+[ext_resource type="Script" uid="uid://dfvqysxjwe687" path="res://Helden/Fighter/Skills/zerschmettern.gd" id="1_mwuw3"]
+[ext_resource type="Texture2D" uid="uid://b4yey27cwdgc0" path="res://sprites/heroes/fighter/ZerschmetternBT.png" id="2_mwuw3"]
+[ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_pralg"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
+size = Vector2(90, 68)
+
+[node name="Area2D" type="Node2D"]
 
 [node name="Zerschmettern" type="Area2D" parent="."]
-script = ExtResource("1_455dc")
+position = Vector2(-3, 64)
+script = ExtResource("1_mwuw3")
 skill_name = "Zerschmettern"
-effect_value = 5.0
 cooldown = 5
 caster_type = 1
 physical_damage = 3
 apply_effect_to_target = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zerschmettern"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_p5q08")
 
-[node name="TextureRect" type="TextureRect" parent="Zerschmettern"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_rl3fo")
+[node name="Image" type="TextureRect" parent="Zerschmettern"]
+custom_minimum_size = Vector2(200, 200)
+offset_left = -38.0
+offset_top = -39.0
+offset_right = 562.0
+offset_bottom = 561.0
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("2_mwuw3")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Zerschmettern"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Feuerball"
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Zerschmettern"]
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="CooldownText" type="Label" parent="Zerschmettern/CooldownBar"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Zerschmettern"]
+stream = ExtResource("3_pralg")
+pitch_scale = 0.5
+max_polyphony = 3
