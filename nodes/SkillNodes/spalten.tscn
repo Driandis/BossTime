@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://d06doaq8wuqjx"]
+
+[ext_resource type="Script" uid="uid://daydnmqivctmf" path="res://Helden/Fighter/Skills/spalten.gd" id="1_wsocp"]
+[ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/Bleed.gd" id="2_hllch"]
+
+[sub_resource type="Resource" id="Resource_rnqw5"]
+script = ExtResource("2_hllch")
+name = ""
+description = ""
+duration = 0
+metadata/_custom_type_script = "uid://bwce05of5kkrk"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Spalten" type="Area2D" parent="."]
+script = ExtResource("1_wsocp")
+skill_name = "Spalten"
+effect = SubResource("Resource_rnqw5")
+effect_value = null
+cooldown = 3
+caster_type = 1
+physical_damage = 5
+magic_damage = null
+apply_effect_to_caster = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spalten"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Spalten"]
+
+[node name="Label" type="Label" parent="Spalten"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CooldownBar" type="ProgressBar" parent="Spalten"]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="CooldownText" type="Label" parent="Spalten/CooldownBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
