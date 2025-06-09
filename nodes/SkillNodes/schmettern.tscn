@@ -20,12 +20,11 @@ position = Vector2(7.5, -2)
 shape = SubResource("RectangleShape2D_fgt1c")
 
 [node name="Image" type="TextureRect" parent="Schmettern"]
-custom_minimum_size = Vector2(200, 200)
-offset_left = 10.5
-offset_top = -6.0
-offset_right = 10.5
-offset_bottom = -6.0
-scale = Vector2(0.0908203, 0.0703125)
+custom_minimum_size = Vector2(80, 80)
+offset_left = -33.0
+offset_top = -35.0
+offset_right = 47.0
+offset_bottom = 45.0
 texture = ExtResource("2_0tf4i")
 expand_mode = 1
 stretch_mode = 5

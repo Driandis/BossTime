@@ -22,7 +22,7 @@ position = Vector2(7.5, -2)
 shape = SubResource("RectangleShape2D_b85x0")
 
 [node name="Image" type="TextureRect" parent="Hieb"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(80, 80)
 offset_left = 10.5
 offset_top = -6.0
 offset_right = 10.5

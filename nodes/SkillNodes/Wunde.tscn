@@ -31,12 +31,11 @@ position = Vector2(7.5, -2)
 shape = SubResource("RectangleShape2D_n076a")
 
 [node name="Image" type="TextureRect" parent="Wunde"]
-custom_minimum_size = Vector2(200, 200)
-offset_left = 10.5
-offset_top = -6.0
-offset_right = 10.5
-offset_bottom = -6.0
-scale = Vector2(0.0908203, 0.0703125)
+custom_minimum_size = Vector2(80, 80)
+offset_left = -39.0
+offset_top = -46.0
+offset_right = 41.0
+offset_bottom = 34.0
 texture = ExtResource("2_saunh")
 expand_mode = 1
 stretch_mode = 5
