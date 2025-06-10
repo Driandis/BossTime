@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhoq7nkwwr65g"]
+
+[ext_resource type="Script" uid="uid://c6flwum5vl0ri" path="res://bosses/Pyromancer/feuerwirbel.gd" id="1_ix8uq"]
+[ext_resource type="Texture2D" uid="uid://d3u31adv7xhpo" path="res://sprites/boss/Pyromance/20250610_1858_Feuerwirbel_simple_compose_01jxdcbm3eenvvf5st6ncwqymc.png" id="2_ix8uq"]
+[ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="5_bkghp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64mly"]
+size = Vector2(90, 68)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Feuerwirbel" type="Area2D" parent="."]
+position = Vector2(-3, 64)
+script = ExtResource("1_ix8uq")
+skill_name = "Feuerwirbel"
+target_type = 1
+magic_damage = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Feuerwirbel"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_64mly")
+
+[node name="Image" type="TextureRect" parent="Feuerwirbel"]
+custom_minimum_size = Vector2(80, 80)
+offset_left = -37.0
+offset_top = -51.0
+offset_right = 43.0
+offset_bottom = 29.0
+texture = ExtResource("2_ix8uq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Feuerwirbel"]
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Feuerwirbel"
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Feuerwirbel"]
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Feuerwirbel/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Feuerwirbel"]
+stream = ExtResource("5_bkghp")
+pitch_scale = 0.5
+max_polyphony = 3

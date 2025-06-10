@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://b55fcv71toxgv"]
+
+[ext_resource type="Script" uid="uid://d0qg43k4tvc8r" path="res://bosses/Pyromancer/explosion.gd" id="1_yh640"]
+[ext_resource type="Texture2D" uid="uid://txrfdavt7g0q" path="res://sprites/boss/Pyromance/20250610_1828_Gefährlicher Funke_simple_compose_01jxdam468e4sskqgr97te5ktg.png" id="2_yu7g6"]
+[ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_2o2ac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
+size = Vector2(90, 68)
+
+[node name="Area2D" type="Node2D"]
+
+[node name="Explosion" type="Area2D" parent="."]
+position = Vector2(-3, 64)
+script = ExtResource("1_yh640")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_p5q08")
+
+[node name="Image" type="TextureRect" parent="Explosion"]
+custom_minimum_size = Vector2(80, 80)
+offset_left = -38.0
+offset_top = -39.0
+offset_right = 42.0
+offset_bottom = 41.0
+texture = ExtResource("2_yu7g6")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Explosion"]
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Explosion"
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Explosion"]
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Explosion/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Explosion"]
+stream = ExtResource("3_2o2ac")
+pitch_scale = 0.5
+max_polyphony = 3

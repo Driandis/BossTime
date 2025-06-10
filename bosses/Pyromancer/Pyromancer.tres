@@ -1,10 +1,21 @@
-[gd_resource type="Resource" script_class="BossData" load_steps=6 format=3 uid="uid://bne4pexblr8jj"]
+[gd_resource type="Resource" script_class="BossData" load_steps=10 format=3 uid="uid://bne4pexblr8jj"]
 
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_240y5"]
 [ext_resource type="Texture2D" uid="uid://ws6qonrb4x21" path="res://sprites/boss/ChatGPT Image 7. Juni 2025, 14_15_05.png" id="1_qv16s"]
+[ext_resource type="Texture2D" uid="uid://rfcbij06yj5" path="res://sprites/boss/Pyromance/20250610_1927_Unkontrollierbarer Feuermagier_simple_compose_01jxde05d7ejbs4xp9jdan92vz.png" id="2_2r5jw"]
 [ext_resource type="PackedScene" uid="uid://bwrxoibpw28ww" path="res://nodes/SkillNodes/Bosse/Magiebegabter/Funke.tscn" id="2_qv16s"]
+[ext_resource type="Script" uid="uid://bw66m0laa352" path="res://Skills/Effekte/PassiveMage.gd" id="3_ben1x"]
 [ext_resource type="PackedScene" uid="uid://qodpjms3ks7t" path="res://nodes/SkillNodes/Bosse/Magiebegabter/Entzünden.tscn" id="3_rc61x"]
+[ext_resource type="PackedScene" uid="uid://ccxoi2k2huxnf" path="res://nodes/SkillNodes/Bosse/Magiebegabter/FeuerschildBoss.tscn" id="4_1x0om"]
 [ext_resource type="PackedScene" uid="uid://cqbiat27pgqwo" path="res://nodes/SkillNodes/Bosse/Magiebegabter/Flammenaura.tscn" id="4_e5fw6"]
+
+[sub_resource type="Resource" id="Resource_rc4kh"]
+script = ExtResource("3_ben1x")
+name = "Unkontrollierbar"
+description = ""
+duration = 9999
+Effect_texture = ExtResource("2_2r5jw")
+metadata/_custom_type_script = "uid://bw66m0laa352"
 
 [resource]
 script = ExtResource("1_240y5")
@@ -15,6 +26,7 @@ bossBlock = 0
 bossArmor = 5
 bossMagicRes = 15
 boss_texture = ExtResource("1_qv16s")
-rounds = [[ExtResource("2_qv16s"), null, ExtResource("3_rc61x")], [null, null, null], [ExtResource("4_e5fw6"), ExtResource("4_e5fw6"), ExtResource("2_qv16s")], [ExtResource("3_rc61x"), null, ExtResource("4_e5fw6")]]
-passive_trigger = 0.0
+rounds = [[ExtResource("2_qv16s"), null, ExtResource("3_rc61x")], [null, null, null], [ExtResource("4_1x0om"), ExtResource("4_e5fw6"), ExtResource("2_qv16s")], [ExtResource("3_rc61x"), null, ExtResource("4_e5fw6")]]
+passive = SubResource("Resource_rc4kh")
+passive_trigger = 0.25
 metadata/_custom_type_script = "uid://dres0n1ghpxr0"

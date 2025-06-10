@@ -6,8 +6,9 @@
 [resource]
 script = ExtResource("1_jxrho")
 block_amount = 10
-counter_damage = 10
+counter_damage = 0
 name = "Feuerschild"
-duration = 2
+description = ""
+duration = 3
 Effect_texture = ExtResource("1_21pt6")
 metadata/_custom_type_script = "uid://bls543nhpphod"

@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://donu1d0wcpmw3"]
+[gd_scene load_steps=6 format=3 uid="uid://ccxoi2k2huxnf"]
 
-[ext_resource type="Script" uid="uid://cyoxmpv0k2tqr" path="res://Helden/Feuermage/Skills/feuerschild.gd" id="1_ynx6x"]
-[ext_resource type="Resource" uid="uid://b80juq66q18s" path="res://Skills/Effekte/FeuerschildSkill.tres" id="2_sn7pu"]
-[ext_resource type="Texture2D" uid="uid://pf1lj5s881gl" path="res://sprites/heroes/firemage/Feuerschild.png" id="3_2oq5r"]
-[ext_resource type="AudioStream" uid="uid://dd7osgtxqrdoe" path="res://Sounds/Firemage/Fireshield.wav" id="4_sn7pu"]
+[ext_resource type="Script" uid="uid://cyoxmpv0k2tqr" path="res://Helden/Feuermage/Skills/feuerschild.gd" id="1_gvx10"]
+[ext_resource type="Resource" uid="uid://b80juq66q18s" path="res://Skills/Effekte/FeuerschildSkill.tres" id="2_datga"]
+[ext_resource type="Texture2D" uid="uid://pf1lj5s881gl" path="res://sprites/heroes/firemage/Feuerschild.png" id="3_mgbkj"]
+[ext_resource type="AudioStream" uid="uid://dd7osgtxqrdoe" path="res://Sounds/Firemage/Fireshield.wav" id="4_ren62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn7pu"]
 size = Vector2(90, 68)
@@ -12,12 +12,9 @@ size = Vector2(90, 68)
 
 [node name="Feuerschild" type="Area2D" parent="."]
 position = Vector2(-3, 64)
-script = ExtResource("1_ynx6x")
+script = ExtResource("1_gvx10")
 skill_name = "Feuerschild"
-effect = ExtResource("2_sn7pu")
-target_type = 1
-cooldown = 4
-caster_type = 1
+effect = ExtResource("2_datga")
 apply_effect_to_caster = true
 apply_effect_to_target = false
 
@@ -31,7 +28,7 @@ offset_left = -34.0
 offset_top = -47.0
 offset_right = 46.0
 offset_bottom = 33.0
-texture = ExtResource("3_2oq5r")
+texture = ExtResource("3_mgbkj")
 expand_mode = 1
 stretch_mode = 5
 
@@ -63,6 +60,6 @@ offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Feuerschild"]
-stream = ExtResource("4_sn7pu")
+stream = ExtResource("4_ren62")
 pitch_scale = 0.5
 max_polyphony = 3

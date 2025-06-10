@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PassiveMage" load_steps=2 format=3 uid="uid://cik8mg6ry1iiw"]
+
+[ext_resource type="Script" uid="uid://bw66m0laa352" path="res://Skills/Effekte/PassiveMage.gd" id="1_ebp00"]
+
+[resource]
+script = ExtResource("1_ebp00")
+name = ""
+description = ""
+duration = 9999
+metadata/_custom_type_script = "uid://bw66m0laa352"
