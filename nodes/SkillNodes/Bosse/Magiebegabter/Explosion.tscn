@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b55fcv71toxgv"]
 
 [ext_resource type="Script" uid="uid://d0qg43k4tvc8r" path="res://bosses/Pyromancer/explosion.gd" id="1_yh640"]
-[ext_resource type="Texture2D" uid="uid://txrfdavt7g0q" path="res://sprites/boss/Pyromance/20250610_1828_Gefährlicher Funke_simple_compose_01jxdam468e4sskqgr97te5ktg.png" id="2_yu7g6"]
+[ext_resource type="Texture2D" uid="uid://3q6bjv8s4yyr" path="res://sprites/boss/Pyromance/20250610_1918_Feuerexplosion_simple_compose_01jxddgxzye6zsjdhhywrgsy21.png" id="2_yh640"]
 [ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_2o2ac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
@@ -12,6 +12,9 @@ size = Vector2(90, 68)
 [node name="Explosion" type="Area2D" parent="."]
 position = Vector2(-3, 64)
 script = ExtResource("1_yh640")
+skill_name = "Explosion"
+target_type = 1
+magic_damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
 position = Vector2(7.5, -2)
@@ -23,7 +26,7 @@ offset_left = -38.0
 offset_top = -39.0
 offset_right = 42.0
 offset_bottom = 41.0
-texture = ExtResource("2_yu7g6")
+texture = ExtResource("2_yh640")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true

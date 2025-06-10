@@ -19,6 +19,7 @@ config/icon="res://sprites/tmp/icon.svg"
 
 TooltipManager="*res://UI/TooltipManager.gd"
 GlobalVariables="*res://base/globalVariables.gd"
+CooldownManagerPlayer="*res://base/CooldownManagerPlayer.gd"
 
 [display]
 

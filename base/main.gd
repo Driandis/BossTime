@@ -85,8 +85,13 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		print("Turn ",GlobalVariables.current_round)
 		print("Mini-Turn ",GlobalVariables.current_turn)
 		for area in get_tree().get_nodes_in_group("Skill"): #cooldown reduzieren
-			area.tick_cooldown()
-		
+			if GlobalVariables.freezetimer ==0:
+				area.tick_cooldown()
+			#else:
+			#	print("Skillcooldown eingeforen. Freezetimer ", GlobalVariables.freezetimer)
+	#Freeze reduzieren
+		if GlobalVariables.freezetimer > 0:
+			GlobalVariables.freezetimer -=1
 	#Zug des Spielers
 		player.take_turn()
 		await get_tree().create_timer(0.5).timeout 
@@ -107,6 +112,7 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 		if GlobalVariables.current_turn % 3 == 0 and GlobalVariables.current_turn>0:
 			GlobalVariables.current_round += 1
 
+			
 func _on_button_pressed() -> void:
 		$GameOver.visible = false;
 		GlobalVariables.playerHealth = GlobalVariables.playerMaxHealth;

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BossData" load_steps=10 format=3 uid="uid://bne4pexblr8jj"]
+[gd_resource type="Resource" script_class="BossData" load_steps=12 format=3 uid="uid://bne4pexblr8jj"]
 
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_240y5"]
 [ext_resource type="Texture2D" uid="uid://ws6qonrb4x21" path="res://sprites/boss/ChatGPT Image 7. Juni 2025, 14_15_05.png" id="1_qv16s"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://qodpjms3ks7t" path="res://nodes/SkillNodes/Bosse/Magiebegabter/Entzünden.tscn" id="3_rc61x"]
 [ext_resource type="PackedScene" uid="uid://ccxoi2k2huxnf" path="res://nodes/SkillNodes/Bosse/Magiebegabter/FeuerschildBoss.tscn" id="4_1x0om"]
 [ext_resource type="PackedScene" uid="uid://cqbiat27pgqwo" path="res://nodes/SkillNodes/Bosse/Magiebegabter/Flammenaura.tscn" id="4_e5fw6"]
+[ext_resource type="PackedScene" uid="uid://bhoq7nkwwr65g" path="res://nodes/SkillNodes/Bosse/Magiebegabter/Feuerwirbel.tscn" id="5_rc4kh"]
+[ext_resource type="PackedScene" uid="uid://b55fcv71toxgv" path="res://nodes/SkillNodes/Bosse/Magiebegabter/Explosion.tscn" id="7_o0535"]
 
 [sub_resource type="Resource" id="Resource_rc4kh"]
 script = ExtResource("3_ben1x")
@@ -26,7 +28,7 @@ bossBlock = 0
 bossArmor = 5
 bossMagicRes = 15
 boss_texture = ExtResource("1_qv16s")
-rounds = [[ExtResource("2_qv16s"), null, ExtResource("3_rc61x")], [null, null, null], [ExtResource("4_1x0om"), ExtResource("4_e5fw6"), ExtResource("2_qv16s")], [ExtResource("3_rc61x"), null, ExtResource("4_e5fw6")]]
+rounds = [[ExtResource("2_qv16s"), ExtResource("5_rc4kh"), ExtResource("3_rc61x")], [ExtResource("7_o0535"), null, ExtResource("5_rc4kh")], [ExtResource("4_1x0om"), ExtResource("4_e5fw6"), ExtResource("2_qv16s")], [ExtResource("3_rc61x"), null, ExtResource("4_e5fw6")]]
 passive = SubResource("Resource_rc4kh")
 passive_trigger = 0.25
 metadata/_custom_type_script = "uid://dres0n1ghpxr0"

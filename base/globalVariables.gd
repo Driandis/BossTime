@@ -2,7 +2,9 @@ extends Node
 
 
 # General
+#signal turnchange(new_turn: int)
 var current_turn :=0	#trackt die einzelnen kleinen Züge
+
 var current_round := 0 #trackt die vollständigen Runden
 var current_slot := 0 #trackt welches Feld gerade an der Reihe ist, Code dazu vermutlich im Main
 var current_fight:=0 	#trackt die Zahl der Bosskämpfe
@@ -44,7 +46,7 @@ signal status_effect_removed(effect: StatusEffect, target_node: Node)
 #Skills (vermutlich nicht notwendig)
 var skillDamage
 var skillAttributes
-
+var freezetimer : int = 0
 # NEU: Der Pool aller möglichen Item-Ressourcen
 # Fülle dieses Array im Godot-Editor mit deinen Item.tres-Dateien!
 @export var item_pool_resources: Array[Item] = []

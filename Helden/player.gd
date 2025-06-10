@@ -50,6 +50,7 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 			var skill_scene = hero_data.skills[i]
 			var skill_instance = skill_scene.instantiate()
 			skill_felder[i].add_child(skill_instance)
+			CooldownManagerPlayer.register_skill(skill_instance)
 		else:
 				printerr("Nicht genügend Skill-Felder vorhanden, um alle Helden-Skills zu laden!")
 				break
