@@ -79,7 +79,7 @@ func apply_status_effect(effect_resource: StatusEffect, target: Node, caster: No
 	
 func modify_attribute(attribute_name: String, amount: int):
 	match attribute_name:
-		"playerArmor":	#Als erstes Beispiel wegen "Brennen"
+		"Armor":	#Als erstes Beispiel wegen "Brennen"
 			GlobalVariables.playerArmor += amount
 			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", GlobalVariables.playerArmor)
 		# Füge hier weitere Attribute hinzu, die modifiziert werden können
@@ -99,14 +99,14 @@ func on_turn_ended():
 		# Und ob dieser Effekt tatsächlich auf DIESEN Spieler angewendet wurde (redundant, aber sicher)
 		if is_instance_valid(effect) and is_instance_valid(effect_target_node) and effect_target_node == self:
 			# Reduziere die Dauer des Effekts
+			if effect.has_method("on_turn_tick"):
+					print_debug("Playereffekt tick Turn")
+					effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
 			if effect.decrease_duration():
 				print_debug("Decrease über Player.gd gestartet")
 				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
-			else:
+		#	else:
 				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
-				if effect.has_method("on_turn_tick"):
-					print_debug()
-					effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
 		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
 			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
 			effects_to_remove.append(effect_data)
@@ -155,6 +155,7 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 	return {"physic": modified_physic_value, "magic": modified_magic_value}
 func truedmg(Amount: int):
 	GlobalVariables.playerHealth -=Amount
+	print("Player erleidet ",Amount, " absoluten Schaden.")
 	if Amount >=1:
 		blink_red()
 	setHealthLabel();	

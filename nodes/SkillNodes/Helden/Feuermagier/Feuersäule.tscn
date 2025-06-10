@@ -1,9 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2pkl06miapvp"]
+[gd_scene load_steps=8 format=3 uid="uid://d2pkl06miapvp"]
 
 [ext_resource type="Script" uid="uid://bt027ajnss3v" path="res://Helden/Feuermage/Skills/feuersäule.gd" id="1_enh7q"]
-[ext_resource type="Resource" uid="uid://de6np6mfiwmxr" path="res://Skills/Statuseffekte/Burn.tres" id="2_l0p01"]
+[ext_resource type="Texture2D" uid="uid://bwqxixv20ghos" path="res://sprites/EffectIcon/20250528_1532_Burn Effect Icon_simple_compose_01jwbhcdgtfnnvcp2dkm6zv8jz (1).png" id="2_2tvr5"]
+[ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/Burn.gd" id="2_8jiab"]
 [ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="3_xr3he"]
 [ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="4_u8ly2"]
+
+[sub_resource type="Resource" id="Resource_2tvr5"]
+script = ExtResource("2_8jiab")
+damage_per_turn = 3
+armor_reduction = 5
+name = "Brennen"
+description = "3 Schaden pro Turn, Rüstung reduziert (5)"
+duration = 2
+Effect_texture = ExtResource("2_2tvr5")
+metadata/_custom_type_script = "uid://dqfhgm3l25om7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64mly"]
 size = Vector2(90, 68)
@@ -15,7 +26,7 @@ position = Vector2(-3, 64)
 script = ExtResource("1_enh7q")
 skill_sound = NodePath("AudioStreamPlayer2D")
 skill_name = "Feuersäule"
-effect = ExtResource("2_l0p01")
+effect = SubResource("Resource_2tvr5")
 cooldown = 3
 caster_type = 1
 magic_damage = 4

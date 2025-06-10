@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://3sv1iv1mnef3"]
 
 [ext_resource type="Script" uid="uid://daydnmqivctmf" path="res://Helden/Fighter/Skills/spalten.gd" id="1_od8nk"]
-[ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/BleedPlayer.gd" id="2_v4idp"]
+[ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/Bleed.gd" id="2_v4idp"]
 [ext_resource type="Texture2D" uid="uid://dbot8un1fwo4j" path="res://sprites/heroes/fighter/SpaltenBT.png" id="3_6ehpr"]
 [ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_v4idp"]
 

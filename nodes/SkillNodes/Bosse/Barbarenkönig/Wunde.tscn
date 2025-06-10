@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnykrstrdvqs7"]
 
 [ext_resource type="Script" uid="uid://17goa13juu7q" path="res://bosses/Barbarianking/Skills/wunde.gd" id="1_ux576"]
-[ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/BleedPlayer.gd" id="2_n076a"]
+[ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/Bleed.gd" id="2_n076a"]
 [ext_resource type="Texture2D" uid="uid://x6ustbhnb4st" path="res://sprites/boss/Barbarianking/20250529_1935_Kraftvoller Hammergriff_remix_01jwehqk3qfgtrsmaxfjfqtrs4.png" id="2_saunh"]
 [ext_resource type="Texture2D" uid="uid://b7vrerl5cni75" path="res://sprites/EffectIcon/20250530_0951_Bleeding Status Icon_simple_compose_01jwg2n7gvfv2rv90qywfdhs8z.png" id="2_uk4sr"]
 

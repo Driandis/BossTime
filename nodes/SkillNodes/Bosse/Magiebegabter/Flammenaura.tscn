@@ -7,11 +7,11 @@
 
 [sub_resource type="Resource" id="Resource_wntj5"]
 script = ExtResource("2_dfb6a")
-block_amount = 10
-counter_damage = 10
+block_amount = 0
+counter_damage = 3
 name = ""
 description = ""
-duration = 0
+duration = 3
 metadata/_custom_type_script = "uid://bls543nhpphod"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn7pu"]

@@ -1,4 +1,4 @@
-class_name BurnStatus
+class_name Burn
 extends StatusEffect
 
 
@@ -30,7 +30,7 @@ func apply_effect(target: Node,caster: Node):
 		print(target.name, " fängt an zu brennen!")
 		# Reduziere die Rüstung sofort beim Anwenden
 		if target.has_method("modify_attribute"):
-			target.modify_attribute("bossArmor", -armor_reduction)
+			target.modify_attribute("Armor", -armor_reduction)
 			print(target.name, " Rüstung um ", armor_reduction, " reduziert durch Einsetzen von Brennen (modify_attribute).")
 	
 func remove_effect(target: Node,caster: Node):
@@ -38,5 +38,5 @@ func remove_effect(target: Node,caster: Node):
 		print(target.name, " hört auf zu brennen.")
 		# Stelle die Rüstung wieder her
 		if target.has_method("modify_attribute"):
-			target.modify_attribute("bossArmor", armor_reduction) # Positiver Wert für Wiederherstellung
+			target.modify_attribute("Armor", armor_reduction) # Positiver Wert für Wiederherstellung
 			print(target.name, " Rüstung durch Ende von Brennen wiederhergestellt (modify_attribute).")

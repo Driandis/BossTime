@@ -5,6 +5,7 @@ signal action
 signal restart
 signal boss_died
 var current_boss : BossData
+signal was_attacked(attacker: Node, damage_taken: float)
 
 # Referenz zum UI-Container, in den die StatusIcons geladen werden
 @export var status_effect_ui_container: HBoxContainer
@@ -73,6 +74,7 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 
 func truedmg(Amount: float):
 	GlobalVariables.bossHealth -=Amount
+	print("Boss erleidet ",Amount, " absoluten Schaden.")
 	setHealthLabel();	
 	setHealthBar();
 	if Amount >=1:
@@ -101,6 +103,13 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 		print("Boss ist besiegt! Lade Loot-Szene...")
 		boss_died.emit()
 		return # <-- Diese Zeile ist der Schlüssel!
+		
+	if attacker != null:
+		was_attacked.emit(attacker, total_damage)
+	else:
+		# Wenn der Angreifer nicht bekannt ist, sende nur den Schaden
+		was_attacked.emit(null, total_damage)
+		
 	print("Effective Boss Physical Damage: ", effective_physical_damage)
 	print("Effective Boss Magic Damage: ", effective_magic_damage)
 	#print("Total Boss Damage: ", total_damage)
@@ -108,6 +117,7 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 			apply_status_effect(current_boss.passive, self, null) #.apply_effect(self, null)
 			
 			$PassiveIcon.texture = current_boss.passive.Effect_texture
+				
 #Statuseffekte
 func apply_status_effect(effect_resource: Resource, target: Node, caster: Node):
 	var already_has_effect_of_this_type = false
@@ -135,7 +145,7 @@ func apply_status_effect(effect_resource: Resource, target: Node, caster: Node):
 		#        break
 func modify_attribute(attribute_name: String, amount: float):
 	match attribute_name:
-		"bossArmor":	#Als erstes Beispiel wegen "Brennen"
+		"Armor":	#Als erstes Beispiel wegen "Brennen"
 			GlobalVariables.bossArmor += amount
 			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", GlobalVariables.bossArmor)
 			print("Aktuelle Bossrüstung", GlobalVariables.bossArmor)
@@ -157,14 +167,18 @@ func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 		# Und ob dieser Effekt tatsächlich auf DIESEN Spieler angewendet wurde (redundant, aber sicher)
 		if is_instance_valid(effect) and is_instance_valid(effect_target_node) and effect_target_node == self:
 			# Reduziere die Dauer des Effekts
+			if effect.has_method("on_turn_tick"):
+				print_debug("Bosseffekt tick Turn")
+				effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
+		
 			if effect.decrease_duration():
 				print_debug("Decrease über Boss.gd gestartet")
 				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
-			else:
+			#else:
 				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
-				if effect.has_method("on_turn_tick"):
-					print_debug()
-					effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
+			#	if effect.has_method("on_turn_tick"):
+			#		print_debug()
+			#		effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
 		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
 			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
 			effects_to_remove.append(effect_data)
