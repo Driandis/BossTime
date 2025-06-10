@@ -119,7 +119,7 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 			$PassiveIcon.texture = current_boss.passive.Effect_texture
 				
 #Statuseffekte
-func apply_status_effect(effect_resource: Resource, target: Node, caster: Node):
+func apply_status_effect(effect_resource: StatusEffect, target: Node, caster: Node):
 	var already_has_effect_of_this_type = false
 	for existing_effect in GlobalVariables.active_boss_status_effects:
 		if existing_effect.name == effect_resource.name:
@@ -136,7 +136,7 @@ func apply_status_effect(effect_resource: Resource, target: Node, caster: Node):
 		print("Apply-Status-Effekt beim Boss ausgeführt.", effect_instance, target)
 		_update_status_effect_ui() # UI aktualisieren
 	else:
-		printerr("Boss hat den Statuseffekt vom Typ ", effect_resource.name)
+		printerr("Boss hat diesen Statuseffekt bereits. ", effect_resource.name)
 				# Optional: Wenn du Effekte mit gleicher Klasse "auffrischen" willst (Dauer zurücksetzen):
 		# for existing_effect in active_status_effects:
 		#    if existing_effect.get_class() == effect_resource.get_class():
@@ -171,34 +171,35 @@ func on_turn_ended(): # KEIN 'target: Node' Parameter hier
 				print_debug("Bosseffekt tick Turn")
 				effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
 		
-			if effect.decrease_duration():
-				print_debug("Decrease über Boss.gd gestartet")
-				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
+			effect.decrease_duration()
+			_update_status_effect_ui() # UI aktualisieren
+#				print_debug("Decrease über Boss.gd gestartet")
+#				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
 			#else:
 				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
 			#	if effect.has_method("on_turn_tick"):
 			#		print_debug()
 			#		effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
-		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
+#		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
 			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
-			effects_to_remove.append(effect_data)
+#			effects_to_remove.append(effect_data)
 
 	# Entferne die abgelaufenen Effekte
-	for effect_data in effects_to_remove:
-		var effect: StatusEffect = effect_data
-		var effect_target_node: Node = effect_data.target
-
-		if is_instance_valid(effect) and is_instance_valid(effect_target_node):
+#	for effect_data in effects_to_remove:
+#		var effect: StatusEffect = effect_data
+#		var effect_target_node: Node = effect_data.target
+#
+#		if is_instance_valid(effect) and is_instance_valid(effect_target_node):
 			# Rufe die remove_effect-Methode des Effekts auf und übergib 'self' (den Spieler)
-			effect.remove_effect(self, effect.caster) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
-			print("Status-Effekt '", effect.name, "' von ", effect_target_node.name," entfernt.")
+#			effect.remove_effect(self, effect.caster) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
+#			print("Status-Effekt '", effect.name, "' von ", effect_target_node.name," entfernt.")
 			# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
-			GlobalVariables.status_effect_removed.emit(effect, self)
+#			GlobalVariables.status_effect_removed.emit(effect, self)
 			
-			_update_status_effect_ui() # UI aktualisieren
+			
 		
 		# Entferne den Effekt aus der globalen Liste
-		GlobalVariables.active_player_status_effects.erase(effect_data)
+		#GlobalVariables.active_player_status_effects.erase(effect_data)
 
 #Skill-Reihenfolge
 #Skills aus den Feldern erkennen

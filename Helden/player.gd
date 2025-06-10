@@ -102,31 +102,33 @@ func on_turn_ended():
 			if effect.has_method("on_turn_tick"):
 					print_debug("Playereffekt tick Turn")
 					effect.on_turn_tick(self, effect.caster) # Übergib 'self' (den Spieler) als Ziel und null als Caster für den Tick
-			if effect.decrease_duration():
-				print_debug("Decrease über Player.gd gestartet")
-				effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
+			
+			effect.decrease_duration()#:
+			_update_status_effect_ui() # UI aktualisieren
+			#	print_debug("Decrease über Player.gd gestartet")
+			#	effects_to_remove.append(effect_data) # Füge das gesamte Dictionary zur Entfernen-Liste hinzu
 		#	else:
 				# Wenn der Effekt noch aktiv ist, führe seine Runden-Logik aus (z.B. Schaden pro Runde)
-		elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
+		#elif not is_instance_valid(effect) or not is_instance_valid(effect_target_node):
 			# Wenn der Effekt oder sein Ziel ungültig geworden ist, füge ihn zur Entfernen-Liste hinzu
-			effects_to_remove.append(effect_data)
+		#	effects_to_remove.append(effect_data)
 
 	# Entferne die abgelaufenen Effekte
-	for effect_data in effects_to_remove:
-		var effect: StatusEffect = effect_data
-		var effect_target_node: Node = effect_data.target
+	#for effect_data in effects_to_remove:
+	#	var effect: StatusEffect = effect_data
+	#	var effect_target_node: Node = effect_data.target
 
-		if is_instance_valid(effect) and is_instance_valid(effect_target_node):
-			# Rufe die remove_effect-Methode des Effekts auf und übergib 'self' (den Spieler)
-			effect.remove_effect(self, effect.caster) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
-			print("Status-Effekt '", effect.name, "' von ", effect_target_node.name," entfernt.")
-			# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
-			GlobalVariables.status_effect_removed.emit(effect, self)
+	#	if is_instance_valid(effect) and is_instance_valid(effect_target_node):
+	#		# Rufe die remove_effect-Methode des Effekts auf und übergib 'self' (den Spieler)
+	#		effect.remove_effect(self, effect.caster) # Übergib 'self' als den Node, von dem der Effekt entfernt wird
+	#		print("Status-Effekt '", effect.name, "' von ", effect_target_node.name," entfernt.")
+	#		# Optional: Sende ein globales Signal, dass der Effekt entfernt wurde
+	#		GlobalVariables.status_effect_removed.emit(effect, self)
 			
-			_update_status_effect_ui() # UI aktualisieren
+	#		_update_status_effect_ui() # UI aktualisieren
 		
 		# Entferne den Effekt aus der globalen Liste
-		GlobalVariables.active_player_status_effects.erase(effect_data)
+	#	GlobalVariables.active_player_status_effects.erase(effect_data)
 
 #Multiplikatoren beim DMG berücksichtigen
 func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	#Dictionary damit man mit beiden Werten gleichzeitig arbeiten kann
