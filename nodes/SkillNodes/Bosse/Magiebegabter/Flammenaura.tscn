@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqbiat27pgqwo"]
+[gd_scene load_steps=8 format=3 uid="uid://cqbiat27pgqwo"]
 
 [ext_resource type="Script" uid="uid://cigiuowyowx2k" path="res://bosses/Pyromancer/flammenaura.gd" id="1_l4yju"]
 [ext_resource type="Script" uid="uid://bls543nhpphod" path="res://Skills/Statuseffekte/BlockCounterEffekt.gd" id="2_dfb6a"]
-[ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="3_4xpjf"]
+[ext_resource type="Texture2D" uid="uid://rwh211do7buy" path="res://sprites/EffectIcon/20250530_0955_Fireshield RPG Icon_simple_compose_01jwg2y0cke0ya20szf2dmrbhv.png" id="2_k0700"]
 [ext_resource type="AudioStream" uid="uid://dd7osgtxqrdoe" path="res://Sounds/Firemage/Fireshield.wav" id="4_00lkk"]
+[ext_resource type="Texture2D" uid="uid://drn5hrjpus4t1" path="res://sprites/boss/Pyromance/20250610_1751_Feurige Aura_simple_compose_01jxd8km49e4y8wkjaaav8e1km.png" id="4_ldv6y"]
 
 [sub_resource type="Resource" id="Resource_wntj5"]
 script = ExtResource("2_dfb6a")
@@ -12,6 +13,7 @@ counter_damage = 3
 name = ""
 description = ""
 duration = 3
+Effect_texture = ExtResource("2_k0700")
 metadata/_custom_type_script = "uid://bls543nhpphod"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sn7pu"]
@@ -37,7 +39,7 @@ offset_top = -6.0
 offset_right = 10.5
 offset_bottom = -6.0
 scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("3_4xpjf")
+texture = ExtResource("4_ldv6y")
 expand_mode = 1
 stretch_mode = 5
 

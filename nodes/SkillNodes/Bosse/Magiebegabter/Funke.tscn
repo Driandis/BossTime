@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwrxoibpw28ww"]
 
 [ext_resource type="Script" uid="uid://c6jwfxnutstaj" path="res://bosses/Pyromancer/funke.gd" id="1_xw0uf"]
-[ext_resource type="Texture2D" uid="uid://bbl2cgfseqrlc" path="res://sprites/heroes/firemage/ChatGPT Image 19. Apr. 2025, 11_30_36.png" id="2_kstp5"]
+[ext_resource type="Texture2D" uid="uid://txrfdavt7g0q" path="res://sprites/boss/Pyromance/20250610_1828_Gefährlicher Funke_simple_compose_01jxdam468e4sskqgr97te5ktg.png" id="2_84xyg"]
 [ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_p2dqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
@@ -27,7 +27,7 @@ offset_left = -38.0
 offset_top = -39.0
 offset_right = 42.0
 offset_bottom = 41.0
-texture = ExtResource("2_kstp5")
+texture = ExtResource("2_84xyg")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true

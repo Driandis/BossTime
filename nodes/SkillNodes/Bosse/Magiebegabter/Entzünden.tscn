@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://crbleyblvl6lp" path="res://bosses/Pyromancer/entzünden.gd" id="1_kstp5"]
 [ext_resource type="Script" uid="uid://dqfhgm3l25om7" path="res://Skills/Statuseffekte/Burn.gd" id="2_p2dqo"]
 [ext_resource type="Texture2D" uid="uid://bwqxixv20ghos" path="res://sprites/EffectIcon/20250528_1532_Burn Effect Icon_simple_compose_01jwbhcdgtfnnvcp2dkm6zv8jz (1).png" id="2_ugkvk"]
-[ext_resource type="Texture2D" uid="uid://b1afut1fo2wm1" path="res://sprites/heroes/firemage/Feuerpelz in der dunklen Halle.png" id="3_hbmis"]
 [ext_resource type="AudioStream" uid="uid://cmys285fprynm" path="res://Sounds/Firemage/Feuersäule.wav" id="4_o2hvl"]
+[ext_resource type="Texture2D" uid="uid://kwuqqu5jrqgq" path="res://sprites/boss/Pyromance/20250607_1710_Fiery Ignition_remix_01jx5f198dfzcrh52gbcx11tz0.png" id="4_ugkvk"]
 
 [sub_resource type="Resource" id="Resource_lmpcf"]
 script = ExtResource("2_p2dqo")
@@ -40,7 +40,7 @@ offset_left = -37.0
 offset_top = -51.0
 offset_right = 43.0
 offset_bottom = 29.0
-texture = ExtResource("3_hbmis")
+texture = ExtResource("4_ugkvk")
 expand_mode = 1
 stretch_mode = 5
 
