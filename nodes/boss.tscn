@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://deys43et4bw2g"]
+[gd_scene load_steps=10 format=3 uid="uid://deys43et4bw2g"]
 
 [ext_resource type="Script" uid="uid://dqd3etcg2uxt6" path="res://bosses/boss.gd" id="1_6xxrv"]
 [ext_resource type="PackedScene" uid="uid://beqjrr8riju8o" path="res://nodes/status_effect_icon.tscn" id="3_1u8du"]
@@ -12,6 +12,9 @@
 shader = ExtResource("3_t5ef3")
 shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqi5y"]
+bg_color = Color(0.260319, 0.70469, 0.336451, 1)
 
 [node name="Boss" type="Node2D" node_paths=PackedStringArray("status_effect_ui_container")]
 script = ExtResource("1_6xxrv")
@@ -42,6 +45,7 @@ offset_left = -116.0
 offset_top = 116.0
 offset_right = 117.0
 offset_bottom = 143.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_vqi5y")
 show_percentage = false
 
 [node name="HealthLabel" type="Label" parent="HealthBar"]
