@@ -86,15 +86,8 @@ func modify_attribute(attribute_name: String, amount: int):
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte am Ende des Zuges (Im Main passiert das nach take_turn
-func on_turn_ended(): # KEIN 'target: Node' Parameter hier
-	#for effect_data in GlobalVariables.active_player_status_effects:
-	#	print("Effekte in effect_data des Spielers ", effect_data.name)
-	#	effect_data.on_turn_tick(self, effect_data.caster)
-	#	effect_data.decrease_duration()
-		
-#Neue Version
+func on_turn_ended(): 
 	var effects_to_remove: Array[StatusEffect] = [] # Annahme: Liste von Statuseffekten {effect: StatusEffect, target: Node}
-	
 	# Gehe alle aktiven Effekte DIESES SPIELERS durch
 	# WICHTIG: Hier gehen wir davon aus, dass GlobalVariables.active_player_status_effects
 	# NUR Effekte enthält, die auf DIESEN Spieler angewendet wurden.

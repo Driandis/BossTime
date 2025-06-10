@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://l2gaplwq850t"]
+[gd_scene load_steps=7 format=3 uid="uid://bbkyunsfstwuv"]
 
 [ext_resource type="Script" uid="uid://dk68vf6axq0gu" path="res://Helden/Fighter/Skills/defensivehaltung.gd" id="1_4wgs0"]
 [ext_resource type="Script" uid="uid://besw7vm05tg42" path="res://Skills/Effekte/BlockEffect.gd" id="2_bruh0"]

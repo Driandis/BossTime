@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_240y5"]
 [ext_resource type="Texture2D" uid="uid://ws6qonrb4x21" path="res://sprites/boss/ChatGPT Image 7. Juni 2025, 14_15_05.png" id="1_qv16s"]
-[ext_resource type="PackedScene" uid="uid://bwrxoibpw28ww" path="res://nodes/SkillNodes/Funke.tscn" id="2_qv16s"]
-[ext_resource type="PackedScene" uid="uid://qodpjms3ks7t" path="res://nodes/SkillNodes/Entzünden.tscn" id="3_rc61x"]
-[ext_resource type="PackedScene" uid="uid://cqbiat27pgqwo" path="res://nodes/SkillNodes/Flammenaura.tscn" id="4_e5fw6"]
+[ext_resource type="PackedScene" uid="uid://bwrxoibpw28ww" path="res://nodes/SkillNodes/Magiebegabter/Funke.tscn" id="2_qv16s"]
+[ext_resource type="PackedScene" uid="uid://qodpjms3ks7t" path="res://nodes/SkillNodes/Magiebegabter/Entzünden.tscn" id="3_rc61x"]
+[ext_resource type="PackedScene" uid="uid://cqbiat27pgqwo" path="res://nodes/SkillNodes/Magiebegabter/Flammenaura.tscn" id="4_e5fw6"]
 
 [resource]
 script = ExtResource("1_240y5")

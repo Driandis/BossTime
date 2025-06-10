@@ -234,9 +234,15 @@ func load_skills_for_turn():
 	#	else: #debug
 	#		printerr("Ungültiger Rundenindex oder falscher Datentyp in skill_plan!")
 func take_turn():
+	if GlobalVariables.current_turn % 3 == 0:# and  #if GlobalVariables.current_round > 0: #damit nicht zu früh erhöht wird, der zweite Teil
+		if GlobalVariables.current_turn>0:
+			current_round_index = (current_round_index + 1) % skill_plan.size()
+		
+		load_skills_for_turn()
+	#Farbeffekt
 	var current_slot = GlobalVariables.current_slot
 	var bossskill = get_skill_from_slot(boss_slots[current_slot])
-	#Farbeffekt
+
 	for e in boss_slots.size():	
 			boss_slots[e].modulate = Color(1, 1, 1)  # Reset Farbe
 			boss_slots[GlobalVariables.current_slot].modulate = Color(1, 0.8, 0.5)  # Aktives Feld hervorheben
@@ -253,10 +259,7 @@ func take_turn():
 	else:
 		print("FEHLER: Kein bossskill im Slot ", current_slot)
 
-	if GlobalVariables.current_turn % 3 == 0 and GlobalVariables.current_turn>0: #if GlobalVariables.current_round > 0: #damit nicht zu früh erhöht wird, der zweite Teil
-		current_round_index = (current_round_index + 1) % skill_plan.size()
-		
-		load_skills_for_turn()
+
 	#else:
 	#	print("Kein Skill in Bossslot ", GlobalVariables.current_slot)
 	print("Aktive Boss Statuseffekte: ",GlobalVariables.active_boss_status_effects)

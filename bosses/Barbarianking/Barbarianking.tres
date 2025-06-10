@@ -2,24 +2,24 @@
 
 [ext_resource type="Texture2D" uid="uid://dx6rxwwopyl0i" path="res://sprites/boss/Barbarianking/ChatGPT Image 7. Juni 2025, 12_16_32.png" id="1_oml7m"]
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_rjt70"]
-[ext_resource type="PackedScene" uid="uid://fha7qnflpuu0" path="res://nodes/SkillNodes/hieb.tscn" id="2_lnvr3"]
 [ext_resource type="Resource" uid="uid://bvp1sjyka7v46" path="res://Skills/Effekte/PassiveBarbar.tres" id="2_oml7m"]
-[ext_resource type="PackedScene" uid="uid://c6eheioj64h3g" path="res://nodes/SkillNodes/schmettern.tscn" id="3_jfnx5"]
-[ext_resource type="PackedScene" uid="uid://cwyyg81cbpbvv" path="res://nodes/SkillNodes/Blocken.tscn" id="3_rg3va"]
-[ext_resource type="PackedScene" uid="uid://dtegx53tv22o0" path="res://nodes/SkillNodes/wuchtschlag.tscn" id="5_nl0od"]
-[ext_resource type="PackedScene" uid="uid://bnykrstrdvqs7" path="res://nodes/SkillNodes/Wunde.tscn" id="6_37t4s"]
-[ext_resource type="PackedScene" uid="uid://d2rxckq0fslub" path="res://nodes/SkillNodes/Ansturm.tscn" id="7_a6lds"]
+[ext_resource type="PackedScene" uid="uid://fha7qnflpuu0" path="res://nodes/SkillNodes/Bosse/Barbarenkönig/hieb.tscn" id="3_oml7m"]
+[ext_resource type="PackedScene" uid="uid://c6eheioj64h3g" path="res://nodes/SkillNodes/Bosse/Barbarenkönig/schmettern.tscn" id="4_tw5g6"]
+[ext_resource type="PackedScene" uid="uid://bnykrstrdvqs7" path="res://nodes/SkillNodes/Bosse/Barbarenkönig/Wunde.tscn" id="5_fr6a8"]
+[ext_resource type="PackedScene" uid="uid://cwyyg81cbpbvv" path="res://nodes/SkillNodes/Bosse/Barbarenkönig/Blocken.tscn" id="6_urjc0"]
+[ext_resource type="PackedScene" uid="uid://dtegx53tv22o0" path="res://nodes/SkillNodes/Bosse/Barbarenkönig/wuchtschlag.tscn" id="7_1us3j"]
+[ext_resource type="PackedScene" uid="uid://d2rxckq0fslub" path="res://nodes/SkillNodes/Bosse/Barbarenkönig/Ansturm.tscn" id="8_iif2b"]
 
 [resource]
 script = ExtResource("1_rjt70")
 name = "Ulf"
-skills = Array[PackedScene]([ExtResource("2_lnvr3")])
+skills = Array[PackedScene]([null])
 max_health = 300
 bossBlock = 0
 bossArmor = 12
 bossMagicRes = 8
 boss_texture = ExtResource("1_oml7m")
-rounds = [[ExtResource("2_lnvr3"), ExtResource("3_jfnx5"), ExtResource("6_37t4s")], [ExtResource("3_rg3va"), null, ExtResource("3_jfnx5")], [ExtResource("5_nl0od"), ExtResource("2_lnvr3"), ExtResource("7_a6lds")], [ExtResource("6_37t4s"), null, ExtResource("3_rg3va")]]
+rounds = [[ExtResource("3_oml7m"), ExtResource("4_tw5g6"), ExtResource("5_fr6a8")], [ExtResource("6_urjc0"), null, ExtResource("4_tw5g6")], [ExtResource("7_1us3j"), ExtResource("3_oml7m"), ExtResource("8_iif2b")], [ExtResource("5_fr6a8"), null, ExtResource("6_urjc0")]]
 passive = ExtResource("2_oml7m")
 passive_trigger = 0.35
 metadata/_custom_type_script = "uid://dres0n1ghpxr0"

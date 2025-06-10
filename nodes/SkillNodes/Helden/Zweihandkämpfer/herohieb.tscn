@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://f7wi13kohnpc"]
+[gd_scene load_steps=5 format=3 uid="uid://bvommc4m8qynh"]
 
 [ext_resource type="Script" uid="uid://baoxvox533fet" path="res://Helden/Fighter/Skills/hero_hieb.gd" id="1_ffh1x"]
 [ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_0p7st"]
