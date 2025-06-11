@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxpv2nebjy33t"]
 
-[ext_resource type="Script" uid="uid://jr8remhhl6a4" path="res://Helden/Fighter/Skills/stoßen.gd" id="1_8b3gw"]
+[ext_resource type="Script" uid="uid://c6uluilv5gjvb" path="res://Helden/Fighter/Skills/stoßen.gd" id="1_8b3gw"]
 [ext_resource type="Texture2D" uid="uid://bjdn0eg6868f6" path="res://sprites/heroes/fighter/StoßenBT.png" id="2_gbspq"]
 [ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_hoxb3"]
 

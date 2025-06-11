@@ -22,12 +22,11 @@ position = Vector2(7.5, -2)
 shape = SubResource("RectangleShape2D_p5q08")
 
 [node name="Image" type="TextureRect" parent="HeroHieb"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(80, 80)
 offset_left = -38.0
 offset_top = -39.0
-offset_right = 562.0
-offset_bottom = 561.0
-scale = Vector2(0.0908203, 0.0703125)
+offset_right = 42.0
+offset_bottom = 41.0
 texture = ExtResource("2_0p7st")
 expand_mode = 1
 stretch_mode = 5
