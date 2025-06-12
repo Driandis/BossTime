@@ -1,16 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://3sv1iv1mnef3"]
+[gd_scene load_steps=6 format=3 uid="uid://3sv1iv1mnef3"]
 
 [ext_resource type="Script" uid="uid://daydnmqivctmf" path="res://Helden/Fighter/Skills/spalten.gd" id="1_od8nk"]
-[ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/Bleed.gd" id="2_v4idp"]
+[ext_resource type="Resource" uid="uid://bneoh0j84uow0" path="res://Skills/Statuseffekte/Bleed.tres" id="2_jv4mw"]
 [ext_resource type="Texture2D" uid="uid://dbot8un1fwo4j" path="res://sprites/heroes/fighter/SpaltenBT.png" id="3_6ehpr"]
 [ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_v4idp"]
-
-[sub_resource type="Resource" id="Resource_0ijvo"]
-script = ExtResource("2_v4idp")
-name = ""
-description = ""
-duration = 0
-metadata/_custom_type_script = "uid://bwce05of5kkrk"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
 size = Vector2(90, 68)
@@ -21,7 +14,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_od8nk")
 skill_name = "Spalten"
-effect = SubResource("Resource_0ijvo")
+effect = ExtResource("2_jv4mw")
 cooldown = 3
 caster_type = 1
 physical_damage = 5

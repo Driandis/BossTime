@@ -4,6 +4,8 @@ extends StatusEffect
 
 var damage_per_turn: int = 3
 
+func _init():
+	duration = 3 # Hält für 3 Runden
 func on_turn_tick(target: Node, caster: Node):
 	# Truedmg durch Burn	
 	if target is Player:

@@ -124,6 +124,15 @@ func _on_win_pressed() -> void:
 	loot_manager.generate_and_show_loot(3) # Generiere 3 Items
 	pass # Replace with function body.
 
+func reset_all_skills_in_slots():
+	for slot_node in get_tree().get_nodes_in_group("Felder"):
+		# Jeder Slot-Knoten (also jedes Skill-Feld)
+		# Durchlaufe alle Kinder dieses Slot-Knotens
+		for skill_instance in slot_node.get_children():
+			# Überprüfe, ob das Kind tatsächlich ein Skill ist und die Methode 'reset_skill' hat
+			# Das ist wichtig, falls du andere Dinge in den Slots hast, die keine Skills sind
+			if skill_instance.has_method("reset_skill"):
+				skill_instance.reset_skill()
 
 func _on_autobattle_pressed() -> void:
 	_on_turn_counter_pressed()
@@ -131,3 +140,6 @@ func _on_autobattle_pressed() -> void:
 	_on_turn_counter_pressed()
 	await get_tree().create_timer(0.5).timeout 
 	_on_turn_counter_pressed()
+	await get_tree().create_timer(0.5).timeout 
+	reset_all_skills_in_slots()
+		

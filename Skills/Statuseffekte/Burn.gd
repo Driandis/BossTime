@@ -5,6 +5,7 @@ extends StatusEffect
 
 @export var damage_per_turn: int = 3
 @export var armor_reduction: int = 5
+@export var magic_res_reduction: int = 5
 
 func on_turn_tick(target: Node, caster: Node):
 	# Truedmg durch Burn	
@@ -32,7 +33,9 @@ func apply_effect(target: Node,caster: Node):
 		if target.has_method("modify_attribute"):
 			target.modify_attribute("Armor", -armor_reduction)
 			print(target.name, " Rüstung um ", armor_reduction, " reduziert durch Einsetzen von Brennen (modify_attribute).")
-	
+		if target.has_method("modify_attribute"):
+			target.modify_attribute("MagicRes", -magic_res_reduction)
+			print(target.name, " Magischer Widerstand um ", magic_res_reduction, " reduziert durch Einsetzen von Brennen (modify_attribute).")
 func remove_effect(target: Node,caster: Node):
 	if target:
 		print(target.name, " hört auf zu brennen.")
@@ -40,3 +43,6 @@ func remove_effect(target: Node,caster: Node):
 		if target.has_method("modify_attribute"):
 			target.modify_attribute("Armor", armor_reduction) # Positiver Wert für Wiederherstellung
 			print(target.name, " Rüstung durch Ende von Brennen wiederhergestellt (modify_attribute).")
+	if target.has_method("modify_attribute"):
+			target.modify_attribute("MagicRes", magic_res_reduction) # Positiver Wert für Wiederherstellung
+			print(target.name, " Magischer Widerstand durch Ende von Brennen wiederhergestellt (modify_attribute).")

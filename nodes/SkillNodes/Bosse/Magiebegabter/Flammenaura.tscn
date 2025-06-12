@@ -32,12 +32,11 @@ position = Vector2(7.5, -2)
 shape = SubResource("RectangleShape2D_sn7pu")
 
 [node name="Image" type="TextureRect" parent="Flammenaura"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(80, 80)
 offset_left = 10.5
 offset_top = -6.0
 offset_right = 10.5
 offset_bottom = -6.0
-scale = Vector2(0.0908203, 0.0703125)
 texture = ExtResource("4_ldv6y")
 expand_mode = 1
 stretch_mode = 5

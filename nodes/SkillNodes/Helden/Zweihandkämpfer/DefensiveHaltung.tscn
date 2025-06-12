@@ -1,16 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbkyunsfstwuv"]
+[gd_scene load_steps=8 format=3 uid="uid://bbkyunsfstwuv"]
 
 [ext_resource type="Script" uid="uid://dk68vf6axq0gu" path="res://Helden/Fighter/Skills/defensivehaltung.gd" id="1_4wgs0"]
-[ext_resource type="Script" uid="uid://besw7vm05tg42" path="res://Skills/Effekte/BlockEffect.gd" id="2_bruh0"]
+[ext_resource type="Texture2D" uid="uid://d2dcs3g1m8tc6" path="res://sprites/EffectIcon/20250530_0958_RPG Block Icon_simple_compose_01jwg32pfxfqxvgpcjrp2pmtb5.png" id="2_7bncf"]
 [ext_resource type="Texture2D" uid="uid://duquin2udv4cs" path="res://sprites/heroes/fighter/DefensiveHaltungBT.png" id="3_7wvd7"]
 [ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_bruh0"]
+[ext_resource type="Script" uid="uid://ow466qh077d3" path="res://Skills/Effekte/DeffEffect.gd" id="3_e05j5"]
 
-[sub_resource type="Resource" id="Resource_pmjyd"]
-script = ExtResource("2_bruh0")
-name = ""
+[sub_resource type="Resource" id="Resource_hkfa3"]
+script = ExtResource("3_e05j5")
+block_amount = 0
+armor_amount = 10
+magic_res_amount = 3
+name = "Deff-Buff"
 description = ""
-duration = 0
-metadata/_custom_type_script = "uid://besw7vm05tg42"
+duration = 3
+Effect_texture = ExtResource("2_7bncf")
+metadata/_custom_type_script = "uid://ow466qh077d3"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
 size = Vector2(90, 68)
@@ -21,7 +26,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_4wgs0")
 skill_name = "Defensive Haltung"
-effect = SubResource("Resource_pmjyd")
+effect = SubResource("Resource_hkfa3")
 target_type = 1
 cooldown = 5
 caster_type = 1

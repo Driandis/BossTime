@@ -35,6 +35,16 @@ func _process(_delta):	#führt irgendwie dazu, dass man sauberer ziehen kann
 #Funktion zum Einrasten oder zurückspringen beim Ziehen der Skills
 #Mitlerweile aber auch dafür da, zu erkennen, dass Skills nicht mehr in Feldern liegen, damit sie nicht mehr
 #aktiviert werden, wenn sie auf keinem Feld liegen
+func reset_skill():
+		if is_inside_tree():
+			get_parent().remove_child(self)
+		
+		if GlobalVariables.main_node:
+			GlobalVariables.main_node.add_child(self)
+			global_position = start_position   # 
+		else:
+			print("Fehler: main_node nicht gesetzt – konntest Skill nicht korrekt zurücksetzen.")
+		previous_slot = null
 func check_snap():	
 	var snapped = false
 	for slot in get_tree().get_nodes_in_group("Felder"):	#Die Felder sind jetzt slots

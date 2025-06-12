@@ -150,6 +150,9 @@ func modify_attribute(attribute_name: String, amount: float):
 			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", GlobalVariables.bossArmor)
 			print("Aktuelle Bossrüstung", GlobalVariables.bossArmor)
 		# Füge hier weitere Attribute hinzu, die modifiziert werden können
+		"MagicRes":
+			GlobalVariables.bossMagicRes +=amount
+			print(name, "'s magischer Widerstand geändert um: ", amount, ". Neuer magischer Widerstand: ", GlobalVariables.bossMagicRes)
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte

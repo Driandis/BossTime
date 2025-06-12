@@ -51,6 +51,7 @@ func init_hero(hero_data): #um den Heldencharkter zu laden lädt er die Werte au
 			var skill_instance = skill_scene.instantiate()
 			skill_felder[i].add_child(skill_instance)
 			CooldownManagerPlayer.register_skill(skill_instance)
+		#	skill_felder[i].queue_sort()
 		else:
 				printerr("Nicht genügend Skill-Felder vorhanden, um alle Helden-Skills zu laden!")
 				break
@@ -84,6 +85,9 @@ func modify_attribute(attribute_name: String, amount: int):
 			GlobalVariables.playerArmor += amount
 			print(name, "'s Rüstung geändert um: ", amount, ". Neue Rüstung: ", GlobalVariables.playerArmor)
 		# Füge hier weitere Attribute hinzu, die modifiziert werden können
+		"MagicRes":
+			GlobalVariables.playerMagicRes += amount
+			print(name, "'s magischer Widerstand geändert um: ", amount, ". Neuer magischer Widerstand: ", GlobalVariables.playerMagicRes)
 		_:
 			print_debug("Versuch, unbekanntes Attribut zu modifizieren: ", attribute_name)
 #Zum Abarbeiten der Statuseffekte am Ende des Zuges (Im Main passiert das nach take_turn
