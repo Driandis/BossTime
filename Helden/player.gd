@@ -204,7 +204,10 @@ func damage(physical_damage, magic_damage, attacker: Node = null) -> void:
 		was_attacked.emit(null, total_damage)
 		
 @onready var player_slots = $Felder/Player.get_children()
+var can_take_turn: bool = true
 func take_turn():
+	if not can_take_turn:
+		return # Frühzeitiger Exit: Die Funktion wird nicht ausgeführt
 	for i in player_slots.size():	#Farbeffekt
 		player_slots[i].modulate = Color(1, 1, 1)  # Reset Farbe
 		player_slots[GlobalVariables.current_slot].modulate = Color(0.8, 0.7, 0.5)  # Aktives Feld hervorheben

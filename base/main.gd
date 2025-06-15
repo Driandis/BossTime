@@ -43,16 +43,20 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 
 	var selected_boss: BossData
 #Boss laden
-	if GlobalVariables.selected_boss != "":
+	if GlobalVariables.selected_boss == "":
+		if GlobalVariables.my_boss_data_resources[GlobalVariables.current_fight] != null:
+	#	if ResourceLoader.exists(GlobalVariables.selected_boss):
+#			selected_boss = load(GlobalVariables.selected_boss)
+			selected_boss=GlobalVariables.my_boss_data_resources[GlobalVariables.current_fight] 
+#		else:
+#			push_error("Pfad zu Bossdatei ungültig: " + GlobalVariables.selected_boss)
+#			return
+		else:
+			printerr("Bosspfad unpassend.")
+			selected_boss = preload("res://bosses/Barbarianking/Barbarianking.tres")
+	else:
 		if ResourceLoader.exists(GlobalVariables.selected_boss):
 			selected_boss = load(GlobalVariables.selected_boss)
-			GlobalVariables.current_boss = selected_boss
-		else:
-			push_error("Pfad zu Bossdatei ungültig: " + GlobalVariables.selected_boss)
-			return
-	else:
-		selected_boss = preload("res://bosses/Barbarianking/Barbarianking.tres")
-
 	boss.init_boss(selected_boss)	#die Werte aus dem Bosspaket des Pfades werden geladen (Name, HP, Skills)
 	# muss noch ausgearbeitet werden im boss.gd sobald die ersten Skills existieren
 	#grob habe ich es schon gemacht, eventuell funktioniert es sogar einfach
@@ -77,6 +81,8 @@ func _on_player_dead() -> void:
 	$GameOver.visible = true;
 
 func _on_boss_died():
+	player.can_take_turn = false 
+	boss.can_take_turn = false 
 	$Win.visible = true
 	GlobalVariables.current_fight +=1
 	print("Nächster Kampf: Kampf Nummer ", GlobalVariables.current_fight)
@@ -124,6 +130,15 @@ func _on_win_pressed() -> void:
 	loot_manager.generate_and_show_loot(3) # Generiere 3 Items
 	pass # Replace with function body.
 
+func reset_all_skills():
+	for slot_node in get_tree().get_nodes_in_group("PlayerSkillfelder"):
+		# Jeder Slot-Knoten (also jedes Skill-Feld)
+		# Durchlaufe alle Kinder dieses Slot-Knotens
+		for skill_instance in slot_node.get_children():
+			# Überprüfe, ob das Kind tatsächlich ein Skill ist und die Methode 'reset_skill' hat
+			# Das ist wichtig, falls du andere Dinge in den Slots hast, die keine Skills sind
+			if skill_instance.has_method("reset_skill"):
+				skill_instance.reset_skill()
 func reset_all_skills_in_slots():
 	for slot_node in get_tree().get_nodes_in_group("Felder"):
 		# Jeder Slot-Knoten (also jedes Skill-Feld)

@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0ceg8avf7rf0"]
+[gd_scene load_steps=3 format=3 uid="uid://c0ceg8avf7rf0"]
+
+[ext_resource type="Script" uid="uid://c6quseaxiuh2b" path="res://base/PlayerSkillfelder.gd" id="1_8vbg7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpxiq"]
 size = Vector2(138.229, 90.6667)
@@ -8,6 +10,7 @@ size = Vector2(138.229, 90.6667)
 [node name="Feld1" type="Area2D" parent="."]
 position = Vector2(-192, 48)
 scale = Vector2(0.6, 0.6)
+script = ExtResource("1_8vbg7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld1"]
 position = Vector2(-2.44785, 48)
@@ -24,6 +27,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Feld2" type="Area2D" parent="."]
 position = Vector2(-64, 48)
 scale = Vector2(0.6, 0.6)
+script = ExtResource("1_8vbg7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld2"]
 position = Vector2(-2.44785, 48)
@@ -40,6 +44,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Feld3" type="Area2D" parent="."]
 position = Vector2(64, 48)
 scale = Vector2(0.6, 0.6)
+script = ExtResource("1_8vbg7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld3"]
 position = Vector2(-2.44785, 48)
@@ -56,6 +61,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Feld4" type="Area2D" parent="."]
 position = Vector2(192, 48)
 scale = Vector2(0.6, 0.6)
+script = ExtResource("1_8vbg7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld4"]
 position = Vector2(-2.44785, 48)
@@ -72,6 +78,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Feld5" type="Area2D" parent="."]
 position = Vector2(320, 48)
 scale = Vector2(0.6, 0.6)
+script = ExtResource("1_8vbg7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld5"]
 position = Vector2(-2.44785, 48)
@@ -88,6 +95,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Feld6" type="Area2D" parent="."]
 position = Vector2(448, 48)
 scale = Vector2(0.6, 0.6)
+script = ExtResource("1_8vbg7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Feld6"]
 position = Vector2(-2.44785, 48)

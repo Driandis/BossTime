@@ -251,7 +251,10 @@ func load_skills_for_turn():
 			print("Skill ", skill_instance.name, " zu Slot ", boss_slots[i].name, " hinzugefügt")
 	#	else: #debug
 	#		printerr("Ungültiger Rundenindex oder falscher Datentyp in skill_plan!")
+var can_take_turn: bool = true
 func take_turn():
+	if not can_take_turn:
+		return # Frühzeitiger Exit: Die Funktion wird nicht ausgeführt
 	if GlobalVariables.current_turn % 3 == 0:# and  #if GlobalVariables.current_round > 0: #damit nicht zu früh erhöht wird, der zweite Teil
 		if GlobalVariables.current_turn>0:
 			current_round_index = (current_round_index + 1) % skill_plan.size()
