@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BossData" load_steps=3 format=3 uid="uid://of3di24q8ldn"]
 
-[ext_resource type="Texture2D" uid="uid://bgcosfnp0etpm" path="res://sprites/boss/Wolfsalpha/Wolfsalpha.png" id="1_t61k7"]
+[ext_resource type="Texture2D" uid="uid://dehyssmuaykmw" path="res://sprites/boss/Wolfsalpha/20250615_1309_Ferocious Wolf Emblem_remix_01jxsmdstbec8vcgd095syyyc4.png" id="1_t61k7"]
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="2_fld3i"]
 
 [resource]

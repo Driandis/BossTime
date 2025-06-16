@@ -104,6 +104,30 @@ expand_mode = 1
 stretch_mode = 4
 script = ExtResource("10_hg0js")
 
+[node name="ItemContainer" type="HBoxContainer" parent="."]
+offset_left = 220.0
+offset_top = -400.0
+offset_right = 620.0
+offset_bottom = -330.0
+
+[node name="ItemIcon1" type="TextureRect" parent="ItemContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemIcon2" type="TextureRect" parent="ItemContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemIcon3" type="TextureRect" parent="ItemContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
 [connection signal="mouse_entered" from="Charakterimage" to="Charakterimage" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Charakterimage" to="Charakterimage" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="EquippedWeapon" to="EquippedWeapon" method="_on_mouse_entered"]

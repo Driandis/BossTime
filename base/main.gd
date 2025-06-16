@@ -66,8 +66,19 @@ func _ready(): #soll den Heldencharakter (je nach Auswahl) laden, verstehe ich n
 		boss.boss_died.connect(_on_boss_died)
 	
 	$Boss/Bossimage.texture = selected_boss.boss_texture
+	
+	#Items laden
+	if GlobalVariables.equipped_items.size() >= 1 :
+		$Player/ItemContainer/ItemIcon1.texture =GlobalVariables.equipped_items[0].Item_texture
+	if GlobalVariables.equipped_items.size() >= 2 :
+		$Player/ItemContainer/ItemIcon2.texture =GlobalVariables.equipped_items[1].Item_texture
+	if GlobalVariables.equipped_items.size() >= 3 :
+		$Player/ItemContainer/ItemIcon3.texture =GlobalVariables.equipped_items[2].Item_texture
 
-
+	#Effekte der Items laden
+	for item in GlobalVariables.equipped_items:
+			item.use()
+			print("Item ", item.name, " wurde benutzt.")
 func _process(delta: float) -> void:
 	pass
 

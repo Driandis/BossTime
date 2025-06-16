@@ -8,31 +8,15 @@
 script = ExtResource("1_msiit")
 
 [node name="Auswahlobjekte" type="VBoxContainer" parent="."]
-offset_left = 559.0
-offset_top = 317.0
-offset_right = 1591.0
-offset_bottom = 1861.0
+offset_left = 500.0
+offset_top = 450.0
+offset_right = 2044.0
+offset_bottom = 1994.0
 scale = Vector2(0.1, 0.1)
 
 [node name="Button" type="Button" parent="Auswahlobjekte"]
 layout_mode = 2
 icon = ExtResource("2_msiit")
-
-[node name="Itemauswahl" type="HBoxContainer" parent="Auswahlobjekte"]
-layout_mode = 2
-
-[node name="Item 1" type="PanelContainer" parent="Auswahlobjekte/Itemauswahl"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Auswahlobjekte/Itemauswahl/Item 1"]
-layout_mode = 2
-
-[node name="Item1Icon" type="TextureRect" parent="Auswahlobjekte/Itemauswahl/Item 1/VBoxContainer"]
-layout_mode = 2
-
-[node name="Item1Label" type="Label" parent="Auswahlobjekte/Itemauswahl/Item 1/VBoxContainer"]
-layout_mode = 2
 
 [node name="Überschrift" type="Label" parent="."]
 offset_left = 395.0
@@ -47,4 +31,76 @@ position = Vector2(575.25, 322.25)
 scale = Vector2(0.749674, 0.634277)
 texture = ExtResource("3_iwwsu")
 
+[node name="Itemauswahl" type="HBoxContainer" parent="."]
+offset_left = 295.0
+offset_top = 186.0
+offset_right = 855.0
+offset_bottom = 448.0
+
+[node name="Item 1" type="PanelContainer" parent="Itemauswahl"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Itemauswahl/Item 1"]
+layout_mode = 2
+
+[node name="Item1Icon" type="TextureRect" parent="Itemauswahl/Item 1/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Item1Label" type="Label" parent="Itemauswahl/Item 1/VBoxContainer"]
+layout_mode = 2
+text = "Itemname"
+
+[node name="Item1Button" type="Button" parent="Itemauswahl/Item 1/VBoxContainer"]
+layout_mode = 2
+text = "Choose this"
+
+[node name="Item 2" type="PanelContainer" parent="Itemauswahl"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Itemauswahl/Item 2"]
+layout_mode = 2
+
+[node name="Item2Icon" type="TextureRect" parent="Itemauswahl/Item 2/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Item2Label" type="Label" parent="Itemauswahl/Item 2/VBoxContainer"]
+layout_mode = 2
+text = "Itemname"
+
+[node name="Item2Button" type="Button" parent="Itemauswahl/Item 2/VBoxContainer"]
+layout_mode = 2
+text = "Choose this"
+
+[node name="Item 3" type="PanelContainer" parent="Itemauswahl"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Itemauswahl/Item 3"]
+layout_mode = 2
+
+[node name="Item3Icon" type="TextureRect" parent="Itemauswahl/Item 3/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Item3Label" type="Label" parent="Itemauswahl/Item 3/VBoxContainer"]
+layout_mode = 2
+text = "Itemname"
+
+[node name="Item3Button" type="Button" parent="Itemauswahl/Item 3/VBoxContainer"]
+layout_mode = 2
+text = "Choose this"
+
 [connection signal="pressed" from="Auswahlobjekte/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Itemauswahl/Item 1/VBoxContainer/Item1Button" to="." method="_on_item_1_button_pressed"]
+[connection signal="pressed" from="Itemauswahl/Item 2/VBoxContainer/Item2Button" to="." method="_on_item_2_button_pressed"]
+[connection signal="pressed" from="Itemauswahl/Item 3/VBoxContainer/Item3Button" to="." method="_on_item_3_button_pressed"]

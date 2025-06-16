@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Amulette_des_Gleichgewichts" load_steps=3 format=3 uid="uid://dwftcxhvchoig"]
+
+[ext_resource type="Texture2D" uid="uid://mgk3xo11855q" path="res://sprites/Items/Loot/20250616_1643_Amulett des Gleichgewichts_simple_compose_01jxwk1097e55tqcq2y0pma3g4.png" id="1_3f6rp"]
+[ext_resource type="Script" uid="uid://cl1gbrk31wnkg" path="res://Items/Amulette der Brücke.gd" id="1_po1wx"]
+
+[resource]
+script = ExtResource("1_po1wx")
+name = ""
+Item_texture = ExtResource("1_3f6rp")
+stackable = false
+stat_multiplier = 0.0
+stat_bonus = 5.0
+item_count = 2
+equip_count = 1
+metadata/_custom_type_script = "uid://cl1gbrk31wnkg"

@@ -5,9 +5,12 @@ class_name  Item
 var target: Node # Der Knoten, der den Effekt hat/bekommt
 var caster: Node
 @export var Item_texture: Texture2D
+@export var stackable: bool = false		#notwendig?
+@export var stat_multiplier: float	#Dazu multipliziert
+@export var stat_bonus: float	#Flat dazuaddiert
+@export var item_count: int	#wie oft das Item im Pool ist
+@export var equip_count: int	#wie oft das Item gleichzeitig ausgerüstet werden kann
 
-@export var stat_multiplier: float
-@export var stat_bonus: float
 
 func _init(target_node: Node = null, caster_node: Node = null): #nervig
 	target = target_node
@@ -15,7 +18,8 @@ func _init(target_node: Node = null, caster_node: Node = null): #nervig
 	
 func _ready(): 	#Wird direkt nach dem bestimmen des Targets aufgerufen, Starteffekt
 	pass # Optionale Initialisierung beim Anwenden des Effekts
-	
+func use():	#Zu Beginn des Kampfes wird das Item benutzt
+	pass
 func get_caster():
 	return caster
 func get_target():

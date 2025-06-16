@@ -42,7 +42,8 @@ var equipped_weapon: WeaponData = null:
 	set(new_weapon):
 		equipped_weapon = new_weapon
 		player_equipped_weapon_changed.emit()
-		
+var equipped_items: Array[Item]
+
 #Statuseffekte
 var active_boss_status_effects: Array[StatusEffect] = []
 var active_player_status_effects: Array[StatusEffect] = []
@@ -53,9 +54,17 @@ var skillAttributes
 var freezetimer : int = 0
 # NEU: Der Pool aller möglichen Item-Ressourcen
 # Fülle dieses Array im Godot-Editor mit deinen Item.tres-Dateien!
-@export var item_pool_resources: Array[Item] = []
+var item_pool_resources: Array[Item] = [
+	preload("res://Items/Steinamulette.tres"),
+	preload("res://Items/Steinamulette.tres"),
+	preload("res://Items/Amulette der Brücke.tres"),
+	preload("res://Items/Amulette der Brücke.tres"),
+	preload("res://Items/Amulette des Gleichgewichts.tres"),
+	preload("res://Items/Amulette des Gleichgewichts.tres"),
+	preload("res://Items/Elixier der Körperkraft.tres"),
+	preload("res://Items/Elixier der Körperkraft.tres")
+	]
 
-# NEU: Ein temporäres Array, um die nach dem Kampf generierten Items zu speichern.
 # Die Loot-Szene wird dann auf dieses Array zugreifen.
 var generated_loot_items: Array[Item] = []
 # Board 
@@ -87,7 +96,8 @@ func generate_random_loot(count: int) -> Array[Item]:
 		
 		if new_item_instance != null:
 			generated_loot_items.append(new_item_instance)
-			print("GlobalVariables: Zufälliges Item generiert: ", new_item_instance.item_name)
+			print("GlobalVariables: Zufälliges Item generiert: ", new_item_instance.name)
+			item_pool_resources.erase(random_item_resource)
 		else:
 			printerr("GlobalVariables: Fehler beim Duplizieren eines Items aus dem Pool.")
 			
