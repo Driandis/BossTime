@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://186nbqoudrok"]
+[gd_scene load_steps=7 format=3 uid="uid://186nbqoudrok"]
 
 [ext_resource type="Script" uid="uid://br6eame7keono" path="res://base/loot.gd" id="1_msiit"]
 [ext_resource type="Texture2D" uid="uid://cpy1go5njl8ck" path="res://sprites/Control/ChatGPT Image 3. Juni 2025, 19_34_13.png" id="2_msiit"]
 [ext_resource type="Texture2D" uid="uid://nuw6x3vh1l2d" path="res://sprites/heroes/firemage/ChatGPT Image 27. Apr. 2025, 18_15_32.png" id="3_iwwsu"]
+[ext_resource type="Script" uid="uid://clax7h2vq3fyh" path="res://UI/Loot/item_1_icon.gd" id="4_r5klf"]
+[ext_resource type="Script" uid="uid://dtgja2h43w6pd" path="res://UI/Loot/item_2_icon.gd" id="5_s7klj"]
+[ext_resource type="Script" uid="uid://k27rilei7i6t" path="res://UI/Loot/item_3_icon.gd" id="6_h8atx"]
 
 [node name="Loot" type="Node2D"]
 script = ExtResource("1_msiit")
@@ -49,6 +52,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("4_r5klf")
 
 [node name="Item1Label" type="Label" parent="Itemauswahl/Item 1/VBoxContainer"]
 layout_mode = 2
@@ -70,6 +74,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("5_s7klj")
 
 [node name="Item2Label" type="Label" parent="Itemauswahl/Item 2/VBoxContainer"]
 layout_mode = 2
@@ -91,6 +96,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("6_h8atx")
 
 [node name="Item3Label" type="Label" parent="Itemauswahl/Item 3/VBoxContainer"]
 layout_mode = 2
@@ -101,6 +107,12 @@ layout_mode = 2
 text = "Choose this"
 
 [connection signal="pressed" from="Auswahlobjekte/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Itemauswahl/Item 1/VBoxContainer/Item1Icon" to="Itemauswahl/Item 1/VBoxContainer/Item1Icon" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Itemauswahl/Item 1/VBoxContainer/Item1Icon" to="Itemauswahl/Item 1/VBoxContainer/Item1Icon" method="_on_mouse_exited"]
 [connection signal="pressed" from="Itemauswahl/Item 1/VBoxContainer/Item1Button" to="." method="_on_item_1_button_pressed"]
+[connection signal="mouse_entered" from="Itemauswahl/Item 2/VBoxContainer/Item2Icon" to="Itemauswahl/Item 2/VBoxContainer/Item2Icon" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Itemauswahl/Item 2/VBoxContainer/Item2Icon" to="Itemauswahl/Item 2/VBoxContainer/Item2Icon" method="_on_mouse_exited"]
 [connection signal="pressed" from="Itemauswahl/Item 2/VBoxContainer/Item2Button" to="." method="_on_item_2_button_pressed"]
+[connection signal="mouse_entered" from="Itemauswahl/Item 3/VBoxContainer/Item3Icon" to="Itemauswahl/Item 3/VBoxContainer/Item3Icon" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Itemauswahl/Item 3/VBoxContainer/Item3Icon" to="Itemauswahl/Item 3/VBoxContainer/Item3Icon" method="_on_mouse_exited"]
 [connection signal="pressed" from="Itemauswahl/Item 3/VBoxContainer/Item3Button" to="." method="_on_item_3_button_pressed"]

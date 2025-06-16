@@ -24,6 +24,8 @@ func show_tooltip(item, position: Vector2):
 		tooltip_text=item.get_description()
 	elif item is StatusEffect:
 		tooltip_text=item.get_description()
+	elif item is Item:
+		tooltip_text=item.get_description()
 	else:
 		#print("Item ist unbekannt")
 		tooltip_text = "Keine Beschreibung verfügbar."

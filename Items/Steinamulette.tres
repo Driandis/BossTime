@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c4uvqg3rcn1y7"]
+[gd_resource type="Resource" script_class="Steinamulette" load_steps=3 format=3 uid="uid://c4uvqg3rcn1y7"]
 
 [ext_resource type="Texture2D" uid="uid://ckbh86k03vuw7" path="res://sprites/Items/Loot/20250616_1559_Stone Amulet Icon_simple_compose_01jxwgh4bhetg8zbz9540rfrq7.png" id="1_5ye5f"]
 [ext_resource type="Script" uid="uid://j51g4ttlw6nq" path="res://Items/Steinamulette.gd" id="2_5ye5f"]
@@ -12,4 +12,6 @@ stat_multiplier = 0.0
 stat_bonus = 5.0
 item_count = 2
 equip_count = 1
+description = ""
+stat = "physische Rüstun"
 metadata/_custom_type_script = "uid://ddwjolnggic8q"

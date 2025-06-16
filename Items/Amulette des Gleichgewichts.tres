@@ -5,11 +5,13 @@
 
 [resource]
 script = ExtResource("1_po1wx")
-name = ""
+name = "Amulette des Gleichgewichts"
 Item_texture = ExtResource("1_3f6rp")
 stackable = false
 stat_multiplier = 0.0
 stat_bonus = 5.0
 item_count = 2
 equip_count = 1
+description = ""
+stat = "physische und magische Rüstung"
 metadata/_custom_type_script = "uid://cl1gbrk31wnkg"

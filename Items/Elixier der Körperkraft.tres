@@ -12,4 +12,6 @@ stat_multiplier = 0.0
 stat_bonus = 10.0
 item_count = 2
 equip_count = 1
+description = ""
+stat = "Max HP"
 metadata/_custom_type_script = "uid://bf6t2sucl8lji"

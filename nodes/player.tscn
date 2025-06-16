@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fivay0tb8yky"]
+[gd_scene load_steps=17 format=3 uid="uid://fivay0tb8yky"]
 
 [ext_resource type="Script" uid="uid://c5qd62u5caywy" path="res://Helden/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://beqjrr8riju8o" path="res://nodes/status_effect_icon.tscn" id="2_2wrp4"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c0ceg8avf7rf0" path="res://nodes/skillfelder.tscn" id="8_ejohg"]
 [ext_resource type="Script" uid="uid://dkyp0smpj4ams" path="res://UI/Statuseffekte/playerstatuseffekt_1.gd" id="9_qbdof"]
 [ext_resource type="Script" uid="uid://baqgdpn6xlry6" path="res://UI/Statuseffekte/playerstatuseffekt_2.gd" id="10_hg0js"]
+[ext_resource type="Script" uid="uid://vlhee6xhavoa" path="res://UI/Items/Item1Image.gd" id="11_4n5g4"]
+[ext_resource type="Script" uid="uid://cnpdpxi443anp" path="res://UI/Items/Item2Image.gd" id="12_gggum"]
+[ext_resource type="Script" uid="uid://vahiljyobj0i" path="res://UI/Items/Item3Image.gd" id="13_k5sjp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4flbx"]
 
@@ -115,18 +118,21 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("11_4n5g4")
 
 [node name="ItemIcon2" type="TextureRect" parent="ItemContainer"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("12_gggum")
 
 [node name="ItemIcon3" type="TextureRect" parent="ItemContainer"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("13_k5sjp")
 
 [connection signal="mouse_entered" from="Charakterimage" to="Charakterimage" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Charakterimage" to="Charakterimage" method="_on_mouse_exited"]
@@ -136,3 +142,9 @@ stretch_mode = 5
 [connection signal="mouse_exited" from="StatusEffectContainer/Statuseffekt 1" to="StatusEffectContainer/Statuseffekt 1" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="StatusEffectContainer/Statuseffekt 2" to="StatusEffectContainer/Statuseffekt 2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="StatusEffectContainer/Statuseffekt 2" to="StatusEffectContainer/Statuseffekt 2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemContainer/ItemIcon1" to="ItemContainer/ItemIcon1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemContainer/ItemIcon1" to="ItemContainer/ItemIcon1" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemContainer/ItemIcon2" to="ItemContainer/ItemIcon2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemContainer/ItemIcon2" to="ItemContainer/ItemIcon2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="ItemContainer/ItemIcon3" to="ItemContainer/ItemIcon3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemContainer/ItemIcon3" to="ItemContainer/ItemIcon3" method="_on_mouse_exited"]
