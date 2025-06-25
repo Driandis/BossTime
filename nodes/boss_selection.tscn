@@ -38,6 +38,9 @@ layout_mode = 2
 icon = ExtResource("6_2w3tt")
 script = ExtResource("6_q3l6o")
 
+[node name="Hexe" type="Button" parent="Auswahlobjekte"]
+layout_mode = 2
+
 [node name="Überschrift" type="Label" parent="."]
 offset_left = 395.0
 offset_top = 92.0
