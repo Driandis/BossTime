@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://dus36r86c0liq"]
+
+[ext_resource type="Script" uid="uid://c1us1frn2hemq" path="res://bosses/Wolfsalpha/Pranke.gd" id="1_t4qui"]
+[ext_resource type="Texture2D" uid="uid://dwmxfuov5720w" path="res://sprites/boss/Barbarianking/20250529_2000_Mittelalterliche Belagerungskunst_simple_compose_01jwek4hy2e1eawrf9g23n9hgh.png" id="4_y2515"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6ypt"]
+size = Vector2(90, 68)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Pranke" type="Area2D" parent="."]
+position = Vector2(-3, 64)
+script = ExtResource("1_t4qui")
+skill_name = "Pranke"
+target_type = 1
+physical_damage = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pranke"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_v6ypt")
+
+[node name="Image" type="TextureRect" parent="Pranke"]
+custom_minimum_size = Vector2(80, 80)
+offset_left = -30.0
+offset_top = -49.0
+offset_right = 50.0
+offset_bottom = 31.0
+texture = ExtResource("4_y2515")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Pranke"]
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Ansturm"
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Pranke"]
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Pranke/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true

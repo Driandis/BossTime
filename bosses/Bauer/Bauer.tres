@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BossData" load_steps=2 format=3 uid="uid://d00i3y6fgjtnu"]
+
+[ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_c2w65"]
+
+[resource]
+script = ExtResource("1_c2w65")
+name = "Bauer"
+skills = Array[PackedScene]([])
+max_health = 280
+bossBlock = 0
+bossArmor = 5
+bossMagicRes = 5
+rounds = []
+passive_trigger = 0.0

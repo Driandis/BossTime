@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BossData" load_steps=2 format=3 uid="uid://3srq0t01wyl4"]
+
+[ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_jjkjc"]
+
+[resource]
+script = ExtResource("1_jjkjc")
+name = "Hexe"
+skills = Array[PackedScene]([])
+max_health = 350
+bossBlock = 0
+bossArmor = 10
+bossMagicRes = 18
+rounds = []
+passive_trigger = 0.0
