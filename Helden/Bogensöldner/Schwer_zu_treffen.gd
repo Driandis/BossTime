@@ -1,0 +1,2 @@
+extends Skill
+class_name Schwer_zu_treffen

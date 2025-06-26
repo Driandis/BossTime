@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="HeroData" load_steps=7 format=3 uid="uid://b4sw6e3wy5u0w"]
+
+[ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_jh7en"]
+[ext_resource type="PackedScene" uid="uid://coes4fq5y8ayl" path="res://nodes/SkillNodes/Helden/Bogensöldner/Einfacher_Schuss.tscn" id="2_oe16j"]
+[ext_resource type="PackedScene" uid="uid://s8mjei564rsp" path="res://nodes/SkillNodes/Helden/Bogensöldner/Mehrfachschuss.tscn" id="3_cf2i5"]
+[ext_resource type="PackedScene" uid="uid://c0omttdsl0ihk" path="res://nodes/SkillNodes/Helden/Bogensöldner/Schwäche_finden.tscn" id="4_qjbli"]
+[ext_resource type="PackedScene" uid="uid://cwat7hceph4d7" path="res://nodes/SkillNodes/Helden/Bogensöldner/Vergifteter_Pfeil.tscn" id="5_7rfvj"]
+[ext_resource type="PackedScene" uid="uid://b71tpf288pcw" path="res://nodes/SkillNodes/Helden/Bogensöldner/Schwer_zu_treffen.tscn" id="6_vm3l2"]
+
+[resource]
+script = ExtResource("1_jh7en")
+name = "Bogensöldner"
+skills = Array[PackedScene]([ExtResource("2_oe16j"), ExtResource("3_cf2i5"), ExtResource("4_qjbli"), ExtResource("5_7rfvj"), ExtResource("6_vm3l2")])
+max_health = 140
+playerBlock = 0
+playerArmor = 10
+playerMagicRes = 10

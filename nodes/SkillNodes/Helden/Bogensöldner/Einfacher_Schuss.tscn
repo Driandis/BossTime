@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://coes4fq5y8ayl"]
+
+[ext_resource type="Script" uid="uid://lrcykh8td2i3" path="res://Helden/Bogensöldner/Einfacher_Schuss.gd" id="1_vmb0b"]
+[ext_resource type="Texture2D" uid="uid://bbl2cgfseqrlc" path="res://sprites/heroes/firemage/ChatGPT Image 19. Apr. 2025, 11_30_36.png" id="2_bqxgm"]
+[ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_83oal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
+size = Vector2(90, 68)
+
+[node name="Area2D" type="Node2D"]
+
+[node name="Einfacher_Schuss" type="Area2D" parent="."]
+position = Vector2(-3, 64)
+script = ExtResource("1_vmb0b")
+skill_name = "Einfacher Schuss"
+cooldown = 2
+caster_type = 1
+physical_damage = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Einfacher_Schuss"]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_p5q08")
+
+[node name="Image" type="TextureRect" parent="Einfacher_Schuss"]
+custom_minimum_size = Vector2(80, 80)
+offset_left = -38.0
+offset_top = -39.0
+offset_right = 42.0
+offset_bottom = 41.0
+texture = ExtResource("2_bqxgm")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Einfacher_Schuss"]
+offset_left = -29.5
+offset_top = 11.0
+offset_right = 43.5
+offset_bottom = 34.0
+text = "Feuerball"
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownBar" type="ProgressBar" parent="Einfacher_Schuss"]
+offset_left = 20.5
+offset_top = -38.0
+offset_right = 52.5
+offset_bottom = -9.0
+fill_mode = 2
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="CooldownText" type="Label" parent="Einfacher_Schuss/CooldownBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_right = -0.25
+anchor_bottom = 0.137931
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Einfacher_Schuss"]
+stream = ExtResource("3_83oal")
+pitch_scale = 0.5
+max_polyphony = 3

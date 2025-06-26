@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b84addqgr56i6"]
+[gd_scene load_steps=13 format=3 uid="uid://b84addqgr56i6"]
 
 [ext_resource type="Script" uid="uid://bhauku0q2ty4h" path="res://controls/boss_selection.gd" id="1_vx0fa"]
 [ext_resource type="Texture2D" uid="uid://b1syvj2plvdoi" path="res://sprites/boss/ChatGPT Image 29. Apr. 2025, 10_55_25.png" id="2_vx0fa"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dc7yd1qoa1ni8" path="res://controls/bauerbutton.gd" id="8_my7pk"]
 [ext_resource type="Script" uid="uid://ctu6crcfcq5t1" path="res://controls/hexebutton.gd" id="8_sv02o"]
 [ext_resource type="Texture2D" uid="uid://v1y3pf5o06gk" path="res://sprites/Control/20250615_1251_Run Button Medieval_simple_compose_01jxskbprvfv990ag358p73pwj.png" id="9_2w3tt"]
+[ext_resource type="Script" uid="uid://ojdnv7fbj7a1" path="res://controls/grizzlybutton.gd" id="10_h415e"]
 
 [node name="BossSelection" type="Node2D"]
 script = ExtResource("1_vx0fa")
@@ -47,6 +48,10 @@ script = ExtResource("8_my7pk")
 [node name="Hexe" type="Button" parent="Auswahlobjekte"]
 layout_mode = 2
 script = ExtResource("8_sv02o")
+
+[node name="Grizzly" type="Button" parent="Auswahlobjekte"]
+layout_mode = 2
+script = ExtResource("10_h415e")
 
 [node name="Überschrift" type="Label" parent="."]
 offset_left = 395.0
