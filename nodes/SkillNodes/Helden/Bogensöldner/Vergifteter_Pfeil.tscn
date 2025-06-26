@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwat7hceph4d7"]
+[gd_scene load_steps=7 format=3 uid="uid://cwat7hceph4d7"]
 
 [ext_resource type="Script" uid="uid://bhe4veasrpqj8" path="res://Helden/Bogensöldner/Vergifteter_Pfeil.gd" id="1_hy7qp"]
 [ext_resource type="Texture2D" uid="uid://bbl2cgfseqrlc" path="res://sprites/heroes/firemage/ChatGPT Image 19. Apr. 2025, 11_30_36.png" id="2_8h5ow"]
+[ext_resource type="Script" uid="uid://ck03udyp7e8bc" path="res://Skills/Statuseffekte/Poison.gd" id="2_8mocx"]
 [ext_resource type="AudioStream" uid="uid://chdlb2e5g6qwa" path="res://Sounds/Firemage/Feuerball.wav" id="3_8mocx"]
+
+[sub_resource type="Resource" id="Resource_pwmf6"]
+script = ExtResource("2_8mocx")
+name = ""
+description = ""
+duration = 0
+metadata/_custom_type_script = "uid://ck03udyp7e8bc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5q08"]
 size = Vector2(90, 68)
@@ -13,6 +21,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_hy7qp")
 skill_name = "Vergifteter Pfeil"
+effect = SubResource("Resource_pwmf6")
 cooldown = 4
 caster_type = 1
 physical_damage = 7

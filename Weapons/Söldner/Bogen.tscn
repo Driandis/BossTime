@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1gu7"]
 size = Vector2(87.625, 56)
 
-[node name="MageHands" type="Node2D"]
+[node name="Bogen" type="Node2D"]
 
 [node name="Bogen" type="Area2D" parent="."]
 position = Vector2(-3, 64)

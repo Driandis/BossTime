@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://nqsu5ytmkv0w"]
+[gd_scene load_steps=7 format=3 uid="uid://nqsu5ytmkv0w"]
 
 [ext_resource type="Script" uid="uid://bj0un7itu0er6" path="res://bosses/Hexe/Giftfrösche.gd" id="1_b2enl"]
+[ext_resource type="Script" uid="uid://ck03udyp7e8bc" path="res://Skills/Statuseffekte/Poison.gd" id="2_jnas7"]
 [ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_qbpuy"]
 [ext_resource type="AudioStream" uid="uid://calg7c4hsfp6d" path="res://Sounds/hieb.wav" id="3_jnas7"]
+
+[sub_resource type="Resource" id="Resource_bjy4m"]
+script = ExtResource("2_jnas7")
+name = ""
+description = ""
+duration = 0
+metadata/_custom_type_script = "uid://ck03udyp7e8bc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]
 size = Vector2(90, 68)
@@ -13,6 +21,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_b2enl")
 skill_name = "Giftfrösche"
+effect = SubResource("Resource_bjy4m")
 target_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Giftfrösche"]

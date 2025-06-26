@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj103j1hht1lt"]
+
+[ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_fpjs2"]
+[ext_resource type="Texture2D" uid="uid://ktseaykmxf3y" path="res://sprites/Items/Weapons/Zwei_hän_der mit verziertem Griff.png" id="2_jm7e7"]
+[ext_resource type="Texture2D" uid="uid://de4r2jgkmrg01" path="res://sprites/Items/Weapons/Magische Hände vor dunkler Wand.png" id="2_qgetf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1gu7"]
+size = Vector2(87.625, 56)
+
+[node name="TwoHandSword" type="Node2D"]
+
+[node name="TwoHandSword" type="Area2D" parent="."]
+position = Vector2(-3, 64)
+script = ExtResource("1_fpjs2")
+name = "Magier Hände"
+damage_multiplier = 2.5
+weapon_texture = ExtResource("2_jm7e7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TwoHandSword"]
+position = Vector2(47.1875, -28)
+shape = SubResource("RectangleShape2D_i1gu7")
+
+[node name="Image" type="TextureRect" parent="TwoHandSword"]
+custom_minimum_size = Vector2(200, 200)
+offset_left = 3.0
+offset_top = -72.0
+offset_right = 1005.0
+offset_bottom = 938.0
+scale = Vector2(0.0908203, 0.0703125)
+texture = ExtResource("2_qgetf")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
