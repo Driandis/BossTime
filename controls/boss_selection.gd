@@ -18,6 +18,11 @@ func _on_wolfsalpha_pressed() -> void:
 	get_tree().change_scene_to_file("res://nodes/Start_fight.tscn")  # Startbildschirm starten
 	print("Wolfsalpha ausgewählt.")
 	
+func _on_bauer_pressed() -> void:
+	GlobalVariables.selected_boss = "res://bosses/Bauer/Bauer.tres"
+	get_tree().change_scene_to_file("res://nodes/Start_fight.tscn")  # Startbildschirm starten
+	print("Bauer ausgewählt.")
+	
 func _on_run_easy_pressed() -> void:
 		get_tree().change_scene_to_file("res://nodes/Start_fight.tscn")  # Startbildschirm starten
 		print("Run (easy) ausgewählt.")

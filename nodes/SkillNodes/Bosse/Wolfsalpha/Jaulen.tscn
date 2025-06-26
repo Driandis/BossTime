@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://1kcxi67y1nbb"]
 
 [ext_resource type="Script" uid="uid://cvxdiue8ikfd7" path="res://bosses/Wolfsalpha/Jaulen.gd" id="1_cvh46"]
-[ext_resource type="Texture2D" uid="uid://dwmxfuov5720w" path="res://sprites/boss/Barbarianking/20250529_2000_Mittelalterliche Belagerungskunst_simple_compose_01jwek4hy2e1eawrf9g23n9hgh.png" id="4_lxfpt"]
+[ext_resource type="Texture2D" uid="uid://bw4ijih3jivaj" path="res://sprites/boss/Wolfsalpha/Jaulen.png" id="2_cvh46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6ypt"]
 size = Vector2(90, 68)
@@ -23,7 +23,7 @@ offset_left = -30.0
 offset_top = -49.0
 offset_right = 50.0
 offset_bottom = 31.0
-texture = ExtResource("4_lxfpt")
+texture = ExtResource("2_cvh46")
 expand_mode = 1
 stretch_mode = 5
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://u5itl4sxsufo"]
 
 [ext_resource type="Script" uid="uid://b1n6oyiu6iuqb" path="res://bosses/Bauer/Mistgabel.gd" id="1_5j04k"]
-[ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_38vwt"]
+[ext_resource type="Texture2D" uid="uid://b0p8wh3k5t5hf" path="res://sprites/boss/Bauer/Mistgabel.png" id="2_5j04k"]
 [ext_resource type="AudioStream" uid="uid://calg7c4hsfp6d" path="res://Sounds/hieb.wav" id="3_alc53"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]
@@ -26,7 +26,7 @@ offset_left = -44.0
 offset_top = -49.0
 offset_right = 36.0
 offset_bottom = 31.0
-texture = ExtResource("2_38vwt")
+texture = ExtResource("2_5j04k")
 expand_mode = 1
 stretch_mode = 5
 

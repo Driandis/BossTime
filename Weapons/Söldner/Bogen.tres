@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://yraxdkw01adx"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://yraxdkw01adx"]
 
 [ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_t4w78"]
+[ext_resource type="Texture2D" uid="uid://c67ormltd2ky4" path="res://sprites/Items/Weapons/Bogen.png" id="2_pkryv"]
 
 [resource]
 script = ExtResource("1_t4w78")
 name = "Bogen"
 damage_multiplier = 3.0
 description = ""
+weapon_texture = ExtResource("2_pkryv")

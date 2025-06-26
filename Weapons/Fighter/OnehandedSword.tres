@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://x67owrhsx6ff"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://x67owrhsx6ff"]
 
 [ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_vjrqw"]
+[ext_resource type="Texture2D" uid="uid://cbgvtfkrxny1j" path="res://sprites/Items/Weapons/Einhandschwert.png" id="2_bwrnp"]
 
 [resource]
 script = ExtResource("1_vjrqw")
 name = "Onehanded Sword"
 damage_multiplier = 2.0
 description = ""
+weapon_texture = ExtResource("2_bwrnp")

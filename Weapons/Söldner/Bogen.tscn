@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://clpc44v13plq3"]
+[gd_scene load_steps=5 format=3 uid="uid://clpc44v13plq3"]
 
 [ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_x5lc0"]
 [ext_resource type="Texture2D" uid="uid://de4r2jgkmrg01" path="res://sprites/Items/Weapons/Magische Hände vor dunkler Wand.png" id="2_ykoma"]
+[ext_resource type="Texture2D" uid="uid://c67ormltd2ky4" path="res://sprites/Items/Weapons/Bogen.png" id="3_2w3rw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1gu7"]
 size = Vector2(87.625, 56)
@@ -26,7 +27,7 @@ offset_top = -72.0
 offset_right = 1005.0
 offset_bottom = 938.0
 scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("2_ykoma")
+texture = ExtResource("3_2w3rw")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true

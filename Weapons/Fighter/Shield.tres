@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://cilxyi2p11n4w"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://cilxyi2p11n4w"]
 
 [ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_2kj8w"]
+[ext_resource type="Texture2D" uid="uid://vsmf8btwacx7" path="res://sprites/Items/Weapons/Schild.png" id="2_0kr6r"]
 
 [resource]
 script = ExtResource("1_2kj8w")
 name = "Shield"
 damage_multiplier = 1.5
 description = ""
+weapon_texture = ExtResource("2_0kr6r")

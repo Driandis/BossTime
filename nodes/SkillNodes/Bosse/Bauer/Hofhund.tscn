@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://nqcmxvv31pi7"]
 
 [ext_resource type="Script" uid="uid://dmcq3w8qm76ta" path="res://bosses/Bauer/Hofhund.gd" id="1_cc28t"]
-[ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_hd3f3"]
+[ext_resource type="Texture2D" uid="uid://43dknli50ukf" path="res://sprites/boss/Bauer/Hofhund.png" id="2_cc28t"]
 [ext_resource type="AudioStream" uid="uid://calg7c4hsfp6d" path="res://Sounds/hieb.wav" id="3_lky6s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]
@@ -26,7 +26,7 @@ offset_left = -44.0
 offset_top = -49.0
 offset_right = 36.0
 offset_bottom = 31.0
-texture = ExtResource("2_hd3f3")
+texture = ExtResource("2_cc28t")
 expand_mode = 1
 stretch_mode = 5
 

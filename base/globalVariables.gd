@@ -24,7 +24,8 @@ var bossMagicRes : int
 var my_boss_data_resources: Array[BossData] = [
 	preload("res://bosses/Barbarianking/Barbarianking.tres"),
 	preload("res://bosses/Pyromancer/Pyromancer.tres"),
-	preload("res://bosses/Wolfsalpha/Wolfsalpha.tres")
+	preload("res://bosses/Wolfsalpha/Wolfsalpha.tres"),
+	preload("res://bosses/Bauer/Bauer.tres")
 	]
 # Player 
 var selected_hero: String = "" #für Heldenauswahl

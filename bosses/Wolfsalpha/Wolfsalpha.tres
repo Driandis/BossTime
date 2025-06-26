@@ -1,16 +1,22 @@
-[gd_resource type="Resource" script_class="BossData" load_steps=3 format=3 uid="uid://of3di24q8ldn"]
+[gd_resource type="Resource" script_class="BossData" load_steps=9 format=3 uid="uid://of3di24q8ldn"]
 
 [ext_resource type="Texture2D" uid="uid://dehyssmuaykmw" path="res://sprites/boss/Wolfsalpha/20250615_1309_Ferocious Wolf Emblem_remix_01jxsmdstbec8vcgd095syyyc4.png" id="1_t61k7"]
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="2_fld3i"]
+[ext_resource type="PackedScene" uid="uid://dus36r86c0liq" path="res://nodes/SkillNodes/Bosse/Wolfsalpha/Pranke.tscn" id="2_gd3re"]
+[ext_resource type="PackedScene" uid="uid://b53f151mpksn8" path="res://nodes/SkillNodes/Bosse/Wolfsalpha/In_den_Schatten.tscn" id="3_gv06r"]
+[ext_resource type="PackedScene" uid="uid://buk2dea2j35vc" path="res://nodes/SkillNodes/Bosse/Wolfsalpha/Biss.tscn" id="4_fblbj"]
+[ext_resource type="PackedScene" uid="uid://bg6jhgr2lg500" path="res://nodes/SkillNodes/Bosse/Wolfsalpha/Wegspringen.tscn" id="5_lfj67"]
+[ext_resource type="PackedScene" uid="uid://1kcxi67y1nbb" path="res://nodes/SkillNodes/Bosse/Wolfsalpha/Jaulen.tscn" id="6_wb2ut"]
+[ext_resource type="PackedScene" uid="uid://djw6tjkp2je7i" path="res://nodes/SkillNodes/Bosse/Wolfsalpha/Anspringen.tscn" id="7_olecd"]
 
 [resource]
 script = ExtResource("2_fld3i")
 name = "Wolfsalpha"
-skills = Array[PackedScene]([])
+skills = Array[PackedScene]([null])
 max_health = 300
 bossBlock = 0
 bossArmor = 10
 bossMagicRes = 10
 boss_texture = ExtResource("1_t61k7")
-rounds = []
+rounds = [[ExtResource("2_gd3re"), null, ExtResource("3_gv06r")], [ExtResource("4_fblbj"), ExtResource("5_lfj67"), ExtResource("6_wb2ut")], [ExtResource("7_olecd"), ExtResource("4_fblbj"), ExtResource("2_gd3re")], [ExtResource("5_lfj67"), null, ExtResource("4_fblbj")]]
 passive_trigger = 0.0

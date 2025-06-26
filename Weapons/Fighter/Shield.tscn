@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7x5wbpmmfh14" path="res://Weapons/WeaponData.gd" id="1_6ns6i"]
 [ext_resource type="Texture2D" uid="uid://ktseaykmxf3y" path="res://sprites/Items/Weapons/Zwei_hän_der mit verziertem Griff.png" id="2_wnw1l"]
-[ext_resource type="Texture2D" uid="uid://de4r2jgkmrg01" path="res://sprites/Items/Weapons/Magische Hände vor dunkler Wand.png" id="3_k2uy8"]
+[ext_resource type="Texture2D" uid="uid://vsmf8btwacx7" path="res://sprites/Items/Weapons/Schild.png" id="3_6ns6i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1gu7"]
 size = Vector2(87.625, 56)
@@ -27,7 +27,7 @@ offset_top = -72.0
 offset_right = 1005.0
 offset_bottom = 938.0
 scale = Vector2(0.0908203, 0.0703125)
-texture = ExtResource("3_k2uy8")
+texture = ExtResource("3_6ns6i")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true

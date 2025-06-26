@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cw7uv84vlpqwb" path="res://bosses/Wolfsalpha/Biss.gd" id="1_tnoeo"]
 [ext_resource type="Script" uid="uid://bwce05of5kkrk" path="res://Skills/Statuseffekte/Bleed.gd" id="2_816hs"]
-[ext_resource type="Texture2D" uid="uid://dwmxfuov5720w" path="res://sprites/boss/Barbarianking/20250529_2000_Mittelalterliche Belagerungskunst_simple_compose_01jwek4hy2e1eawrf9g23n9hgh.png" id="4_32fvf"]
+[ext_resource type="Texture2D" uid="uid://cq13sqb0csfff" path="res://sprites/boss/Wolfsalpha/Biss.png" id="3_816hs"]
 
 [sub_resource type="Resource" id="Resource_5tsku"]
 script = ExtResource("2_816hs")
@@ -34,7 +34,7 @@ offset_left = -30.0
 offset_top = -49.0
 offset_right = 50.0
 offset_bottom = 31.0
-texture = ExtResource("4_32fvf")
+texture = ExtResource("3_816hs")
 expand_mode = 1
 stretch_mode = 5
 

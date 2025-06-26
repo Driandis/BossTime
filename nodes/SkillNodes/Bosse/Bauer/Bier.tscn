@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://brpbhvx0a5124"]
 
 [ext_resource type="Script" uid="uid://dfo41b8qkewlr" path="res://bosses/Bauer/Bier.gd" id="1_hbnv4"]
-[ext_resource type="Texture2D" uid="uid://behg7vcm7yyyw" path="res://sprites/boss/Barbarianking/ChatGPT Image 29. Apr. 2025, 19_44_52.png" id="2_hmgo1"]
+[ext_resource type="Texture2D" uid="uid://dw47ioe36j0rx" path="res://sprites/boss/Bauer/Bier.png" id="2_hbnv4"]
 [ext_resource type="AudioStream" uid="uid://calg7c4hsfp6d" path="res://Sounds/hieb.wav" id="3_1jrwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]
@@ -24,7 +24,7 @@ offset_left = -44.0
 offset_top = -49.0
 offset_right = 36.0
 offset_bottom = 31.0
-texture = ExtResource("2_hmgo1")
+texture = ExtResource("2_hbnv4")
 expand_mode = 1
 stretch_mode = 5
 

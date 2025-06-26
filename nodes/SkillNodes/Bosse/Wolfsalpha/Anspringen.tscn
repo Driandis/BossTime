@@ -1,7 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://djw6tjkp2je7i"]
+[gd_scene load_steps=6 format=3 uid="uid://djw6tjkp2je7i"]
 
 [ext_resource type="Script" uid="uid://btt7rys0b7oa5" path="res://bosses/Wolfsalpha/Anspringen.gd" id="1_r6dbu"]
-[ext_resource type="Texture2D" uid="uid://dwmxfuov5720w" path="res://sprites/boss/Barbarianking/20250529_2000_Mittelalterliche Belagerungskunst_simple_compose_01jwek4hy2e1eawrf9g23n9hgh.png" id="4_wo3aq"]
+[ext_resource type="Script" uid="uid://iif7huo4muvn" path="res://Skills/Statuseffekte/WeakenPlayer.gd" id="2_4k45k"]
+[ext_resource type="Texture2D" uid="uid://b27mavtnt3nxf" path="res://sprites/boss/Wolfsalpha/Anspringen.png" id="2_r6dbu"]
+
+[sub_resource type="Resource" id="Resource_5ljtu"]
+script = ExtResource("2_4k45k")
+name = ""
+description = ""
+duration = 0
+metadata/_custom_type_script = "uid://iif7huo4muvn"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6ypt"]
 size = Vector2(90, 68)
@@ -12,6 +20,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_r6dbu")
 skill_name = "Anspringen"
+effect = SubResource("Resource_5ljtu")
 target_type = 1
 physical_damage = 9
 
@@ -25,7 +34,7 @@ offset_left = -30.0
 offset_top = -49.0
 offset_right = 50.0
 offset_bottom = 31.0
-texture = ExtResource("4_wo3aq")
+texture = ExtResource("2_r6dbu")
 expand_mode = 1
 stretch_mode = 5
 
