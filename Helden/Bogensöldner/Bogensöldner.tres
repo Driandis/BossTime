@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://yraxdkw01adx" path="res://Weapons/Söldner/Bogen.tres" id="1_cf2i5"]
 [ext_resource type="Script" uid="uid://bl6bchsjiiq8e" path="res://base/HeroData.gd" id="1_jh7en"]
 [ext_resource type="PackedScene" uid="uid://coes4fq5y8ayl" path="res://nodes/SkillNodes/Helden/Bogensöldner/Einfacher_Schuss.tscn" id="2_oe16j"]
-[ext_resource type="Texture2D" uid="uid://cxr2qqn7hko8a" path="res://sprites/heroes/bogenschütze/Bogensöldner.png" id="2_qjbli"]
+[ext_resource type="Texture2D" uid="uid://dnw1l2bpgurk" path="res://sprites/heroes/bogenschütze/ChatGPT Image 27. Juni 2025, 11_11_18.png" id="2_qjbli"]
 [ext_resource type="PackedScene" uid="uid://s8mjei564rsp" path="res://nodes/SkillNodes/Helden/Bogensöldner/Mehrfachschuss.tscn" id="3_cf2i5"]
 [ext_resource type="PackedScene" uid="uid://c0omttdsl0ihk" path="res://nodes/SkillNodes/Helden/Bogensöldner/Schwäche_finden.tscn" id="4_qjbli"]
 [ext_resource type="PackedScene" uid="uid://cwat7hceph4d7" path="res://nodes/SkillNodes/Helden/Bogensöldner/Vergifteter_Pfeil.tscn" id="5_7rfvj"]

@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl52ic852osk7"]
+[gd_scene load_steps=7 format=3 uid="uid://dl52ic852osk7"]
 
 [ext_resource type="Script" uid="uid://caq58h8n4emch" path="res://bosses/Bauer/Wütend.gd" id="1_10l14"]
+[ext_resource type="Script" uid="uid://d31p3fxok3st6" path="res://Skills/Statuseffekte/FlatDmgBuff.gd" id="2_3h28t"]
 [ext_resource type="Texture2D" uid="uid://chh386wmiulqi" path="res://sprites/boss/Bauer/Wütend.png" id="2_10l14"]
 [ext_resource type="AudioStream" uid="uid://calg7c4hsfp6d" path="res://Sounds/hieb.wav" id="3_nwskq"]
+
+[sub_resource type="Resource" id="Resource_3h28t"]
+script = ExtResource("2_3h28t")
+name = ""
+description = ""
+duration = 0
+metadata/_custom_type_script = "uid://d31p3fxok3st6"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]
 size = Vector2(90, 68)
@@ -13,6 +21,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_10l14")
 skill_name = "Wütend"
+effect = SubResource("Resource_3h28t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wütend"]
 position = Vector2(7.5, -2)
@@ -33,7 +42,7 @@ offset_left = -29.5
 offset_top = 11.0
 offset_right = 43.5
 offset_bottom = 34.0
-text = "Hieb"
+text = "Wütend"
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Wütend"]

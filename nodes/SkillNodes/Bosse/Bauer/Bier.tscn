@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://brpbhvx0a5124"]
+[gd_scene load_steps=6 format=3 uid="uid://brpbhvx0a5124"]
 
 [ext_resource type="Script" uid="uid://dfo41b8qkewlr" path="res://bosses/Bauer/Bier.gd" id="1_hbnv4"]
 [ext_resource type="Texture2D" uid="uid://dw47ioe36j0rx" path="res://sprites/boss/Bauer/Bier.png" id="2_hbnv4"]
+[ext_resource type="Resource" uid="uid://8iuaamirtv8i" path="res://Skills/Statuseffekte/Heilung.tres" id="2_hmgo1"]
 [ext_resource type="AudioStream" uid="uid://calg7c4hsfp6d" path="res://Sounds/hieb.wav" id="3_1jrwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]
@@ -13,6 +14,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_hbnv4")
 skill_name = "Bier"
+effect = ExtResource("2_hmgo1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bier"]
 position = Vector2(7.5, -2)
@@ -33,7 +35,7 @@ offset_left = -29.5
 offset_top = 11.0
 offset_right = 43.5
 offset_bottom = 34.0
-text = "Hieb"
+text = "Bier!"
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Bier"]

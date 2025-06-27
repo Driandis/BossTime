@@ -79,4 +79,5 @@ icon = ExtResource("9_2w3tt")
 [connection signal="pressed" from="Auswahlobjekte/Barbarianking" to="." method="_on_barbarianking_pressed"]
 [connection signal="pressed" from="Auswahlobjekte/Pyromancer" to="." method="_on_pyromancer_pressed"]
 [connection signal="pressed" from="Auswahlobjekte/Wolfsalpha" to="." method="_on_wolfsalpha_pressed"]
+[connection signal="pressed" from="Auswahlobjekte/Bauer" to="." method="_on_bauer_pressed"]
 [connection signal="pressed" from="Run (easy)" to="." method="_on_run_easy_pressed"]

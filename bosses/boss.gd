@@ -332,3 +332,4 @@ func blink_red():
 	hit_tween.tween_property(sprite.material, "shader_parameter/flash_amount", 0.0, 0.5)
  	# Tween die modulate-Eigenschaft des Sprites von Rot zu Weiß über 0.2 Sekunden
 	hit_tween.tween_property(sprite, "modulate", Color(1, 1, 1, 1), 0.2)
+	

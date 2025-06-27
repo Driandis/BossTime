@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://y8w1podnr4w0"]
+[gd_scene load_steps=7 format=3 uid="uid://y8w1podnr4w0"]
 
 [ext_resource type="Script" uid="uid://cd8p4jcn6fl3" path="res://bosses/Bauer/Milch.gd" id="1_0y23s"]
 [ext_resource type="Texture2D" uid="uid://i8wl6grblj6q" path="res://sprites/boss/Bauer/Milch.png" id="2_0y23s"]
+[ext_resource type="Script" uid="uid://besw7vm05tg42" path="res://Skills/Effekte/BlockEffect.gd" id="2_sm56n"]
 [ext_resource type="AudioStream" uid="uid://calg7c4hsfp6d" path="res://Sounds/hieb.wav" id="3_7168i"]
+
+[sub_resource type="Resource" id="Resource_7168i"]
+script = ExtResource("2_sm56n")
+name = ""
+description = ""
+duration = 0
+metadata/_custom_type_script = "uid://besw7vm05tg42"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b85x0"]
 size = Vector2(90, 68)
@@ -13,6 +21,7 @@ size = Vector2(90, 68)
 position = Vector2(-3, 64)
 script = ExtResource("1_0y23s")
 skill_name = "Milch"
+effect = SubResource("Resource_7168i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Milch"]
 position = Vector2(7.5, -2)
@@ -33,7 +42,7 @@ offset_left = -29.5
 offset_top = 11.0
 offset_right = 43.5
 offset_bottom = 34.0
-text = "Hieb"
+text = "Milch"
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Milch"]

@@ -1,16 +1,22 @@
-[gd_resource type="Resource" script_class="BossData" load_steps=3 format=3 uid="uid://d00i3y6fgjtnu"]
+[gd_resource type="Resource" script_class="BossData" load_steps=9 format=3 uid="uid://d00i3y6fgjtnu"]
 
 [ext_resource type="Texture2D" uid="uid://1cn1xdsubv27" path="res://sprites/boss/Bauer/Bauer.png" id="1_3e54q"]
 [ext_resource type="Script" uid="uid://dres0n1ghpxr0" path="res://base/BossData.gd" id="1_c2w65"]
+[ext_resource type="PackedScene" uid="uid://u5itl4sxsufo" path="res://nodes/SkillNodes/Bosse/Bauer/Mistgabel.tscn" id="2_6mx0y"]
+[ext_resource type="PackedScene" uid="uid://y8w1podnr4w0" path="res://nodes/SkillNodes/Bosse/Bauer/Milch.tscn" id="3_qdrrf"]
+[ext_resource type="PackedScene" uid="uid://nqcmxvv31pi7" path="res://nodes/SkillNodes/Bosse/Bauer/Hofhund.tscn" id="4_0xksw"]
+[ext_resource type="PackedScene" uid="uid://brpbhvx0a5124" path="res://nodes/SkillNodes/Bosse/Bauer/Bier.tscn" id="5_yfdg5"]
+[ext_resource type="PackedScene" uid="uid://dl52ic852osk7" path="res://nodes/SkillNodes/Bosse/Bauer/Wütend.tscn" id="6_bsxim"]
+[ext_resource type="PackedScene" uid="uid://c5l17a10su4xf" path="res://nodes/SkillNodes/Bosse/Bauer/Fackel.tscn" id="7_ub6b2"]
 
 [resource]
 script = ExtResource("1_c2w65")
 name = "Bauer"
-skills = Array[PackedScene]([])
+skills = Array[PackedScene]([null])
 max_health = 280
 bossBlock = 0
 bossArmor = 5
 bossMagicRes = 5
 boss_texture = ExtResource("1_3e54q")
-rounds = []
+rounds = [[ExtResource("2_6mx0y"), ExtResource("3_qdrrf"), ExtResource("4_0xksw")], [null, ExtResource("5_yfdg5"), ExtResource("6_bsxim")], [ExtResource("4_0xksw"), ExtResource("7_ub6b2"), ExtResource("2_6mx0y")], [ExtResource("2_6mx0y"), null, ExtResource("7_ub6b2")]]
 passive_trigger = 0.0

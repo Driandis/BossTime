@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FlatDamageBuffEffect" load_steps=2 format=3 uid="uid://24k66l6i8jm0"]
+
+[ext_resource type="Script" uid="uid://d31p3fxok3st6" path="res://Skills/Statuseffekte/FlatDmgBuff.gd" id="1_ciw8r"]
+
+[resource]
+script = ExtResource("1_ciw8r")
+name = "Schadenbuff"
+description = "Erhöht den Schaden für 1 Ebene"
+duration = 2

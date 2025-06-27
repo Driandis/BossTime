@@ -46,7 +46,7 @@ offset_left = -29.5
 offset_top = 11.0
 offset_right = 43.5
 offset_bottom = 34.0
-text = "Feuerball"
+text = "Vergifteter Pfeil"
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownBar" type="ProgressBar" parent="Vergifteter_Pfeil"]

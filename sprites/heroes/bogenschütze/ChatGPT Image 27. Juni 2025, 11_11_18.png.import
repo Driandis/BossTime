@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxr2qqn7hko8a"
-path="res://.godot/imported/Bogensöldner.png-b8ee8ae7b5a4b779aced6846ed00157a.ctex"
+uid="uid://dnw1l2bpgurk"
+path="res://.godot/imported/ChatGPT Image 27. Juni 2025, 11_11_18.png-c8259b7ca5b4f2534a7441cf7a402472.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/heroes/bogenschütze/Bogensöldner.png"
-dest_files=["res://.godot/imported/Bogensöldner.png-b8ee8ae7b5a4b779aced6846ed00157a.ctex"]
+source_file="res://sprites/heroes/bogenschütze/ChatGPT Image 27. Juni 2025, 11_11_18.png"
+dest_files=["res://.godot/imported/ChatGPT Image 27. Juni 2025, 11_11_18.png-c8259b7ca5b4f2534a7441cf7a402472.ctex"]
 
 [params]
 
@@ -30,5 +30,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=256
+process/size_limit=0
 detect_3d/compress_to=1

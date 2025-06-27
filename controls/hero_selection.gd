@@ -12,3 +12,10 @@ func _on_fighter_pressed() -> void:
 
 		get_tree().change_scene_to_file("res://nodes/boss_selection.tscn")  # Main-Spiel starten
 		print("Zweihandkämpfer ausgewählt.")
+		
+func _on_bogensöldner_pressed() -> void:
+		GlobalVariables.selected_hero = "res://Helden/Bogensöldner/Bogensöldner.tres"
+		get_tree().change_scene_to_file("res://nodes/boss_selection.tscn")
+		print("Bogensöldner ausgewählt")
+		
+		pass # Replace with function body.

@@ -1,14 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv0qam4naeb72"]
+[gd_scene load_steps=9 format=3 uid="uid://cv0qam4naeb72"]
 
 [ext_resource type="Script" uid="uid://cpg6p7d6mhns6" path="res://controls/hero_selection.gd" id="1_4sp4p"]
 [ext_resource type="Script" uid="uid://c2nd0wwn7f3u2" path="res://controls/feuermagebutton.gd" id="1_7w1wr"]
 [ext_resource type="Texture2D" uid="uid://1uswsvuy07wr" path="res://sprites/heroes/firemage/ChatGPT Image 26. Apr. 2025, 13_49_29.png" id="2_ye3tx"]
 [ext_resource type="Texture2D" uid="uid://dk4xkdswx2wen" path="res://sprites/heroes/fighter/Zweihandkrieger mit Schwert.png" id="4_871m5"]
 [ext_resource type="Script" uid="uid://sha4gw5gws3b" path="res://controls/fighterbutton.gd" id="5_3s7wh"]
-[ext_resource type="Script" uid="uid://bklyjb8ew1knh" path="res://controls/bogensöldnerbutton.gd" id="6_cppqt"]
+[ext_resource type="Script" uid="uid://bmke4n8222pn6" path="res://controls/bogensöldnerbutton.gd" id="6_cppqt"]
 [ext_resource type="Texture2D" uid="uid://nuw6x3vh1l2d" path="res://sprites/heroes/firemage/ChatGPT Image 27. Apr. 2025, 18_15_32.png" id="6_ol7rr"]
+[ext_resource type="Texture2D" uid="uid://dnw1l2bpgurk" path="res://sprites/heroes/bogenschütze/ChatGPT Image 27. Juni 2025, 11_11_18.png" id="6_ttlp8"]
 
 [node name="HeroSelection" type="Node2D"]
+position = Vector2(-7, -7)
 script = ExtResource("1_4sp4p")
 
 [node name="Auswahlobjekte" type="VBoxContainer" parent="."]
@@ -47,19 +49,29 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("5_3s7wh")
 
-[node name="Auswahlobjekt3" type="BoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Auswahlobjekt3" type="VBoxContainer" parent="."]
+offset_left = 701.0
+offset_top = 319.0
+offset_right = 798.0
+offset_bottom = 423.0
+scale = Vector2(0.1, 0.1)
+size_flags_horizontal = 4
 
 [node name="Bogensöldner" type="Button" parent="Auswahlobjekt3"]
 layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("6_ttlp8")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
 script = ExtResource("6_cppqt")
 
 [node name="Background" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(575.25, 322.25)
+position = Vector2(581, 333)
 scale = Vector2(0.749674, 0.634277)
 texture = ExtResource("6_ol7rr")
 
 [connection signal="pressed" from="Auswahlobjekte/Feuermage" to="." method="_on_feuermage_pressed"]
 [connection signal="pressed" from="Auswahlobjekte2/Fighter" to="." method="_on_fighter_pressed"]
+[connection signal="pressed" from="Auswahlobjekt3/Bogensöldner" to="." method="_on_bogensöldner_pressed"]

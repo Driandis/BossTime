@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="HealEffect" load_steps=3 format=3 uid="uid://8iuaamirtv8i"]
+
+[ext_resource type="Texture2D" uid="uid://hsj7psrjnegl" path="res://sprites/EffectIcon/Heilung.png" id="1_ias8w"]
+[ext_resource type="Script" uid="uid://3yb1dxtdmo06" path="res://Skills/Statuseffekte/Heilung.gd" id="1_p5hc3"]
+
+[resource]
+script = ExtResource("1_p5hc3")
+heal_amount = 20
+name = "Heilung"
+description = ""
+duration = 1
+Effect_texture = ExtResource("1_ias8w")
