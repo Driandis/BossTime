@@ -13,6 +13,12 @@ var timer #wofür?
 
 var main_node = null #zum Hinzufügen der Skills nachdem sie raus gezogen wurden
 
+#Felder
+var active_slot_empty: bool= true	#Schaut, ob der aktive Playerslot belegt ist "Kann genutzt werden "if active_slot_empty: .."
+var active_bossslot_empty: bool= true	#Schaut, ob der aktive Bossslot belegt ist "Kann genutzt werden "if active_slot_empty: .."
+var player_occupied_slots: int = 0
+var boss_occupied_slots: int = 0
+
 # Boss
 var selected_boss: String =""
 var bossName : String

@@ -90,7 +90,68 @@ func input(event: InputEvent) -> void: #von Beginn an von Maxi da
 
 func _on_player_dead() -> void:
 	$GameOver.visible = true;
+func check_all_player_skills():
+	var felder = $Player/Felder/Player.get_children()
+	
+	for feld in felder:
+		#printerr("Feld gefunden")
+		for child in feld.get_children():
+			if child.is_in_group("Skill"):
+				printerr("Skill in Slots gefunden: ", child.name, " in ", feld.name)
+func check_current_slot_skill():
+	var felder = $Player/Felder/Player.get_children()
 
+	if GlobalVariables.current_slot < felder.size():
+		var aktives_feld = felder[GlobalVariables.current_slot]
+		
+		var slot_is_empty = true
+		for child in aktives_feld.get_children():
+			#printerr("Actives Feld ", felder[GlobalVariables.current_slot])
+			if child.is_in_group("Skill"):
+				printerr("Aktiver Skill:", child.name)
+				slot_is_empty = false
+				GlobalVariables.active_slot_empty = slot_is_empty
+				break
+	print("Slot leer:", GlobalVariables.active_slot_empty)
+func check_current_bossslot_skill():
+	var felder = $Boss/BossFelder/Boss.get_children()
+
+	if GlobalVariables.current_slot < felder.size():
+		var aktives_feld = felder[GlobalVariables.current_slot]
+		var slot_is_empty = true
+		for child in aktives_feld.get_children():
+			if child.is_in_group("Skill"):
+				print("Aktiver Bossskill:", child.name)
+				slot_is_empty = false
+				GlobalVariables.active_bossslot_empty = slot_is_empty
+				break
+	print("Slot leer:", GlobalVariables.active_bossslot_empty)
+func count_occupied_slots():
+	var felder = $Player/Felder/Player.get_children()
+	var count = 0
+
+	for feld in felder:
+		for child in feld.get_children():
+			if child.is_in_group("Skill"):
+				count += 1
+				break  # ein Skill reicht pro Feld
+
+	# In GlobalVariables speichern
+	GlobalVariables.player_occupied_slots = count
+	return count
+func count_occupied_bossslots():
+	var felder = $Boss/BossFelder/Boss.get_children()
+	var count = 0
+
+	for feld in felder:
+		for child in feld.get_children():
+			if child.is_in_group("Skill"):
+				count += 1
+				break  # ein Skill reicht pro Feld
+
+	# In GlobalVariables speichern
+	GlobalVariables.boss_occupied_slots = count
+	return count
 func _on_boss_died():
 	player.can_take_turn = false 
 	boss.can_take_turn = false 
@@ -109,6 +170,8 @@ func _on_turn_counter_pressed() -> void: #Haupthandlung passiert wenn der Knopf 
 	#Freeze reduzieren
 		if GlobalVariables.freezetimer > 0:
 			GlobalVariables.freezetimer -=1
+		check_all_player_skills()
+		check_current_slot_skill()
 	#Zug des Spielers
 		player.take_turn()
 		await get_tree().create_timer(0.5).timeout 
