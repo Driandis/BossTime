@@ -155,7 +155,7 @@ func apply_attack_modifiers(physic_value: int, magic_value: int) -> Dictionary:	
 			modified_magic_value = modified_values.magic
 	#Items
 	
-	# Feldeffekte evemtuell hierhin und raus aus dem Main?
+	# Feldeffekte 
 	var slot_effect = GlobalVariables.slot_effect_multipliers[GlobalVariables.current_slot]
 	modified_physic_value=modified_physic_value *slot_effect
 	modified_magic_value=modified_magic_value*slot_effect

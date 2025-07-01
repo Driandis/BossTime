@@ -126,7 +126,7 @@ func check_current_bossslot_skill():
 					
 					break
 	GlobalVariables.active_bossslot_empty = slot_is_empty
-	printerr("Aktueller Bossslot leer:", GlobalVariables.active_bossslot_empty)
+	#printerr("Aktueller Bossslot leer:", GlobalVariables.active_bossslot_empty)
 func count_occupied_slots():
 	var felder = $Player/Felder/Player.get_children()
 	var count = 0
@@ -136,7 +136,6 @@ func count_occupied_slots():
 			if child.is_in_group("Skill"):
 				count += 1
 				break  # ein Skill reicht pro Feld
-
 	# In GlobalVariables speichern
 	GlobalVariables.player_occupied_slots = count
 	#printerr("Besetzte Spielerfelder: ", count)

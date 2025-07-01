@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://br0h18fqmirga"]
+[gd_scene load_steps=10 format=3 uid="uid://br0h18fqmirga"]
 
 [ext_resource type="PackedScene" uid="uid://fivay0tb8yky" path="res://nodes/player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://yg5mhbm6w5rx" path="res://base/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://deys43et4bw2g" path="res://nodes/boss.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dvs7vr0140cts" path="res://sprites/20250701_1549_Gefährlicher Holz-Mauszeiger_simple_compose_01jz33y5e5ez0b2a6b4v6w0s3z.png" id="3_pmn7o"]
 [ext_resource type="Texture2D" uid="uid://dkf506f3owsi7" path="res://sprites/background/732f46d3-d54d-4bd8-8908-1d4c9f4118b4.jpg" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://cy6jijhabrfqu" path="res://sprites/Control/ChatGPT Image 3. Juni 2025, 19_34_10.png" id="6_6s2ku"]
 [ext_resource type="PackedScene" uid="uid://5np555wkfose" path="res://nodes/skill_tooltip.tscn" id="6_sybi7"]
@@ -12,6 +13,7 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
 player_scene = ExtResource("1_0xm2m")
+custom_cursor_texture = ExtResource("3_pmn7o")
 
 [node name="Player" parent="." instance=ExtResource("1_0xm2m")]
 top_level = true

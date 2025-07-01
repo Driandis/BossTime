@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Poison" load_steps=2 format=3 uid="uid://cjfbt2gmd5hja"]
+[gd_resource type="Resource" script_class="Poison" load_steps=3 format=3 uid="uid://cjfbt2gmd5hja"]
 
+[ext_resource type="Texture2D" uid="uid://o3ws46ih0jx5" path="res://sprites/EffectIcon/20250701_1530_Poison Game Icon_simple_compose_01jz32tm55ef99t1qpmer9w4y8.png" id="1_s418n"]
 [ext_resource type="Script" uid="uid://ck03udyp7e8bc" path="res://Skills/Statuseffekte/Poison.gd" id="1_ygltg"]
 
 [resource]
@@ -7,3 +8,4 @@ script = ExtResource("1_ygltg")
 name = "Poison"
 description = "3 Schaden pro Zug"
 duration = 3
+Effect_texture = ExtResource("1_s418n")
