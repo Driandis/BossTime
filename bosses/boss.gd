@@ -229,7 +229,6 @@ func load_skills_for_turn():
 	#Damit er wieder von vorn anfängt, wenn er mit seinen Skillrunden durch ist
 	if current_round_index >= skill_plan.size():
 		current_round_index = 0  # Zurück zum Anfang
-
 	var current_round_skills: Array = skill_plan[current_round_index]	#Skills der entsprechenden Runde
 	#Skills laden, zuerst Felder leeren
 	print("current_round_skills.size(): ", current_round_skills.size())
